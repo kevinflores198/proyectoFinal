@@ -8,6 +8,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import com.socialFashion.proyectoFinal.Enumeraciones.Role;
