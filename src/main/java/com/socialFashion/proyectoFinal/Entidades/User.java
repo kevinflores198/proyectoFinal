@@ -30,6 +30,7 @@ public class User {
     private byte[] image;
     private String description;
     private boolean alta;
+    @OneToMany
     private ReportUser[] report;
 
     public User() {
