@@ -1,7 +1,6 @@
 package com.socialFashion.proyectoFinal.Entidades;
 
-import java.sql.Time;
-
+import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,7 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
 import com.socialFashion.proyectoFinal.Enumeraciones.Role;
 
 @Entity
-public class User {
+public class Usuario {
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -28,14 +27,14 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private Time birthDate;
+    private LocalDate birthDate;
     private byte[] image;
     private String description;
     private boolean alta;
     @OneToMany
     private ReportUser[] report;
 
-    public User() {
+    public Usuario() {
     }
 
     public String getId() {
@@ -78,11 +77,11 @@ public class User {
         this.password = password;
     }
 
-    public Time getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Time birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
