@@ -17,19 +17,19 @@ public class Comentario {
     
     private String idUser;
     private String idPublicacion;
-    private String comments;
+    private String comment;
     private Boolean alta;
     private ReportComentario[] reports;
     
     public Comentario() {
     }
 
-    public Comentario(String idComent, String idUser, String idPublicacion, String comments, Boolean alta,
+    public Comentario(String idComent, String idUser, String idPublicacion, String comment, Boolean alta,
             ReportComentario[] reports) {
         this.idComent = idComent;
         this.idUser = idUser;
         this.idPublicacion = idPublicacion;
-        this.comments = comments;
+        this.comment = comment;
         this.alta = alta;
         this.reports = reports;
     }
@@ -58,12 +58,12 @@ public class Comentario {
         this.idPublicacion = idPublicacion;
     }
 
-    public String getComments() {
-        return comments;
+    public String getComment() {
+        return comment;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public Boolean getAlta() {

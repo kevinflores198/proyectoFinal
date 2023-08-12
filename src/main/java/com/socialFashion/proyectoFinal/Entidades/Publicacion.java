@@ -5,8 +5,8 @@ import javax.persistence.GeneratedValue;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * Publicacion
@@ -21,12 +21,12 @@ public class Publicacion {
 
     private String idUser;
     private String label;
-    private Byte[] image;
+    private Imagen image;
     private String content;
     private LocalDate initialDate;
 
     @OneToMany
-    private Comentario[] comments;
+    private ArrayList<Comentario> comments;
     private Integer likes;
 
     private Boolean alta;
@@ -34,8 +34,8 @@ public class Publicacion {
     public Publicacion() {
     }
 
-    public Publicacion(String idUser, String label, Byte[] image, String content, LocalDate initialDate,
-            Comentario[] comments, Integer likes, Boolean alta) {
+    public Publicacion(String idUser, String label, Imagen image, String content, LocalDate initialDate,
+            ArrayList<Comentario> comments, Integer likes, Boolean alta) {
         this.idUser = idUser;
         this.label = label;
         this.image = image;
@@ -70,11 +70,11 @@ public class Publicacion {
         this.label = label;
     }
 
-    public Byte[] getImage() {
+    public Imagen getImage() {
         return image;
     }
 
-    public void setImage(Byte[] image) {
+    public void setImage(Imagen image) {
         this.image = image;
     }
 
@@ -94,11 +94,11 @@ public class Publicacion {
         this.initialDate = initialDate;
     }
 
-    public Comentario[] getComments() {
+    public ArrayList<Comentario> getComments() {
         return comments;
     }
 
-    public void setComments(Comentario[] comments) {
+    public void setComments(ArrayList<Comentario> comments) {
         this.comments = comments;
     }
 
