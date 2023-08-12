@@ -18,9 +18,10 @@ public class ReportComentario {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String idReport;
+    
     private String idUser;
     private String idComentario;
-    private String idReport;
     private String Reason; 
     private Boolean alta;
 
