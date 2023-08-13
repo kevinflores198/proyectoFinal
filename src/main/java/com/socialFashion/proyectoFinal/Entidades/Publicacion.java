@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * Publicacion
@@ -29,7 +29,7 @@ public class Publicacion {
     private String content;
 
     @Temporal(TemporalType.DATE)
-    private LocalDate initialDate;
+    private Date initialDate;
 
     //@OneToMany    
     //private ArrayList<Comentario> comments;
@@ -41,7 +41,7 @@ public class Publicacion {
     public Publicacion() {
     }
 
-    public Publicacion(Usuario user, String label, Imagen image, String content, LocalDate initialDate,
+    public Publicacion(Usuario user, String label, Imagen image, String content, Date initialDate,
             Integer likes, Boolean alta) {
         this.user = user;
         this.label = label;
@@ -94,11 +94,11 @@ public class Publicacion {
         this.content = content;
     }
 
-    public LocalDate getInitialDate() {
+    public Date getInitialDate() {
         return initialDate;
     }
 
-    public void setInitialDate(LocalDate initialDate) {
+    public void setInitialDate(Date initialDate) {
         this.initialDate = initialDate;
     }
 

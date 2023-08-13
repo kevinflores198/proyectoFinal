@@ -1,6 +1,7 @@
 package com.socialFashion.proyectoFinal.Servicios;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -50,7 +51,7 @@ public class servicioPublicacion {
             publicacion.setContent(content);
             publicacion.setLikes(0);
             publicacion.setAlta(true);
-            publicacion.setInitialDate(LocalDate.now());
+            publicacion.setInitialDate(new Date());
 
             repoPubli.save(publicacion);
         }else{
