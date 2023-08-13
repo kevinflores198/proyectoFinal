@@ -7,7 +7,6 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.socialFashion.proyectoFinal.Entidades.Comentario;

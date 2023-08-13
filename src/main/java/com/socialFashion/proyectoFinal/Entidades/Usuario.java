@@ -1,6 +1,8 @@
 package com.socialFashion.proyectoFinal.Entidades;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,6 +14,10 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.socialFashion.proyectoFinal.Enumeraciones.Role;
+
+/**
+ *  Entidad Usuario
+ */
 
 @Entity
 public class Usuario {
@@ -28,14 +34,29 @@ public class Usuario {
     private String email;
     private String password;
     private LocalDate birthDate;
-    private byte[] image;
+    private Imagen image;
     private String description;
-    private boolean alta;
+    private Boolean alta;
     @OneToMany
-    private ReportUser[] report;
+    private ArrayList<ReportUser> report;
 
     public Usuario() {
     }
+
+    public Usuario(Role role, String name, String email, String password, LocalDate birthDate, Imagen image,
+            String description, Boolean alta, ArrayList<ReportUser> report) {
+        this.role = role;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.birthDate = birthDate;
+        this.image = image;
+        this.description = description;
+        this.alta = alta;
+        this.report = report;
+    }
+
+
 
     public String getId() {
         return id;
@@ -85,11 +106,11 @@ public class Usuario {
         this.birthDate = birthDate;
     }
 
-    public byte[] getImage() {
+    public Imagen getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(Imagen image) {
         this.image = image;
     }
 
@@ -101,19 +122,19 @@ public class Usuario {
         this.description = description;
     }
 
-    public boolean isAlta() {
+    public Boolean isAlta() {
         return alta;
     }
 
-    public void setAlta(boolean alta) {
+    public void setAlta(Boolean alta) {
         this.alta = alta;
     }
 
-    public ReportUser[] getReport() {
+    public ArrayList<ReportUser> getReport() {
         return report;
     }
 
-    public void setReport(ReportUser[] report) {
+    public void setReport(ArrayList<ReportUser> report) {
         this.report = report;
     }
 

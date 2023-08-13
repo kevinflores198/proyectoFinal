@@ -1,4 +1,6 @@
 package com.socialFashion.proyectoFinal.Entidades;
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,13 +21,13 @@ public class Comentario {
     private String idPublicacion;
     private String comment;
     private Boolean alta;
-    private ReportComentario[] reports;
+    private ArrayList<ReportComentario> reports;
     
     public Comentario() {
     }
 
     public Comentario(String idComent, String idUser, String idPublicacion, String comment, Boolean alta,
-            ReportComentario[] reports) {
+            ArrayList<ReportComentario> reports) {
         this.idComent = idComent;
         this.idUser = idUser;
         this.idPublicacion = idPublicacion;
@@ -74,11 +76,11 @@ public class Comentario {
         this.alta = alta;
     }
 
-    public ReportComentario[] getReports() {
+    public ArrayList<ReportComentario> getReports() {
         return reports;
     }
 
-    public void setReports(ReportComentario[] reports) {
+    public void setReports(ArrayList<ReportComentario> reports) {
         this.reports = reports;
     }
 

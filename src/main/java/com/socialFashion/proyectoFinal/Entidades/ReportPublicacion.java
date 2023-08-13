@@ -24,7 +24,7 @@ public class ReportPublicacion {
     private String idPublicacion;
     private String idUser;
     private String reason;
-    private boolean alta;
+    private Boolean alta;
 
     @Enumerated(EnumType.STRING)
     private ReportsPublicacion typeReport;
@@ -32,7 +32,7 @@ public class ReportPublicacion {
     public ReportPublicacion() {
     }
 
-    public ReportPublicacion(String idPublicacion, String idUser, String reason, boolean alta,
+    public ReportPublicacion(String idPublicacion, String idUser, String reason, Boolean alta,
             ReportsPublicacion typeReport) {
         this.idPublicacion = idPublicacion;
         this.idUser = idUser;
@@ -73,11 +73,11 @@ public class ReportPublicacion {
         this.reason = reason;
     }
 
-    public boolean isAlta() {
+    public Boolean isAlta() {
         return alta;
     }
 
-    public void setAlta(boolean alta) {
+    public void setAlta(Boolean alta) {
         this.alta = alta;
     }
 
