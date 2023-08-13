@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-
 public class ReportUser {
     
     @Id
