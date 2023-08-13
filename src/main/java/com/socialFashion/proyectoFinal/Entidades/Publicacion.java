@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,7 +26,10 @@ public class Publicacion {
     private Usuario user;
 
     private String label;
+
+    @OneToOne
     private Imagen image;
+    
     private String content;
 
     @Temporal(TemporalType.DATE)
