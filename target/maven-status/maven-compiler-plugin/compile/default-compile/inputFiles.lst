@@ -2,6 +2,7 @@
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/ReportUser.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/servicioComentario.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Usuario.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/serviciosEj.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/repositorios/repositorioImangen.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Imagen.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/ReportPublicacion.java
@@ -11,7 +12,6 @@
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Comentario.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsUser.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/servicioPublicacion.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/repositorios/RepositorioUsuario.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsPublicacion.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Exceptions/MiException.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/repositorios/repositorioPublicacion.java
