@@ -5,6 +5,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.omg.CORBA.BAD_TYPECODE;
@@ -22,10 +23,12 @@ public class ReportPublicacion {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idReport;
 
-    private String idPublicacion;
+    @ManyToOne
+    private Publicacion publicacion;
+
     private String idUser;
     private String reason;
-    private Boolean alta;
+    //private Boolean alta;
 
     @Enumerated(EnumType.STRING)
     private ReportsPublicacion typeReport;
@@ -33,14 +36,15 @@ public class ReportPublicacion {
     public ReportPublicacion() {
     }
 
-    public ReportPublicacion(String idPublicacion, String idUser, String reason, Boolean alta,
+    public ReportPublicacion(Publicacion publicacion, String idUser, String reason,
             ReportsPublicacion typeReport) {
-        this.idPublicacion = idPublicacion;
+        this.publicacion = publicacion;
         this.idUser = idUser;
         this.reason = reason;
-        this.alta = alta;
         this.typeReport = typeReport;
     }
+
+    //Getter y Setter
 
     public String getIdReport() {
         return idReport;
@@ -50,12 +54,12 @@ public class ReportPublicacion {
         this.idReport = idReport;
     }
 
-    public String getIdPublicacion() {
-        return idPublicacion;
+    public Publicacion getPublicacion() {
+        return publicacion;
     }
 
-    public void setIdPublicacion(String idPublicacion) {
-        this.idPublicacion = idPublicacion;
+    public void setPublicacion(Publicacion publicacion) {
+        this.publicacion = publicacion;
     }
 
     public String getIdUser() {
@@ -74,14 +78,6 @@ public class ReportPublicacion {
         this.reason = reason;
     }
 
-    public Boolean isAlta() {
-        return alta;
-    }
-
-    public void setAlta(Boolean alta) {
-        this.alta = alta;
-    }
-
     public ReportsPublicacion getTypeReport() {
         return typeReport;
     }
@@ -89,6 +85,5 @@ public class ReportPublicacion {
     public void setTypeReport(ReportsPublicacion typeReport) {
         this.typeReport = typeReport;
     }
-
     
 }
