@@ -70,10 +70,6 @@ public class servicioPublicacion {
     }
 
 
-
-
-
-
     
     public void validacion(String idUser, String label, MultipartFile archivo, String content) throws MiException{
         if(idUser.isEmpty() || idUser == null){
