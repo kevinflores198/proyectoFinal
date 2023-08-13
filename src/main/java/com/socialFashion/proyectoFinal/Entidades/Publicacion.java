@@ -4,9 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 /**
  * Publicacion
@@ -19,14 +21,19 @@ public class Publicacion {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
-    private String idUser;
+    @ManyToOne
+    private Usuario user;
+
     private String label;
     private Imagen image;
     private String content;
+
+    @Temporal(TemporalType.DATE)
     private LocalDate initialDate;
 
-    @OneToMany
-    private ArrayList<Comentario> comments;
+    //@OneToMany    
+    //private ArrayList<Comentario> comments;
+
     private Integer likes;
 
     private Boolean alta;
@@ -34,17 +41,18 @@ public class Publicacion {
     public Publicacion() {
     }
 
-    public Publicacion(String idUser, String label, Imagen image, String content, LocalDate initialDate,
-            ArrayList<Comentario> comments, Integer likes, Boolean alta) {
-        this.idUser = idUser;
+    public Publicacion(Usuario user, String label, Imagen image, String content, LocalDate initialDate,
+            Integer likes, Boolean alta) {
+        this.user = user;
         this.label = label;
         this.image = image;
         this.content = content;
         this.initialDate = initialDate;
-        this.comments = comments;
         this.likes = likes;
         this.alta = alta;
     }
+
+    //Getter y Setter
 
     public String getId() {
         return id;
@@ -54,12 +62,12 @@ public class Publicacion {
         this.id = id;
     }
 
-    public String getIdUser() {
-        return idUser;
+    public Usuario getUser() {
+        return user;
     }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
+    public void setUser(Usuario usuario) {
+        this.user = usuario;
     }
 
     public String getLabel() {
@@ -94,14 +102,6 @@ public class Publicacion {
         this.initialDate = initialDate;
     }
 
-    public ArrayList<Comentario> getComments() {
-        return comments;
-    }
-
-    public void setComments(ArrayList<Comentario> comments) {
-        this.comments = comments;
-    }
-
     public Integer getLikes() {
         return likes;
     }
@@ -117,5 +117,6 @@ public class Publicacion {
     public void setAlta(Boolean alta) {
         this.alta = alta;
     }
+
     
 }

@@ -1,9 +1,10 @@
 package com.socialFashion.proyectoFinal.Entidades;
-import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -16,25 +17,29 @@ public class Comentario {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idComent;
-    
+
     private String idUser;
-    private String idPublicacion;
+
+    @ManyToOne
+    private Publicacion publicacion;
+
     private String comment;
     private Boolean alta;
-    private ArrayList<ReportComentario> reports;
+
+    //@OneToMany            No se usa
+    //private ArrayList<ReportComentario> reports;
     
     public Comentario() {
     }
 
-    public Comentario(String idComent, String idUser, String idPublicacion, String comment, Boolean alta,
-            ArrayList<ReportComentario> reports) {
-        this.idComent = idComent;
+    public Comentario(String idUser, Publicacion publicacion, String comment, Boolean alta) {
         this.idUser = idUser;
-        this.idPublicacion = idPublicacion;
+        this.publicacion = publicacion;
         this.comment = comment;
         this.alta = alta;
-        this.reports = reports;
     }
+
+    //Getter y Setter
 
     public String getIdComent() {
         return idComent;
@@ -52,12 +57,12 @@ public class Comentario {
         this.idUser = idUser;
     }
 
-    public String getIdPublicacion() {
-        return idPublicacion;
+    public Publicacion getPublicacion() {
+        return publicacion;
     }
 
-    public void setIdPublicacion(String idPublicacion) {
-        this.idPublicacion = idPublicacion;
+    public void setPublicacion(Publicacion publicacion) {
+        this.publicacion = publicacion;
     }
 
     public String getComment() {
@@ -74,14 +79,6 @@ public class Comentario {
 
     public void setAlta(Boolean alta) {
         this.alta = alta;
-    }
-
-    public ArrayList<ReportComentario> getReports() {
-        return reports;
-    }
-
-    public void setReports(ArrayList<ReportComentario> reports) {
-        this.reports = reports;
     }
 
 }
