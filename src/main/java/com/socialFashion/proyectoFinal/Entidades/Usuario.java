@@ -30,7 +30,7 @@ public class Usuario {
     private LocalDate birthDate;
     private byte[] image;
     private String description;
-    private boolean alta;
+    private Boolean alta;
     @OneToMany
     private ReportUser[] report;
 
