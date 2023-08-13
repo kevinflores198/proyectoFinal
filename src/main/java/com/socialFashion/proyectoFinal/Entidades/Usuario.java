@@ -1,7 +1,6 @@
 package com.socialFashion.proyectoFinal.Entidades;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,7 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -34,17 +33,23 @@ public class Usuario {
     private String email;
     private String password;
     private LocalDate birthDate;
+
+    @OneToOne
     private Imagen image;
+    
     private String description;
     private Boolean alta;
-    @OneToMany
-    private ArrayList<ReportUser> report;
+
+    //@OneToMany
+    //private ArrayList<Publicacion> publicacion;
+    
+    //private ArrayList<ReportUser> report;
 
     public Usuario() {
     }
 
     public Usuario(Role role, String name, String email, String password, LocalDate birthDate, Imagen image,
-            String description, Boolean alta, ArrayList<ReportUser> report) {
+            String description, Boolean alta) {
         this.role = role;
         this.name = name;
         this.email = email;
@@ -53,10 +58,9 @@ public class Usuario {
         this.image = image;
         this.description = description;
         this.alta = alta;
-        this.report = report;
     }
 
-
+    //Getter y Setter
 
     public String getId() {
         return id;
@@ -122,24 +126,12 @@ public class Usuario {
         this.description = description;
     }
 
-    public Boolean isAlta() {
+    public Boolean getAlta() {
         return alta;
     }
 
     public void setAlta(Boolean alta) {
         this.alta = alta;
     }
-
-    public ArrayList<ReportUser> getReport() {
-        return report;
-    }
-
-    public void setReport(ArrayList<ReportUser> report) {
-        this.report = report;
-    }
-
     
-    
-    
-
 }

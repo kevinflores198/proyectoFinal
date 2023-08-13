@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 
+/**
+ * repositorioPublicacion
+ */
 @Repository
 public interface repositorioPublicacion extends JpaRepository<Publicacion,String> {
     

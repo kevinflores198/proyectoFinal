@@ -7,6 +7,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -18,10 +20,12 @@ public class ReportUser {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idReporte;
     
-    private String idUser;
+    @ManyToOne
+    private Usuario user;
+
     private String idUserReported;
     private String reason;
-    private Boolean alta;
+    //private Boolean alta;     Por si hace falta
     
     @Enumerated(EnumType.STRING)
     private ReportsUser typeReport;
@@ -29,14 +33,14 @@ public class ReportUser {
     public ReportUser() {
     }
 
-    public ReportUser(String idReporte, String idUser, String idUserReported, String reason, Boolean alta, ReportsUser typeReport) {
-        this.idReporte = idReporte;
-        this.idUser = idUser;
+    public ReportUser(Usuario user, String idUserReported, String reason, ReportsUser typeReport) {
+        this.user = user;
         this.idUserReported = idUserReported;
         this.reason = reason;
-        this.alta = alta;
         this.typeReport = typeReport;
     }
+
+    //Getter y Setter
 
     public String getIdReporte() {
         return idReporte;
@@ -46,12 +50,12 @@ public class ReportUser {
         this.idReporte = idReporte;
     }
 
-    public String getIdUser() {
-        return idUser;
+    public Usuario getUser() {
+        return user;
     }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 
     public String getIdUserReported() {
@@ -70,13 +74,13 @@ public class ReportUser {
         this.reason = reason;
     }
 
-    public Boolean isAlta() {
-        return alta;
-    }
+    // public Boolean getAlta() {
+    //     return alta;
+    // }
 
-    public void setAlta(Boolean alta) {
-        this.alta = alta;
-    }
+    // public void setAlta(Boolean alta) {
+    //     this.alta = alta;
+    // }
 
     public ReportsUser getTypeReport() {
         return typeReport;
@@ -85,9 +89,5 @@ public class ReportUser {
     public void setTypeReport(ReportsUser typeReport) {
         this.typeReport = typeReport;
     }
-    
-    
-    
-    
-    
+       
 }
