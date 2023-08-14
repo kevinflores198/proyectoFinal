@@ -1,5 +1,4 @@
 package com.socialFashion.proyectoFinal.Entidades;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -9,37 +8,35 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.socialFashion.proyectoFinal.Enumeraciones.ReportsPublicacion;
+import com.socialFashion.proyectoFinal.Enumeraciones.ReportsComentario;
 
 /**
- * ReportPublicacion
+ * ReportComentario
  */
 @Entity
-public class ReportPublicacion {
-
+public class ReportComentario {
+    
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idReport;
+    
+    private String idUser;
 
     @ManyToOne
-    private Publicacion publicacion;
+    private Comentario comentario;
 
-    private String idUser;
-    private String reason;
+    private String Reason; 
     //private Boolean alta;
 
     @Enumerated(EnumType.STRING)
-    private ReportsPublicacion typeReport;
+    private ReportsComentario typeReport;
 
-    public ReportPublicacion() {
-    }
-
-    public ReportPublicacion(Publicacion publicacion, String idUser, String reason,
-            ReportsPublicacion typeReport) {
-        this.publicacion = publicacion;
+    public ReportComentario(String idUser, Comentario comentario, String reason,
+            ReportsComentario typeReport) {
         this.idUser = idUser;
-        this.reason = reason;
+        this.comentario = comentario;
+        Reason = reason;
         this.typeReport = typeReport;
     }
 
@@ -53,14 +50,6 @@ public class ReportPublicacion {
         this.idReport = idReport;
     }
 
-    public Publicacion getPublicacion() {
-        return publicacion;
-    }
-
-    public void setPublicacion(Publicacion publicacion) {
-        this.publicacion = publicacion;
-    }
-
     public String getIdUser() {
         return idUser;
     }
@@ -69,19 +58,27 @@ public class ReportPublicacion {
         this.idUser = idUser;
     }
 
+    public Comentario getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(Comentario comentario) {
+        this.comentario = comentario;
+    }
+
     public String getReason() {
-        return reason;
+        return Reason;
     }
 
     public void setReason(String reason) {
-        this.reason = reason;
+        Reason = reason;
     }
 
-    public ReportsPublicacion getTypeReport() {
+    public ReportsComentario getTypeReport() {
         return typeReport;
     }
 
-    public void setTypeReport(ReportsPublicacion typeReport) {
+    public void setTypeReport(ReportsComentario typeReport) {
         this.typeReport = typeReport;
     }
     
