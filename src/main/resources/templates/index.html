@@ -1,135 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Social Fashion</title>
 
-    <!-- Boostrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-      crossorigin="anonymous"
-    />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social Fashion</title>
+  <link rel="icon" type="image/x-icon" href="/src/main/resources/static/png/8.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+</head>
 
-  <body>
-    
-   
-    
-    <header class="p-3 mb-3 border-bottom">
-      <div class="flex">
-        
-        <div
-          class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
-        >
-        
-          <a
-            href="/"
-            class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
-          >
-            <svg
-              class="bi me-2"
-              width="40"
-              height="32"
-              role="img"
-              aria-label="Bootstrap"
-            >
-              <use xlink:href="#bootstrap" />
-        
-
-            </svg>
+<body>
+  <header class="p-3 mb-3 border-bottom">
+    <div class="flex">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+            <use xlink:href="#bootstrap" />
+          </svg>
+        </a>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li>
+            <a href="#" class="nav-link px-2 link-secondary">Menu principal</a>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-2 link-body-emphasis">Diseñadores</a>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-2 link-body-emphasis">Top 10</a>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-2 link-body-emphasis">Publicaciones</a>
+          </li>
+        </ul>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input type="search" class="form-control" placeholder="Buscar..." aria-label="Search" />
+        </form>
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" />
           </a>
-
-          <ul
-            class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
-          >
+          <ul class="dropdown-menu text-small">
+            <li><a class="dropdown-item" href="#">Perfil</a></li>
+            <li><a class="dropdown-item" href="#">Configuraciones</a></li>
             <li>
-              <a href="#" class="nav-link px-2 link-secondary"
-                >Menu principal</a
-              >
+              <hr class="dropdown-divider" />
             </li>
-            <li>
-              <a href="#" class="nav-link px-2 link-body-emphasis"
-                >Diseñadores</a
-              >
-            </li>
-            <li>
-              <a href="#" class="nav-link px-2 link-body-emphasis">Top 10</a>
-            </li>
-            <li>
-              <a href="#" class="nav-link px-2 link-body-emphasis"
-                >Publicaciones</a
-              >
-            </li>
+            <li><a class="dropdown-item" href="#">Salir</a></li>
           </ul>
-
-          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-            <input
-              type="search"
-              class="form-control"
-              placeholder="Buscar..."
-              aria-label="Search"
-            />
-          </form>
-
-          <div class="dropdown text-end">
-            <a
-              href="#"
-              class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <img
-                src="https://github.com/mdo.png"
-                alt="mdo"
-                width="32"
-                height="32"
-                class="rounded-circle"
-              />
-            </a>
-            <ul class="dropdown-menu text-small">
-              <li><a class="dropdown-item" href="#">Perfil</a></li>
-              <li><a class="dropdown-item" href="#">Configuraciones</a></li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-              <li><a class="dropdown-item" href="#">Salir</a></li>
-            </ul>
-          </div>
         </div>
       </div>
-    </header>
-    
-
-    
-    <main>
+    </div>
+  </header>
+  <main>
     <div class="container-fluid">
       <div class="row">
-        
-        
-        
         <div class="col-md-3 py-4">
-          <div
-            class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary"
-          >
-            <a
-              href="/"
-              class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom"
-            >
-              
-            <h2>Diseñadores</h2>  
+          <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary">
+            <a href="/"
+              class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
+              <h2>Diseñadores</h2>
             </a>
             <div class="list-group list-group-flush border-bottom scrollarea">
-              <a
-                href="#"
-                class="list-group-item list-group-item-action py-3 lh-sm"
-                aria-current="true"
-              >
-                <div
-                  class="d-flex w-100 align-items-center  justify-content-between"
-                >
+              <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+                <div class="d-flex w-100 align-items-center  justify-content-between">
                   <strong class="mb-1">Diseñador </strong>
                   <small><img src="..." class="d-block w-100" alt="Imagen" />Link</small>
                   <!-- vamos a poner una imagen, en ves del texto para redireccionar al perfil -->
@@ -140,14 +75,8 @@
                   <p>Texto de muestra</p>
                 </div>
               </a>
-              <a
-                href="#"
-                class="list-group-item list-group-item-action py-3 lh-sm"
-                aria-current="true"
-              >
-                <div
-                  class="d-flex w-100 align-items-center  justify-content-between"
-                >
+              <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+                <div class="d-flex w-100 align-items-center  justify-content-between">
                   <strong class="mb-1">Diseñador </strong>
                   <small><img src="..." class="d-block w-100" alt="Imagen" />Link</small>
                   <!-- vamos a poner una imagen, en ves del texto para redireccionar al perfil -->
@@ -158,14 +87,8 @@
                   <p>Texto de muestra</p>
                 </div>
               </a>
-              <a
-                href="#"
-                class="list-group-item list-group-item-action py-3 lh-sm"
-                aria-current="true"
-              >
-                <div
-                  class="d-flex w-100 align-items-center  justify-content-between"
-                >
+              <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+                <div class="d-flex w-100 align-items-center  justify-content-between">
                   <strong class="mb-1">Diseñador </strong>
                   <small><img src="..." class="d-block w-100" alt="Imagen" />Link</small>
                   <!-- vamos a poner una imagen, en ves del texto para redireccionar al perfil -->
@@ -176,14 +99,8 @@
                   <p>Texto de muestra</p>
                 </div>
               </a>
-              <a
-                href="#"
-                class="list-group-item list-group-item-action py-3 lh-sm"
-                aria-current="true"
-              >
-                <div
-                  class="d-flex w-100 align-items-center  justify-content-between"
-                >
+              <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+                <div class="d-flex w-100 align-items-center  justify-content-between">
                   <strong class="mb-1">Diseñador </strong>
                   <small><img src="..." class="d-block w-100" alt="Imagen" />Link</small>
                   <!-- vamos a poner una imagen, en ves del texto para redireccionar al perfil -->
@@ -194,15 +111,8 @@
                   <p>Texto de muestra</p>
                 </div>
               </a>
-
-              <a
-                href="#"
-                class="list-group-item list-group-item-action py-3 lh-sm"
-                aria-current="true"
-              >
-                <div
-                  class="d-flex w-100 align-items-center  justify-content-between"
-                >
+              <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+                <div class="d-flex w-100 align-items-center  justify-content-between">
                   <strong class="mb-1">Diseñador </strong>
                   <small><img src="..." class="d-block w-100" alt="Imagen" />Link</small>
                   <!-- vamos a poner una imagen, en ves del texto para redireccionar al perfil -->
@@ -213,15 +123,8 @@
                   <p>Texto de muestra</p>
                 </div>
               </a>
-
-              <a
-                href="#"
-                class="list-group-item list-group-item-action py-3 lh-sm"
-                aria-current="true"
-              >
-                <div
-                  class="d-flex w-100 align-items-center  justify-content-between"
-                >
+              <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+                <div class="d-flex w-100 align-items-center  justify-content-between">
                   <strong class="mb-1">Diseñador </strong>
                   <small><img src="..." class="d-block w-100" alt="Imagen" />Link</small>
                   <!-- vamos a poner una imagen, en ves del texto para redireccionar al perfil -->
@@ -232,132 +135,111 @@
                   <p>Texto de muestra</p>
                 </div>
               </a>
-
-              
-              
-             
-              
-              
-             
             </div>
           </div>
         </div>
-        
-        
-        
         <div class="col-md-9 py-4">
           <div class="album py-4 bg-body-tertiary">
             <div class="container">
+              <div class="">
 
-               <div class="">
-                 <div class="col">
+
+                <div class="col">
                   <div class="card shadow-sm">
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
                       xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                       preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                    dy=".3em">Imagen</text>
+                      <title>Placeholder</title>
+                      <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                        dy=".3em">Imagen</text>
                     </svg>
-                      <div class="card-body">
-                        <p class="card-text">Descripción de la imagen</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                      
-                      
+                    <div class="card-body">
+                      <p class="card-text">Nombre del diseñador</p>
+                      <p class="card-text">Descripción de la imagen</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                        </div>
+                        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                          <input type="search" class="form-control" placeholder="Comentar..." aria-label="Search">
+                        </form>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Me gusta 👍🏼</button>
+                      </div>
                     </div>
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control" placeholder="Comentar..." aria-label="Search">
-        </form>
-                    
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Me gusta 👍🏼</button>
-                    
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                  xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                  preserveAspectRatio="xMidYMid slice" focusable="false">
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                    dy=".3em">Imagen</text>
-                </svg>
-                <div class="card-body">
-                  <p class="card-text">Descripción de la imagen</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      
-                      
-                    </div>
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control" placeholder="Comentar..." aria-label="Search">
-        </form>
-                    
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Me gusta 👍🏼</button>
-                  </div>
-                </div>
-              </div>
-             </div>
-              <div class="col">
+
+
+                <div class="col">
                   <div class="card shadow-sm">
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
                       xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                       preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                    dy=".3em">Imagen</text>
+                      <title>Placeholder</title>
+                      <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                        dy=".3em">Imagen</text>
                     </svg>
-                      <div class="card-body">
-                        <p class="card-text">Descripción de la imagen</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                      
-                      
+                    <div class="card-body">
+                      <p class="card-text">Descripción de la imagen</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                        </div>
+                        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                          <input type="search" class="form-control" placeholder="Comentar..." aria-label="Search">
+                        </form>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Me gusta 👍🏼</button>
+                      </div>
                     </div>
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control" placeholder="Comentar..." aria-label="Search">
-        </form>
-                    
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Me gusta 👍🏼</button>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                      xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                      preserveAspectRatio="xMidYMid slice" focusable="false">
+                      <title>Placeholder</title>
+                      <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                        dy=".3em">Imagen</text>
+                    </svg>
+                    <div class="card-body">
+                      <p class="card-text">Descripción de la imagen</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                        </div>
+                        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                          <input type="search" class="form-control" placeholder="Comentar..." aria-label="Search">
+                        </form>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Me gusta 👍🏼</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="container">
+                <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                  <p class="col-md-4 mb-0 text-body-secondary">&copy; 2023 Social Fashion</p>
+                  <a href="/"
+                    class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32">
+                      <use xlink:href="#bootstrap" />
+                    </svg>
+                  </a>
+                  <ul class="nav col-md-4 justify-content-end">
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Inicio</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Contacto</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Redes</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Nosotros</a></li>
+                  </ul>
+                </footer>
+              </div>
             </div>
-          </div> 
-        
-        </main>
-        
-        
-       
-    
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+</body>
 
-    <div class="container">
-      
-      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <p class="col-md-4 mb-0 text-body-secondary">&copy; 2023 Social Fashion</p>
-
-    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-    </a>
-
-    <ul class="nav col-md-4 justify-content-end">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Inicio</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Contacto</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Redes</a></li>
-     
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Nosotros</a></li>
-    </ul>
-  </footer>
-</div>
-
-    
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-      crossorigin="anonymous"
-    ></script>
-  </body>
 </html>
