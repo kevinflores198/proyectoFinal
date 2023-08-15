@@ -83,8 +83,8 @@ public class servicioPublicacion {
             Publicacion publicacion = rsp.get();
             publicacion.setLabel(label);
             publicacion.setContent(content);
+            repoPubli.save(publicacion);
         }
-
     }
 
     public void validacion(String idUser, String label, MultipartFile archivo, String content) throws MiException {
