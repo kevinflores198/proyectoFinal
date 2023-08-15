@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.omg.CORBA.BAD_TYPECODE;
 
 import com.socialFashion.proyectoFinal.Enumeraciones.ReportsPublicacion;
 
