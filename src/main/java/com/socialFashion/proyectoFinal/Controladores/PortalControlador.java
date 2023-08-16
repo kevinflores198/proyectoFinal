@@ -46,7 +46,7 @@ public class PortalControlador {
 
             modelo.put("exito", "Usuario registrado correctamente!");
 
-            return "main.html";
+            return "login.html";
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
@@ -65,7 +65,7 @@ public class PortalControlador {
             System.out.println(error);
             modelo.put("error", "Usuario o Clave incorrectos!");
         }
-        return "login.html";
+        return "main.html";
     }
 
     
