@@ -3,12 +3,14 @@ package com.socialFashion.proyectoFinal.Servicios;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.socialFashion.proyectoFinal.Entidades.Imagen;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
-import com.socialFashion.proyectoFinal.repositorios.repositorioImangen;
+import com.socialFashion.proyectoFinal.Repositorios.repositorioImangen;
 
+@Service
 public class servicioImagen {
     @Autowired
     private repositorioImangen repoImagen;
