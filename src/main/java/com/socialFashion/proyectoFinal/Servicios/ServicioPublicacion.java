@@ -1,30 +1,32 @@
 package com.socialFashion.proyectoFinal.Servicios;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.socialFashion.proyectoFinal.Entidades.Imagen;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
-import com.socialFashion.proyectoFinal.Repositorios.UserRepository;
-import com.socialFashion.proyectoFinal.Repositorios.repositorioPublicacion;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
 
-public class servicioPublicacion {
+@Service
+public class ServicioPublicacion {
     @Autowired
-    private servicioImagen sImg;
-
-    @Autowired
-    private UserRepository repoUser;
+    private ServicioImagen sImg;
 
     @Autowired
-    private repositorioPublicacion repoPubli;
+    private RepositorioUsuario repoUser;
+
+    @Autowired
+    private RepositorioPublicacion repoPubli;
 
     @Transactional
     public void crearPublicacion(String idUser, String label, MultipartFile archivo, String content)
@@ -83,8 +85,8 @@ public class servicioPublicacion {
             Publicacion publicacion = rsp.get();
             publicacion.setLabel(label);
             publicacion.setContent(content);
+            repoPubli.save(publicacion);
         }
-
     }
 
     public void validacion(String idUser, String label, MultipartFile archivo, String content) throws MiException {

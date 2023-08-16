@@ -3,12 +3,12 @@ package com.socialFashion.proyectoFinal.Repositorios;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.socialFashion.proyectoFinal.Entidades.Imagen;
+import com.socialFashion.proyectoFinal.Entidades.Usuario;
 
 /**
- * repositorioImangen
+ * repositorioUsuario
  */
 @Repository
-public interface repositorioImangen extends JpaRepository<Imagen, String>{
-
-}
+public interface RepositorioUsuario extends JpaRepository<Usuario, String>{
+    
+} 

@@ -1,8 +1,10 @@
 package com.socialFashion.proyectoFinal.Servicios;
 
-import java.time.LocalDate;
+
+
 import java.util.Optional;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,42 +23,52 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.socialFashion.proyectoFinal.Entidades.Imagen;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Role;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
-import com.socialFashion.proyectoFinal.Repositorios.UserRepository;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
 
 @Service
-public abstract class UserService implements UserDetailsService {
+public class ServicioUsuario implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private RepositorioUsuario userRepository;
+
+    @Autowired
+    private ServicioImagen servicioImagen;
 
     @Transactional
-    public void register(String userName, String email , LocalDate birthDate , String password , String password2 , String description) throws MiException{
-        validate(userName, password, password2);
+    public void register(String name, String email , Date birthDate , String password , String password2 , String description, MultipartFile image) throws MiException{
+        validate(name, password, password2);
         Usuario user = new Usuario();
 
-        user.setName(userName);
+        user.setName(name);
         user.setEmail(email);
         user.setPassword(new BCryptPasswordEncoder().encode(password));
         user.setAlta(true);
         user.setBirthDate(birthDate);
         user.setRole(Role.USER);
 
+        //PERSISTO IMAGEN
+         Imagen imagen = servicioImagen.guardar(image);
+        //LA GUARDO EN EL USUARIO 
+         user.setImage(imagen);;
+
         userRepository.save(user);
 
     }
 
     @Transactional
-    public void update(String id, String userName, String email , String password , String password2 , String description) throws MiException{
-        validate(userName, password, password2);
+    public void update(String id, String name, String email , String password , String password2 , String description) throws MiException{
+        validate(name, password, password2);
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
 
             Usuario user = answer.get();
 
-            user.setName(userName);
+            user.setName(name);
             user.setEmail(email);
             user.setPassword(new BCryptPasswordEncoder().encode(password));
             user.setAlta(true);
@@ -66,7 +79,7 @@ public abstract class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public void delete(String id , String userName){
+    public void delete(String id , String name){
 
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
@@ -78,9 +91,9 @@ public abstract class UserService implements UserDetailsService {
 
     }
 
-    private void validate(String userName,  String password, String password2) throws MiException {
+    private void validate(String name,  String password, String password2) throws MiException {
 
-        if (userName.isEmpty() || userName == null) {
+        if (name.isEmpty() || name == null) {
             throw new MiException("el nombre no puede ser nulo o estar vacío");
         }
         
@@ -104,33 +117,16 @@ public abstract class UserService implements UserDetailsService {
         return users;
     }
 
-    public Usuario getOne(String userName){
-        return userRepository.getOne(userName);
+    public Usuario getOne(String name){
+        return userRepository.getOne(name);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        
-        Usuario user = userRepository.searchByUserName(username);
-
-        if (user != null) {
-
-            List<GrantedAuthority> permises = new ArrayList();
-
-            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + user.getRole().toString());
-
-            permises.add(p);
-
-            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-
-            HttpSession session = attr.getRequest().getSession(true);
-
-            session.setAttribute("usersession", user);
-
-            return new User(user.getName(), user.getPassword(), permises);
-        } else {
-            return null;
-        }
+    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'loadUserByUsername'");
     }
+
+
     
 }

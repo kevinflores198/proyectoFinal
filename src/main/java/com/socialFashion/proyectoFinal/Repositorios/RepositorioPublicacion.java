@@ -11,7 +11,7 @@ import com.socialFashion.proyectoFinal.Entidades.Publicacion;
  * repositorioPublicacion
  */
 @Repository
-public interface repositorioPublicacion extends JpaRepository<Publicacion,String> {
+public interface RepositorioPublicacion extends JpaRepository<Publicacion,String> {
     
     @Query("SELECT p FROM Publicacion p WHERE p.alta = :alta")
     public List<Publicacion> publicaciones(@Param("alta")Boolean alta);
