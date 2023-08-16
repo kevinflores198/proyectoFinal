@@ -11,9 +11,9 @@ import com.socialFashion.proyectoFinal.Repositorios.repositorioImangen;
 
 public class servicioImagen {
     @Autowired
-    private repositorioImangen repoImagen;
+    private static repositorioImangen repoImagen;
 
-     public Imagen guardar(MultipartFile archivo) throws MiException{
+     public static Imagen guardar(MultipartFile archivo) throws MiException{
         if (archivo != null) {
             try {
 
