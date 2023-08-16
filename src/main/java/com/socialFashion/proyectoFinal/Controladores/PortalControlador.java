@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
 
-
 @Controller
 @RequestMapping("/")
 public class PortalControlador {
@@ -22,26 +21,25 @@ public class PortalControlador {
     @Autowired
     private ServicioUsuario servicioUsuario;
 
-
-    //VISTA INDEX
+    // VISTA INDEX
     @GetMapping("/")
     public String index() {
-        
+
         return "index.html";
 
     }
 
-    //VISTA DE REGISTRAR
+    // VISTA DE REGISTRAR
     @GetMapping("/registrar")
     public String registrar() {
 
         return "signin.html";
     }
 
-    //FORMULARIO DE REGISTRO DE USUARIO
+    // FORMULARIO DE REGISTRO DE USUARIO
     @PostMapping("/registro")
-    public String registro(@RequestParam String name, @RequestParam String email, @RequestParam Date birthDate,@RequestParam String password, @RequestParam
-            String password2, ModelMap modelo, MultipartFile image) {
+    public String registro(@RequestParam String name, @RequestParam String email, @RequestParam Date birthDate,
+            @RequestParam String password, @RequestParam String password2, ModelMap modelo, MultipartFile image) {
 
         try {
             servicioUsuario.register(name, email, birthDate, password, password2, password2, image);
@@ -60,11 +58,16 @@ public class PortalControlador {
 
     }
 
+    // VISTA DE LOGIN
+    @GetMapping("/login")
+    public String login(@RequestParam(required = false) String error, ModelMap modelo) {
+        if (error != null) {
+            System.out.println(error);
+            modelo.put("error", "Usuario o Clave incorrectos!");
+        }
+        return "login.html";
+    }
 
-
-
-
-
-
+    
 
 }
