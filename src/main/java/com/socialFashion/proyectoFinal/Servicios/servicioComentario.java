@@ -6,7 +6,7 @@ import com.socialFashion.proyectoFinal.Entidades.ReportComentario;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 
 @Service
-public class servicioComentario {
+public class ServicioComentario {
     
     public void crearComentario(String idUsuario, String idPublicacion, String comment, ReportComentario[] reports){
 

@@ -18,9 +18,9 @@ import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
 
 @Service
-public class servicioPublicacion {
+public class ServicioPublicacion {
     @Autowired
-    private servicioImagen sImg;
+    private ServicioImagen sImg;
 
     @Autowired
     private RepositorioUsuario repoUser;

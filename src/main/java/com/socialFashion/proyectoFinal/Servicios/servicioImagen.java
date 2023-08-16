@@ -11,7 +11,7 @@ import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioImangen;
 
 @Service
-public class servicioImagen {
+public class ServicioImagen {
     @Autowired
     private RepositorioImangen repoImagen;
 

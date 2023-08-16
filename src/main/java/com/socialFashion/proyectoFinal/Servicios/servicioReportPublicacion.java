@@ -16,7 +16,7 @@ import com.socialFashion.proyectoFinal.Repositorios.RepositorioReportePublicacio
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
 
 @Service
-public class servicioReportPublicacion {
+public class ServicioReportPublicacion {
     
     @Autowired
     private RepositorioReportePublicacion repoReportPubli;
