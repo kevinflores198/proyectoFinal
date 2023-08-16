@@ -1,17 +1,22 @@
 package com.socialFashion.proyectoFinal.Entidades;
 
 import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import com.socialFashion.proyectoFinal.Enumeraciones.Role;
+
+/**
+ *  Entidad Usuario
+ */
 
 @Entity
 public class Usuario {
@@ -28,14 +33,34 @@ public class Usuario {
     private String email;
     private String password;
     private LocalDate birthDate;
-    private byte[] image;
+
+    @OneToOne
+    private Imagen image;
+    
     private String description;
-    private boolean alta;
-    @OneToMany
-    private ReportUser[] report;
+    private Boolean alta;
+
+    //@OneToMany
+    //private ArrayList<Publicacion> publicacion;
+    
+    //private ArrayList<ReportUser> report;
 
     public Usuario() {
     }
+
+    public Usuario(Role role, String name, String email, String password, LocalDate birthDate, Imagen image,
+            String description, Boolean alta) {
+        this.role = role;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.birthDate = birthDate;
+        this.image = image;
+        this.description = description;
+        this.alta = alta;
+    }
+
+    //Getter y Setter
 
     public String getId() {
         return id;
@@ -85,11 +110,11 @@ public class Usuario {
         this.birthDate = birthDate;
     }
 
-    public byte[] getImage() {
+    public Imagen getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(Imagen image) {
         this.image = image;
     }
 
@@ -101,24 +126,12 @@ public class Usuario {
         this.description = description;
     }
 
-    public boolean isAlta() {
+    public Boolean getAlta() {
         return alta;
     }
 
-    public void setAlta(boolean alta) {
+    public void setAlta(Boolean alta) {
         this.alta = alta;
     }
-
-    public ReportUser[] getReport() {
-        return report;
-    }
-
-    public void setReport(ReportUser[] report) {
-        this.report = report;
-    }
-
     
-    
-    
-
 }

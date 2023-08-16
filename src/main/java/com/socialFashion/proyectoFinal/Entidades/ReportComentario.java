@@ -4,6 +4,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -21,24 +22,32 @@ public class ReportComentario {
     private String idReport;
     
     private String idUser;
-    private String idComentario;
+
+    @ManyToOne
+    private Comentario comentario;
+
     private String Reason; 
-    private Boolean alta;
+    //private Boolean alta;
 
     @Enumerated(EnumType.STRING)
     private ReportsComentario typeReport;
 
-    public ReportComentario(String idUser, String idComentario, String idReport, String reason, Boolean alta,
-            ReportsComentario TypeReport) {
+    public ReportComentario(String idUser, Comentario comentario, String reason,
+            ReportsComentario typeReport) {
         this.idUser = idUser;
-        this.idComentario = idComentario;
-        this.idReport = idReport;
+        this.comentario = comentario;
         Reason = reason;
-        this.alta = alta;
-        this.typeReport = TypeReport;
+        this.typeReport = typeReport;
     }
 
-    public ReportComentario() {
+    //Getter y Setter
+
+    public String getIdReport() {
+        return idReport;
+    }
+
+    public void setIdReport(String idReport) {
+        this.idReport = idReport;
     }
 
     public String getIdUser() {
@@ -49,20 +58,12 @@ public class ReportComentario {
         this.idUser = idUser;
     }
 
-    public String getIdComentario() {
-        return idComentario;
+    public Comentario getComentario() {
+        return comentario;
     }
 
-    public void setIdComentario(String idComentario) {
-        this.idComentario = idComentario;
-    }
-
-    public String getIdReport() {
-        return idReport;
-    }
-
-    public void setIdReport(String idReport) {
-        this.idReport = idReport;
+    public void setComentario(Comentario comentario) {
+        this.comentario = comentario;
     }
 
     public String getReason() {
@@ -73,14 +74,6 @@ public class ReportComentario {
         Reason = reason;
     }
 
-    public Boolean getAlta() {
-        return alta;
-    }
-
-    public void setAlta(Boolean alta) {
-        this.alta = alta;
-    }
-
     public ReportsComentario getTypeReport() {
         return typeReport;
     }
@@ -88,11 +81,5 @@ public class ReportComentario {
     public void setTypeReport(ReportsComentario typeReport) {
         this.typeReport = typeReport;
     }
-
-   
-    
-    
-    
-    
     
 }
