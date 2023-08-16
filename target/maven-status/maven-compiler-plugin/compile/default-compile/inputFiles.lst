@@ -1,21 +1,26 @@
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Repositorios\UserRepository.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Enumeraciones\ReportsUser.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Servicios\UserService.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Exceptions\MiException.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Enumeraciones\ReportsComentario.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Entidades\Publicacion.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Entidades\ReportPublicacion.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\ProyectoFinalApplication.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Servicios\servicioImagen.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Entidades\ReportComentario.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Entidades\Usuario.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Controladores\PortalControlador.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Entidades\Comentario.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Servicios\servicioComentario.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Entidades\ReportUser.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Enumeraciones\ReportsPublicacion.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Repositorios\repositorioPublicacion.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Entidades\Imagen.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Enumeraciones\Role.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Repositorios\repositorioImangen.java
-C:\Users\User\Documents\GitHub\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Servicios\servicioPublicacion.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioComentario.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioUsuario.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/ProyectoFinalApplication.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsComentario.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Comentario.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsUser.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsPublicacion.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Exceptions/MiException.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Controladores/AdminControlador.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/ReportComentario.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/Role.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioPublicacion.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioImagen.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Publicacion.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/ReportUser.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Controladores/PortalControlador.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Usuario.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/SeguridadWeb.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Imagen.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/ReportPublicacion.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioReportPublicacion.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Controladores/ErroresControlador.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioImangen.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioUsuario.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioReportePublicacion.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioPublicacion.java

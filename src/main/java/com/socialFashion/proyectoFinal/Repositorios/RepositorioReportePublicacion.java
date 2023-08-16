@@ -13,7 +13,7 @@ import com.socialFashion.proyectoFinal.Entidades.ReportPublicacion;
 @Repository
 public interface RepositorioReportePublicacion extends JpaRepository<ReportPublicacion,String>{
     
-    @Query("SELECT rp FROM ReportePublicacion rp WHERE rp.idReport = :idReport")
+    @Query("SELECT rp FROM ReportPublicacion rp WHERE rp.idReport = :idReport")
     public ReportPublicacion ReportPubliByID(@Param("idReport") String idReport);
 
 }
