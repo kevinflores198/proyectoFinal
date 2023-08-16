@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -22,15 +23,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Role;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
+import com.socialFashion.proyectoFinal.Repositorios.UserRepository;
 
 @Service
-public class UserService implements UserDetailsService {
+public abstract class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
 
     @Transactional
-    public void register(String userName, String email , LocalDate birthDate , String password , String password2 , String description){
+    public void register(String userName, String email , LocalDate birthDate , String password , String password2 , String description) throws MiException{
         validate(userName, password, password2);
         Usuario user = new Usuario();
 
@@ -46,7 +48,7 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public void update(String userName, String email , String password , String password2 , String description){
+    public void update(String id, String userName, String email , String password , String password2 , String description) throws MiException{
         validate(userName, password, password2);
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
