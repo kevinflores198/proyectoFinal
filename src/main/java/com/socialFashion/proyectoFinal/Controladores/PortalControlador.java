@@ -14,12 +14,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
 
+
 @Controller
 @RequestMapping("/")
 public class PortalControlador {
 
     @Autowired
-    private ServicioUsuario UserService;
+    private ServicioUsuario servicioUsuario;
 
 
     //VISTA INDEX
@@ -34,7 +35,7 @@ public class PortalControlador {
     @GetMapping("/registrar")
     public String registrar() {
 
-        return "login.html";
+        return "signin.html";
     }
 
     //FORMULARIO DE REGISTRO DE USUARIO
@@ -43,18 +44,18 @@ public class PortalControlador {
             String password2, ModelMap modelo, MultipartFile image) {
 
         try {
-            UserService.register(name, email, birthDate, password, password2, password2, image);
+            servicioUsuario.register(name, email, birthDate, password, password2, password2, image);
 
             modelo.put("exito", "Usuario registrado correctamente!");
 
-            return "index.html";
+            return "signin.html";
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", name);
             modelo.put("email", email);
 
-            return "login.html";
+            return "signin.html";
         }
 
     }
