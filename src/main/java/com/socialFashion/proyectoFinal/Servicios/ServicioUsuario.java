@@ -36,6 +36,9 @@ public class ServicioUsuario implements UserDetailsService {
     @Autowired
     private RepositorioUsuario userRepository;
 
+    @Autowired
+    private ServicioImagen servicioImagen;
+
     @Transactional
     public void register(String name, String email , Date birthDate , String password , String password2 , String description, MultipartFile image) throws MiException{
         validate(name, password, password2);
@@ -49,7 +52,7 @@ public class ServicioUsuario implements UserDetailsService {
         user.setRole(Role.USER);
 
         //PERSISTO IMAGEN
-         Imagen imagen = ServicioImagen.guardar(image);
+         Imagen imagen = servicioImagen.guardar(image);
         //LA GUARDO EN EL USUARIO 
          user.setImage(imagen);;
 
