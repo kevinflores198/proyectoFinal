@@ -24,7 +24,7 @@ public class UsuarioControlador{
     @GetMapping("/perfil")
     public String perfil() {
         
-        return "placeholder";
+        return "profile.html";
 
     }
 
@@ -37,12 +37,12 @@ public class UsuarioControlador{
 
             modelo.put("exito", "Publicacion creada correctamente");
             
-            return "placeholder";
+            return "profile.html";
         }catch(MiException ex){
 
             modelo.put("error", "No se logro cargar la publicacion");
 
-            return "placeholder";
+            return "profile.html";
 
         }
         
