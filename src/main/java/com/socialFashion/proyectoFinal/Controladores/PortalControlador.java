@@ -47,14 +47,14 @@ public class PortalControlador {
 
             modelo.put("exito", "Usuario registrado correctamente!");
 
-            return "index.html";
+            return "signin.html";
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", name);
             modelo.put("email", email);
 
-            return "login.html";
+            return "signin.html";
         }
 
     }
