@@ -46,6 +46,10 @@ header.abajo .nav-words {
     list-style: none;
 }
 
+.nav-icons:hover {
+    transform: scale(1.1);
+}
+
 .nav-words {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
@@ -58,7 +62,6 @@ header.abajo .nav-words {
 }
 
 .nav-words:hover {
-    background-color: #1067d1;
 }
 
 .zona1 {
@@ -67,7 +70,7 @@ header.abajo .nav-words {
     height: 10vh;
 }
 
-main {
+.div-main {
     display: flex;
 }
 
@@ -124,6 +127,7 @@ main {
     align-items: center;
     width: 100%;
 }
+
 .comentar-input:hover,
 .meGusta-boton:hover,
 .comentar-boton:hover,
@@ -147,5 +151,3 @@ main {
 .comentarios-unidad {
     transform: scale(0.9);
 }
-
-

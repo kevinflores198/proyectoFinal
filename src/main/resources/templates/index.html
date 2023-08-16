@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>social fashion</title>
   <link rel="icon" type="image/x-icon" href="/png/8.png">
@@ -13,7 +13,7 @@
 
 <body>
   <header class="nav-header">
-    <a href="" class="logo">logo</a>
+    <a href="/png/8.png" class="logo"></a>
     <nav class="navbar">
       <ul class="nav-list">
         <li class="nav-icons"><a href="#" class="nav-words">Inicio</a></li>
@@ -34,53 +34,55 @@
 
 
   <main>
+    <div class="div-main">
 
-    <div class="row">
-      <div class="col-md-3 py-4">
-        <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary">
-          <a href="#"
-            class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
-            <h2>Designers</h2>
-          </a>
-          <div class="list-group list-group-flush border-bottom scrollarea">
-            <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
-              <div class="d-flex w-100 align-items-center  justify-content-between">
-                <strong class="mb-1">Designer name </strong>
-                <small><img src="..." class="d-block w-100" alt="Imagen" />Link</small>
-              </div>
-              <div class="col-10 mb-1 small">
-                <p>Texto de muestra</p>
-              </div>
+      <div class="row">
+        <div class="col-md-3 py-4">
+          <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary">
+            <a href="#"
+              class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
+              <h2>Designers</h2>
             </a>
+            <div class="list-group list-group-flush border-bottom scrollarea">
+              <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+                <div class="d-flex w-100 align-items-center  justify-content-between">
+                  <strong class="mb-1">Designer name </strong>
+                  <small><img src="..." class="d-block w-100" alt="Imagen" />Link</small>
+                </div>
+                <div class="col-10 mb-1 small">
+                  <p>Texto de muestra</p>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
+
+
+      <section class="container1">
+        <div class="imagen-publicacion">
+          <img src="/png/1.png" alt=""></img>
+        </div>
+
+        <div class="contenido-publicacion">
+          <h3 class="nombre-diseñador-comentario">Nombre del diseñador</h3>
+
+          <div class="contenido-comentarios">
+            <div class="contenido-completo">
+              <h3 class="comentarios-unidad">comentarios</h3>
+            </div>
+          </div>
+
+          <form class="comentador">
+            <input class="comentar-input" type="search" placeholder="Comentar...">
+            <button class="comentar-boton" type="button">Comentar</button>
+          </form>
+
+          <button class="meGusta-boton" type="button">Me gusta 👍</button>
+          <p class="meGusta-conteo">15</p>
+        </div>
+      </section>
     </div>
-
-    <section class="container1">
-
-      <div class="imagen-publicacion">
-        <img src="/png/1.png" alt=""></img>
-      </div>
-
-      <div class="contenido-publicacion">
-        <h3 class="nombre-diseñador-comentario">Nombre del diseñador</h3>
-
-        <div class="contenido-comentarios">
-          <div class="contenido-completo">
-            <h3 class="comentarios-unidad">comentarios</h3>
-          </div>
-        </div>
-
-        <form class="comentador">
-          <input class="comentar-input" type="search" placeholder="Comentar...">
-          <button class="comentar-boton" type="button">Comentar</button>
-        </form>
-
-        <button class="meGusta-boton" type="button">Me gusta 👍</button>
-        <p class="meGusta-conteo">15</p>
-      </div>
-    </section>
   </main>
 
   <div class="container">
