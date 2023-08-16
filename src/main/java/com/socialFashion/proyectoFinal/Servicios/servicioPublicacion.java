@@ -13,8 +13,8 @@ import com.socialFashion.proyectoFinal.Entidades.Imagen;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
-import com.socialFashion.proyectoFinal.repositorios.RepositorioUsuario;
-import com.socialFashion.proyectoFinal.repositorios.repositorioPublicacion;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
+import com.socialFashion.proyectoFinal.Repositorios.repositorioPublicacion;
 
 public class servicioPublicacion {
     @Autowired
