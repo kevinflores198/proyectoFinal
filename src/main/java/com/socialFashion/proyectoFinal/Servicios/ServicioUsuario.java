@@ -28,13 +28,13 @@ import com.socialFashion.proyectoFinal.Entidades.Imagen;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Role;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
-import com.socialFashion.proyectoFinal.Repositorios.UserRepository;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
 
 @Service
-public class UserService implements UserDetailsService {
+public class ServicioUsuario implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private RepositorioUsuario userRepository;
 
     @Transactional
     public void register(String name, String email , Date birthDate , String password , String password2 , String description, MultipartFile image) throws MiException{
@@ -49,7 +49,7 @@ public class UserService implements UserDetailsService {
         user.setRole(Role.USER);
 
         //PERSISTO IMAGEN
-         Imagen imagen = servicioImagen.guardar(image);
+         Imagen imagen = ServicioImagen.guardar(image);
         //LA GUARDO EN EL USUARIO 
          user.setImage(imagen);;
 

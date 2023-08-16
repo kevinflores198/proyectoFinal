@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
-import com.socialFashion.proyectoFinal.Servicios.UserService;
+import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
 
 @Controller
 @RequestMapping("/")
 public class PortalControlador {
 
     @Autowired
-    private UserService UserService;
+    private ServicioUsuario UserService;
 
 
     //VISTA INDEX

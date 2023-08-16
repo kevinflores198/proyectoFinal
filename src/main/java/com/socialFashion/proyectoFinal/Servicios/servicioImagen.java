@@ -7,11 +7,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.socialFashion.proyectoFinal.Entidades.Imagen;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
-import com.socialFashion.proyectoFinal.Repositorios.repositorioImangen;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioImangen;
 
-public class servicioImagen {
+public class ServicioImagen {
     @Autowired
-    private static repositorioImangen repoImagen;
+    private static RepositorioImangen repoImagen;
 
      public static Imagen guardar(MultipartFile archivo) throws MiException{
         if (archivo != null) {

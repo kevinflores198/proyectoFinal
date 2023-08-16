@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 
 @Repository
-public interface UserRepository extends JpaRepository<Usuario, String> {
+public interface RepositorioUsuario extends JpaRepository<Usuario, String> {
 
     @Query("SELECT u FROM Usuario u WHERE u.name = :name")
     public Usuario searchByUsername(@Param("name")String name);
