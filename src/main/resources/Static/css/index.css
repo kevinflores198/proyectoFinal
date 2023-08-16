@@ -1,0 +1,315 @@
+.padre {
+    background-color: #1067d1;
+    color: white;
+    display: flex;
+}
+
+.contenido-comentario {
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    padding: 10px;
+}
+
+.imagen-publicacion{
+
+    padding:20px;
+}
+
+.comentarios{
+    background-color: rgb(191, 43, 43);
+    border-radius: 9px;
+}
+
+.searcher{
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+/*
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 400px;
+    background-attachment: fixed;
+    background-size: cover;
+    
+}
+
+.html {
+    width: 120px;
+    height: 50px;
+    float: left;
+    padding: 8px;
+    font-size: 45px;
+}
+
+.menu1 {
+    background: #a60be3;
+    width: 100%;
+    clear: both;
+    display: table;
+    content: '';
+}
+
+.menu {
+    width: 90%;
+    margin: 0 auto;
+}
+
+nav {
+    float: right;
+}
+
+nav ul li {
+    list-style: none;
+    margin-left: 75px;
+    float: left;
+    padding: 25px 0;
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #ffffff;
+    background: #1067d14a;
+    border-radius: 4px;
+    padding: 6px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+nav ul li a::before {
+    width: 0%;
+    height: 5px;
+    position: absolute;
+    top: 0;
+    display: block;
+    content: '';
+    background: #1067d1;
+    transition: width 0.3s;
+
+}
+
+nav ul li a:hover::before {
+    width: 100%;
+}
+
+.imagen{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    font-size: 150px;
+}
+
+.pie {
+    background-color: #24303c;
+}
+
+footer {
+    padding: 10PX;
+    background: #ad0ef1;
+    color: white;
+    margin-top: 50PX;
+
+}
+
+span {
+    font-size: 25px;
+    color: #ffffff;
+    padding: 8px;
+}
+
+span:hover {
+    color: #428fee;
+}
+
+.redes {
+    display: flex;
+    justify-content: right;
+    align-content: center;
+}
+
+.secciones {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /*para dar espacios*/
+
+/*
+    gap: 40px;
+}
+
+.secciones div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+}
+
+div h2 {
+    color: white;
+    /*se centra con el 0*
+    padding: 10px 0;
+}
+
+a {
+    color: rgb(200, 200, 200);
+    text-decoration: none;
+    padding: 4px;
+}
+
+a:hover {
+    color: #428fee;
+}
+
+
+
+.form-registro {
+    width: 400px;
+    background: #a60be3;
+    padding: 40px;
+    margin: auto;
+    margin-top: 40px;
+    border-radius: 8px;
+    font-family: "calibri";
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.form-registro h4 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    background: #24303c;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #1067d1;
+    font-family: "calibri";
+    font-size: 18px;
+    color: white;
+}
+
+.form-registro p {
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+}
+
+.form-registro a {
+    color: white;
+    text-decoration: none;
+}
+
+.form-registro a:hover {
+    color: #428fee;
+    text-decoration: inderline;
+}
+
+.form-registro .bottons {
+    width: 100%;
+    background: #d1d110;
+    border-radius: 4px;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+}
+
+.form-registro .bottons:hover {
+    color: #428fee;
+    text-decoration: inderline;
+    background: white;
+}
+
+.ul {
+    list-style: none;
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.ul li {
+    padding: 0 20px;
+}
+
+.link {
+    background: #24303c;
+    padding: 10px 20px;
+    color: rgb(246, 246, 246);
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 10px;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.link.btn {
+    display: block;
+    position: relative;
+    margin: 20px auto 0;
+    width: 80%;
+}
+
+.link:hover {
+    color: white;
+    background-color: #1067d1;
+}
+
+.link.btn {
+    display: block;
+    position: relative;
+    margin: 20px auto 0;
+    width: 80%;
+}
+
+/*----------------------------------principal*/
+/*
+.titulo{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 350px;
+    
+}
+
+.subtitulo{
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.subtitulo:hover{
+    box-shadow: 7px 13px 37px #000;
+    width: auto;
+}
