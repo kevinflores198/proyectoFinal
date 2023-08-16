@@ -1,12 +1,13 @@
 package com.socialFashion.proyectoFinal.Servicios;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.socialFashion.proyectoFinal.Entidades.Imagen;
@@ -16,6 +17,7 @@ import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
 import com.socialFashion.proyectoFinal.Repositorios.repositorioPublicacion;
 
+@Service
 public class servicioPublicacion {
     @Autowired
     private servicioImagen sImg;
