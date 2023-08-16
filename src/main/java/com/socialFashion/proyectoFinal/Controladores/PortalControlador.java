@@ -19,7 +19,7 @@ import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
 public class PortalControlador {
 
     @Autowired
-    private ServicioUsuario UserService;
+    private ServicioUsuario servicioUsuario;
 
 
     //VISTA INDEX
@@ -43,7 +43,7 @@ public class PortalControlador {
             String password2, ModelMap modelo, MultipartFile image) {
 
         try {
-            UserService.register(name, email, birthDate, password, password2, password2, image);
+            servicioUsuario.register(name, email, birthDate, password, password2, password2, image);
 
             modelo.put("exito", "Usuario registrado correctamente!");
 
