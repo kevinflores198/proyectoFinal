@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.socialFashion.proyectoFinal.Entidades.Imagen;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
-import com.socialFashion.proyectoFinal.repositorios.repositorioImangen;
+import com.socialFashion.proyectoFinal.Repositorios.repositorioImangen;
 
 public class servicioImagen {
     @Autowired

@@ -10,6 +10,6 @@ import com.socialFashion.proyectoFinal.Entidades.Usuario;
 @Repository
 public interface UserRepository extends JpaRepository<Usuario, String> {
 
-    @Query("SELECT u FROM Usuario u WHERE u.userName = :userName")
-    public Usuario searchByUsername(@Param("userName")String userName);
+    @Query("SELECT u FROM Usuario u WHERE u.name = :name")
+    public Usuario searchByUsername(@Param("name")String name);
 }

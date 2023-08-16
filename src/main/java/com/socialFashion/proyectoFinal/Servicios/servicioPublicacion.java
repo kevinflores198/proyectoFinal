@@ -1,6 +1,5 @@
 package com.socialFashion.proyectoFinal.Servicios;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
 
@@ -13,15 +12,16 @@ import com.socialFashion.proyectoFinal.Entidades.Imagen;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
-import com.socialFashion.proyectoFinal.repositorios.RepositorioUsuario;
-import com.socialFashion.proyectoFinal.repositorios.repositorioPublicacion;
+import com.socialFashion.proyectoFinal.Repositorios.UserRepository;
+import com.socialFashion.proyectoFinal.Repositorios.repositorioPublicacion;
+
 
 public class servicioPublicacion {
     @Autowired
     private servicioImagen sImg;
 
     @Autowired
-    private RepositorioUsuario repoUser;
+    private UserRepository repoUser;
 
     @Autowired
     private repositorioPublicacion repoPubli;

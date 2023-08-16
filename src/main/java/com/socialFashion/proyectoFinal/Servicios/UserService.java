@@ -1,8 +1,10 @@
 package com.socialFashion.proyectoFinal.Servicios;
 
-import java.time.LocalDate;
+
+
 import java.util.Optional;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -22,6 +25,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Role;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
+import com.socialFashion.proyectoFinal.Repositorios.UserRepository;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -30,7 +34,7 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
 
     @Transactional
-    public void register(String userName, String email , LocalDate birthDate , String password , String password2 , String description){
+    public void register(String userName, String email , Date birthDate , String password , String password2 , String description) throws MiException{
         validate(userName, password, password2);
         Usuario user = new Usuario();
 
@@ -46,7 +50,7 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public void update(String userName, String email , String password , String password2 , String description){
+    public void update(String id, String userName, String email , String password , String password2 , String description) throws MiException{
         validate(userName, password, password2);
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
@@ -108,27 +112,10 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        
-        Usuario user = userRepository.searchByUserName(username);
-
-        if (user != null) {
-
-            List<GrantedAuthority> permises = new ArrayList();
-
-            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + user.getRole().toString());
-
-            permises.add(p);
-
-            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-
-            HttpSession session = attr.getRequest().getSession(true);
-
-            session.setAttribute("usersession", user);
-
-            return new User(user.getName(), user.getPassword(), permises);
-        } else {
-            return null;
-        }
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'loadUserByUsername'");
     }
+
+
     
 }
