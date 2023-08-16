@@ -15,7 +15,7 @@ import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
-import com.socialFashion.proyectoFinal.Repositorios.repositorioPublicacion;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
 
 @Service
 public class servicioPublicacion {
@@ -26,7 +26,7 @@ public class servicioPublicacion {
     private RepositorioUsuario repoUser;
 
     @Autowired
-    private repositorioPublicacion repoPubli;
+    private RepositorioPublicacion repoPubli;
 
     @Transactional
     public void crearPublicacion(String idUser, String label, MultipartFile archivo, String content)

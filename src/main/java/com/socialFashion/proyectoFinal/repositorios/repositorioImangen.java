@@ -9,6 +9,6 @@ import com.socialFashion.proyectoFinal.Entidades.Imagen;
  * repositorioImangen
  */
 @Repository
-public interface repositorioImangen extends JpaRepository<Imagen, String>{
+public interface RepositorioImangen extends JpaRepository<Imagen, String>{
 
 }

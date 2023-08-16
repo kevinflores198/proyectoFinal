@@ -8,12 +8,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.socialFashion.proyectoFinal.Entidades.Imagen;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
-import com.socialFashion.proyectoFinal.Repositorios.repositorioImangen;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioImangen;
 
 @Service
 public class servicioImagen {
     @Autowired
-    private repositorioImangen repoImagen;
+    private RepositorioImangen repoImagen;
 
      public Imagen guardar(MultipartFile archivo) throws MiException{
         if (archivo != null) {

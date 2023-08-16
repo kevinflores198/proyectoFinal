@@ -13,7 +13,7 @@ import com.socialFashion.proyectoFinal.Entidades.ReportPublicacion;
 import com.socialFashion.proyectoFinal.Enumeraciones.ReportsPublicacion;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioReportePublicacion;
-import com.socialFashion.proyectoFinal.Repositorios.repositorioPublicacion;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
 
 @Service
 public class servicioReportPublicacion {
@@ -22,7 +22,7 @@ public class servicioReportPublicacion {
     private RepositorioReportePublicacion repoReportPubli;
 
     @Autowired
-    private repositorioPublicacion repoPubli;
+    private RepositorioPublicacion repoPubli;
 
     @Transactional
     public void crearReportePublicacion(String idPublicacion, String idUser, String reason, String reports) throws MiException{
