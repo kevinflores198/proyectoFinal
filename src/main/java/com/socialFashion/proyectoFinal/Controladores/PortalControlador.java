@@ -34,7 +34,7 @@ public class PortalControlador {
     @GetMapping("/registrar")
     public String registrar() {
 
-        return "signin.html";
+        return "login.html";
     }
 
     //FORMULARIO DE REGISTRO DE USUARIO
@@ -54,7 +54,7 @@ public class PortalControlador {
             modelo.put("nombre", name);
             modelo.put("email", email);
 
-            return "signin.html";
+            return "login.html";
         }
 
     }
