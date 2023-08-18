@@ -89,26 +89,37 @@ header.abajo .nav-words {
 /* --------------------------------------- */
 
 .main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    color: white;
 
+    width: 100%;
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .side-bar {
-    width: 25%;
-    height: 1000px;
-    background-color: #8c52ff89;
-    border-radius: 20px;
-    margin-right: 5px;
-    margin-left: 5px;
+
+    width: 30%;
+
+    background-color: #e574be;
+    border: #000000 1px solid;
 }
+
+.container1 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    background-color: #560655;
+    border: #000000 1px solid;
+
+}
+
+
+
 
 .titulo {
     padding: 20px;
-
 }
 
 .nombre-diseñadores {
@@ -127,23 +138,21 @@ header.abajo .nav-words {
     border-radius: 100%;
 }
 
-.container1 {
-    width: 75%;
-    height: 100%;
-}
+
+
+
 
 /* --------------------------------------- */
-
-.container1 {
-    background-color: #8c52ff89;
+.container-sideBar {
+    padding: 10px;
     width: 100%;
-    height: 100%;
-    padding: 15px;
-    border-radius: 20px;
 
+    border-radius: 20px;
 }
 
+
 .container-publicacion {
+    padding: 10px;
     width: 40%;
     background-color: #8c52ff89;
     padding: 5px;
@@ -477,3 +486,5 @@ input:checked+label .action span.option-2 {
     background-color: #8c52ff89;
     opacity: 0.5;
 }
+
+/*--------------*/
