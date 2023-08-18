@@ -30,22 +30,10 @@ public class UsuarioControlador{
 
     //CREAR UNA PUBLICACION//
     @PostMapping("/publicacion")
-    public String publicacion(@PathVariable String idUser, @RequestParam String label, @RequestParam MultipartFile archivo, @RequestParam String content, ModelMap modelo){
+    public String publicacion(){
 
-        try {
-            servicioPublicacion.crearPublicacion(idUser, label, archivo, content);
+      return "vistapublicacion.html?";
 
-            modelo.put("exito", "Publicacion creada correctamente");
-            
-            return "profile.html";
-        }catch(MiException ex){
-
-            modelo.put("error", "No se logro cargar la publicacion");
-
-            return "profile.html";
-
-        }
-        
     }
 
 }
