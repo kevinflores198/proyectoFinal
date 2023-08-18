@@ -3,6 +3,7 @@ package com.socialFashion.proyectoFinal.Servicios;
 
 
 import java.util.Optional;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,7 +49,11 @@ public class ServicioUsuario implements UserDetailsService {
         user.setEmail(email);
         user.setPassword(new BCryptPasswordEncoder().encode(password));
         user.setAlta(true);
-        user.setBirthDate(birthDate);
+        if(mayoriaDeEdad(birthDate)){
+            user.setBirthDate(birthDate);
+        }else{
+            throw new MiException("No sos mayor de edad");
+        }
         user.setRole(Role.USER);
 
         //PERSISTO IMAGEN
@@ -127,6 +132,23 @@ public class ServicioUsuario implements UserDetailsService {
         throw new UnsupportedOperationException("Unimplemented method 'loadUserByUsername'");
     }
 
+    public Boolean mayoriaDeEdad(Date birthDate){
+
+        Date hoy = new Date();
+
+        if((birthDate.getYear() - hoy.getYear()) >= 18 ){
+            if((birthDate.getMonth() - hoy.getMonth()) <= 0){
+                if((birthDate.getDate() - hoy.getDate()) <= 0){
+                    
+                    return true;
+
+                }
+            }
+        }
+
+        return false;
+
+    }
 
     
 }

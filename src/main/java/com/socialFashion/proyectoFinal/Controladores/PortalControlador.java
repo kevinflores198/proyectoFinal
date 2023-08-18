@@ -88,7 +88,5 @@ public class PortalControlador {
     //PERFIL VISTA (PENDIENTE)
 
     //ACTUALIZAR PERFIL VISTA (PENDIENTE)
-    
-
 
 }
