@@ -1,0 +1,79 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/src/main/resources/Static/css/guest.css">
+    <link rel="stylesheet" href="/src/main/resources/Static/css/index.css">
+    <title>Bienvenido A S/F</title>
+</head>
+
+<body>
+    <header th:replace="/fragments/header :: header"> </header>
+
+    <div th:replace="/fragments/div :: div"> </div>
+    <main class="main">
+        <div class="container">
+            <div id="signInSignUpBox">
+                <div id="overlay">
+                    <div id="overlayInner">
+                        <div id="signUp">
+                            <h1>Bienvenido a Social Fashion!</h1>
+                            <p>Ingresa aquí si ya estas registrado</p>
+                            <button onClick='moveSliderRight()'>Ingresar</button>
+                        </div>
+                        <div id="signIn">
+                            <h1>Bienvenido a Social Fashion!</h1>
+                            <p>Ingrese sus datos personales para poder conocernos</p>
+                            <button onClick='moveSliderLeft()'>Registrarme</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="forms">
+                    <div id="signInForm" class='shiftRight'>
+                        <div class="holder">
+                            <h1>Ingresar a mi cuenta</h1>
+                            <a href="#" class='social-media-button'><i class="fa fa-facebook"></i></a>
+                            <a href="#" class='social-media-button'><i class="fa fa-twitter"></i></a>
+                            <a href="#" class='social-media-button'><i class="fa fa-linkedin"></i></a>
+                            <p>Tengo cuenta</p>
+                            <input type="email" placeholder="Email"><br>
+                            <input type="password" placeholder='Password'>
+                            <div class="recordarmeClass">
+                                <input type="checkbox" class="controls" id="exampleCheck1">
+                                <label class="form-control1" for="exampleCheck1">Recordarme</label>
+                            </div>
+                            <p>Olvidaste tu contraseña?</p>
+
+                            <button>Ingresar</button>
+                        </div>
+                    </div>
+                    <div id="signUpForm">
+                        <div class="holder">
+                            <h1>Crear Cuenta</h1>
+                            <a href="#" class='social-media-button'><i class="fa fa-facebook"></i></a>
+                            <a href="#" class='social-media-button'><i class="fa fa-twitter"></i></a>
+                            <a href="#" class='social-media-button'><i class="fa fa-linkedin"></i></a>
+
+                            <input type="text" placeholder="Name"><br>
+                            <input type="email" placeholder="Email"><br>
+                            <input type="password" placeholder='Password'><br>
+                            <input type="date" placeholder="Fecha de nacimiento"><br>
+
+                            <button>Registrarme</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script src='/src/main/resources/Static/js/guest.js'></script>
+</body>
+
+</html>

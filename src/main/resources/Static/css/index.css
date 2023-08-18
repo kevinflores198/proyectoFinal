@@ -23,7 +23,7 @@ body {
     transition: 0.4s;
     padding: 20px 10px;
     z-index: 20;
-    background-color:#8c52ff89;
+    background-color: #8c52ff89;
 }
 
 .navbar {
@@ -144,6 +144,7 @@ header.abajo .nav-words {
 }
 
 .container-publicacion {
+    width: 40%;
     background-color: #8c52ff89;
     padding: 5px;
     border-radius: 20px;
@@ -254,7 +255,7 @@ header.abajo .nav-words {
     align-items: center;
     justify-content: center;
     padding: 10px;
-    
+
 }
 
 .pie-logo {}
@@ -276,4 +277,203 @@ header.abajo .nav-words {
     transition: 0, 4s;
     list-style: none;
     transform: scale(1.2);
+}
+
+/*------------------*/
+
+.cta {
+    border: none;
+    background: none;
+}
+
+.cta span {
+    padding-bottom: 7px;
+    letter-spacing: 4px;
+    font-size: 14px;
+    padding-right: 15px;
+    text-transform: uppercase;
+}
+
+.cta:active svg {
+    transform: scale(0.9);
+}
+
+.hover-underline-animation {
+    position: relative;
+    color: black;
+    padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/*-----------------------*/
+
+label {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 15px 10px 10px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    color: black;
+}
+
+
+.checkbox {
+    display: none;
+}
+
+input:checked+label svg {
+    fill: hsl(0deg 100% 50%);
+    stroke: hsl(0deg 100% 50%);
+    animation: heartButton 1s;
+}
+
+@keyframes heartButton {
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.3);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    75% {
+        transform: scale(1.3);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+input+label .action {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+}
+
+input+label .action span {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    transition: all .5s;
+}
+
+input+label .action span.option-1 {
+    transform: translate(0px, 0%);
+    opacity: 1;
+}
+
+input:checked+label .action span.option-1 {
+    transform: translate(0px, -100%);
+    opacity: 0;
+}
+
+input+label .action span.option-2 {
+    transform: translate(0px, 100%);
+    opacity: 0;
+}
+
+input:checked+label .action span.option-2 {
+    transform: translate(0px, 0%);
+    opacity: 1;
+}
+
+/*-------------------------------*/
+
+.comentador1 {}
+
+.input-container {
+    width: 90%;
+
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    display: flex;
+    height: 2.8rem;
+    width: 100%;
+
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, .05);
+}
+
+.input-container input {
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid rgb(176 190 197);
+    background-color: transparent;
+    padding: 0.625rem 70px 0.625rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    color: rgb(69 90 100);
+    outline: none;
+    transition: all .15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-container input:focus {
+    border: 1px solid #8c52ff;
+}
+
+.invite-btn {
+    position: absolute;
+    width: 65px;
+    right: 4px;
+    top: 4px;
+    bottom: 4px;
+    z-index: 10;
+    border-radius: 4px;
+    background-color: #8c52ff89;
+    color: #fff;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    transition: .6s ease;
+}
+
+.invite-btn:hover {
+    right: 2px;
+    top: 2px;
+    bottom: 2px;
+    border-radius: 8px;
+}
+
+.input-container input:placeholder-shown~.invite-btn {
+    pointer-events: none;
+    background-color: #8c52ff89;
+    opacity: 0.5;
 }
