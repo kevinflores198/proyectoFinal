@@ -1,4 +1,3 @@
-
 package com.socialFashion.proyectoFinal.Servicios;
 
 import com.socialFashion.proyectoFinal.Entidades.Comentario;
@@ -51,31 +50,11 @@ public class ServicioReportComentario {
 
         reporte.setReason(reason);
 
-        switch (typeReport.toLowerCase()) {
-            case "spam":
-                reporte.setTypeReport(ReportsComentario.SPAM);
-                break;
-            case "sexual":
-                reporte.setTypeReport(ReportsComentario.SEXUAL);
-                break;
-            case "inapropiado":
-                reporte.setTypeReport(ReportsComentario.INAPROPIADO);
-                break;
-            case "bullying":
-                reporte.setTypeReport(ReportsComentario.BULLYNG);
-                break;
-            case "racismo":
-                reporte.setTypeReport(ReportsComentario.RACISMO);
-                break;
-            case "violencia":
-                reporte.setTypeReport(ReportsComentario.VIOLENCIA);
-                break;
-            case "otro":
-                if (typeReport.isEmpty()) {
-                    throw new MiException("Es necesario que se especifique una razon");
-                }
-                reporte.setTypeReport(ReportsComentario.OTRO);
-                break;
+        try {
+            ReportsComentario reportType = ReportsComentario.valueOf(typeReport.toUpperCase());
+            reporte.setTypeReport(reportType);
+        } catch (Exception e) {
+            throw new MiException("El tipo de reporte no es valido");
         }
 
         repoComentario.save(reporte);

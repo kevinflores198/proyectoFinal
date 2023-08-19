@@ -16,9 +16,8 @@ public class ServicioReportUser {
     @Autowired
     RepositorioReporteUsuario repoUsuario;
 
-    
     @Transactional
-    public void crearReporte(Usuario idUser, String idUserReported, 
+    public void crearReporte(Usuario idUser, String idUserReported,
             String reason, String typeReport) throws MiException {
 
         if (idUserReported.isEmpty() || idUserReported == null) {
@@ -37,25 +36,11 @@ public class ServicioReportUser {
         reporte.setIdUserReported(idUserReported);
         reporte.setReason(reason);
 
-        switch (typeReport.toLowerCase()) {
-            case "inapropiado":
-                reporte.setTypeReport(ReportsUser.INAPROPIADO);
-                break;
-            case "identidad falsa":
-                reporte.setTypeReport(ReportsUser.IDENTIDAD_FALSA);
-                break;
-            case "hackeado":
-                reporte.setTypeReport(ReportsUser.HACKEADO);
-                break;
-            case "menor":
-                reporte.setTypeReport(ReportsUser.MENOR);
-                break;
-            case "otro":
-                if (typeReport.isEmpty()) {
-                    throw new MiException("Es necesario que se especifique una razon");
-                }
-                reporte.setTypeReport(ReportsUser.OTRO);
-                break;
+        try {
+            ReportsUser reportType = ReportsUser.valueOf(typeReport.toUpperCase());
+            reporte.setTypeReport(reportType);
+        } catch (Exception e) {
+            throw new MiException("El tipo de reporte no es valido");
         }
 
         repoUsuario.save(reporte);
