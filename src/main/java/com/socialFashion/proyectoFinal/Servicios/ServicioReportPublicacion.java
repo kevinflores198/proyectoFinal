@@ -79,7 +79,7 @@ public class ServicioReportPublicacion {
                 break;
             case "otro":
                 if(reason.isEmpty()){
-                    throw new MiException("Es necesario que se especifique una rason");
+                    throw new MiException("Es necesario que se especifique una razon");
                 }
                 reportPubli.setTypeReport(ReportsPublicacion.OTRO);
                 break;
@@ -111,7 +111,7 @@ public class ServicioReportPublicacion {
         }if(idUser == null || idUser.isEmpty()){
             throw new MiException("El id del usuario no puede estar vacio");
         }if(reason == null){
-            throw new MiException("La rason del reporte no puede ser nula");
+            throw new MiException("La razon del reporte no puede ser nula");
         }if(report == null || report.isEmpty()){
             throw new MiException("El tipo de reporte no puede estar vacio");
         }
