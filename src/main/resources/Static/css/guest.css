@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
-main {
-    background: linear-gradient(to bottom, #8c52ff 0%, #6f49bb 100%);
-}
+
+
+
 
 body {
     background: linear-gradient(to bottom, #8c52ff 0%, #6f49bb 100%);
@@ -178,7 +178,7 @@ body {
 
 #signInForm h1,
 #signUpForm h1 {
-    margin-top: 4.5rem;
+    margin-top: 3rem;
 }
 
 #signInForm p,
@@ -195,6 +195,7 @@ body {
     line-height: 35px;
     padding: 5px 10px;
     width: 80%;
+
 }
 
 #signInForm button,
@@ -240,14 +241,23 @@ body {
 }
 
 a.social-media-button {
+    margin: 1.5rem;
     display: inline-block;
-    border: 1px solid rgb(189, 189, 189);
+    border: none;
     text-align: center;
     border-radius: 50%;
-    height: 40px;
+    height: 15px;
     width: 40px;
     line-height: 40px;
     color: rgb(0, 0, 0);
+}
+
+.controls {}
+
+.recordarmeClass {
+    display: flex;
+    align-items: end;
+
 }
 
 #forms>div {
@@ -269,7 +279,7 @@ a.social-media-button {
 
 #signUp button,
 #signIn button {
-    margin-top: 20px;
+    margin-top: 68px;
     text-transform: uppercase;
     color: #fff;
     background-color: transparent;
@@ -282,4 +292,107 @@ a.social-media-button {
 #signUp button:focus,
 #signIn button:focus {
     outline: none;
+}
+
+/*-------------------------*/
+
+.custum-file-upload {
+
+
+
+    height: 10px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    gap: 20px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #cacaca;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.1);
+}
+
+
+label.custum-file-upload {
+
+    margin: 0.8px 50px;
+
+
+
+}
+
+.custum-file-upload .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custum-file-upload .text span {
+    font-weight: 400;
+    color: rgba(75, 85, 99, 1);
+}
+
+.custum-file-upload input {
+    display: none;
+
+
+}
+
+/*----------------*/
+
+.material-checkbox {
+    margin: 0.8px 30px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #777777;
+    cursor: pointer;
+}
+
+.material-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.checkmark {
+    position: relative;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 12px;
+    border: 2px solid #6f49bb;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.material-checkbox input[type="checkbox"]:checked~.checkmark {
+    background-color: #8c52ff;
+    border-color: #8c52ff;
+}
+
+.material-checkbox input[type="checkbox"]:checked~.checkmark:after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 3px;
+    width: 3px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 1px 1px 0;
+    transform: rotate(45deg);
+}
+
+
+
+
+
+.material-checkbox input[type="checkbox"]:disabled~.checkmark {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

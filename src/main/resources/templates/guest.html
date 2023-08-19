@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -22,13 +22,13 @@
                 <div id="overlay">
                     <div id="overlayInner">
                         <div id="signUp">
-                            <h1>Bienvenido a Social Fashion!</h1>
+                            <h1>Bienvenido a <br>Social Fashion!</h1><br>
                             <p>Ingresa aquí si ya estas registrado</p>
                             <button onClick='moveSliderRight()'>Ingresar</button>
                         </div>
                         <div id="signIn">
-                            <h1>Bienvenido a Social Fashion!</h1>
-                            <p>Ingrese sus datos personales para poder conocernos</p>
+                            <h1>Bienvenido a <br>Social Fashion!</h1>
+
                             <button onClick='moveSliderLeft()'>Registrarme</button>
                         </div>
                     </div>
@@ -40,16 +40,20 @@
                             <a href="#" class='social-media-button'><i class="fa fa-facebook"></i></a>
                             <a href="#" class='social-media-button'><i class="fa fa-twitter"></i></a>
                             <a href="#" class='social-media-button'><i class="fa fa-linkedin"></i></a>
-                            <p>Tengo cuenta</p>
-                            <input type="email" placeholder="Email"><br>
-                            <input type="password" placeholder='Password'>
-                            <div class="recordarmeClass">
-                                <input type="checkbox" class="controls" id="exampleCheck1">
-                                <label class="form-control1" for="exampleCheck1">Recordarme</label>
-                            </div>
-                            <p>Olvidaste tu contraseña?</p>
 
-                            <button>Ingresar</button>
+                            <input type="email" placeholder="Email"><br>
+                            <input type="password" placeholder='Password'><br>
+                            <label class="material-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Recordarme
+                            </label>
+
+
+                            <p><span class="span"><a href="#">Olvidaste tu contraseña?</a></span></p><br>
+
+                            <button class="ingresar">Ingresar</button>
+
                         </div>
                     </div>
                     <div id="signUpForm">
@@ -63,6 +67,12 @@
                             <input type="email" placeholder="Email"><br>
                             <input type="password" placeholder='Password'><br>
                             <input type="date" placeholder="Fecha de nacimiento"><br>
+                            <label class="custum-file-upload" for="file">
+                                <div class="text">
+                                    <span>📷 Foto de perfil</span>
+                                </div>
+                                <input type="file" id="file">
+                            </label>
 
                             <button>Registrarme</button>
                         </div>

@@ -335,7 +335,7 @@ header.abajo .nav-words {
 
 label {
     background-color: white;
-    display: flex;
+    display: block;
     align-items: center;
     gap: 14px;
     padding: 10px 15px 10px 10px;
@@ -344,6 +344,10 @@ label {
     border-radius: 10px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     color: black;
+}
+
+.feather feather-heart {
+    display: flex;
 }
 
 
