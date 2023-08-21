@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
+
 import com.socialFashion.proyectoFinal.Enumeraciones.ReportsPublicacion;
 
 /**

@@ -1,9 +1,12 @@
 package com.socialFashion.proyectoFinal.Servicios;
 
+import org.springframework.stereotype.Service;
+
 import com.socialFashion.proyectoFinal.Entidades.ReportComentario;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 
-public class servicioComentario {
+@Service
+public class ServicioComentario {
     
     public void crearComentario(String idUsuario, String idPublicacion, String comment, ReportComentario[] reports){
 
