@@ -1,6 +1,5 @@
-package com.socialFashion.proyectoFinal.controllers;
+package com.socialFashion.proyectoFinal.Controladores;
 
-import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Servicios.ServicioPublicacion;
 import org.springframework.stereotype.Controller;
@@ -18,29 +17,31 @@ public class PublicacionControlador {
 
     private ServicioPublicacion servicioPublicacion;
 
-    @GetMapping("/publicar{id}")
-    public String publicar(@PathVariable String idUser, @RequestParam String label, @RequestParam MultipartFile archivo, @RequestParam String content, ModelMap modelo){
-
-        try {
-
-            servicioPublicacion.crearPublicacion(idUser,label, archivo, content);
-
-            modelo.put("exito", "Publicacion creada correctamente");
-
-        }catch(MiException ex){
-
-            modelo.put("error", "No se logro cargar la publicacion");
-
-        }
+    @GetMapping("/publicar/{id}")
+    public String publicar(@PathVariable String id){
+       
         return "publicacion.html";
     }
     @PostMapping("/publicar/{id}")
-    //Hacer PostMapping
+    public String cargarPublicacion(@PathVariable String idUser, @RequestParam String label, @RequestParam MultipartFile archivo, @RequestParam String content, ModelMap modelo){
+
+        try {
+            servicioPublicacion.crearPublicacion(idUser, label, archivo, content);
+
+            modelo.put("exito", "Publicación cargada correctamente");
+
+        } catch (MiException ex) {
+
+            modelo.put("error", "No se pudo cargar la publicación");
+        }
+        return "profile.html";
+    }
 
     @GetMapping("/eliminar/{id}")
     public String eliminarPublicacion(@PathVariable String id, ModelMap modelo) {
 
         try {
+
             servicioPublicacion.eliminar(id);
 
             modelo.put("exito", "Publicación eliminada correctamente");
@@ -48,8 +49,11 @@ public class PublicacionControlador {
         } catch (MiException ex) {
 
             modelo.put("error", "No se pudo eliminar la publicación");
+
         }
+
         return "profile.html";
+        
     }
 
     // A revisar este metodo que lo hice para mostrar el formulario de edición de
@@ -57,11 +61,11 @@ public class PublicacionControlador {
     @GetMapping("/editar/{id}")
     public String modificarPublicacion(@PathVariable String id, ModelMap modelo) {
 
-        Publicacion publicacion = servicioPublicacion.getOne(id);
+        // Publicacion publicacion = servicioPublicacion.getOne(id);
 
-        modelo.put("publicacion", publicacion);
+        // modelo.put("publicacion", publicacion);
 
-        return "publicacion.html"; // ???
+        return "publicacion.html";
     }
 
     // A revisar este metodo que lo hice para guardar la edición de etiquetas y
@@ -71,6 +75,7 @@ public class PublicacionControlador {
          @RequestParam String newContent, ModelMap modelo) {
 
         try {
+
             servicioPublicacion.modificarPublicacion(newLabel, id, newContent);
 
             modelo.put("exito", "Publicación editada correctamente");
