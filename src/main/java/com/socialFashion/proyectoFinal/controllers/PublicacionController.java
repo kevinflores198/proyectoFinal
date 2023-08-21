@@ -47,7 +47,13 @@ try {
 
             modelo.put("error", "No se pudo eliminar la publicación");
         }
-        return "redirect:/profile.html";
+        return "profile.html";
+    }
+             
+    @PostMapping("/{id}/eliminar")
+    public String eliminarPublicacion(@PathVariable Long id) {
+        servicioPublicacion.eliminarPublicacion(id);
+        return "profile.html";
     }
 
     // A revisar este metodo que lo hice para mostrar el formulario de edición de etiquetas y contenido.
@@ -74,7 +80,7 @@ try {
             
             modelo.put("error", "No se pudo editar la publicación");
         }
-        return "redirect:/profile.html";
+        return "profile.html";
     }
 }
 
