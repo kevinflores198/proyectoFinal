@@ -1,3 +1,4 @@
+package com.socialFashion.proyectoFinal.Servicios;
 
 import com.socialFashion.proyectoFinal.Entidades.ReportUser;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
