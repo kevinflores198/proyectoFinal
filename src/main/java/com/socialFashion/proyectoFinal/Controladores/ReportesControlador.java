@@ -14,6 +14,6 @@ public class ReportesControlador {
     @Autowired
     private ServicioReportUser servicioReportUsuario;
     
-    servicioReportUsuario
+    // servicioReportUsuario
     
 }
