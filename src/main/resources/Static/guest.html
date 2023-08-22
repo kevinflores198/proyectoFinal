@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -33,20 +33,40 @@
     <!-- Topbar Start -->
 
 
-    <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+    <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex ">
         <div class="col-lg-4">
-            <a href="index.html" class="text-decoration-none">
+            <a th:href="@{/}" class="text-decoration-none">
                 <span class="h1 text-uppercase text-light bg-dark px-2">Social</span>
                 <span class="h1 text-uppercase text-dark bg-light px-2 ml-n1">Fashion</span>
             </a>
         </div>
-
-
+        <div class="col-lg-4 col-6 text-left">
+            <form action="">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for products">
+                    <div class="input-group-append">
+                        <span class="input-group-text bg-transparent text-primary">
+                            <i class="fa fa-search"></i>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4 col-6 text-right">
+            <div class="d-inline-flex align-items-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi
+                        Cuenta</button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button"><a class="" href="guest.html">Iniciar
+                                Sesion</a></button>
+                        <button class="dropdown-item" type="button"><a class=""
+                                href="guest.html">Registrarse</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-    <header th:replace="/fragments/header :: header"> </header>
-
-    <div th:replace="/fragments/div :: div"> </div>
     <main class="main">
         <div class="container">
             <div id="signInSignUpBox">
@@ -83,22 +103,38 @@
 
                         </div>
                     </div>
-                    <div id="signUpForm">
+
+                    <div id="signUpForm" th:action="@{/main}">
                         <div class="holder">
+
                             <h1>Crear Cuenta</h1>
 
-                            <input type="text" placeholder="Name"><br>
-                            <input type="email" placeholder="Email"><br>
-                            <input type="password" placeholder='Password'><br>
-                            <input type="date" placeholder="Fecha de nacimiento"><br>
-                            <label class="custum-file-upload" for="file">
+                            <!-- <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError">
+                                <div class="card-body">
+                                    <h5 class="card-title">Error!</h5>
+                                    <p class="card-text" th:text="${error}"></p>
+                                </div>
+                            </div>
+
+                            <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito">
+                                <div class="card-body">
+                                    <h5 class="card-title">Exito!</h5>
+                                    <p class="card-text" th:text="${exito}"></p>
+                                </div>
+                            </div> -->
+
+                            <input type="text" placeholder="Name" th:value="${name}"><br>
+                            <input type="email" placeholder="Email" th:value="${email}"><br>
+                            <input type="password" placeholder='Password' th:value="${password}"><br>
+                            <input type="date" placeholder="Fecha de nacimiento" th:value="${birthDate}"><br>
+                            <label class="custum-file-upload" for="file" th:value="${image}">
                                 <div class="text">
                                     <span class="box-image">📷 Foto de perfil</span>
                                 </div>
                                 <input type="file" id="file">
                             </label>
 
-                            <button>Registrarme</button>
+                            <button  type="submit">Registrarme</button>
                         </div>
                     </div>
                 </div>
