@@ -51,14 +51,14 @@ public class PortalControlador {
 
             modelo.put("exito", "Usuario registrado correctamente!");
 
-            return "guest.html";
+            return "main.html";
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", name);
             modelo.put("email", email);
 
-            return "main.html";
+            return "guest.html";
         }
 
     }
