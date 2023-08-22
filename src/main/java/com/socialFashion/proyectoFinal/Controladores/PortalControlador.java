@@ -25,7 +25,7 @@ public class PortalControlador {
 
     @Autowired
     private ServicioUsuario servicioUsuario;
-
+    
     // VISTA INDEX
     @GetMapping("/")
     public String index() {
@@ -43,9 +43,11 @@ public class PortalControlador {
 
     // FORMULARIO DE REGISTRO DE USUARIO
     @PostMapping("/registro")
-    public String registro(@RequestParam String name, @RequestParam String email, @RequestParam(defaultValue = "1999-01-01") @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate,
+    public String registro(@RequestParam String name, @RequestParam String email, @RequestParam() Date birthDate,
             @RequestParam String password, @RequestParam String password2, ModelMap modelo, MultipartFile image) {
-
+        
+        
+        
         try {
             servicioUsuario.register(name, email, birthDate, password, password2, image);
 
