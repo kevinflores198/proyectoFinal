@@ -1,6 +1,6 @@
 package com.socialFashion.proyectoFinal.Entidades;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,6 +13,10 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.socialFashion.proyectoFinal.Enumeraciones.Role;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 /**
  * Entidad Usuario
@@ -31,10 +35,14 @@ public class Usuario {
     private String name;
     private String email;
     private String password;
-    private LocalDate birthDate;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = ISO.DATE)
+    private Date birthDate;
 
     @OneToOne
     private Imagen image;
+
     private Boolean alta;
 
     //@OneToMany
@@ -43,14 +51,14 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Role role, String name, String email, String password, LocalDate birthDate, Imagen image, Boolean alta) {
+    public Usuario(Role role, String name, String email, String password, Date birthDate, Imagen image, Boolean alta) {
+
         this.role = role;
         this.name = name;
         this.email = email;
         this.password = password;
         this.birthDate = birthDate;
         this.image = image;
-
         this.alta = alta;
     }
 
@@ -95,11 +103,11 @@ public class Usuario {
         this.password = password;
     }
 
-    public LocalDate getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
