@@ -1,14 +1,11 @@
 package com.socialFashion.proyectoFinal.Servicios;
 
-
-
 import java.util.Optional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.servlet.http.HttpSession;
-
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,28 +37,36 @@ public class ServicioUsuario implements UserDetailsService {
     private ServicioImagen servicioImagen;
 
     @Transactional
-    public void register(String name, String email , Date birthDate , String password , String password2 , String description, MultipartFile image) throws MiException{
+    public void register(String name, String email, Date birthDate, String password, String password2, MultipartFile image) throws MiException {
         validate(name, password, password2);
         Usuario user = new Usuario();
 
         user.setName(name);
         user.setEmail(email);
-        user.setPassword(new BCryptPasswordEncoder().encode(password));
-        user.setAlta(true);
-        user.setBirthDate(birthDate);
-        user.setRole(Role.USER);
+        if (password.equals(password2)) {
+            user.setPassword(new BCryptPasswordEncoder().encode(password));
+            user.setAlta(true);
+            if (mayoriaDeEdad(birthDate)) {
+                user.setBirthDate(birthDate);
+                user.setRole(Role.USER);
 
-        //PERSISTO IMAGEN
-         Imagen imagen = servicioImagen.guardar(image);
-        //LA GUARDO EN EL USUARIO 
-         user.setImage(imagen);;
+                //PERSISTO IMAGEN
+                Imagen imagen = servicioImagen.guardar(image);
+                //LA GUARDO EN EL USUARIO 
+                user.setImage(imagen);
+            } else {
+                throw new MiException("No sos mayor de edad");
+            }
+        } else {
+            throw new MiException("Las contraseñas deben ser iguales");
+        }
 
         userRepository.save(user);
 
     }
 
     @Transactional
-    public void update(String id, String name, String email , String password , String password2 , String description) throws MiException{
+    public void update(String id, String name, String email, String password, String password2, String description) throws MiException {
         validate(name, password, password2);
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
@@ -79,7 +84,7 @@ public class ServicioUsuario implements UserDetailsService {
     }
 
     @Transactional
-    public void delete(String id , String name){
+    public void delete(String id, String name) {
 
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
@@ -91,12 +96,12 @@ public class ServicioUsuario implements UserDetailsService {
 
     }
 
-    private void validate(String name,  String password, String password2) throws MiException {
+    private void validate(String name, String password, String password2) throws MiException {
 
         if (name.isEmpty() || name == null) {
             throw new MiException("el nombre no puede ser nulo o estar vacío");
         }
-        
+
         if (password.isEmpty() || password == null || password.length() <= 5) {
             throw new MiException("La contraseña no puede estar vacía, y debe tener más de 5 dígitos");
         }
@@ -107,7 +112,7 @@ public class ServicioUsuario implements UserDetailsService {
 
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Usuario> listUsers() {
 
         List<Usuario> users = new ArrayList();
@@ -117,16 +122,49 @@ public class ServicioUsuario implements UserDetailsService {
         return users;
     }
 
-    public Usuario getOne(String name){
+    public Usuario getOne(String name) {
         return userRepository.getOne(name);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'loadUserByUsername'");
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
+        Usuario usuario = userRepository.buscarPorEmail(email);
+
+        if (usuario != null) {
+
+            List<GrantedAuthority> permisos = new ArrayList<>();
+
+            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + usuario.getRole().toString());
+
+            permisos.add(p);
+
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+
+            HttpSession session = attr.getRequest().getSession(true);
+            session.setAttribute("usuariosession", usuario);
+            return new User(usuario.getEmail(), usuario.getPassword(), permisos);
+        } else {
+            return null;
+        }
     }
 
+    public Boolean mayoriaDeEdad(Date birthDate) {
 
-    
+        Date hoy = new Date();
+
+        if ((birthDate.getYear() - hoy.getYear()) >= 18) {
+            if ((birthDate.getMonth() - hoy.getMonth()) <= 0) {
+                if ((birthDate.getDate() - hoy.getDate()) <= 0) {
+
+                    return true;
+
+                }
+            }
+        }
+
+        return false;
+
+    }
+
 }

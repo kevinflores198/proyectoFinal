@@ -13,11 +13,14 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.socialFashion.proyectoFinal.Enumeraciones.Role;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 /**
- *  Entidad Usuario
+ * Entidad Usuario
  */
-
 @Entity
 public class Usuario {
 
@@ -28,40 +31,38 @@ public class Usuario {
 
     @Enumerated(EnumType.STRING)
     private Role role;
-    
+
     private String name;
     private String email;
     private String password;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = ISO.DATE)
     private Date birthDate;
 
     @OneToOne
     private Imagen image;
-    
-    private String description;
+
     private Boolean alta;
 
     //@OneToMany
     //private ArrayList<Publicacion> publicacion;
-    
     //private ArrayList<ReportUser> report;
-
     public Usuario() {
     }
 
-    public Usuario(Role role, String name, String email, String password, Date birthDate, Imagen image,
-            String description, Boolean alta) {
+    public Usuario(Role role, String name, String email, String password, Date birthDate, Imagen image, Boolean alta) {
+
         this.role = role;
         this.name = name;
         this.email = email;
         this.password = password;
         this.birthDate = birthDate;
         this.image = image;
-        this.description = description;
         this.alta = alta;
     }
 
     //Getter y Setter
-
     public String getId() {
         return id;
     }
@@ -118,14 +119,6 @@ public class Usuario {
         this.image = image;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Boolean getAlta() {
         return alta;
     }
@@ -133,5 +126,5 @@ public class Usuario {
     public void setAlta(Boolean alta) {
         this.alta = alta;
     }
-    
+
 }

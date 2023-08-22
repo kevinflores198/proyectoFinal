@@ -46,7 +46,7 @@ public class PortalControlador {
             @RequestParam String password, @RequestParam String password2, ModelMap modelo, MultipartFile image) {
 
         try {
-            servicioUsuario.register(name, email, birthDate, password, password2, password2, image);
+            servicioUsuario.register(name, email, birthDate, password, password2, image);
 
             modelo.put("exito", "Usuario registrado correctamente!");
 
@@ -79,7 +79,7 @@ public class PortalControlador {
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         
         if (logueado.getRole().toString().equals("ADMIN")) {
-            return "redirect:/admin/dashboard";
+            return "main.html";
         }
         
            return "main.html";
@@ -88,7 +88,5 @@ public class PortalControlador {
     //PERFIL VISTA (PENDIENTE)
 
     //ACTUALIZAR PERFIL VISTA (PENDIENTE)
-    
-
 
 }
