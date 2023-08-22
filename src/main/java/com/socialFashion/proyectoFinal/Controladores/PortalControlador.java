@@ -37,7 +37,7 @@ public class PortalControlador {
     @GetMapping("/registrar")
     public String registrar() {
 
-        return "signin.html";
+        return "guest.html";
     }
 
     // FORMULARIO DE REGISTRO DE USUARIO
@@ -50,14 +50,14 @@ public class PortalControlador {
 
             modelo.put("exito", "Usuario registrado correctamente!");
 
-            return "login.html";
+            return "main.html";
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", name);
             modelo.put("email", email);
 
-            return "signin.html";
+            return "guest.html";
         }
 
     }
@@ -69,7 +69,7 @@ public class PortalControlador {
             System.out.println(error);
             modelo.put("error", "Usuario o Clave incorrectos!");
         }
-        return "main.html";
+        return "guest.html";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
