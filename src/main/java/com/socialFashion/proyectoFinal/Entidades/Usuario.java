@@ -1,6 +1,6 @@
 package com.socialFashion.proyectoFinal.Entidades;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -32,12 +32,11 @@ public class Usuario {
     private String name;
     private String email;
     private String password;
-    private LocalDate birthDate;
+    private Date birthDate;
 
     @OneToOne
     private Imagen image;
     
-    private String description;
     private Boolean alta;
 
     //@OneToMany
@@ -48,15 +47,14 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Role role, String name, String email, String password, LocalDate birthDate, Imagen image,
-            String description, Boolean alta) {
+    public Usuario(Role role, String name, String email, String password, Date birthDate, Imagen image,
+            Boolean alta) {
         this.role = role;
         this.name = name;
         this.email = email;
         this.password = password;
         this.birthDate = birthDate;
         this.image = image;
-        this.description = description;
         this.alta = alta;
     }
 
@@ -102,11 +100,11 @@ public class Usuario {
         this.password = password;
     }
 
-    public LocalDate getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -116,14 +114,6 @@ public class Usuario {
 
     public void setImage(Imagen image) {
         this.image = image;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Boolean getAlta() {
