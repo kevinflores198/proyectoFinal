@@ -47,24 +47,19 @@ public class ServicioUsuario implements UserDetailsService {
 
         user.setName(name);
         user.setEmail(email);
-        if(password.equals(password2)){
-            user.setPassword(new BCryptPasswordEncoder().encode(password));
-            user.setAlta(true);
-            if(mayoriaDeEdad(birthDate)){
-                user.setBirthDate(birthDate);
-                user.setRole(Role.USER);
-
-                //PERSISTO IMAGEN
-                Imagen imagen = servicioImagen.guardar(image);
-                //LA GUARDO EN EL USUARIO 
-                user.setImage(imagen);
-            }else{
-                throw new MiException("No sos mayor de edad");
-            }
+        user.setPassword(new BCryptPasswordEncoder().encode(password));
+        user.setAlta(true);
+        if(mayoriaDeEdad(birthDate)){
+            user.setBirthDate(birthDate);
         }else{
-            throw new MiException("Las contraseñas deben ser iguales");
+            throw new MiException("No sos mayor de edad");
         }
-        
+        user.setRole(Role.USER);
+
+        //PERSISTO IMAGEN
+         Imagen imagen = servicioImagen.guardar(image);
+        //LA GUARDO EN EL USUARIO 
+         user.setImage(imagen);;
 
         userRepository.save(user);
 

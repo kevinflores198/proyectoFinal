@@ -37,6 +37,7 @@ public class Usuario {
     @OneToOne
     private Imagen image;
     
+    private String description;
     private Boolean alta;
 
     //@OneToMany
@@ -48,13 +49,14 @@ public class Usuario {
     }
 
     public Usuario(Role role, String name, String email, String password, Date birthDate, Imagen image,
-            Boolean alta) {
+            String description, Boolean alta) {
         this.role = role;
         this.name = name;
         this.email = email;
         this.password = password;
         this.birthDate = birthDate;
         this.image = image;
+        this.description = description;
         this.alta = alta;
     }
 
@@ -114,6 +116,14 @@ public class Usuario {
 
     public void setImage(Imagen image) {
         this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Boolean getAlta() {
