@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #101010;
+    color: white;
+}
+
+.cuerpo {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.amarillo {
+    background-color: rgba(2, 255, 238, 0.996);
+}
+
+.amarillo:hover {
+    background-color: rgb(0, 255, 81);
+}
+
+.titulo {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+#texto {
+    background-color: rgba(3, 33, 102, 0.487);
+    border-radius: 3px;
+    width: 80%;
+    padding: 20px;
+}

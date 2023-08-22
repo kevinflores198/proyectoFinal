@@ -1,0 +1,21 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.cabecera {
+    color: #333;
+    background-image: url(fondo_gris.gif);
+}
+
+.primera-fila{
+    background: #FFFFCC;
+}
+
+.primera-columna {
+    background: #E6F3FF;
+    display: flex;
+    justify-content: left;
+    align-content: center;
+}
+

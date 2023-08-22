@@ -1,0 +1,132 @@
+/*selectores*/
+
+/*etiquetas*/
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+}
+
+body{
+    background-color: hwb(0 94% 0%);
+}
+
+header {
+    padding: 20px;
+    margin-bottom: 20px;
+    background: #e3a7a7;
+}
+
+footer {
+    text-align: center;
+}
+
+label {
+    width: 100%;
+    display: block;
+    padding-bottom: 10px;
+}
+
+/*id*/
+
+#main-section {
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 100vw;
+    padding: 20px 0;
+}
+
+#form-registro {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    align-items: center;
+    background: #e3a7a7;
+    padding: 35px;
+    border-radius: 10px;
+}
+
+/*clases*/
+
+.subtitle {
+    padding: 15px 0 30px;
+    color: grey;
+}
+
+.section {
+    padding: 0 40px;
+
+}
+
+.ul {
+    list-style: none;
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.ul li {
+    padding: 0 20px;
+}
+
+.link {
+    padding: 10px 20px;
+    color: rgb(135, 77, 77);
+    text-decoration: none;
+    font-weight: 700;
+    border: solid 1px;
+    border-radius: 10px;
+}
+
+.link.btn {
+    display: block;
+    position: relative;
+    margin: 20px auto 0;
+    width: 80%;
+}
+
+.form-group {
+    padding: 10px 15px;
+}
+
+.input {
+    padding: 8px 15px;
+    border: solid 1px grey;
+    border-radius: 5px;
+}
+
+/*imput por atributo*/
+input[type="text"] {}
+
+/*pseudoselectores
+son para diferenciar las clases
+y elementos*/
+
+/*pseudoclases*/
+#main-selection .selection:first-child {
+    max-width: 450px;
+}
+
+.form-group:last-child {
+    width:100%;
+}
+
+.link:hover{
+    color: white;
+    background-color: rgb(223, 70, 70);
+}
+
+.input:focus {
+    color: grey;
+    outline-color: black;
+}
+
+/*pseudoelementos*/
+
+.link::after{
+
+}
+link::before{
+
+}

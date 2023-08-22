@@ -1,0 +1,19 @@
+h2{
+    color: green;
+}
+
+body{
+    background-color: white;
+}
+
+section.section{
+    background-color: blue;
+}
+
+#section-one p:first-of-type{
+    color: brown;
+}
+
+.link:hover{
+    color:green;
+}

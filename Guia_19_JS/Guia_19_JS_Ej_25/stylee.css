@@ -1,0 +1,44 @@
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: linear-gradient(rgb(12, 129, 22), rgb(139, 0, 252));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.padre {
+    margin-top: 100px;
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+    background-color: #1ef901;
+    width: 500px;
+    border-radius: 19px;
+    padding: 20px;
+    box-shadow: 0 10px 40px 10px rgba(0, 0, 0, 0.493);
+    
+}
+.titulo {
+    font-size: 35px;
+}
+
+.input {
+    font-size: 25px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 19px;
+    
+}
+
+.boton {
+    font-size: 25px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 19px;
+    margin-bottom: 19px;
+    background-color: rgb(12, 129, 22);
+    color: white;
+}

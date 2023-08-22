@@ -1,0 +1,32 @@
+//Escribir un programa que lea números enteros hasta teclear 0 (cero). Al finalizar el
+//programa se debe mostrar el máximo número ingresado, el mínimo, y el promedio de
+//todos ellos
+Algoritmo ej5guia22
+	Definir num Como Entero
+	Definir max, min, prom, i, j Como Real
+	
+	Hacer
+		Escribir "Ingrese un numero"
+		Leer num
+	Mientras que num > 0
+	Escribir "Haz ingresado 0 y salido del bucle"
+	Escribir " "
+	
+	may=0
+	min=0
+	prom=0
+	i=1
+	
+	Si num>may Entonces
+		may=num
+		may=may+1
+	FinSi
+	prom= min*may/100
+	
+	Escribir "El maximo numero ingresado es " may
+	Escribir " "
+	Escribir "El minumo numero ingresado es " min
+	Escribir " "
+	Escribir "El primedio de los numeros ingresados es " prom
+
+FinAlgoritmo
