@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -32,6 +34,8 @@ public class Usuario {
     private String name;
     private String email;
     private String password;
+
+    @Temporal(TemporalType.DATE)
     private Date birthDate;
 
     @OneToOne

@@ -3,7 +3,6 @@ package com.socialFashion.proyectoFinal.Servicios;
 
 
 import java.util.Optional;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -41,7 +40,7 @@ public class ServicioUsuario implements UserDetailsService {
     private ServicioImagen servicioImagen;
 
     @Transactional
-    public void register(String name, String email , Date birthDate , String password , String password2 , String description, MultipartFile image) throws MiException{
+    public void register(String name, String email, Date birthDate, String password, String password2, MultipartFile image) throws MiException{
         validate(name, password, password2);
         Usuario user = new Usuario();
 
@@ -132,9 +131,27 @@ public class ServicioUsuario implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'loadUserByUsername'");
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        
+        Usuario usuario = userRepository.buscarPorEmail(email);
+        
+        if(usuario != null){
+            
+            List<GrantedAuthority> permisos = new ArrayList<>();
+            
+            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + usuario.getRole().toString());
+            
+            permisos.add(p);
+            
+            
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            
+            HttpSession session = attr.getRequest().getSession(true);
+            session.setAttribute("usuariosession", usuario);
+            return new User(usuario.getEmail(), usuario.getPassword(), permisos);
+        }else{
+            return null;
+        }
     }
 
     public Boolean mayoriaDeEdad(Date birthDate){

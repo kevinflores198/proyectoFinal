@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -42,7 +43,7 @@ public class PortalControlador {
 
     // FORMULARIO DE REGISTRO DE USUARIO
     @PostMapping("/registro")
-    public String registro(@RequestParam String name, @RequestParam String email, @RequestParam Date birthDate,
+    public String registro(@RequestParam String name, @RequestParam String email, @RequestParam(defaultValue = "1999-01-01") @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate,
             @RequestParam String password, @RequestParam String password2, ModelMap modelo, MultipartFile image) {
 
         try {
