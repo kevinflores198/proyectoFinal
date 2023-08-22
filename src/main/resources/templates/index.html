@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset=" utf-8">
-<title>Social Fashion</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="Free HTML Templates" name="keywords">
-<meta content="Free HTML Templates" name="description">
-<link href="img/9.png" rel="icon">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-<link href="lib/animate/animate.min.css" rel="stylesheet">
-<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
+    <title>Social Fashion</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    <link href="img/9.png" rel="icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
     <!-- Navbar 1 -->
-    <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex ">
+    <div class="row align-items-center  py-3 px-xl-5 d-none d-lg-flex ">
         <div class="col-lg-4">
-            <a href="checkout.html" class="text-decoration-none">
+            <a th:href="@{/}" class="text-decoration-none">
                 <span class="h1 text-uppercase text-light bg-dark px-2">Social</span>
                 <span class="h1 text-uppercase text-dark bg-light px-2 ml-n1">Fashion</span>
             </a>
@@ -43,10 +43,10 @@
                     <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi
                         Cuenta</button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button"><a class="" href="guest.html">Iniciar
+                        <button class="dropdown-item" type="button"><a class="" th:href="@{/login}">Iniciar
                                 Sesion</a></button>
                         <button class="dropdown-item" type="button"><a class=""
-                                href="guest.html">Registrarse</a></button>
+                            th:href="@{/registrar}">Registrarse</a></button>
                     </div>
                 </div>
             </div>
@@ -189,7 +189,7 @@
         </div>
     </div>
 
-    <!-- Footer Start -->
+    <!-- Footer -->
     <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
@@ -219,9 +219,13 @@
                 </div>
             </div>
         </div>
+
         <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;"></div>
+
     </div>
+
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>

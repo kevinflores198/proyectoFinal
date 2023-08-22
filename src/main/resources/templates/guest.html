@@ -11,29 +11,19 @@
     <link rel="stylesheet" href="/css/guest.css">
     <link rel="stylesheet" href="/src/main/resources/Static/css/index.css">
     <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="css/guest.css">
     <title>Bienvenido A S/F</title>
 </head>
 
 <body>
-    <!-- Topbar Start -->
 
-
-    <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex ">
+    <div class="row align-items-center py-3 px-xl-5 d-none d-lg-flex ">
         <div class="col-lg-4">
             <a th:href="@{/}" class="text-decoration-none">
                 <span class="h1 text-uppercase text-light bg-dark px-2">Social</span>
@@ -58,15 +48,16 @@
                     <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi
                         Cuenta</button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button"><a class="" href="guest.html">Iniciar
+                        <button class="dropdown-item" type="button"><a class="" th:href="@{/login}">Iniciar
                                 Sesion</a></button>
                         <button class="dropdown-item" type="button"><a class=""
-                                href="guest.html">Registrarse</a></button>
+                                th:href="@{/registrar}">Registrarse</a></button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <main class="main">
         <div class="container">
             <div id="signInSignUpBox">
@@ -86,9 +77,8 @@
                 </div>
                 <div id="forms">
                     <div id="signInForm" class='shiftRight'>
-                        <div class="holder">
+                        <form th:action="@{/logincheck}" method="post" class="holder">
                             <h1>Ingresar a mi cuenta</h1>
-
                             <input type="email" placeholder="Email"><br>
                             <input type="password" placeholder='Password'><br>
                             <label class="material-checkbox">
@@ -96,36 +86,18 @@
                                 <span class="checkmark"></span>
                                 Recordarme
                             </label>
-
-
-
-                            <button class="ingresar">Ingresar</button>
-
-                        </div>
+                            <button class="ingresar" type="submit">Ingresar</button>
+                        </form>
                     </div>
 
-                    <div id="signUpForm" th:action="@{/main}">
-                        <div class="holder">
-
+                    <div id="signUpForm">
+                        <form class="holder" th:action="@{/registro}" method="post">
                             <h1>Crear Cuenta</h1>
 
-                            <!-- <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError">
-                                <div class="card-body">
-                                    <h5 class="card-title">Error!</h5>
-                                    <p class="card-text" th:text="${error}"></p>
-                                </div>
-                            </div>
-
-                            <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-                                <div class="card-body">
-                                    <h5 class="card-title">Exito!</h5>
-                                    <p class="card-text" th:text="${exito}"></p>
-                                </div>
-                            </div> -->
-
-                            <input type="text" placeholder="Name" th:value="${name}"><br>
-                            <input type="email" placeholder="Email" th:value="${email}"><br>
-                            <input type="password" placeholder='Password' th:value="${password}"><br>
+                            <input type="text" placeholder="Nombre completo" th:value="${name}"><br>
+                            <input type="email" placeholder="Correo electronico" th:value="${email}"><br>
+                            <input type="password" placeholder='Contraseña' th:value="${password}"><br>
+                            <input type="password" placeholder='Repetir contraseña' th:value="${password2}"><br>
                             <input type="date" placeholder="Fecha de nacimiento" th:value="${birthDate}"><br>
                             <label class="custum-file-upload" for="file" th:value="${image}">
                                 <div class="text">
@@ -134,8 +106,8 @@
                                 <input type="file" id="file">
                             </label>
 
-                            <button  type="submit">Registrarme</button>
-                        </div>
+                            <button type="submit">Registrarme</button>
+                        </form>
                     </div>
                 </div>
             </div>
