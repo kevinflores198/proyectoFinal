@@ -50,7 +50,7 @@ public class PortalControlador {
 
             modelo.put("exito", "Usuario registrado correctamente!");
 
-            return "form.html";
+            return "guest.html";
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
@@ -69,7 +69,7 @@ public class PortalControlador {
             System.out.println(error);
             modelo.put("error", "Usuario o Clave incorrectos!");
         }
-        return "form.html";
+        return "guest.html";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
@@ -79,7 +79,7 @@ public class PortalControlador {
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         
         if (logueado.getRole().toString().equals("ADMIN")) {
-            return "redirect:/admin/dashboard";
+            return "main.html";
         }
         
            return "main.html";
