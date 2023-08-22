@@ -37,7 +37,7 @@ public class PortalControlador {
     @GetMapping("/registrar")
     public String registrar() {
 
-        return "form.html";
+        return "guest.html";
     }
 
     // FORMULARIO DE REGISTRO DE USUARIO
@@ -46,7 +46,7 @@ public class PortalControlador {
             @RequestParam String password, @RequestParam String password2, ModelMap modelo, MultipartFile image) {
 
         try {
-            servicioUsuario.register(name, email, birthDate, password, password2, password2, image);
+            servicioUsuario.register(name, email, birthDate, password, password2, image);
 
             modelo.put("exito", "Usuario registrado correctamente!");
 
