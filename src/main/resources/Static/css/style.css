@@ -64,7 +64,15 @@ nav,
 section {
     display: block;
 }
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
+.header1{
+    width: 100%;
+    min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+}
 body {
     margin: 0;
     font-family: "Roboto", sans-serif;
@@ -244,6 +252,20 @@ label {
     margin-bottom: 0.5rem;
 }
 
+
+#barra-espaciadora{
+    margin-top: 10px;
+}
+
+#boton-mg{
+    margin-bottom: 25px;
+}
+
+#imagen-caja{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
 button {
     border-radius: 0;
 }
