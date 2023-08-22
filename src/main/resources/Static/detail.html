@@ -17,6 +17,8 @@
 </head>
 
 <body>
+    <!-- Topbar Start -->
+    <!-- Navbar 1 -->
     <div class="d-inline-flex align-items-center d-block d-lg-none">
         <a href="" class="btn px-0 ml-2">
             <i class="fas fa-heart text-dark"></i>
@@ -187,13 +189,13 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="main.html" class="nav-item nav-link">Inicio</a>
+                            <a href="index.html" class="nav-item nav-link">Inicio</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Publicaciones<i
                                         class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="main.html" class="dropdown-item">Top 10</a>
-                                    <a href="main.html" class="dropdown-item">Publicaciones</a>
+                                    <a href="#" class="dropdown-item">Top 10</a>
+                                    <a href="index.html" class="dropdown-item">Publicaciones</a>
                                 </div>
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contactanos</a>
@@ -248,19 +250,8 @@
                         Nonumy
                     </h3>
 
-                    <button id="boton-mg" class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Me gusta</button>
-                    <form>
-                        <div class="form-group">
-                            <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                        </div>
-                        
-                        <div class="form-group mb-0">
-                            <input type="submit" value="Comentar" class="btn btn-primary px-3">
-                        </div>
-                    </form>
-                    
+                    <button class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Me gusta</button>
                 </div>
-                
                 <div class="d-flex pt-2">
                     <strong class="text-dark mr-2">Share on:</strong>
                     <div class="d-inline-flex">
@@ -303,7 +294,7 @@
                         <button class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Me gusta</button>
                         <button class="btn btn-danger px-3"><i class="fa fa-exclamation"></i></i> Reportar</button>
 
-                        <div id="barra-espaciadora" class="row border-top mx-xl-5 py-4" style="border-color: black !important;"></div>
+                        <div class="row border-top mx-xl-5 py-4" style="border-color: black !important;"></div>
 
                         <h4 class="mb-3">Product Description</h4>
                         <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam
@@ -317,7 +308,7 @@
                         <button class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Me gusta</button>
                         <button class="btn btn-danger px-3"><i class="fa fa-exclamation"></i></i> Reportar</button>
 
-                        <div id="barra-espaciadora" class="row border-top mx-xl-5 py-4" style="border-color: black !important;"></div>
+                        <div class="row border-top mx-xl-5 py-4" style="border-color: black !important;"></div>
                         <h4 class="mb-3">Product Description</h4>
                         <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam
                             invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod
@@ -330,7 +321,7 @@
                         <button class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Me gusta</button>
                         <button class="btn btn-danger px-3"><i class="fa fa-exclamation"></i></i> Reportar</button>
 
-                        <div id="barra-espaciadora" class="row border-top mx-xl-5 py-4" style="border-color: black !important;"></div>
+                        <div class="row border-top mx-xl-5 py-4" style="border-color: black !important;"></div>
                         <h4 class="mb-3">Product Description</h4>
                         <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam
                             invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod
@@ -343,7 +334,7 @@
                         <button class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Me gusta</button>
                         <button class="btn btn-danger px-3"><i class="fa fa-exclamation"></i></i> Reportar</button>
 
-                        <div id="barra-espaciadora" class="row border-top mx-xl-5 py-4" style="border-color: black !important;"></div>
+                        <div class="row border-top mx-xl-5 py-4" style="border-color: black !important;"></div>
                     </div>
 
                     <div class="tab-pane fade" id="tab-pane-3">
@@ -375,18 +366,29 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <h3 class="mb-4">Reporte</h3>
+                                <h4 class="mb-4">Dejar la descripcion del reporte</h4>
+
+                                <div class="d-flex my-3">
+                                    <p class="mb-0 mr-2">Your Rating * :</p>
+                                    <div class="text-primary">
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
                                 <form>
                                     <div class="form-group">
-                                        <label for="message">Razon</label>
+                                        <label for="message">Your Review *</label>
                                         <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">Nombre</label>
+                                        <label for="name">Tu nombre</label>
                                         <input type="text" class="form-control" id="name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="email">Email</label>
+                                        <label for="email">Tu email</label>
                                         <input type="email" class="form-control" id="email">
                                     </div>
                                     <div class="form-group mb-0">
