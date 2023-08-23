@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
+import java.time.Instant;
 
 @Controller
 @RequestMapping("/")
@@ -43,19 +44,25 @@ public class PortalControlador {
 
     // FORMULARIO DE REGISTRO DE USUARIO
     @PostMapping("/registro")
-    public String registro(@RequestParam String name, @RequestParam String email, @RequestParam() Date birthDate,
-            @RequestParam String password, @RequestParam String password2, ModelMap modelo, MultipartFile image) {
-        
-        
+    public String registro(@RequestParam(name="name") String name, 
+            @RequestParam(name="email") String email, 
+            @RequestParam(name="birthDate") String birthDate, 
+            @RequestParam(name="password") String password, 
+            @RequestParam(name="password2") String password2, 
+            MultipartFile image, ModelMap modelo) {
         
         try {
-            servicioUsuario.register(name, email, birthDate, password, password2, image);
+            
+            System.out.println(DateConverter(birthDate));
+            
+            servicioUsuario.register(name, email, DateConverter(birthDate), password, password2, image);
 
             modelo.put("exito", "Usuario registrado correctamente!");
 
             return "main.html";
         } catch (MiException ex) {
 
+            System.out.println(ex.getMessage());
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", name);
             modelo.put("email", email);
@@ -86,6 +93,18 @@ public class PortalControlador {
         }
         
            return "main.html";
+    }
+    
+    private Date DateConverter(String fecha){
+        
+        Date birthDate = new Date();
+        
+        birthDate.setDate(Integer.valueOf(fecha.substring(8, 10)));
+        birthDate.setMonth(Integer.valueOf(fecha.substring(5, 7))-1);
+        birthDate.setYear(Integer.valueOf(fecha.substring(1, 4))+100);
+        
+        return birthDate;
+        
     }
 
     //PERFIL VISTA (PENDIENTE)

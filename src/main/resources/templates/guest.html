@@ -91,19 +91,19 @@
                     </div>
 
                     <div id="signUpForm">
-                        <form class="holder" th:action="@{/registro}" method="post">
+                        <form class="holder" th:action="@{/registro}" method="POST" enctype="multipart/form-data">
                             <h1>Crear Cuenta</h1>
 
-                            <input type="text" placeholder="Nombre completo" name="name"><br>
-                            <input type="email" placeholder="Correo electronico" name="email"><br>
-                            <input type="password" placeholder='Contraseña' name="password"><br>
-                            <input type="password" placeholder='Repetir contraseña' name="password2"><br>
-                            <input type="date" placeholder="Fecha de nacimiento" name="birthDate"><br>
+                            <input type="text" placeholder="Nombre completo" name="name" th:value="${name}"><br>
+                            <input type="email" placeholder="Correo electronico" name="email" th:value="${email}"><br>
+                            <input type="password" placeholder='Contraseña' name="password" th:value="${password}"><br>
+                            <input type="password" placeholder='Repetir contraseña' name="password2" th:value="${password2}"><br>
+                            <input type="date" placeholder="Fecha de nacimiento" name="birthDate" th:value="${birthDate}"><br>
                             <label class="custum-file-upload" for="file">
                                 <div class="text">
                                     <span class="box-image">📷 Foto de perfil</span>
                                 </div>
-                                <input type="file" id="file" name="image">
+                                <input type="file" id="file" name="image" th:value="${image}">
                             </label>
 
                             <button type="submit">Registrarme</button>

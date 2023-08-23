@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -70,7 +71,7 @@ public class ServicioUsuario implements UserDetailsService {
     }
 
     @Transactional
-    public void update(String id, String name, String email , String password , String password2 , String description) throws MiException{
+    public void update(String id, String name, String email , String password, String password2) throws MiException{
         validate(name, password, password2);
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
@@ -157,10 +158,24 @@ public class ServicioUsuario implements UserDetailsService {
     public Boolean mayoriaDeEdad(Date birthDate){
 
         Date hoy = new Date();
-
-        if((birthDate.getYear() - hoy.getYear()) >= 18 ){
-            if((birthDate.getMonth() - hoy.getMonth()) <= 0){
-                if((birthDate.getDate() - hoy.getDate()) <= 0){
+        
+        System.out.println("hoyAño - año = " + (hoy.getYear()-birthDate.getYear()));
+        System.out.println("hoyMes - mes= " + (hoy.getMonth()-birthDate.getMonth()));
+        System.out.println("hoyDia - dia= " + (hoy.getDate()-birthDate.getDate()));
+        
+        if((hoy.getYear() - birthDate.getYear()) > 18 ){            // 2023 - 2000 = 23
+            
+            return true;
+            
+        }else if((hoy.getYear() - birthDate.getYear()) == 18){
+            
+            if((hoy.getMonth() - birthDate.getMonth()) > 0){        // 08 - 08 = 0
+                
+                return true;
+                
+            }else if((hoy.getMonth() - birthDate.getMonth()) == 0){
+                
+                if((hoy.getDate() - birthDate.getDate()) >= 0){     // 05 - 22 = -17
                     
                     return true;
 
