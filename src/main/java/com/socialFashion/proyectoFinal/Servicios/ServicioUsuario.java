@@ -159,10 +159,6 @@ public class ServicioUsuario implements UserDetailsService {
 
         Date hoy = new Date();
         
-        System.out.println("hoyAño - año = " + (hoy.getYear()-birthDate.getYear()));
-        System.out.println("hoyMes - mes= " + (hoy.getMonth()-birthDate.getMonth()));
-        System.out.println("hoyDia - dia= " + (hoy.getDate()-birthDate.getDate()));
-        
         if((hoy.getYear() - birthDate.getYear()) > 18 ){            // 2023 - 2000 = 23
             
             return true;

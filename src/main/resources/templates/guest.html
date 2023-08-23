@@ -77,10 +77,10 @@
                 </div>
                 <div id="forms">
                     <div id="signInForm" class='shiftRight'>
-                        <form th:action="@{/logincheck}" method="post" class="holder">
+                        <form th:action="@{/logincheck}" method="POST" class="holder">
                             <h1>Ingresar a mi cuenta</h1>
-                            <input type="email" placeholder="Email"><br>
-                            <input type="password" placeholder='Password'><br>
+                            <input type="email" placeholder="Email" name="email" th:value="${email}"><br>
+                            <input type="password" placeholder='Password' name="password" th:value="${password}"><br>
                             <label class="material-checkbox">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>

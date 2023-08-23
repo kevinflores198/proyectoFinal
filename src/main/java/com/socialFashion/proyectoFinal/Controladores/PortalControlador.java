@@ -53,8 +53,6 @@ public class PortalControlador {
         
         try {
             
-            System.out.println(DateConverter(birthDate));
-            
             servicioUsuario.register(name, email, DateConverter(birthDate), password, password2, image);
 
             modelo.put("exito", "Usuario registrado correctamente!");
