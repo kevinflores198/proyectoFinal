@@ -9,8 +9,12 @@ import javax.persistence.GeneratedValue;
 
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
+// import org.springframework.format.annotation.DateTimeFormat;
+// import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.socialFashion.proyectoFinal.Enumeraciones.Role;
 
@@ -32,12 +36,13 @@ public class Usuario {
     private String name;
     private String email;
     private String password;
+
+    @Temporal(TemporalType.DATE)
     private Date birthDate;
 
     @OneToOne
     private Imagen image;
     
-    private String description;
     private Boolean alta;
 
     //@OneToMany
@@ -49,14 +54,13 @@ public class Usuario {
     }
 
     public Usuario(Role role, String name, String email, String password, Date birthDate, Imagen image,
-            String description, Boolean alta) {
+            Boolean alta) {
         this.role = role;
         this.name = name;
         this.email = email;
         this.password = password;
         this.birthDate = birthDate;
         this.image = image;
-        this.description = description;
         this.alta = alta;
     }
 
@@ -116,14 +120,6 @@ public class Usuario {
 
     public void setImage(Imagen image) {
         this.image = image;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Boolean getAlta() {
