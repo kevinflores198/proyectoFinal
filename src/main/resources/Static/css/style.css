@@ -597,6 +597,12 @@ mark,
     height: auto;
 }
 
+.contenedorMain{
+    background-color: rgba(53, 53, 53, 0.683);
+    padding: 50px;
+    border-radius: 20px;
+}
+
 .img-thumbnail {
     padding: 0.25rem;
     background-color: #F5F5F5;
