@@ -3,20 +3,20 @@ package com.socialFashion.proyectoFinal.Servicios;
 import com.socialFashion.proyectoFinal.Entidades.Comentario;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioComentario;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
 
  import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
-import com.socialFashion.proyectoFinal.repositorios.RepositorioComentario;
-import com.socialFashion.proyectoFinal.repositorios.repositorioPublicacion;
 import org.springframework.transaction.annotation.Transactional;
 
-public class servicioComentario {
+public class ServicioComentario {
     
     @Autowired
     private RepositorioComentario RepositorioComentario;
     @Autowired
-    private repositorioPublicacion repositorioPublicacion;
+    private RepositorioPublicacion repositorioPublicacion;
 
     @Transactional
     public void crearComentario(String idUser, String idPublicacion,String comment ) throws MiException {
