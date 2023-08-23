@@ -71,6 +71,12 @@ public class ServicioPublicacion {
 
     }
 
+    public Publicacion getOne(String id){
+
+        return repoPubli.getOne(id);
+
+    }
+
     @Transactional
     public void modificarPublicacion(String label, String idPublicacion, String content) throws MiException {
         if (label == null || label.isEmpty()) {
