@@ -3,18 +3,18 @@ package com.socialFashion.proyectoFinal.Servicios;
 import com.socialFashion.proyectoFinal.Entidades.Comentario;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
-import com.socialFashion.proyectoFinal.Repositorios.RepositorioComentario;
-import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
 
  import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioComentario;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
 import org.springframework.transaction.annotation.Transactional;
 
 public class ServicioComentario {
     
     @Autowired
-    private RepositorioComentario RepositorioComentario;
+    private RepositorioComentario repositorioComentario;
     @Autowired
     private RepositorioPublicacion repositorioPublicacion;
 
@@ -37,15 +37,15 @@ public class ServicioComentario {
     
    //hola
     public List<Comentario> obtenerTodosLosComentarios() {
-        return RepositorioComentario.findAll();
+        return repositorioComentario.findAll();
     }
 
     public Optional<Comentario> obtenerComentarioPorId(String idComent) {
-        return RepositorioComentario.findById(idComent);
+        return repositorioComentario.findById(idComent);
     }
 
     public void eliminarComentario(String idComent) {
-        RepositorioComentario.deleteById(idComent);
+        repositorioComentario.deleteById(idComent);
     }
     
  public void validarComentario(String idUsuario, String idPublicacion, String comment) {
