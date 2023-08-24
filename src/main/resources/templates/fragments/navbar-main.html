@@ -1,33 +1,35 @@
 <nav>
-    <div class="d-inline-flex align-items-center d-block d-lg-none">
-        <a href="" class="btn px-0 ml-2">
-            <i class="fas fa-heart text-dark"></i>
-            <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
-        </a>
-        <a href="" class="btn px-0 ml-2">
-            <i class="fas fa-shopping-cart text-dark"></i>
-            <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
-        </a>
-    </div>
+
     <div class="row align-items-center py-3 px-xl-5 d-none d-lg-flex">
         <div class="col-lg-4">
-            <a href="main.html" class="text-decoration-none">
+            <a th:href="@{/main}" class="text-decoration-none">
                 <span class="h1 text-uppercase text-light bg-dark px-2">Social</span>
                 <span class="h1 text-uppercase text-dark bg-light px-2 ml-n1">Fashion</span>
             </a>
         </div>
+
         <div class="col-lg-4 col-6 text-left">
             <form action="">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search for products">
                     <div class="input-group-append">
-                        <span class="input-group-text bg-transparent text-primary">
-                            <i class="fa fa-search"></i>
-                        </span>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                                data-toggle="dropdown">Ordenar por</button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <button class="dropdown-item" type="button"><a class=""
+                                        href="guest.html">Diseñadores</a></button>
+                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Mas
+                                        MG</a></button>
+                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Ordenar por
+                                        Fecha</a></button>  
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
         </div>
+
         <div class="col-lg-4 col-6 text-right">
             <div class="d-inline-flex align-items-center">
                 <div class="btn-group">
