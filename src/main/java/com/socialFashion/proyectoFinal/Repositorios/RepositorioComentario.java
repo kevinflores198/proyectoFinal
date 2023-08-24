@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RepositorioComentario extends JpaRepository<Comentario,String> {
     
-    @Query("SELECT c FROM Comentario p WHERE c.idComent = :idComent")
+    @Query("SELECT c FROM Comentario c WHERE c.idComent = :idComent")
     public Comentario comentario(@Param("idComent")String idComent);
     
 }

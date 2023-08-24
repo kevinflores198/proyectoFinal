@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RepositorioReporteUsuario extends JpaRepository<ReportUser, String> {
     
-    @Query("SELECT r FROM ReporteUsuario r WHERE r.idReporte = :idReporte")
+    @Query("SELECT r FROM ReportUser r WHERE r.idReporte = :idReporte")
     public ReportUser ReportUsuarioByID(@Param("idReporte") String idReporte);
     //NO DEBERIA RETORNAR UNA LISTA? PUEDE TENER VARIOS REPORTES
     
