@@ -1,78 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
-    <meta charset="utf-8">
-    <title>Social Fashion | "La Red de Diseñadores mas grande del Mundo"</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
-    <link href="img/favicon.ico" rel="icon">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-</head>
+<<<<<<< Updated upstream
+<head th:replace="/fragments/head-guest :: head"> </head>
+=======
+<head th:replace="/fragments/head :: head"> </head>
+
+>>>>>>> Stashed changes
 
 <body>
-
-
-    <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex ">
-        <div class="col-lg-4">
-            <a th:href="@{/}" class="text-decoration-none">
-                <span class="h1 text-uppercase text-light bg-dark px-2">Social</span>
-                <span class="h1 text-uppercase text-dark bg-light px-2 ml-n1">Fashion</span>
-            </a>
-        </div>
-        <div class="col-lg-4 col-6 text-left">
-            <form action="">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for products">
-                    <div class="input-group-append">
-                        <span class="input-group-text bg-transparent text-primary">
-                            <i class="fa fa-search"></i>
-                        </span>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="col-lg-4 col-6 text-right">
-            <div class="d-inline-flex align-items-center">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi
-                        Cuenta</button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button"><a class="" href="guest.html">Iniciar
-                                Sesion</a></button>
-                        <button class="dropdown-item" type="button"><a class=""
-                                href="guest.html">Registrarse</a></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <nav th:replace="/fragments/navbar-guest :: nav"> </nav>
 
     <header class="header1">
         <section class="contenedorMain">
-            <div class="tituloBiblioteca">
-                <a class="navbar-brand" th:text="'error ' + ${codigo}">Social Fashion</a>
-                <p class="tituloLibros" th:text="${mensaje}"></p>
+            <div class="titulo">
+                <a class="navbar-brand" th:text="'Ha ocurrido un error ' + ${codigo}">Social Fashion</a>
+                <p class="titulo c-light" th:text="${mensaje}"></p>
 
             </div>
             <section class="text-center container">
                 <div class="row mt-3">
                     <div class="divVolver">
-                        <a th:href="@{/main}" class="btn btn-secondary my-2 botonVolver botones">Volver al menu</a>
+                        <a th:href="@{/login}" class="btn btn-primary my-2 br-20 botonVolver botones">Volver a
+                            ingresar</a>
+                        <a th:href="@{/main}" class="btn btn-primary my-2 botonVolver botones">Volver al men (Si ya ha
+                            ingresado))</a>
                     </div>
                 </div>
             </section>
             <div class="container contenedorLibros">
                 <p class="tituloLibros" th:if="${session.usuariosession != null}"
-                    th:text=" 'Hola de vuelta '+ ${session.usuariosession.nombre} "></p>
-
+                    th:text=" 'Hola de vuelta '+ ${session.usuariosession.nombre} ">
+                </p>
             </div>
             <div class="bg-circle-1 bg-circle"></div>
             <div class="bg-circle-2 bg-circle"></div>
@@ -81,48 +40,16 @@
         </section>
     </header>
 
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
-        <div class="row px-xl-5 pt-5">
-            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                <h5 class="text-secondary text-uppercase mb-4">Social Fashion</h5>
-                <p class="mb-4">Publica tus diseños y creaciones en una de las paginas mas reconocidas
-                    internacionalmente</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>joinus@socialFashion.com</p>
-            </div>
-            <div class="col-lg-8 col-md-12">
-                <div class="row">
-                    <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Top 10</a>
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="fa fa-angle-right mr-2"></i>Diseñadores</a>
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="fa fa-angle-right mr-2"></i>Publicaciones</a>
-                            <a class="text-danger mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Reportar</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contactanos</a>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
-        </div>
-        <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
-        </div>
-    </div>
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-    <!-- JavaScript Libraries -->
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
-    <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
 </body>
 
 </html>

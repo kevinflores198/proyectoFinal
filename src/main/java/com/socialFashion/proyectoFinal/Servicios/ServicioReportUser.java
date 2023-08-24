@@ -1,6 +1,9 @@
 package com.socialFashion.proyectoFinal.Servicios;
 
 
+
+
+
 import com.socialFashion.proyectoFinal.Entidades.ReportUser;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.ReportsUser;
@@ -44,7 +47,11 @@ public class ServicioReportUser {
         } catch (Exception e) {
             throw new MiException("El tipo de reporte no es valido");
         }
+
+
+
         
+
         repoUsuario.save(reporte);
 
     }
