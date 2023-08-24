@@ -5,6 +5,7 @@
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsComentario.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Comentario.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsUser.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioReporteComentario.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsPublicacion.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioComentario.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Exceptions/MiException.java
@@ -22,7 +23,11 @@
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/ReportPublicacion.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioReportPublicacion.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Controladores/ErroresControlador.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioReportComentario.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Controladores/ReportesControlador.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioReporteUsuario.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioImangen.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioReportUser.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioUsuario.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioReportePublicacion.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioPublicacion.java
