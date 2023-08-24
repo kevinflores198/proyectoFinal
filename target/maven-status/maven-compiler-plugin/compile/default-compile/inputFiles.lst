@@ -1,28 +1,32 @@
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Controladores/PublicacionControlador.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioComentario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioUsuario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/ProyectoFinalApplication.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsComentario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Comentario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsUser.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsPublicacion.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioComentario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Exceptions/MiException.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Controladores/AdminControlador.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/ReportComentario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/Role.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioPublicacion.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioImagen.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Publicacion.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/ReportUser.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Controladores/PortalControlador.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Usuario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/SeguridadWeb.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Imagen.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/ReportPublicacion.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioReportPublicacion.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Controladores/ErroresControlador.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioImangen.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioUsuario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioReportePublicacion.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioPublicacion.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Controladores\AdminControlador.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Exceptions\MiException.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Enumeraciones\ReportsPublicacion.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Enumeraciones\ReportsUser.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Entidades\ReportUser.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Entidades\ReportComentario.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Entidades\Usuario.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Repositorios\RepositorioReporteUsuario.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Servicios\ServicioReportUser.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\SeguridadWeb.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Enumeraciones\ReportsComentario.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\ProyectoFinalApplication.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Entidades\Comentario.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Repositorios\RepositorioReporteComentario.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Controladores\PublicacionControlador.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Entidades\Imagen.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Servicios\ServicioReportComentario.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Controladores\PortalControlador.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Enumeraciones\Role.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Servicios\ServicioReportPublicacion.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Servicios\ServicioComentario.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Repositorios\RepositorioUsuario.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Servicios\ServicioPublicacion.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Servicios\ServicioUsuario.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Repositorios\RepositorioComentario.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Controladores\ErroresControlador.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Entidades\ReportPublicacion.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Entidades\Publicacion.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Repositorios\RepositorioPublicacion.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Repositorios\RepositorioReportePublicacion.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Servicios\ServicioImagen.java
+F:\Downloads\Egg\Proyectos\proyectoFinal\src\main\java\com\socialFashion\proyectoFinal\Repositorios\RepositorioImangen.java

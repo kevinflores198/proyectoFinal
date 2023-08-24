@@ -1,3 +1,5 @@
+package com.socialFashion.proyectoFinal.Servicios;
+
 
 import com.socialFashion.proyectoFinal.Entidades.ReportUser;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
@@ -42,7 +44,7 @@ public class ServicioReportUser {
         } catch (Exception e) {
             throw new MiException("El tipo de reporte no es valido");
         }
-
+        
         repoUsuario.save(reporte);
 
     }
