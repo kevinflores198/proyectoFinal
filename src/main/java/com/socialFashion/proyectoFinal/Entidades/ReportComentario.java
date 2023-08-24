@@ -32,6 +32,10 @@ public class ReportComentario {
     @Enumerated(EnumType.STRING)
     private ReportsComentario typeReport;
 
+    public ReportComentario() {
+    }
+    
+
     public ReportComentario(String idUser, Comentario comentario, String reason,
             ReportsComentario typeReport) {
         this.idUser = idUser;
