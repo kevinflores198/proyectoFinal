@@ -30,23 +30,27 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi
                         Cuenta</button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button"><a class="" href="guest.html">Perfil</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class="" href="guest.html">lista
-                                diseñadores</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class="" href="guest.html">lista
-                                publicaciones</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class="" href="guest.html">lista
-                                reporte</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class="" href="cart.html">Configurar</a></button>
-                        <button class="dropdown-item" type="button"><a class=""
-                                href="guest.html">Ingresar/Registrarse</a></button>
-                        <button class="dropdown-item" type="button"><a class="" href="guest.html">Salir</a></button>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi
+                            Cuenta</button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
+                                    Lista Usuarios</a></button>
+                            <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
+                                    Lista Publicaciones</a></button>
+                            <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
+                                    Lista Comentarios</a></button>
+                            <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
+                                    Lista Reportes</a></button>
+                            <button class="dropdown-item" type="button"><a href="#">
+                                    Perfil</a></button>
+                            <button class="dropdown-item" type="button"><a th:href="@{/logout}">
+                                    Salir</a></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
     <!-- Navbar 2 -->
     <div class="container-fluid  mb-30">
