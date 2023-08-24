@@ -30,7 +30,7 @@
     </div>
     <div class="row align-items-center py-3 px-xl-5 d-none d-lg-flex">
         <div class="col-lg-4">
-            <a href="main.html" class="text-decoration-none">
+            <a th:href="@{/main}" class="text-decoration-none">
                 <span class="h1 text-uppercase text-light bg-dark px-2">Social</span>
                 <span class="h1 text-uppercase text-dark bg-light px-2 ml-n1">Fashion</span>
             </a>
@@ -50,19 +50,21 @@
         <div class="col-lg-4 col-6 text-right">
             <div class="d-inline-flex align-items-center">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi
+                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">Mi
                         Cuenta</button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class="" href="guest.html">lista
-                                diseñadores</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class="" href="guest.html">lista
-                                publicaciones</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class="" href="guest.html">lista
-                                reporte</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class="" href="cart.html">Configurar</a></button>
-                        <button class="dropdown-item" type="button"><a class=""
-                                th:href="@{/registrar}">Ingresar/Registrarse</a></button>
-                        <button class="dropdown-item" type="button"><a class="" th:href="@{/logout}">Salir</a></button>
+                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class="" href="guest.html">Lista
+                                Usuarios</a></button>
+                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class="" href="guest.html">Lista
+                                Publicaciones</a></button>
+                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class="" href="guest.html">Lista
+                                Comentarios</a></button>
+                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class="" href="cart.html">Lista 
+                                Reportes</a></button>
+                        <button class="dropdown-item" type="button"><a class="">
+                                Perfil</a></button>
+                        <button class="dropdown-item" type="button"><a class="" th:href="@{/logout}">
+                                Salir</a></button>
                     </div>
                 </div>
             </div>
@@ -299,7 +301,7 @@
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href="detail.html"><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -315,7 +317,7 @@
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -331,7 +333,7 @@
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -347,7 +349,7 @@
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -363,7 +365,7 @@
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -379,7 +381,7 @@
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -395,7 +397,7 @@
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -411,7 +413,7 @@
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -436,7 +438,7 @@
                         <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -446,7 +448,7 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                 </div>
@@ -457,7 +459,7 @@
                         <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -467,7 +469,7 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                 </div>
@@ -478,7 +480,7 @@
                         <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square"th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -488,7 +490,7 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                 </div>
@@ -499,7 +501,7 @@
                         <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -509,7 +511,7 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                 </div>
@@ -520,7 +522,7 @@
                         <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -530,7 +532,7 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                 </div>
@@ -541,7 +543,7 @@
                         <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -551,7 +553,7 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                 </div>
@@ -562,7 +564,7 @@
                         <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -572,7 +574,7 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                 </div>
@@ -583,7 +585,7 @@
                         <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -593,7 +595,7 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                         </div>
                     </div>
                 </div>

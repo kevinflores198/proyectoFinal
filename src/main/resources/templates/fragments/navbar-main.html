@@ -17,12 +17,12 @@
                             <button type="button" class="btn btn-sm btn-light dropdown-toggle"
                                 data-toggle="dropdown">Ordenar por</button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <button class="dropdown-item" type="button"><a class=""
-                                        href="guest.html">Diseñadores</a></button>
-                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Mas
-                                        MG</a></button>
-                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Ordenar por
-                                        Fecha</a></button>  
+                                <button class="dropdown-item" type="button"><a class="" href="#">
+                                        Diseñadores</a></button>
+                                <button class="dropdown-item" type="button"><a class="" href="#">
+                                        Me Gustas</a></button>
+                                <button class="dropdown-item" type="button"><a class="" href="#">
+                                        Fechas</a></button>
                             </div>
                         </div>
                     </div>
@@ -36,16 +36,18 @@
                     <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi
                         Cuenta</button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button"><a class="" href="guest.html">lista
-                                diseñadores</a></button>
-                        <button class="dropdown-item" type="button"><a class="" href="guest.html">lista
-                                publicaciones</a></button>
-                        <button class="dropdown-item" type="button"><a class="" href="guest.html">lista
-                                reporte</a></button>
-                        <button class="dropdown-item" type="button"><a class="" href="cart.html">Configurar</a></button>
-                        <button class="dropdown-item" type="button"><a class=""
-                                href="guest.html">Ingresar/Registrarse</a></button>
-                        <button class="dropdown-item" type="button"><a class="" href="guest.html">Salir</a></button>
+                        <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
+                                Lista Usuarios</a></button>
+                        <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
+                                Lista Publicaciones</a></button>
+                        <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
+                                Lista Comentarios</a></button>
+                        <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
+                                Lista Reportes</a></button>
+                        <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
+                                Perfil</a></button>
+                        <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" th:href="@{/logout}">
+                                Salir</a></button>
                     </div>
                 </div>
             </div>

@@ -26,6 +26,14 @@ public class PortalControlador {
 
     @Autowired
     private ServicioUsuario servicioUsuario;
+
+    //PRU DE VISTA DETAIL.HTML
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @GetMapping("/detail")
+    public String publicacion(){
+
+        return "detail.html";
+    }
     
     // VISTA INDEX
     @GetMapping("/")
@@ -59,8 +67,7 @@ public class PortalControlador {
 
             return "main.html";
         } catch (MiException ex) {
-
-            System.out.println(ex.getMessage());
+            
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", name);
             modelo.put("email", email);
@@ -84,11 +91,11 @@ public class PortalControlador {
     @GetMapping("/main")
     public String inicio(HttpSession session) {
         
-        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        //Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         
-        if (logueado.getRole().toString().equals("ADMIN")) {
-            return "main.html";
-        }
+        // if (logueado.getRole().toString().equals("ADMIN")) {
+        //     return "main.html";
+        // }
         
            return "main.html";
     }
@@ -99,7 +106,7 @@ public class PortalControlador {
         
         birthDate.setDate(Integer.valueOf(fecha.substring(8, 10)));
         birthDate.setMonth(Integer.valueOf(fecha.substring(5, 7))-1);
-        birthDate.setYear(Integer.valueOf(fecha.substring(1, 4))+100);
+        birthDate.setYear(Integer.valueOf(fecha.substring(0, 4)));
         
         return birthDate;
         
