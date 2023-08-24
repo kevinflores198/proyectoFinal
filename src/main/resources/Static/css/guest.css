@@ -8,7 +8,6 @@ body {
 
 }
 
-
 .titule1{
     color: white;
 }
@@ -168,11 +167,6 @@ body {
     transition-duration: 1s;
 }
 
-
-
-
-
-
 #signInForm,
 #signUpForm {
     border-radius: 20px;
@@ -181,7 +175,7 @@ body {
 
 #signInForm h1,
 #signUpForm h1 {
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 #signInForm p,
@@ -213,8 +207,8 @@ body {
 }
 
 #signUpForm button {
-    margin-top: 20px;
 }
+
 
 #signInForm button:focus,
 #signUpForm button:focus {
@@ -223,7 +217,8 @@ body {
 
 #signInForm button:hover,
 #signUpForm button:hover {
-    background-color: #fff;
+    background-color: #aa8d25;
+    
 }
 
 #signInForm button:active,
