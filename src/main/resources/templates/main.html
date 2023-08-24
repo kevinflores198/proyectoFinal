@@ -53,13 +53,13 @@
                     <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi
                         Cuenta</button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button"><a class="" href="guest.html">lista
+                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class="" href="guest.html">lista
                                 diseñadores</a></button>
-                        <button class="dropdown-item" type="button"><a class="" href="guest.html">lista
+                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class="" href="guest.html">lista
                                 publicaciones</a></button>
-                        <button class="dropdown-item" type="button"><a class="" href="guest.html">lista
+                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class="" href="guest.html">lista
                                 reporte</a></button>
-                        <button class="dropdown-item" type="button"><a class="" href="cart.html">Configurar</a></button>
+                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class="" href="cart.html">Configurar</a></button>
                         <button class="dropdown-item" type="button"><a class=""
                                 th:href="@{/registrar}">Ingresar/Registrarse</a></button>
                         <button class="dropdown-item" type="button"><a class="" th:href="@{/logout}">Salir</a></button>
