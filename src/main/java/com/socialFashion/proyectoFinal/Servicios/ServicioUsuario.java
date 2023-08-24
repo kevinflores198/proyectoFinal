@@ -159,11 +159,13 @@ public class ServicioUsuario implements UserDetailsService {
 
         Date hoy = new Date();
         
-        if((hoy.getYear() - birthDate.getYear()) > 18 ){            // 2023 - 2000 = 23
+        int anioActual = hoy.getYear()+1900;
+
+        if((anioActual - birthDate.getYear()) > 18 ){            // 2023 - 2000 = 23
             
             return true;
             
-        }else if((hoy.getYear() - birthDate.getYear()) == 18){
+        }else if((anioActual - birthDate.getYear()) == 18){
             
             if((hoy.getMonth() - birthDate.getMonth()) > 0){        // 08 - 08 = 0
                 
