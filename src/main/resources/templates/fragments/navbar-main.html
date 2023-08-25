@@ -35,7 +35,7 @@
                         Cuenta</button>
                     <div class="dropdown-menu dropdown-menu-right bg-dark">
                         <button class="dropdown-item" type="button"><a class="">Perfil</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasrole('ADMIN')"><a class=""
+                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class=""
                                 th:href="@{/login}">lista
                                 diseñadores</a></button>
                         <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class=""
