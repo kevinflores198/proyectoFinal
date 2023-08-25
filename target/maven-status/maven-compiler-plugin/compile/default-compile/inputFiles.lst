@@ -1,28 +1,33 @@
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Controladores/PublicacionControlador.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioComentario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioUsuario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/ProyectoFinalApplication.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsComentario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Comentario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsUser.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsPublicacion.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioComentario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Exceptions/MiException.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Controladores/AdminControlador.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/ReportComentario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/Role.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioPublicacion.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioImagen.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Publicacion.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/ReportUser.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Controladores/PortalControlador.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Usuario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/SeguridadWeb.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Imagen.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/ReportPublicacion.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioReportPublicacion.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Controladores/ErroresControlador.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioImangen.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioUsuario.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioReportePublicacion.java
-/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioPublicacion.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Repositorios\RepositorioImangen.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Controladores\PublicacionControlador.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Servicios\ServicioReportUser.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Repositorios\RepositorioReporteUsuario.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\SeguridadWeb.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Servicios\ServicioImagen.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Entidades\Comentario.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Entidades\Imagen.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Exceptions\MiException.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Entidades\ReportComentario.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Repositorios\RepositorioReporteComentario.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Enumeraciones\Role.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Repositorios\RepositorioReportePublicacion.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Enumeraciones\ReportsPublicacion.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Enumeraciones\ReportsComentario.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\ProyectoFinalApplication.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Repositorios\RepositorioUsuario.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Entidades\Publicacion.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Controladores\PortalControlador.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Servicios\ServicioUsuario.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Entidades\ReportUser.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Entidades\ReportPublicacion.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Enumeraciones\ReportsUser.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Servicios\ServicioComentario.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Controladores\AdminControlador.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Controladores\ReportesControlador.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Repositorios\RepositorioComentario.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Servicios\ServicioPublicacion.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Controladores\ErroresControlador.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Entidades\Usuario.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Servicios\ServicioReportComentario.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Repositorios\RepositorioPublicacion.java
+C:\Users\kevin\OneDrive\Documentos\GitHub\proyecto_final\src\main\java\com\socialFashion\proyectoFinal\Servicios\ServicioReportPublicacion.java

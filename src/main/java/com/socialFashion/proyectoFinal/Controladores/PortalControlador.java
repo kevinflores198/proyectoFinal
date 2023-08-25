@@ -26,6 +26,14 @@ public class PortalControlador {
 
     @Autowired
     private ServicioUsuario servicioUsuario;
+
+    //PRU DE VISTA DETAIL.HTML
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @GetMapping("/detail")
+    public String publicacion(){
+
+        return "detail.html";
+    }
     
     // VISTA INDEX
     @GetMapping("/")
@@ -84,11 +92,11 @@ public class PortalControlador {
     @GetMapping("/main")
     public String inicio(HttpSession session) {
         
-        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        //Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         
-        if (logueado.getRole().toString().equals("ADMIN")) {
-            return "main.html";
-        }
+        // if (logueado.getRole().toString().equals("ADMIN")) {
+        //     return "main.html";
+        // }
         
            return "main.html";
     }
