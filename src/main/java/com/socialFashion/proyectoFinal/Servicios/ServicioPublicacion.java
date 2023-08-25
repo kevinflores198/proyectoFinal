@@ -54,7 +54,6 @@ public class ServicioPublicacion {
 
             publicacion.setContent(content);
             publicacion.setLikes(0);
-            publicacion.setAlta(true);
             publicacion.setInitialDate(new Date());
 
             repoPubli.save(publicacion);

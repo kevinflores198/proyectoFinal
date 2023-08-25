@@ -40,7 +40,7 @@ public class Publicacion {
 
     private Integer likes;
 
-    private Boolean alta;
+    
 
     public Publicacion() {
     }
@@ -53,7 +53,7 @@ public class Publicacion {
         this.content = content;
         this.initialDate = initialDate;
         this.likes = likes;
-        this.alta = alta;
+        
     }
 
     //Getter y Setter
@@ -114,13 +114,7 @@ public class Publicacion {
         this.likes = likes;
     }
 
-    public Boolean getAlta() {
-        return alta;
-    }
-
-    public void setAlta(Boolean alta) {
-        this.alta = alta;
-    }
+    
 
     
 }

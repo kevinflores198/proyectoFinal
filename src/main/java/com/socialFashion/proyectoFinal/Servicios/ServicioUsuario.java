@@ -71,7 +71,7 @@ public class ServicioUsuario implements UserDetailsService {
     }
 
     @Transactional
-    public void update(String id, String name, String email , String password, String password2) throws MiException{
+    public void update(String id, String name, String email , String password, String password2, MultipartFile image) throws MiException{
         validate(name, password, password2);
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
@@ -82,6 +82,9 @@ public class ServicioUsuario implements UserDetailsService {
             user.setEmail(email);
             user.setPassword(new BCryptPasswordEncoder().encode(password));
             user.setAlta(true);
+            
+            Imagen imagen = servicioImagen.guardar(image); 
+            user.setImage(imagen);
             user.setRole(Role.USER);
 
         }
