@@ -119,12 +119,7 @@ public class ServicioUsuario implements UserDetailsService {
 
     @Transactional(readOnly=true)
     public List<Usuario> listUsers() {
-
-        List<Usuario> users = new ArrayList();
-
-        users = userRepository.findAll();
-
-        return users;
+        return userRepository.findAll();
     }
 
     public Usuario getOne(String name){
@@ -161,19 +156,19 @@ public class ServicioUsuario implements UserDetailsService {
         
         int anioActual = hoy.getYear()+1900;
 
-        if((anioActual - birthDate.getYear()) > 18 ){            // 2023 - 2000 = 23
+        if((anioActual - birthDate.getYear()) > 18 ){       
             
             return true;
             
         }else if((anioActual - birthDate.getYear()) == 18){
             
-            if((hoy.getMonth() - birthDate.getMonth()) > 0){        // 08 - 08 = 0
+            if((hoy.getMonth() - birthDate.getMonth()) > 0){
                 
                 return true;
                 
             }else if((hoy.getMonth() - birthDate.getMonth()) == 0){
                 
-                if((hoy.getDate() - birthDate.getDate()) >= 0){     // 05 - 22 = -17
+                if((hoy.getDate() - birthDate.getDate()) >= 0){
                     
                     return true;
 
