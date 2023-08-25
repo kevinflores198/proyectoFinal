@@ -79,9 +79,7 @@ public class ServicioPublicacion {
     }
 
     public Publicacion getOne(String id){
-
         return repoPubli.getOne(id);
-
     }
 
     @Transactional
