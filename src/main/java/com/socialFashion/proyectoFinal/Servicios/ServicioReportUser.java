@@ -39,7 +39,12 @@ public class ServicioReportUser {
 
         try {
             ReportsUser reportType = ReportsUser.valueOf(typeReport.toUpperCase());
-            reporte.setTypeReport(reportType);
+            if (reportType == ReportsUser.OTRO) {
+                if (reporte.getReason().isEmpty()) {
+                    throw new MiException("La razon no puede estar vacia si el tipo de reporte es OTRO");
+                }
+                reporte.setTypeReport(reportType);
+            }
         } catch (Exception e) {
             throw new MiException("El tipo de reporte no es valido");
         }

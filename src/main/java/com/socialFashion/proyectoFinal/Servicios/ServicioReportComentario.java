@@ -52,34 +52,45 @@ public class ServicioReportComentario {
 
         try {
             ReportsComentario reportType = ReportsComentario.valueOf(typeReport.toUpperCase());
-            reporte.setTypeReport(reportType);
-        } catch (Exception e) {
+            if (reportType == ReportsComentario.OTRO) {
+                if (reporte.getReason().isEmpty()) {
+                    throw new MiException("La razon no puede estar vacia si el tipo de reporte es OTRO");
+                }
+                reporte.setTypeReport(reportType);
+            }
+            }catch (Exception e) {
             throw new MiException("El tipo de reporte no es valido");
         }
 
-        repoComentario.save(reporte);
+            repoComentario.save(reporte);
 
-    }
-
-    @Transactional
-    public void eliminarReporte(String idReport) {
-        repoComentario.deleteById(idReport);
-    }
-
-    @Transactional
-    public List<ReportComentario> listarReportes() {
-        List<ReportComentario> reportes = new ArrayList<>();
-        reportes = repoComentario.findAll();
-        return reportes;
-    }
-
-    @Transactional
-    public ReportComentario buscarReporte(String idReport) throws MiException {
-
-        if (idReport == null || idReport.isEmpty()) {
-            throw new MiException("El ID del reporte no puede ser nulo");
         }
-        return repoComentario.ReportComentariobyID(idReport);
-    }
 
-}
+        @Transactional
+        public void eliminarReporte
+        (String idReport
+        
+            ) {
+        repoComentario.deleteById(idReport);
+        }
+
+        @Transactional
+        public List<ReportComentario> listarReportes
+        
+            () {
+        List<ReportComentario> reportes = new ArrayList<>();
+            reportes = repoComentario.findAll();
+            return reportes;
+        }
+
+        @Transactional
+        public ReportComentario buscarReporte
+        (String idReport) throws MiException {
+
+            if (idReport == null || idReport.isEmpty()) {
+                throw new MiException("El ID del reporte no puede ser nulo");
+            }
+            return repoComentario.ReportComentariobyID(idReport);
+        }
+
+    }
