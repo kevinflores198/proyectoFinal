@@ -27,14 +27,14 @@ public class PortalControlador {
     @Autowired
     private ServicioUsuario servicioUsuario;
 
-    //PRU DE VISTA DETAIL.HTML
+    // PRU DE VISTA DETAIL.HTML
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/detail")
-    public String publicacion(){
+    public String publicacion() {
 
         return "detail.html";
     }
-    
+
     // VISTA INDEX
     @GetMapping("/")
     public String index() {
@@ -52,15 +52,15 @@ public class PortalControlador {
 
     // FORMULARIO DE REGISTRO DE USUARIO
     @PostMapping("/registro")
-    public String registro(@RequestParam(name="name") String name, 
-            @RequestParam(name="email") String email, 
-            @RequestParam(name="birthDate") String birthDate, 
-            @RequestParam(name="password") String password, 
-            @RequestParam(name="password2") String password2, 
+    public String registro(@RequestParam(name = "name") String name,
+            @RequestParam(name = "email") String email,
+            @RequestParam(name = "birthDate") String birthDate,
+            @RequestParam(name = "password") String password,
+            @RequestParam(name = "password2") String password2,
             MultipartFile image, ModelMap modelo) {
-        
+
         try {
-            
+
             servicioUsuario.register(name, email, DateConverter(birthDate), password, password2, image);
 
             modelo.put("exito", "Usuario registrado correctamente!");
@@ -91,30 +91,30 @@ public class PortalControlador {
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/main")
     public String inicio(HttpSession session) {
-        
-        //Usuario logueado = (Usuario) session.getAttribute("usuariosession");
-        
+
+        // Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+
         // if (logueado.getRole().toString().equals("ADMIN")) {
-        //     return "main.html";
+        // return "main.html";
         // }
-        
-           return "main.html";
+
+        return "main.html";
     }
-    
-    private Date DateConverter(String fecha){
-        
+
+    private Date DateConverter(String fecha) {
+
         Date birthDate = new Date();
-        
+
         birthDate.setDate(Integer.valueOf(fecha.substring(8, 10)));
-        birthDate.setMonth(Integer.valueOf(fecha.substring(5, 7))-1);
-        birthDate.setYear(Integer.valueOf(fecha.substring(1, 4))+100);
-        
+        birthDate.setMonth(Integer.valueOf(fecha.substring(5, 7)) - 1);
+        birthDate.setYear(Integer.valueOf(fecha.substring(1, 4)) + 100);
+
         return birthDate;
-        
+
     }
 
-    //PERFIL VISTA (PENDIENTE)
+    // PERFIL VISTA (PENDIENTE)
 
-    //ACTUALIZAR PERFIL VISTA (PENDIENTE)
-
+    // ACTUALIZAR PERFIL VISTA (PENDIENTE)
+    
 }
