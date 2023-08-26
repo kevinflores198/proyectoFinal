@@ -3,26 +3,24 @@
     <div class="row align-items-center py-3 px-xl-5 d-none d-lg-flex">
         <div class="col-lg-4">
             <a th:href="@{/main}" class="text-decoration-none">
-                <span class="h1 text-uppercase text-light bg-dark px-2">Social</span>
-                <span class="h1 text-uppercase text-dark bg-light px-2 ml-n1">Fashion</span>
+                <span class="h1 text-uppercase text-primary bg-dark px-2">Social</span>
+                <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Fashion</span>
             </a>
         </div>
 
         <div class="col-lg-4 col-6 text-left">
             <form action="">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for products">
+                    <input type="text" class="form-control" placeholder="Buscar por...">
                     <div class="input-group-append">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                            <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
                                 data-toggle="dropdown">Ordenar por</button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <button class="dropdown-item" type="button"><a class="" href="#">
-                                        Diseñadores</a></button>
-                                <button class="dropdown-item" type="button"><a class="" href="#">
-                                        Me Gustas</a></button>
-                                <button class="dropdown-item" type="button"><a class="" href="#">
-                                        Fechas</a></button>
+                            <div class="dropdown-menu dropdown-menu-right bg-dark">
+                                <button class="dropdown-item" type="button"><a class=""
+                                        href="guest.html">Diseñadores</a></button>
+                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Mas me gustas</a></button>
+                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Fecha</a></button>
                             </div>
                         </div>
                     </div>
@@ -33,21 +31,22 @@
         <div class="col-lg-4 col-6 text-right">
             <div class="d-inline-flex align-items-center">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi
+                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle " data-toggle="dropdown">Mi
                         Cuenta</button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
-                                Lista Usuarios</a></button>
-                        <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
-                                Lista Publicaciones</a></button>
-                        <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
-                                Lista Comentarios</a></button>
-                        <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
-                                Lista Reportes</a></button>
-                        <button class="dropdown-item" type="button"><a href="#">
-                                Perfil</a></button>
-                        <button class="dropdown-item" type="button"><a th:href="@{/logout}">
-                                Salir</a></button>
+                    <div class="dropdown-menu dropdown-menu-right bg-dark">
+                        <button class="dropdown-item" type="button"><a class="" th:href="@{/detail}">Perfil</a></button>
+                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
+                                th:href="@{/login}">lista
+                                diseñadores</a></button>
+                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
+                                th:href="@{/publicacion}">lista
+                                publicaciones</a></button>
+                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
+                                th:href="@{/login}">lista
+                                reporte</a></button>
+                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
+                                th:href="@{/login}">Configurar</a></button>
+                        <button class="dropdown-item" type="button"><a class="" th:href="@{/logout}">Salir</a></button>
                     </div>
                 </div>
             </div>
@@ -173,16 +172,16 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link">Inicio</a>
+                            <a th:href="@{/}" class="nav-item nav-link">Inicio</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Publicaciones<i
                                         class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="#" class="dropdown-item">Top 10</a>
-                                    <a href="index.html" class="dropdown-item">Publicaciones</a>
+                                    <a th:href="@{/}" class="dropdown-item">Top 10</a>
+                                    <a th:href="@{/}" class="dropdown-item">Publicaciones</a>
                                 </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Contactanos</a>
+                            <a th:href="@{/contacto}" class="nav-item nav-link">Contactanos</a>
                         </div>
                     </div>
                 </nav>

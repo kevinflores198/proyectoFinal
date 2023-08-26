@@ -11,7 +11,10 @@ com\socialFashion\proyectoFinal\Entidades\Usuario.class
 com\socialFashion\proyectoFinal\Servicios\ServicioPublicacion.class
 com\socialFashion\proyectoFinal\Repositorios\RepositorioComentario.class
 com\socialFashion\proyectoFinal\Controladores\PortalControlador.class
+com\socialFashion\proyectoFinal\Repositorios\RepositorioReporteUsuario.class
 com\socialFashion\proyectoFinal\Exceptions\MiException.class
+com\socialFashion\proyectoFinal\Servicios\ServicioReportComentario.class
+com\socialFashion\proyectoFinal\Controladores\ReportesControlador.class
 com\socialFashion\proyectoFinal\Repositorios\RepositorioPublicacion.class
 com\socialFashion\proyectoFinal\Servicios\ServicioUsuario.class
 com\socialFashion\proyectoFinal\Entidades\Publicacion.class
@@ -24,5 +27,7 @@ com\socialFashion\proyectoFinal\Repositorios\RepositorioReportePublicacion.class
 com\socialFashion\proyectoFinal\Repositorios\RepositorioUsuario.class
 com\socialFashion\proyectoFinal\Enumeraciones\Role.class
 com\socialFashion\proyectoFinal\Controladores\AdminControlador.class
+com\socialFashion\proyectoFinal\Servicios\ServicioReportUser.class
 com\socialFashion\proyectoFinal\Enumeraciones\ReportsUser.class
+com\socialFashion\proyectoFinal\Repositorios\RepositorioReporteComentario.class
 com\socialFashion\proyectoFinal\Servicios\ServicioImagen.class
