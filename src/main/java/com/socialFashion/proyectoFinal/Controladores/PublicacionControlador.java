@@ -1,5 +1,6 @@
 package com.socialFashion.proyectoFinal.Controladores;
 
+import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Servicios.ServicioPublicacion;
 import org.springframework.stereotype.Controller;
@@ -61,17 +62,13 @@ public class PublicacionControlador {
     @GetMapping("/editar/{id}")
     public String modificarPublicacion(@PathVariable String id, ModelMap modelo) {
 
-        // Publicacion publicacion = servicioPublicacion.getOne(id);
-
-        // modelo.put("publicacion", publicacion);
+        modelo.put("Publicacion", servicioPublicacion.getOne(id));
 
         return "publicacion.html";
     }
 
-    // A revisar este metodo que lo hice para guardar la edición de etiquetas y
-    // contenido.
     @PostMapping("/editar/{id}")
-    public String guardarEdicionPublicacion(@PathVariable String id, @RequestParam String newLabel,
+    public String modificadoPublicacion(@PathVariable String id, @RequestParam String newLabel,
          @RequestParam String newContent, ModelMap modelo) {
 
         try {

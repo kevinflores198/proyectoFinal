@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.socialFashion.proyectoFinal.Entidades.Imagen;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
+import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
+import com.socialFashion.proyectoFinal.Enumeraciones.ReportsUser;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
@@ -46,7 +48,7 @@ public class ServicioPublicacion {
 
             publicacion.setUser(usuario); // agregar id de usuarios desde repo usuario
 
-            publicacion.setLabel(label);
+            publicacion.setLabel(Categorias.valueOf(label.toUpperCase()));
 
             Imagen image = new Imagen();
             image = sImg.guardar(archivo);
@@ -96,7 +98,7 @@ public class ServicioPublicacion {
         Optional<Publicacion> rsp = repoPubli.findById(idPublicacion);
         if (rsp.isPresent()) {
             Publicacion publicacion = rsp.get();
-            publicacion.setLabel(label);
+            publicacion.setLabel(Categorias.valueOf(label.toUpperCase()));
             publicacion.setContent(content);
             repoPubli.save(publicacion);
         }
