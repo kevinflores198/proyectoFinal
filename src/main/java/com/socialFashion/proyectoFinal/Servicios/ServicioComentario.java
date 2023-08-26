@@ -35,9 +35,17 @@ public class ServicioComentario {
         comentario.setComment(comment);
     }
     
-   //hola
+    @Transactional(readOnly=true)
     public List<Comentario> obtenerTodosLosComentarios() {
         return repositorioComentario.findAll();
+    }
+
+    public Comentario getComentarioByPublicacion(String idPublicacion){
+        return repositorioComentario.comentarioByIdPublicacion(idPublicacion);
+    }
+
+    public Comentario getOne(String id){
+        return repositorioComentario.getOne(id);
     }
 
     public Optional<Comentario> obtenerComentarioPorId(String idComent) {

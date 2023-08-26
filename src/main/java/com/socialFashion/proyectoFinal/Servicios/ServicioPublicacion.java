@@ -1,6 +1,8 @@
 package com.socialFashion.proyectoFinal.Servicios;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -66,14 +68,20 @@ public class ServicioPublicacion {
 
         Publicacion publicacion = repoPubli.getById(idPublicacion);
 
+        //Agregar funciones para eliminar todas las cosas que estén enlazadas a esa publicación
+        //(Comentario, Reportes, etc.)
+
         repoPubli.delete(publicacion);
 
     }
 
+    @Transactional(readOnly=true)
+    public List<Publicacion> listaPublicacion(){
+        return repoPubli.findAll();
+    }
+
     public Publicacion getOne(String id){
-
         return repoPubli.getOne(id);
-
     }
 
     @Transactional

@@ -67,8 +67,7 @@ public class PortalControlador {
 
             return "main.html";
         } catch (MiException ex) {
-
-            System.out.println(ex.getMessage());
+            
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", name);
             modelo.put("email", email);
@@ -107,7 +106,7 @@ public class PortalControlador {
         
         birthDate.setDate(Integer.valueOf(fecha.substring(8, 10)));
         birthDate.setMonth(Integer.valueOf(fecha.substring(5, 7))-1);
-        birthDate.setYear(Integer.valueOf(fecha.substring(1, 4))+100);
+        birthDate.setYear(Integer.valueOf(fecha.substring(0, 4)));
         
         return birthDate;
         
