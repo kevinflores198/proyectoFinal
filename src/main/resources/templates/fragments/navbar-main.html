@@ -19,8 +19,10 @@
                             <div class="dropdown-menu dropdown-menu-right bg-dark">
                                 <button class="dropdown-item" type="button"><a class=""
                                         href="guest.html">Diseñadores</a></button>
-                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Mas me gustas</a></button>
-                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Fecha</a></button>
+                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Mas me
+                                        gustas</a></button>
+                                <button class="dropdown-item" type="button"><a class=""
+                                        href="guest.html">Fecha</a></button>
                             </div>
                         </div>
                     </div>
@@ -35,7 +37,7 @@
                         Cuenta</button>
                     <div class="dropdown-menu dropdown-menu-right bg-dark">
                         <button class="dropdown-item" type="button"><a class="">Perfil</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasrole('ADMIN')"><a class=""
+                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class=""
                                 th:href="@{/login}">lista
                                 diseñadores</a></button>
                         <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class=""
