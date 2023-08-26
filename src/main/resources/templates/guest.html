@@ -9,22 +9,6 @@
 
 
     <main class="main">
-
-<!-- popup -->
-
-<div class="container-boton">
-    <button type="submit" class="botoncito">Aceptar</button>
-    <div class="popup">
-        <img class="imagen" src="img/danger-icon.png" alt="">
-        <h2>Intente de nuevo, un error ha ocurrido</h2>
-        <button type="button">OK</button>
-    </div>
-</div>
-
-
-
-
-
         <div class="container">
             <div id="signInSignUpBox">
                 <div id="overlay">
@@ -52,7 +36,7 @@
                                 <span class="checkmark"></span>
                                 Recordarme
                             </label>
-                            <button class="ingresar" type="submit">Ingresar</button>
+                            <button class="ingresar" type="submit" onclick="openPopup()">Ingresar</button>
                         </form>
                     </div>
 
@@ -63,8 +47,10 @@
                             <input type="text" placeholder="Nombre completo" name="name" th:value="${name}"><br>
                             <input type="email" placeholder="Correo electronico" name="email" th:value="${email}"><br>
                             <input type="password" placeholder='Contraseña' name="password" th:value="${password}"><br>
-                            <input type="password" placeholder='Repetir contraseña' name="password2" th:value="${password2}"><br>
-                            <input type="date" placeholder="Fecha de nacimiento" name="birthDate" th:value="${birthDate}"><br>
+                            <input type="password" placeholder='Repetir contraseña' name="password2"
+                                th:value="${password2}"><br>
+                            <input type="date" placeholder="Fecha de nacimiento" name="birthDate"
+                                th:value="${birthDate}"><br>
                             <label class="custum-file-upload" for="file">
                                 <div class="text">
                                     <span class="box-image">📷 Foto de perfil</span>
@@ -72,12 +58,31 @@
                                 <input type="file" id="file" name="image" th:value="${image}">
                             </label>
 
-                            <button class="ingresar"  type="submit">Registrarme</button>
+                            <button class="ingresar" type="submit" onclick="openPopup()">Registrarme</button>
                         </form>
                     </div>
                 </div>
+
+                <div class="container-boton">
+                    <button type="submit" class="botoncito" onclick="openPopup()">Aceptar</button>
+                    <div class="popup" id="popup">
+                        <img class="imagen" src="img/danger-icon.png" alt="">
+                        <h2>Intente de nuevo, un error ha ocurrido</h2>
+                        <button type="button" onclick="closePopup()">OK</button>
+                    </div>
+                    <script>
+                        let popup = document.getElementById("popup");
+        
+                        function openPopup(params) {
+                            popup.classList.add("open-popup");
+                        }
+                        function closePopup(params) {
+                            popup.classList.remove("open-popup");
+                        }
+                    </script>
+                </div>
             </div>
-        </div> 
+        </div>
     </main>
 
     <script src='/js/guest.js'></script>
