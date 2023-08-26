@@ -63,7 +63,7 @@
                     </div>
                 </div>
 
-                <div class="container-boton">
+                <!-- <div class="container-boton">
                     <button type="submit" class="botoncito" onclick="openPopup()">Aceptar</button>
                     <div class="popup" id="popup">
                         <img class="imagen" src="img/danger-icon.png" alt="">
@@ -72,7 +72,7 @@
                     </div>
                     <script>
                         let popup = document.getElementById("popup");
-        
+
                         function openPopup(params) {
                             popup.classList.add("open-popup");
                         }
@@ -80,7 +80,21 @@
                             popup.classList.remove("open-popup");
                         }
                     </script>
+                </div> -->
+
+
+                <!-- <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError">
+                    <div class="card-body">
+                        <h5 class="card-title">Error!</h5>
+                        <p class="card-text" th:text="${error}"></p>
+                    </div>
                 </div>
+                <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito">
+                    <div class="card-body">
+                        <h5 class="card-title">Exito!</h5>
+                        <p class="card-text" th:text="${exito}"></p>
+                    </div>
+                </div> -->
             </div>
         </div>
     </main>

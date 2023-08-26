@@ -406,6 +406,8 @@ template {
 }
 
 
+
+
 .container-boton {
     width: 100%;
     display: flex;
@@ -449,7 +451,7 @@ template {
 .popup img{
     width: 100px;
     margin-top: -50px;
-    border-radius: 50%;
+
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
 }
 
@@ -463,7 +465,7 @@ template {
     width: 100%;
     margin-top: 50px;
     padding: 10px 0;
-    background: #007bff;
+    background:#ffd746 ;
     color: #FFF;
     border: 0;
     outline: none;
