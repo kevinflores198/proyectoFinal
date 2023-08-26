@@ -26,9 +26,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.socialFashion.proyectoFinal.Entidades.Imagen;
+import com.socialFashion.proyectoFinal.Entidades.Publicacion;
+import com.socialFashion.proyectoFinal.Entidades.ReportUser;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Role;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioReporteUsuario;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
 
 @Service
@@ -38,7 +41,13 @@ public class ServicioUsuario implements UserDetailsService {
     private RepositorioUsuario userRepository;
 
     @Autowired
+    private RepositorioReporteUsuario repositorioReporteUsuario;
+
+    @Autowired
     private ServicioImagen servicioImagen;
+
+    @Autowired
+    private ServicioPublicacion servicioPublicacion;
 
     @Transactional
     public void register(String name, String email, Date birthDate, String password, String password2, MultipartFile image) throws MiException{
@@ -92,8 +101,16 @@ public class ServicioUsuario implements UserDetailsService {
     }
 
     @Transactional
-    public void delete(String id , String name){
+    public void delete(String id) throws MiException{
 
+        for (Publicacion publicacion : servicioPublicacion.getPublicacionByUser(id)) {
+            servicioPublicacion.eliminar(publicacion.getId());
+        }
+
+        for (ReportUser reportUser : repositorioReporteUsuario.reportUsuarioByIdUser(id)) {
+            repositorioReporteUsuario.delete(reportUser);
+        }
+        
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
             List<Usuario> us = listUsers();

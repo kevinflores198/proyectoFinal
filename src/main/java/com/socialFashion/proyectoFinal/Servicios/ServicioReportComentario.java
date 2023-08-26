@@ -84,7 +84,7 @@ public class ServicioReportComentario {
         if (idReport == null || idReport.isEmpty()) {
             throw new MiException("El ID del reporte no puede ser nulo");
         }
-        return repoComentario.ReportComentariobyID(idReport);
+        return repoComentario.reportComentarioById(idReport);
     }
 
 }

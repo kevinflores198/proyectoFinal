@@ -83,5 +83,6 @@ public class PublicacionControlador {
         }
 
         return "profile.html";
+        
     }
 }

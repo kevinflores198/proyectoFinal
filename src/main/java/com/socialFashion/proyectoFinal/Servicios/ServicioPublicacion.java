@@ -12,14 +12,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.socialFashion.proyectoFinal.Entidades.Comentario;
 import com.socialFashion.proyectoFinal.Entidades.Imagen;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
+import com.socialFashion.proyectoFinal.Entidades.ReportPublicacion;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 import com.socialFashion.proyectoFinal.Enumeraciones.ReportsUser;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioComentario;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioReporteComentario;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioReportePublicacion;
 
 @Service
 public class ServicioPublicacion {
@@ -31,6 +36,12 @@ public class ServicioPublicacion {
 
     @Autowired
     private RepositorioPublicacion repoPubli;
+
+    @Autowired
+    private RepositorioReportePublicacion repoReportePubli;
+
+    @Autowired
+    private ServicioComentario servicioComentario;
 
     @Transactional
     public void crearPublicacion(String idUser, String label, MultipartFile archivo, String content)
@@ -66,15 +77,21 @@ public class ServicioPublicacion {
     }
 
     @Transactional
-    public void eliminar(String idPublicacion) throws MiException {
+    public void eliminar(String idPublicacion) throws MiException {        
 
-        Publicacion publicacion = repoPubli.getById(idPublicacion);
+        for (Comentario comentario : servicioComentario.getComentariosByPublicacion(idPublicacion)) {
+            servicioComentario.eliminarComentario(comentario.getIdComent());
+        }
+        for (ReportPublicacion report : repoReportePubli.reportPublicacionByIdPublicacion(idPublicacion)) {
+            repoReportePubli.delete(report);
+        }
+        repoPubli.delete(repoPubli.getById(idPublicacion));
 
-        //Agregar funciones para eliminar todas las cosas que estén enlazadas a esa publicación
-        //(Comentario, Reportes, etc.)
+    }
 
-        repoPubli.delete(publicacion);
-
+    @Transactional(readOnly=true)
+    public List<Publicacion> getPublicacionByUser(String idUser){
+        return repoPubli.publicacionesByUser(idUser);
     }
 
     @Transactional(readOnly=true)

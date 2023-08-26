@@ -5,6 +5,6 @@ public enum Categorias {
     INDUMENTARIA,
     CALZADO,
     MAQUILLAJE,
-    ACCESORIOS
+    ACCESORIO
 
 }

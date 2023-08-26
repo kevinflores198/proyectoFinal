@@ -16,4 +16,6 @@ public interface RepositorioPublicacion extends JpaRepository<Publicacion,String
     @Query("SELECT p FROM Publicacion p WHERE p.user.id = :idUsuario")
     public List<Publicacion> publicacionesByUser(@Param("idUsuario") String idUsuario);
     
+    
+
 }
