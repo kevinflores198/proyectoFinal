@@ -14,6 +14,6 @@ import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 public interface RepositorioPublicacion extends JpaRepository<Publicacion,String> {
     
     @Query("SELECT p FROM Publicacion p WHERE p.user.id = :idUsuario")
-    public Publicacion publicacionByUser(@Param("idUsuario") String idUsuario);
+    public List<Publicacion> publicacionesByUser(@Param("idUsuario") String idUsuario);
     
 }

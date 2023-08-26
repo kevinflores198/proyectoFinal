@@ -68,6 +68,9 @@ public class ServicioPublicacion {
 
         Publicacion publicacion = repoPubli.getById(idPublicacion);
 
+        //Agregar funciones para eliminar todas las cosas que estén enlazadas a esa publicación
+        //(Comentario, Reportes, etc.)
+
         repoPubli.delete(publicacion);
 
     }
