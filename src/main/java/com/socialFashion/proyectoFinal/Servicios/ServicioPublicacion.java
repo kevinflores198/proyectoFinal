@@ -1,6 +1,8 @@
 package com.socialFashion.proyectoFinal.Servicios;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -10,12 +12,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.socialFashion.proyectoFinal.Entidades.Comentario;
 import com.socialFashion.proyectoFinal.Entidades.Imagen;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
+import com.socialFashion.proyectoFinal.Entidades.ReportPublicacion;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
+import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
+import com.socialFashion.proyectoFinal.Enumeraciones.ReportsUser;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioComentario;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioReporteComentario;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioReportePublicacion;
 
 @Service
 public class ServicioPublicacion {
@@ -27,6 +36,12 @@ public class ServicioPublicacion {
 
     @Autowired
     private RepositorioPublicacion repoPubli;
+
+    @Autowired
+    private RepositorioReportePublicacion repoReportePubli;
+
+    @Autowired
+    private ServicioComentario servicioComentario;
 
     @Transactional
     public void crearPublicacion(String idUser, String label, MultipartFile archivo, String content)
@@ -44,7 +59,7 @@ public class ServicioPublicacion {
 
             publicacion.setUser(usuario); // agregar id de usuarios desde repo usuario
 
-            publicacion.setLabel(label);
+            publicacion.setLabel(Categorias.valueOf(label.toUpperCase()));
 
             Imagen image = new Imagen();
             image = sImg.guardar(archivo);
@@ -62,18 +77,30 @@ public class ServicioPublicacion {
     }
 
     @Transactional
-    public void eliminar(String idPublicacion) throws MiException {
+    public void eliminar(String idPublicacion) throws MiException {        
 
-        Publicacion publicacion = repoPubli.getById(idPublicacion);
-
-        repoPubli.delete(publicacion);
+        for (Comentario comentario : servicioComentario.getComentariosByPublicacion(idPublicacion)) {
+            servicioComentario.eliminarComentario(comentario.getIdComent());
+        }
+        for (ReportPublicacion report : repoReportePubli.reportPublicacionByIdPublicacion(idPublicacion)) {
+            repoReportePubli.delete(report);
+        }
+        repoPubli.delete(repoPubli.getById(idPublicacion));
 
     }
 
+    @Transactional(readOnly=true)
+    public List<Publicacion> getPublicacionByUser(String idUser){
+        return repoPubli.publicacionesByUser(idUser);
+    }
+
+    @Transactional(readOnly=true)
+    public List<Publicacion> listaPublicacion(){
+        return repoPubli.findAll();
+    }
+
     public Publicacion getOne(String id){
-
         return repoPubli.getOne(id);
-
     }
 
     @Transactional
@@ -88,7 +115,7 @@ public class ServicioPublicacion {
         Optional<Publicacion> rsp = repoPubli.findById(idPublicacion);
         if (rsp.isPresent()) {
             Publicacion publicacion = rsp.get();
-            publicacion.setLabel(label);
+            publicacion.setLabel(Categorias.valueOf(label.toUpperCase()));
             publicacion.setContent(content);
             repoPubli.save(publicacion);
         }
