@@ -64,15 +64,17 @@ nav,
 section {
     display: block;
 }
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
-.header1{
+.header1 {
     width: 100%;
     min-height: 100vh;
-display: flex;
-align-items: center;
-justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 body {
     margin: 0;
     font-family: "Roboto", sans-serif;
@@ -253,19 +255,20 @@ label {
 }
 
 
-#barra-espaciadora{
+#barra-espaciadora {
     margin-top: 10px;
 }
 
-#boton-mg{
+#boton-mg {
     margin-bottom: 25px;
 }
 
-#imagen-caja{
+#imagen-caja {
     align-items: center;
     justify-content: center;
     display: flex;
 }
+
 button {
     border-radius: 0;
 }
@@ -400,6 +403,48 @@ template {
 
 [hidden] {
     display: none !important;
+}
+
+
+.container-boton {
+    width: 100%;
+    height: 100vh;
+    background: #881313;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botoncito {
+    padding: 10px 60px;
+    background-color: #fff;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 500;
+    border-radius: 30px;
+}
+
+.popup{
+    width: 400px;
+    background: #ffffff;
+    border-radius: 6px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+}
+
+.popup img{
+    width: 100px;
+    margin-top: -50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    
 }
 
 h1,
@@ -597,7 +642,7 @@ mark,
     height: auto;
 }
 
-.contenedorMain{
+.contenedorMain {
     background-color: rgba(53, 53, 53, 0.683);
     padding: 50px;
     border-radius: 20px;
@@ -8050,7 +8095,7 @@ button.bg-dark:focus {
     }
 
     .sr-only-focusable:active,
-        .sr-only-focusable:focus {
+    .sr-only-focusable:focus {
         position: static;
         width: auto;
         height: auto;
@@ -10454,7 +10499,7 @@ button.bg-dark:focus {
     }
 
     a.text-primary:hover,
-        a.text-primary:focus {
+    a.text-primary:focus {
         color: #e6b400 !important;
     }
 
@@ -10463,7 +10508,7 @@ button.bg-dark:focus {
     }
 
     a.text-secondary:hover,
-        a.text-secondary:focus {
+    a.text-secondary:focus {
         color: #cfcfcf !important;
     }
 
@@ -10472,7 +10517,7 @@ button.bg-dark:focus {
     }
 
     a.text-success:hover,
-        a.text-success:focus {
+    a.text-success:focus {
         color: #19692c !important;
     }
 
@@ -10481,7 +10526,7 @@ button.bg-dark:focus {
     }
 
     a.text-info:hover,
-        a.text-info:focus {
+    a.text-info:focus {
         color: #0f6674 !important;
     }
 
@@ -10490,7 +10535,7 @@ button.bg-dark:focus {
     }
 
     a.text-warning:hover,
-        a.text-warning:focus {
+    a.text-warning:focus {
         color: #ba8b00 !important;
     }
 
@@ -10499,7 +10544,7 @@ button.bg-dark:focus {
     }
 
     a.text-danger:hover,
-        a.text-danger:focus {
+    a.text-danger:focus {
         color: #a71d2a !important;
     }
 
@@ -10508,7 +10553,7 @@ button.bg-dark:focus {
     }
 
     a.text-light:hover,
-        a.text-light:focus {
+    a.text-light:focus {
         color: #d9d9d9 !important;
     }
 
@@ -10517,7 +10562,7 @@ button.bg-dark:focus {
     }
 
     a.text-dark:hover,
-        a.text-dark:focus {
+    a.text-dark:focus {
         color: #1b1f22 !important;
     }
 
@@ -10725,7 +10770,7 @@ button.bg-dark:focus {
     }
 
     .navbar-dark .navbar-nav .nav-link:hover,
-        .navbar-dark .navbar-nav .nav-link.active {
+    .navbar-dark .navbar-nav .nav-link.active {
         color: #FFD333;
     }
 
