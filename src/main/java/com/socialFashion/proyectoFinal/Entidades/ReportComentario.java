@@ -27,10 +27,13 @@ public class ReportComentario {
     private Comentario comentario;
 
     private String Reason; 
-    //private Boolean alta;
 
     @Enumerated(EnumType.STRING)
     private ReportsComentario typeReport;
+
+    public ReportComentario() {
+    }
+    
 
     public ReportComentario(String idUser, Comentario comentario, String reason,
             ReportsComentario typeReport) {

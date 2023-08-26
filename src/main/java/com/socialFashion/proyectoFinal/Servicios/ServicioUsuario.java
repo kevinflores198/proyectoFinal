@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,28 +41,37 @@ public class ServicioUsuario implements UserDetailsService {
     private ServicioImagen servicioImagen;
 
     @Transactional
-    public void register(String name, String email , Date birthDate , String password , String password2 , String description, MultipartFile image) throws MiException{
+    public void register(String name, String email, Date birthDate, String password, String password2, MultipartFile image) throws MiException{
         validate(name, password, password2);
         Usuario user = new Usuario();
 
         user.setName(name);
         user.setEmail(email);
-        user.setPassword(new BCryptPasswordEncoder().encode(password));
-        user.setAlta(true);
-        user.setBirthDate(birthDate);
-        user.setRole(Role.USER);
+        if(password.equals(password2)){
+            user.setPassword(new BCryptPasswordEncoder().encode(password));
+            user.setAlta(true);
+            if(mayoriaDeEdad(birthDate)){
+                user.setBirthDate(birthDate);
+                user.setRole(Role.USER);
 
-        //PERSISTO IMAGEN
-         Imagen imagen = servicioImagen.guardar(image);
-        //LA GUARDO EN EL USUARIO 
-         user.setImage(imagen);;
+                //PERSISTO IMAGEN
+                Imagen imagen = servicioImagen.guardar(image);
+                //LA GUARDO EN EL USUARIO 
+                user.setImage(imagen);
+            }else{
+                throw new MiException("No sos mayor de edad");
+            }
+        }else{
+            throw new MiException("Las contraseñas deben ser iguales");
+        }
+        
 
         userRepository.save(user);
 
     }
 
     @Transactional
-    public void update(String id, String name, String email , String password , String password2 , String description) throws MiException{
+    public void update(String id, String name, String email , String password, String password2, MultipartFile image) throws MiException{
         validate(name, password, password2);
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
@@ -72,6 +82,9 @@ public class ServicioUsuario implements UserDetailsService {
             user.setEmail(email);
             user.setPassword(new BCryptPasswordEncoder().encode(password));
             user.setAlta(true);
+            
+            Imagen imagen = servicioImagen.guardar(image); 
+            user.setImage(imagen);
             user.setRole(Role.USER);
 
         }
@@ -122,11 +135,56 @@ public class ServicioUsuario implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'loadUserByUsername'");
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        
+        Usuario usuario = userRepository.buscarPorEmail(email);
+        
+        if(usuario != null){
+            
+            List<GrantedAuthority> permisos = new ArrayList<>();
+            
+            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + usuario.getRole().toString());
+            
+            permisos.add(p);
+            
+            
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            
+            HttpSession session = attr.getRequest().getSession(true);
+            session.setAttribute("usuariosession", usuario);
+            return new User(usuario.getEmail(), usuario.getPassword(), permisos);
+        }else{
+            return null;
+        }
     }
 
+    public Boolean mayoriaDeEdad(Date birthDate){
+
+        Date hoy = new Date();
+        
+        if((hoy.getYear() - birthDate.getYear()) > 18 ){            // 2023 - 2000 = 23
+            
+            return true;
+            
+        }else if((hoy.getYear() - birthDate.getYear()) == 18){
+            
+            if((hoy.getMonth() - birthDate.getMonth()) > 0){        // 08 - 08 = 0
+                
+                return true;
+                
+            }else if((hoy.getMonth() - birthDate.getMonth()) == 0){
+                
+                if((hoy.getDate() - birthDate.getDate()) >= 0){     // 05 - 22 = -17
+                    
+                    return true;
+
+                }
+            }
+        }
+
+        return false;
+
+    }
 
     
 }

@@ -52,7 +52,6 @@ public class ServicioPublicacion {
 
             publicacion.setContent(content);
             publicacion.setLikes(0);
-            publicacion.setAlta(true);
             publicacion.setInitialDate(new Date());
 
             repoPubli.save(publicacion);
@@ -68,6 +67,12 @@ public class ServicioPublicacion {
         Publicacion publicacion = repoPubli.getById(idPublicacion);
 
         repoPubli.delete(publicacion);
+
+    }
+
+    public Publicacion getOne(String id){
+
+        return repoPubli.getOne(id);
 
     }
 
