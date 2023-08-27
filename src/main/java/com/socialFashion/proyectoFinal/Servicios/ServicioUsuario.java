@@ -49,6 +49,9 @@ public class ServicioUsuario implements UserDetailsService {
     @Autowired
     private ServicioPublicacion servicioPublicacion;
 
+
+    //PEDIR EL PARAM EL ROL
+
     @Transactional
     public void register(String name, String email, Date birthDate, String password, String password2, MultipartFile image) throws MiException{
         validate(name, password, password2);
@@ -80,7 +83,7 @@ public class ServicioUsuario implements UserDetailsService {
     }
 
     @Transactional
-    public void update(String id, String name, String email , String password, String password2, MultipartFile image) throws MiException{
+    public void update(String id, String name, String password, String password2, MultipartFile image) throws MiException{
         validate(name, password, password2);
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
@@ -88,14 +91,11 @@ public class ServicioUsuario implements UserDetailsService {
             Usuario user = answer.get();
 
             user.setName(name);
-            user.setEmail(email);
             user.setPassword(new BCryptPasswordEncoder().encode(password));
             user.setAlta(true);
-            
             Imagen imagen = servicioImagen.guardar(image); 
             user.setImage(imagen);
-            user.setRole(Role.USER);
-
+            
         }
 
     }

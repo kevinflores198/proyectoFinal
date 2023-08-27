@@ -6,6 +6,8 @@ import com.socialFashion.proyectoFinal.Entidades.ReportComentario;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 
  import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioComentario;
@@ -14,6 +16,7 @@ import com.socialFashion.proyectoFinal.Repositorios.RepositorioReporteComentario
 
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 public class ServicioComentario {
     
     @Autowired
