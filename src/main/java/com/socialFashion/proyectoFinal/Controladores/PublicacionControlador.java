@@ -17,13 +17,21 @@ public class PublicacionControlador {
 
     private ServicioPublicacion servicioPublicacion;
 
-    @GetMapping("/publicar/{id}")
-    public String publicar(@PathVariable String id){
-       
+    
+    //lo hice para probar si funcionaba ir a detail - kevin flores
+    @GetMapping("/publicacion")
+    public String publicacion() {
+        return "detail.html";
+    }
+
+    @GetMapping("/publicar/{idUser}")
+    public String publicar(@PathVariable String idUser) {
+
         return "publicacion.html";
     }
+
     @PostMapping("/publicar/{id}")
-    public String cargarPublicacion(@PathVariable String idUser, @RequestParam String label, @RequestParam MultipartFile archivo, @RequestParam String content, ModelMap modelo){
+    public String cargarPublicacion(@PathVariable String idUser, @RequestParam String label, @RequestParam MultipartFile archivo, @RequestParam String content, ModelMap modelo) {
 
         try {
             servicioPublicacion.crearPublicacion(idUser, label, archivo, content);
@@ -53,7 +61,7 @@ public class PublicacionControlador {
         }
 
         return "profile.html";
-        
+
     }
 
     // A revisar este metodo que lo hice para mostrar el formulario de edición de
@@ -62,9 +70,7 @@ public class PublicacionControlador {
     public String modificarPublicacion(@PathVariable String id, ModelMap modelo) {
 
         // Publicacion publicacion = servicioPublicacion.getOne(id);
-
         // modelo.put("publicacion", publicacion);
-
         return "publicacion.html";
     }
 
@@ -72,7 +78,7 @@ public class PublicacionControlador {
     // contenido.
     @PostMapping("/editar/{id}")
     public String guardarEdicionPublicacion(@PathVariable String id, @RequestParam String newLabel,
-         @RequestParam String newContent, ModelMap modelo) {
+            @RequestParam String newContent, ModelMap modelo) {
 
         try {
 
