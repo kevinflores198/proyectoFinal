@@ -101,7 +101,7 @@ public class PublicacionControlador {
         modelo.addAttribute("publicaciones", publicaciones);
 
         //RETORNAR A SU HTML 
-        return "#";
+        return "lista-publicaciones.html";
 
     }
 
