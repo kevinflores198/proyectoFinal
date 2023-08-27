@@ -1,14 +1,14 @@
 <nav class="row align-items-center py-3 px-xl-5 d-none d-lg-flex ">
     <div class="col-lg-4">
         <a th:href="@{/}" class="text-decoration-none">
-            <span class="h1 text-uppercase text-primary bg-dark px-2">Social</span>
-            <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Fashion</span>
+            <span class="h1  text-primary bg-dark px-2 font-italic">Social</span>
+            <span class="h1  text-dark bg-primary px-2 ml-n1 font-italic">Fashion</span>
         </a>
     </div>
     <div class="col-lg-4 col-6 text-left">
         <form action="">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Buscar..."><a class=""
+                <input type="text" class="form-control bg-transparent" placeholder="Buscar..."><a class=""
                     th:href="@{/login}"></a>
                 <div class="input-group-append">
                     <span class="input-group-text bg-transparent text-primary">
@@ -25,8 +25,7 @@
                     Cuenta</button>
                 <div class="dropdown-menu dropdown-menu-right bg-dark">
                     <button class="dropdown-item" type="button"><a class="">Perfil</a></button>
-                    <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')" ><a class=""
-                            >lista
+                    <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class="">lista
                             diseñadores</a></button>
                     <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class=""
                             th:href="@{/login}">lista
