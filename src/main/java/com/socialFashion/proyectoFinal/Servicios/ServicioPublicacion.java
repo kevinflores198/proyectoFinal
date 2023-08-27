@@ -1,6 +1,6 @@
 package com.socialFashion.proyectoFinal.Servicios;
 
-import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +21,9 @@ import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 import com.socialFashion.proyectoFinal.Enumeraciones.ReportsUser;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
-import com.socialFashion.proyectoFinal.Repositorios.RepositorioComentario;
+
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
-import com.socialFashion.proyectoFinal.Repositorios.RepositorioReporteComentario;
+
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioReportePublicacion;
 
 @Service
