@@ -58,39 +58,34 @@ public class ServicioReportComentario {
                 }
                 reporte.setTypeReport(reportType);
             }
-            }catch (Exception e) {
+        } catch (Exception e) {
             throw new MiException("El tipo de reporte no es valido");
         }
 
-            repoComentario.save(reporte);
-
-        }
-
-        @Transactional
-        public void eliminarReporte
-        (String idReport
-        
-            ) {
-        repoComentario.deleteById(idReport);
-        }
-
-        @Transactional
-        public List<ReportComentario> listarReportes
-        
-            () {
-        List<ReportComentario> reportes = new ArrayList<>();
-            reportes = repoComentario.findAll();
-            return reportes;
-        }
-
-        @Transactional
-        public ReportComentario buscarReporte
-        (String idReport) throws MiException {
-
-            if (idReport == null || idReport.isEmpty()) {
-                throw new MiException("El ID del reporte no puede ser nulo");
-            }
-            return repoComentario.ReportComentariobyID(idReport);
-        }
+        repoComentario.save(reporte);
 
     }
+
+    @Transactional
+    public void eliminarReporte(String idReport
+    ) {
+        repoComentario.deleteById(idReport);
+    }
+
+    @Transactional
+    public List<ReportComentario> listarReportes() {
+        List<ReportComentario> reportes = new ArrayList<>();
+        reportes = repoComentario.findAll();
+        return reportes;
+    }
+
+    @Transactional
+    public ReportComentario buscarReporte(String idReport) throws MiException {
+
+        if (idReport == null || idReport.isEmpty()) {
+            throw new MiException("El ID del reporte no puede ser nulo");
+        }
+        return repoComentario.ReportComentariobyID(idReport);
+    }
+
+}

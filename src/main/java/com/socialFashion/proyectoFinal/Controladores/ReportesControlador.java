@@ -1,13 +1,18 @@
 package com.socialFashion.proyectoFinal.Controladores;
 
+import com.socialFashion.proyectoFinal.Entidades.ReportComentario;
+import com.socialFashion.proyectoFinal.Entidades.ReportPublicacion;
+import com.socialFashion.proyectoFinal.Entidades.ReportUser;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Servicios.ServicioReportComentario;
+import com.socialFashion.proyectoFinal.Servicios.ServicioReportPublicacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.socialFashion.proyectoFinal.Servicios.ServicioReportUser;
+import java.util.List;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,12 +28,15 @@ public class ReportesControlador {
     @Autowired
     private ServicioReportComentario servicioReportComentario;
 
-    @GetMapping("/reportar-usuario/{id}")
+    @Autowired
+    private ServicioReportPublicacion servicioReportPublicacion;
+
+    @GetMapping("/reportar-usuario/{idUser}")
     public String reportarUsuario(@PathVariable String id) {
         return "reporte.html";
     }
 
-    @PostMapping("/reportar-usuario/{id}")// Reporte de usuario 
+    @PostMapping("/reportar-usuario/{idUser}")
     public String completarReporteUsuario(@RequestParam Usuario idUser, @RequestParam String idUserReported,
             @RequestParam String reason, @RequestParam String typeReport, ModelMap model) {
 
@@ -42,10 +50,10 @@ public class ReportesControlador {
 
     }
 
-    @PostMapping("/eliminarReporte/{id}") //Usuario
-    public String eliminarReporteUsuario(@PathVariable String id, ModelMap model) {
+    @PostMapping("/eliminarReporteUsuario/{idUser}") //Usuario
+    public String eliminarReporteUsuario(@PathVariable String idUser, ModelMap model) {
         try {
-            servicioReportUsuario.eliminarReporte(id);
+            servicioReportUsuario.eliminarReporte(idUser);
             model.put("exito", "reporte eliminado correctamente");
 
         } catch (Exception e) {
@@ -54,13 +62,14 @@ public class ReportesControlador {
         return ""; //Ver url
 
     }
+//--------------------- COMENTARIOS -----------------------
 
-    @GetMapping("/reportar-comentario/{id}")
-    public String reportarComentario(@PathVariable String id) {
+    @GetMapping("/reportar-comentario/{idComent}")
+    public String reportarComentario(@PathVariable String idComent) {
         return "reporte.html"; //Ver url
     }
 
-    @PostMapping("/reportar-comentario/{id}")
+    @PostMapping("/reportar-comentario/{idComent}")
     public String completarReporteComentario(@RequestParam String idComent, @RequestParam String idUser,
             @RequestParam String reason, @RequestParam String typeReport, ModelMap model) {
         try {
@@ -72,7 +81,7 @@ public class ReportesControlador {
         return "reporte.html";
     }
 
-    @PostMapping("/eliminarReporte/{idComent}") //Comentario
+    @PostMapping("/eliminarReporteComentario/{idComent}") //Comentario
     public String eliminarReporteComentario(@PathVariable String idComent, ModelMap model) {
         try {
             servicioReportComentario.eliminarReporte(idComent);
@@ -85,6 +94,52 @@ public class ReportesControlador {
 
         return ""; //Ver url
 
+    }
+
+    // ----------------- PUBLICACION --------------------
+    @GetMapping("/reportar-publicacion/{idPublicacion}")
+    public String reportarPublicacion(@PathVariable String idPublicacion) {
+        return "reporte.html";
+    }
+
+    @PostMapping("/reportar-publicacion/{idPublicacion}")
+    public String completarReportePublicacion(@RequestParam String idPublicacion, @RequestParam String idUser,
+            @RequestParam String reason, @RequestParam String reports, ModelMap model) {
+
+        try {
+            servicioReportPublicacion.crearReportePublicacion(idPublicacion, idUser, reason, reports);
+            model.addAttribute("exito", "Publicacion reportada exitosamente");
+        } catch (MiException e) {
+            model.addAttribute("error", "Error al reportar la publicacion");
+        }
+        return "reporte.html";
+
+    }
+
+    @PostMapping("/eliminarReportePublicacion/{idReportPublicacion}")
+    public String eliminarReportePublicacion(@PathVariable String idReportPublicacion, ModelMap model) {
+        try {
+            servicioReportPublicacion.eliminarReporte(idReportPublicacion);
+            model.put("exito", "reporte eliminado correctamente");
+
+        } catch (Exception e) {
+            model.put("error", "No se pudo eliminar el reporte");
+        }
+        return ""; //Ver url
+
+    }
+
+    @GetMapping("/listarReportes")
+    public String listarReportes(ModelMap model) {
+        List<ReportUser> usuarios = servicioReportUsuario.listarReportes();
+        List<ReportComentario> comentarios = servicioReportComentario.listarReportes();
+        List<ReportPublicacion> publicaciones = servicioReportPublicacion.listarReportesPulicacion();
+
+        model.addAttribute("usuarios", usuarios);
+        model.addAttribute("comentarios", comentarios);
+        model.addAttribute("publicaciones", publicaciones);
+
+        return "listaReportes.html";
     }
 
 }
