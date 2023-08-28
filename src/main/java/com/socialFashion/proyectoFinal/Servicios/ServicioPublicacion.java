@@ -132,5 +132,22 @@ public class ServicioPublicacion {
             throw new MiException("la descripcion no puede ser nula");
         }
     }
-
+    
+    @Transactional
+    public void agregarLike(String id){
+        Publicacion publicacion = getOne(id);
+        Integer suma = publicacion.getLikes() + 1;
+        publicacion.setLikes(suma);
+    }
+    
+    @Transactional
+    public void sacarLike(String id){
+        Publicacion publicacion = getOne(id);
+        Integer suma = publicacion.getLikes() - 1;
+        publicacion.setLikes(suma);
+    }
+    
+    public List<Publicacion> topDiez(){
+        return repoPubli.listaTopDiez().subList(0, 9);
+    }
 }

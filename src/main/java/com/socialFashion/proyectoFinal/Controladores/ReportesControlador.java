@@ -4,6 +4,9 @@ import com.socialFashion.proyectoFinal.Entidades.ReportComentario;
 import com.socialFashion.proyectoFinal.Entidades.ReportPublicacion;
 import com.socialFashion.proyectoFinal.Entidades.ReportUser;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
+//import com.socialFashion.proyectoFinal.Enumeraciones.ReportsComentario;
+//import com.socialFashion.proyectoFinal.Enumeraciones.ReportsPublicacion;
+//import com.socialFashion.proyectoFinal.Enumeraciones.ReportsUser;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Servicios.ServicioReportComentario;
 import com.socialFashion.proyectoFinal.Servicios.ServicioReportPublicacion;
@@ -12,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.socialFashion.proyectoFinal.Servicios.ServicioReportUser;
+//import java.util.ArrayList;
+//import java.util.Arrays;
 import java.util.List;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,8 +37,15 @@ public class ReportesControlador {
     private ServicioReportPublicacion servicioReportPublicacion;
 
     @GetMapping("/reportar-usuario/{idUser}")
-    public String reportarUsuario(@PathVariable String id) {
-        return "reporte.html";
+    public String reportarUsuario(@PathVariable String id, ModelMap model) {
+        /*
+        List<ReportsUser> reports = new ArrayList<>();
+        for (ReportsUser value : ReportsUser.values()) {
+            reports.add(value);
+        }
+        model.addAttribute("reports", reports);
+        */
+        return "report.html";
     }
 
     @PostMapping("/reportar-usuario/{idUser}")
@@ -42,14 +54,16 @@ public class ReportesControlador {
 
         try {
             servicioReportUsuario.crearReporte(idUser, idUserReported, reason, typeReport);
-            model.addAttribute("exito", "Usuario reportado exitosamente");
+            model.put("exito", "Usuario reportado exitosamente");
         } catch (MiException e) {
-            model.addAttribute("error", "Error al reportar el usuario");
+            model.put("error", "Error al reportar el usuario");
         }
-        return "reporte.html";
+        return "report.html";
 
     }
-
+    
+    
+    //POST --> GET ?¿
     @PostMapping("/eliminarReporteUsuario/{idUser}") //Usuario
     public String eliminarReporteUsuario(@PathVariable String idUser, ModelMap model) {
         try {
@@ -59,14 +73,19 @@ public class ReportesControlador {
         } catch (Exception e) {
             model.put("error", "No se pudo eliminar el reporte");
         }
-        return ""; //Ver url
+        return "reports-list.html"; //Ver url
 
     }
 //--------------------- COMENTARIOS -----------------------
 
     @GetMapping("/reportar-comentario/{idComent}")
-    public String reportarComentario(@PathVariable String idComent) {
-        return "reporte.html"; //Ver url
+    public String reportarComentario(@PathVariable String idComent, ModelMap model) {
+        /*  ------ TESTEAR ------
+        List<ReportsComentario> reports = new ArrayList<>();
+        reports.addAll(Arrays.asList(ReportsComentario.values()));
+        model.addAttribute("reports", reports);
+        */
+        return "report.html"; //Ver url
     }
 
     @PostMapping("/reportar-comentario/{idComent}")
@@ -74,13 +93,15 @@ public class ReportesControlador {
             @RequestParam String reason, @RequestParam String typeReport, ModelMap model) {
         try {
             servicioReportComentario.crearReporte(idComent, idUser, reason, typeReport);
-            model.addAttribute("exito", "Comentario reportado exitosamente");
+            model.put("exito", "Comentario reportado exitosamente");
         } catch (MiException e) {
-            model.addAttribute("error", "Error al reportar el comentario");
+            model.put("error", "Error al reportar el comentario");
         }
-        return "reporte.html";
+        return "report.html";
     }
 
+    
+    //POST --> GET ?¿
     @PostMapping("/eliminarReporteComentario/{idComent}") //Comentario
     public String eliminarReporteComentario(@PathVariable String idComent, ModelMap model) {
         try {
@@ -92,14 +113,21 @@ public class ReportesControlador {
             model.put("error", "No se pudo eliminar el reporte");
         }
 
-        return ""; //Ver url
+        return "reports-list.html"; //Ver url
 
     }
 
     // ----------------- PUBLICACION --------------------
     @GetMapping("/reportar-publicacion/{idPublicacion}")
-    public String reportarPublicacion(@PathVariable String idPublicacion) {
-        return "reporte.html";
+    public String reportarPublicacion(@PathVariable String idPublicacion, ModelMap model) {
+        /*
+        List<ReportsPublicacion> reports = new ArrayList<>();
+        for (ReportsPublicacion value : ReportsPublicacion.values()) {
+            reports.add(value);
+        }
+        model.addAttribute("reports", reports);
+        */
+        return "report.html";
     }
 
     @PostMapping("/reportar-publicacion/{idPublicacion}")
@@ -108,14 +136,16 @@ public class ReportesControlador {
 
         try {
             servicioReportPublicacion.crearReportePublicacion(idPublicacion, idUser, reason, reports);
-            model.addAttribute("exito", "Publicacion reportada exitosamente");
+            model.put("exito", "Publicacion reportada exitosamente");
         } catch (MiException e) {
-            model.addAttribute("error", "Error al reportar la publicacion");
+            model.put("error", "Error al reportar la publicacion");
         }
-        return "reporte.html";
+        return "report.html";
 
     }
 
+    
+    //POST --> GET ?¿
     @PostMapping("/eliminarReportePublicacion/{idReportPublicacion}")
     public String eliminarReportePublicacion(@PathVariable String idReportPublicacion, ModelMap model) {
         try {
@@ -125,7 +155,7 @@ public class ReportesControlador {
         } catch (Exception e) {
             model.put("error", "No se pudo eliminar el reporte");
         }
-        return ""; //Ver url
+        return "reports-list.html"; //Ver url
 
     }
 
@@ -139,7 +169,7 @@ public class ReportesControlador {
         model.addAttribute("comentarios", comentarios);
         model.addAttribute("publicaciones", publicaciones);
 
-        return "listaReportes.html";
+        return "reports-list.html";
     }
 
 }

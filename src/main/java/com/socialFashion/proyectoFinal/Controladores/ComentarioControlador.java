@@ -1,6 +1,8 @@
 package com.socialFashion.proyectoFinal.Controladores;
 
 import com.socialFashion.proyectoFinal.Entidades.Comentario;
+import com.socialFashion.proyectoFinal.Entidades.Usuario;
+
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Servicios.ServicioComentario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/comentarios")
@@ -16,10 +19,11 @@ public class ComentarioControlador {
     @Autowired
     private ServicioComentario servicioComentario;
 
-    @PostMapping("/crear")
-    public String crearComentario(@ModelAttribute Comentario comentario, ModelMap model) {
+    @PostMapping("/comentar/{idPublicacion}")
+    public String crearComentario(@PathVariable String idPublicacion, @RequestParam String comment, HttpSession session, ModelMap model) {
         try {
-            servicioComentario.crearComentario(comentario.getIdUser(), comentario.getPublicacion().getId(), comentario.getComment());
+            Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+            servicioComentario.crearComentario(logueado.getId(), idPublicacion, comment);
             model.put("exito", "Comentario publicado exitosamente");
         } catch (MiException e) {
             model.put("error", e.getMessage());
@@ -59,7 +63,7 @@ public class ComentarioControlador {
         } catch (Exception e) {
             model.put("error", "Error interno del servidor");
         }
-        return "vista";
+        return "lista-comentarios.html";
     }
 }
 

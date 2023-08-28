@@ -28,9 +28,25 @@
         </label>
         <div class="form-group">
             <label for="name">Descripcion</label>
-            <textarea type="text" class="form-control" id="name">
+            <input type="text" class="form-control" id="name" name="content" th:value="${content}">
         </div>
-
+<!--        
+        <div>
+            <select name="label">
+                <option>Seleccionar categoria</option>
+            PROBAR
+                <option th:each="categoria : ${categorias}"
+                        th:value="${categoria}"
+                        th:text="${categoria}"
+                        />
+            PROBAR
+                <option th:value="INDUMENTARIA">Indumentaria</option>
+                <option th:value="MAQUILLAJE">Maquillaje</option>
+                <option th:value="ACCESORIO">Accesorio</option>
+                <option th:value="CALZADO">Calzado</option>
+            </select>
+        </div>
+-->
         <div class="input-group">
             <div class="input-group-append">
                 <div class="btn-group">

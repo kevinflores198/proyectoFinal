@@ -2,8 +2,10 @@ package com.socialFashion.proyectoFinal.Controladores;
 
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
+import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Servicios.ServicioPublicacion;
+import java.util.ArrayList;
 
 import java.util.List;
 
@@ -24,8 +26,14 @@ public class PublicacionControlador {
     private ServicioPublicacion servicioPublicacion;
 
     @GetMapping("/publicar/{id}")
-    public String publicar(@PathVariable String id){
-       
+    public String publicar(@PathVariable String id, ModelMap model){
+        /*  ------ PROBAR -------
+        List<Categorias> categorias = new ArrayList<>();
+        for(Categorias categoria : Categorias.values()){
+            categorias.add(categoria);
+        }
+        model.addAttribute("categorias", categorias);
+        */
         return "publicacion.html";
     }
 
@@ -41,7 +49,7 @@ public class PublicacionControlador {
 
             modelo.put("error", "No se pudo cargar la publicación");
         }
-        return "profile.html";
+        return "publicacion-form.html";
     }
 
     @GetMapping("/eliminar/{id}")
@@ -58,8 +66,7 @@ public class PublicacionControlador {
             modelo.put("error", "No se pudo eliminar la publicación");
 
         }
-
-        return "profile.html";
+        return "perfil.html";
         
     }
 
@@ -116,5 +123,15 @@ public class PublicacionControlador {
         //RETORNAR A SU HTML 
         return "detail.html";
 
+    }
+    
+    @GetMapping("/MG+/{id}")
+    public void agregarLike(@PathVariable String id){
+        servicioPublicacion.agregarLike(id);
+    }
+    
+    @GetMapping("/MG-/{id}")
+    public void sacarLike(@PathVariable String id){
+        servicioPublicacion.sacarLike(id);
     }
 }
