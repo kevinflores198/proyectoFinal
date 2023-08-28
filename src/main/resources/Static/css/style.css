@@ -6,7 +6,15 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
+.perfil-usuario {
 
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #dfdfdf;
+    ;
+}
 
 :root {
     --blue: #007bff;
@@ -11002,3 +11010,4 @@ button.bg-dark:focus {
             transform: translateY(-15px);
         }
     }
+}
