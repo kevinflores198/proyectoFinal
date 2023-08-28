@@ -24,7 +24,7 @@ public class ReportUser {
 
     private String idUserReported;
     private String reason;
-    //private Boolean alta;     Por si hace falta
+    
     
     @Enumerated(EnumType.STRING)
     private ReportsUser typeReport;

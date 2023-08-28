@@ -45,7 +45,11 @@ public class ServicioReportComentario {
             Comentario coment = rsp.get();
             reporte.setComentario(coment);
         } else {
+
             throw new MiException("No se encontro el comentario");
+
+            
+
         }
 
         reporte.setReason(reason);

@@ -24,10 +24,7 @@ public class Comentario {
     private Publicacion publicacion;
 
     private String comment;
-    private Boolean alta;
-
-    //@OneToMany            No se usa
-    //private ArrayList<ReportComentario> reports;
+    
     
     public Comentario() {
     }
@@ -36,7 +33,7 @@ public class Comentario {
         this.idUser = idUser;
         this.publicacion = publicacion;
         this.comment = comment;
-        this.alta = alta;
+        
     }
 
     //Getter y Setter
@@ -73,12 +70,6 @@ public class Comentario {
         this.comment = comment;
     }
 
-    public Boolean getAlta() {
-        return alta;
-    }
-
-    public void setAlta(Boolean alta) {
-        this.alta = alta;
-    }
+   
 
 }

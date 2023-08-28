@@ -27,7 +27,6 @@ public class ReportComentario {
     private Comentario comentario;
 
     private String Reason; 
-    //private Boolean alta;
 
     @Enumerated(EnumType.STRING)
     private ReportsComentario typeReport;
