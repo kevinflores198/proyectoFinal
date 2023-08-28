@@ -17,7 +17,7 @@ public interface RepositorioPublicacion extends JpaRepository<Publicacion,String
     public List<Publicacion> publicacionesByUser(@Param("idUsuario") String idUsuario);
     
     @Query("SELECT p FROM Publicacion p ORDER BY p.likes DESC")
-    public List<Publicacion> listaTopDiez();
+    public List<Publicacion> listaTop();
     
     //HACER QUERY DE POR FECHA ASC, DESC
     //HACER QUERY POR CATEGORIA

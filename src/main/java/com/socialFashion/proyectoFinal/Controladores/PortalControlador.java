@@ -95,7 +95,7 @@ public class PortalControlador {
     //VISTA MAIN 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/main")
-    public String inicio(HttpSession session) {
+    public String inicio(/*HttpSession session*/) {
 
         // Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 
