@@ -134,7 +134,7 @@ public class PortalControlador {
         return "lista-usuarios.html";
 
     }
-
+    
     //VISTA PERFIL
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISIGNER')")
     @GetMapping("/perfil/{id}")
