@@ -19,8 +19,10 @@
                             <div class="dropdown-menu dropdown-menu-right bg-dark">
                                 <button class="dropdown-item" type="button"><a class=""
                                         href="guest.html">Diseñadores</a></button>
-                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Mas me gustas</a></button>
-                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Fecha</a></button>
+                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Mas me
+                                        gustas</a></button>
+                                <button class="dropdown-item" type="button"><a class=""
+                                        href="guest.html">Fecha</a></button>
                             </div>
                         </div>
                     </div>
@@ -33,17 +35,16 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-primary dropdown-toggle " data-toggle="dropdown">Mi
                         Cuenta</button>
+
+                    <!-- th:href="@{/perfil/__${usuario.id}__}" -->
                     <div class="dropdown-menu dropdown-menu-right bg-dark">
-                        <button class="dropdown-item" type="button"><a class="" th:href="@{/detail}">Perfil</a></button>
+<<<<<<< Updated upstream
+                        <button class="dropdown-item" type="button"><a class="" th:href="@{/perfil/__${session.usuariosession.id}__}">Perfil</a></button>
+=======
+                        <button class="dropdown-item" type="button"><a class="" th:href="@{/perfil/usuario.session.id}">Perfil</a></button>
+>>>>>>> Stashed changes
                         <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
-                                th:href="@{/login}">lista
-                                diseñadores</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
-                                th:href="@{/publicacion}">lista
-                                publicaciones</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
-                                th:href="@{/login}">lista
-                                reporte</a></button>
+                                th:href="@{/publicaciones/listar-publicaciones}">Listas</a></button>
                         <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
                                 th:href="@{/login}">Configurar</a></button>
                         <button class="dropdown-item" type="button"><a class="" th:href="@{/logout}">Salir</a></button>
@@ -67,10 +68,10 @@
                     id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                     <div class="navbar-nav w-100">
                         <div class="nav-item dropdown dropright">
-                            <a th:href= "@{/profile/__${Usuario.name}__}" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown">Kevin Flores<i
                                     class="fa fa-angle-right float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a th:href= "@{/profile/__${Usuario.id}__}"class="dropdown-item">Ver prefil</a>
+                                <a class="dropdown-item">Ver prefil</a>
                                 <a href="#" class="dropdown-item">Opinar</a>
                                 <a th:href="@{/reporte}" class="dropdown-item bg-danger">Reportar</a>
                             </div>

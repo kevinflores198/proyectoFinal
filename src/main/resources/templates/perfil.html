@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+<<<<<<< Updated upstream
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security%22%3E">
+=======
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>>>>>>> Stashed changes
 
 <head th:replace="/fragments/head :: head"></head>
 
@@ -10,15 +14,30 @@
     <!-- descripcion del diseñador -->
     <div class="perfil-usuario">
         <section>
+<<<<<<< Updated upstream
             <img src="/img/1.png" alt="" width="50px">
             <h1>Nombre del diseñador</h1>
             <p>Descripcion del diseñador</p>
             <p>(categorias)</p>
+=======
+            <!-- imagen del perfil -->
+            <img th:value="${usuario.image}" src="" alt="" width="50px">
+            <!-- nombre del usuario -->
+            <h1 th:value="${usuario.name}"></h1>
+            <!-- descripcion del usuario -->
+            <!-- <p th:value="@{usuario.descripcion}"></p> -->
+            <!-- categoria -->
+            <!-- <p th:value="@{usuario.categoria}"></p> -->
+>>>>>>> Stashed changes
         </section>
     </div>
 
 
+<<<<<<< Updated upstream
 <!-- crear publicacion -->
+=======
+    <!-- crear publicacion -->
+>>>>>>> Stashed changes
     <div class="publicacion-decripta">
         <label class="custum-file-upload" for="file">
             <div class="text">
@@ -30,7 +49,11 @@
             <label for="name">Descripcion</label>
             <input type="text" class="form-control" id="name" name="content" th:value="${content}">
         </div>
+<<<<<<< Updated upstream
 <!--        
+=======
+        <!--
+>>>>>>> Stashed changes
         <div>
             <select name="label">
                 <option>Seleccionar categoria</option>
@@ -55,15 +78,24 @@
                     <div class="dropdown-menu dropdown-menu-left bg-dark">
                         <button class="dropdown-item" type="button"><a class=""
                                 href="guest.html">Indumentaria</a></button>
+<<<<<<< Updated upstream
                         <button class="dropdown-item" type="button"><a class=""
                                 href="guest.html">Calzado</a></button>
                         <button class="dropdown-item" type="button"><a class=""
                                 href="guest.html">Kids</a></button>
+=======
+                        <button class="dropdown-item" type="button"><a class="" href="guest.html">Calzado</a></button>
+                        <button class="dropdown-item" type="button"><a class="" href="guest.html">Kids</a></button>
+>>>>>>> Stashed changes
                     </div>
                 </div>
             </div>
         </div>
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
     </div>
 
 
@@ -75,16 +107,27 @@
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
+<<<<<<< Updated upstream
                         <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
+=======
+                        <img class="img-fluid w-100" th:value="@{publicacion.image}" alt="">
+>>>>>>> Stashed changes
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
+<<<<<<< Updated upstream
 
                         </div>
                     </div>
                     <div class="text-center py-4">
                         <a class="h6 text-decoration-none text-truncate" href="">Diseñador</a>
+=======
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+                        <a class="h6 text-decoration-none text-truncate" th:value="@{usuario.name}">Diseñador</a>
+>>>>>>> Stashed changes
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <h5>Cantidad de MG</h5>
                         </div>
@@ -97,6 +140,7 @@
                     </div>
                 </div>
             </div>
+<<<<<<< Updated upstream
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
@@ -308,14 +352,29 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
     <!-- JavaScript Libraries -->
+=======
+
+        </div>
+    </div>
+
+    <footer th:replace="/fragments/footer :: footer"> </footer>
+
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+>>>>>>> Stashed changes
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<<<<<<< Updated upstream
     <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
     <!-- Template Javascript -->
+=======
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+>>>>>>> Stashed changes
     <script src="js/main.js"></script>
 </body>
 
