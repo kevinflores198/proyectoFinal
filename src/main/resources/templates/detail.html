@@ -13,21 +13,15 @@
             <div class="col-lg-5 mb-30">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-item active">
-                        <img class="w-100 h-100" src="img/modelo.jpg" alt="Image">
+                        <img class="w-100 h-100" th:src="@{/imagen/publicacion/__${publicacion.id}__}" alt="">
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-7 h-auto mb-30">
                 <div class="h-100 bg-light p-30">
-                    <h3>Designer(publicacion completa con comentarios)</h3>
-
-                    <h3 class="font-weight-semi-bold mb-4">Descripcion: Volup erat ipsum diam elitr rebum et dolor. Est
-                        nonumy elitr
-                        erat diam stet sit
-                        clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
-                        Nonumy
-                    </h3>
+                    <h3><a href="#" th:text="${publicacion.user.name}" ></a></h3>
+                    <h5 class="font-weight-semi-bold mb-4" th:text="${publicacion.label}" ></h5>
+                    <h3 class="font-weight-semi-bold mb-4" th:text="${publicacion.content}" ></h3>
 
                     <button id="boton-mg" class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Me
                         gusta</button>

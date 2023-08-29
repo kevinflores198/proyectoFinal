@@ -1,6 +1,8 @@
 package com.socialFashion.proyectoFinal.Controladores;
 
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
+import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioImagen;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
@@ -33,16 +36,6 @@ public class PortalControlador {
     @Autowired
     private RepositorioPublicacion repoPublicacion;
     
-    @Autowired
-    private RepositorioImagen repoImagen;
-
-    // PRU DE VISTA DETAIL.HTML
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    @GetMapping("/detail")
-    public String publicacion() {
-
-        return "detail.html";
-    }
 
     // VISTA INDEX
     @GetMapping("/")
@@ -136,14 +129,18 @@ public class PortalControlador {
     }
     
     //VISTA PERFIL
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISIGNER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/perfil/{id}")
     public String perfil(@PathVariable String id, ModelMap modelo) {
-        
+        List<Categorias> categorias = new ArrayList<>();
+        for(Categorias categoria : Categorias.values()){
+            categorias.add(categoria);
+        }
         Usuario usuario = servicioUsuario.getOne(id);
         List<Publicacion> publicaciones = repoPublicacion.publicacionesByUser(id);
         modelo.addAttribute("usuario", usuario);
         modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("categorias", categorias);
 
         return "perfil.html";
 
@@ -162,7 +159,7 @@ public class PortalControlador {
     }
 
     //FORM ACTUALIZAR PERFIL
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISIGNER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @PostMapping("/perfil/modificado/{id}")
     public String perfilModificado(@PathVariable String id,
             @RequestParam(name = "name") String name,

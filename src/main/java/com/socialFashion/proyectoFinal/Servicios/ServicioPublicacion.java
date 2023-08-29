@@ -15,7 +15,6 @@ import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.ReportPublicacion;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
-import com.socialFashion.proyectoFinal.Enumeraciones.ReportsUser;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
 
@@ -43,7 +42,10 @@ public class ServicioPublicacion {
     @Transactional
     public void crearPublicacion(String idUser, String label, MultipartFile archivo, String content)
             throws MiException {
-
+        
+        System.out.println(idUser);
+        System.out.println(label);
+        System.out.println(content);
         validacion(idUser, label, archivo, content);
 
         Publicacion publicacion = new Publicacion();
@@ -97,7 +99,7 @@ public class ServicioPublicacion {
     }
 
     public Publicacion getOne(String id){
-        return repoPubli.getOne(id);
+        return repoPubli.getById(id);
     }
 
     @Transactional
@@ -119,7 +121,7 @@ public class ServicioPublicacion {
     }
 
     public void validacion(String idUser, String label, MultipartFile archivo, String content) throws MiException {
-        if (idUser.isEmpty() || idUser == null) {
+        if (idUser == null || idUser.isEmpty()) {
             throw new MiException("el id del usuario no puede estar vacio");
         }
         if (label == null || label.isEmpty()) {
