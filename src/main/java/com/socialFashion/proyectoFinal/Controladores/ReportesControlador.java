@@ -4,10 +4,13 @@ import com.socialFashion.proyectoFinal.Entidades.ReportComentario;
 import com.socialFashion.proyectoFinal.Entidades.ReportPublicacion;
 import com.socialFashion.proyectoFinal.Entidades.ReportUser;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
-//import com.socialFashion.proyectoFinal.Enumeraciones.ReportsComentario;
-//import com.socialFashion.proyectoFinal.Enumeraciones.ReportsPublicacion;
-//import com.socialFashion.proyectoFinal.Enumeraciones.ReportsUser;
+import com.socialFashion.proyectoFinal.Enumeraciones.ReportsComentario;
+import com.socialFashion.proyectoFinal.Enumeraciones.ReportsPublicacion;
+import com.socialFashion.proyectoFinal.Enumeraciones.ReportsUser;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioComentario;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
 import com.socialFashion.proyectoFinal.Servicios.ServicioReportComentario;
 import com.socialFashion.proyectoFinal.Servicios.ServicioReportPublicacion;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +18,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.socialFashion.proyectoFinal.Servicios.ServicioReportUser;
-//import java.util.ArrayList;
-//import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,25 +39,31 @@ public class ReportesControlador {
 
     @Autowired
     private ServicioReportPublicacion servicioReportPublicacion;
+    
+    @Autowired
+    private RepositorioComentario repoComent;
+    
+    @Autowired
+    private RepositorioUsuario repoUser;
+    
+    @Autowired
+    private RepositorioPublicacion repoPubli;
 
     @GetMapping("/reportar-usuario/{idUser}")
-    public String reportarUsuario(@PathVariable String id, ModelMap model) {
-        /*
+    public String reportarUsuario(@PathVariable(name="idUser") String id, ModelMap model) {
         List<ReportsUser> reports = new ArrayList<>();
-        for (ReportsUser value : ReportsUser.values()) {
-            reports.add(value);
-        }
+        reports.addAll(Arrays.asList(ReportsUser.values()));
         model.addAttribute("reports", reports);
-        */
         return "report.html";
     }
 
     @PostMapping("/reportar-usuario/{idUser}")
-    public String completarReporteUsuario(@RequestParam Usuario idUser, @RequestParam String idUserReported,
-            @RequestParam String reason, @RequestParam String typeReport, ModelMap model) {
+    public String completarReporteUsuario(@PathVariable(name="idUser") String idUserReported,
+            @RequestParam String reason, @RequestParam String typeReport, ModelMap model, HttpSession session) {
 
         try {
-            servicioReportUsuario.crearReporte(idUser, idUserReported, reason, typeReport);
+            Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+            servicioReportUsuario.crearReporte(logueado.getId(), repoUser.usuarioById(idUserReported), reason, typeReport);
             model.put("exito", "Usuario reportado exitosamente");
         } catch (MiException e) {
             model.put("error", "Error al reportar el usuario");
@@ -80,19 +90,18 @@ public class ReportesControlador {
 
     @GetMapping("/reportar-comentario/{idComent}")
     public String reportarComentario(@PathVariable String idComent, ModelMap model) {
-        /*  ------ TESTEAR ------
         List<ReportsComentario> reports = new ArrayList<>();
         reports.addAll(Arrays.asList(ReportsComentario.values()));
         model.addAttribute("reports", reports);
-        */
         return "report.html"; //Ver url
     }
 
     @PostMapping("/reportar-comentario/{idComent}")
-    public String completarReporteComentario(@RequestParam String idComent, @RequestParam String idUser,
-            @RequestParam String reason, @RequestParam String typeReport, ModelMap model) {
+    public String completarReporteComentario(@PathVariable String idComent, @RequestParam String reason,
+            @RequestParam String typeReport, ModelMap model, HttpSession session) {
         try {
-            servicioReportComentario.crearReporte(idComent, idUser, reason, typeReport);
+            Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+            servicioReportComentario.crearReporte(idComent, logueado.getId(), reason, typeReport);
             model.put("exito", "Comentario reportado exitosamente");
         } catch (MiException e) {
             model.put("error", "Error al reportar el comentario");
@@ -120,22 +129,19 @@ public class ReportesControlador {
     // ----------------- PUBLICACION --------------------
     @GetMapping("/reportar-publicacion/{idPublicacion}")
     public String reportarPublicacion(@PathVariable String idPublicacion, ModelMap model) {
-        /*
         List<ReportsPublicacion> reports = new ArrayList<>();
-        for (ReportsPublicacion value : ReportsPublicacion.values()) {
-            reports.add(value);
-        }
+        reports.addAll(Arrays.asList(ReportsPublicacion.values()));
         model.addAttribute("reports", reports);
-        */
         return "report.html";
     }
 
     @PostMapping("/reportar-publicacion/{idPublicacion}")
-    public String completarReportePublicacion(@RequestParam String idPublicacion, @RequestParam String idUser,
-            @RequestParam String reason, @RequestParam String reports, ModelMap model) {
+    public String completarReportePublicacion(@PathVariable String idPublicacion,
+            @RequestParam String reason, @RequestParam String reports, ModelMap model, HttpSession session) {
 
         try {
-            servicioReportPublicacion.crearReportePublicacion(idPublicacion, idUser, reason, reports);
+            Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+            servicioReportPublicacion.crearReportePublicacion(idPublicacion, logueado.getId(), reason, reports);
             model.put("exito", "Publicacion reportada exitosamente");
         } catch (MiException e) {
             model.put("error", "Error al reportar la publicacion");

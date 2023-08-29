@@ -133,6 +133,8 @@ public class ServicioPublicacion {
         }
     }
     
+    
+    // -------- Funciones de Me Gustas ---------
     @Transactional
     public void agregarLike(String id){
         Publicacion publicacion = getOne(id);
@@ -147,11 +149,67 @@ public class ServicioPublicacion {
         publicacion.setLikes(suma);
     }
     
+    
+    /* -------- Funciones de Lectura en la BD --------- */
+    
+    /**
+     * trae las 10 publicaciones con más me gusta
+     */
+    @Transactional(readOnly=true)
     public List<Publicacion> topDiez(){
         return repoPubli.listaTop().subList(0, 9);
     }
     
+    /**
+     * trae las publicaciones con más me gusta
+     */
+    @Transactional(readOnly=true)
     public List<Publicacion> topPublicacion(){
         return repoPubli.listaTop();
+    }
+    
+    /**
+     * trae las publicaciones ordenadas de manera ascendente
+     * por fecha
+     */
+    @Transactional(readOnly=true)
+    public List<Publicacion> publicacionesPorFechaASC(){
+        return repoPubli.publicacionesByDateAsc();
+    }
+    
+    /**
+     * trae las publicaciones ordenadas de manera descendente
+     * por fecha
+     */
+    @Transactional(readOnly=true)
+    public List<Publicacion> publicacionesPorFechaDESC(){
+        return repoPubli.publicacionesByDateDesc();
+    }
+    
+    /**
+     * trae las publicaciones por categoria
+     * @param:Categoria
+     */
+    @Transactional(readOnly=true)
+    public List<Publicacion> publicacionesPorLabel(Categorias categoria){
+        return repoPubli.publicacionesByLabel(categoria);
+    }
+    
+    /**
+     * trae las publicaciones ordenadas de manera ascendente
+     * por nombre de diseñador
+     */
+    @Transactional(readOnly=true)
+    public List<Publicacion> publicacionesPorNombreDiseñadorASC(){
+        return repoPubli.findAllOrderByNombreDiseñadorAsc();
+    }
+    
+    /**
+     * trae las publicaciones ordenadas de manera descendente
+     * por nombre de diseñador
+     */
+    @Transactional(readOnly=true)
+    public List<Publicacion> publicacionesPorNombreDiseñadorDESC(){
+        return repoPubli.findAllOrderByNombreDiseñadorDesc();
     }
 }

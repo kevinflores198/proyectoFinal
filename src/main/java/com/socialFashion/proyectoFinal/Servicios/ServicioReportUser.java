@@ -22,13 +22,13 @@ public class ServicioReportUser {
     RepositorioReporteUsuario repoUsuario;
 
     @Transactional
-    public void crearReporte(Usuario idUser, String idUserReported,
+    public void crearReporte(String idUser, Usuario UserReported,
             String reason, String typeReport) throws MiException {
 
-        if (idUserReported.isEmpty() || idUserReported == null) {
+        if (idUser.isEmpty() || idUser == null) {
             throw new MiException("El Numero de ID del usuario reportado no puede ser nulo");
         }
-        if (idUser == null) {
+        if (UserReported == null) {
             throw new MiException("El ID de usuario no puede ser nulo");
         }
         if (reason.isEmpty() || reason == null) {
@@ -37,8 +37,8 @@ public class ServicioReportUser {
 
         ReportUser reporte = new ReportUser();
 
-        reporte.setUser(idUser);
-        reporte.setIdUserReported(idUserReported);
+        reporte.setIdUser(idUser);
+        reporte.setIdUserReported(UserReported);
         reporte.setReason(reason);
 
         try {
