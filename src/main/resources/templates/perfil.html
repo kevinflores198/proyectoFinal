@@ -11,32 +11,33 @@
     <div class="col-lg-12 col-md-12 col-sm-12 pb-1 d-flex justify-content-center">
         <div class="product-item bg-light mb-4">
             <div class=" position-relative overflow-hidden">
-                <img class="img-thumbnail" th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="" height="250px" width="350px">
-                <h2 class="d-flex justify-content-center align-items-center " th:text=" ${session.usuariosession.name} "></h2>
+                <img class="img-thumbnail" th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt=""
+                    height="250px" width="350px">
+                <h2 class="d-flex justify-content-center align-items-center "
+                    th:text=" ${session.usuariosession.name} "></h2>
             </div>
         </div>
     </div>
+
     <!-- Crear publicacion -->
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Publicar</span></h2>
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
+        <span class="bg-secondary pr-3">Publicar</span>
+    </h2>
+
     <div class="container-fluid pb-5 ">
         <div class="row px-xl-5 justify-content-center d-flex align-items-center ">
-
             <div class="col-lg-9 h-auto mb-30">
-                <div class="h-100 bg-light p-30">
+                <div th:action="@{/publicar}" class="h-100 bg-light p-30">
                     <div class="input-group mb-3">
                         <div class="input-group-append">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-primary dropdown-toggle "
                                     data-toggle="dropdown">Categoria</button>
                                 <div class="dropdown-menu dropdown-menu-left bg-dark">
-                                    <button class="dropdown-item" type="button"><a class=""
-                                            href="guest.html">Indumentaria</a></button>
-                                    <button class="dropdown-item" type="button"><a class=""
-                                            href="guest.html">Calzado</a></button>
-                                    <button class="dropdown-item" type="button"><a class=""
-                                            href="guest.html">Maquillaje</a></button>
-                                    <button class="dropdown-item" type="button"><a class=""
-                                            href="guest.html">Accesorios</a></button>
+                                    <button class="dropdown-item" type="button"><a class="">Indumentaria</a></button>
+                                    <button class="dropdown-item" type="button"><a class="">Calzado</a></button>
+                                    <button class="dropdown-item" type="button"><a class="">Maquillaje</a></button>
+                                    <button class="dropdown-item" type="button"><a class="">Accesorios</a></button>
                                 </div>
                             </div>
                         </div>
@@ -50,14 +51,14 @@
                     <form>
                         <h5>Descripcion de la publicacion</h5>
                         <div class="form-group">
-                            <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                            <textarea id="message" cols="30" rows="5" class="form-control"
+                                th:value="${content}"></textarea>
                         </div>
                         <!--<form class="form-group mb-0" th:antion="../../comentario/comentar/__${Publicacion.id}__" method="POST">-->
                         <div class="form-group mb-0">
                             <input type="submit" value="Publicar" class="btn btn-primary px-3">
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -88,211 +89,36 @@
 
     <!-- Publicaciones del diseñador-->
     <div class="container-fluid pt-5 pb-3">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span
-                class="bg-secondary pr-3">Publicaciones</span></h2>
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
+            <span class="bg-secondary pr-3">Publicaciones</span>
+        </h2>
+
         <div class="row px-xl-5">
-
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
+                        <img class="img-thumbnail w-100" th:value="${publicacion.image}" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/report}">
+                                <i class="fa fa-exclamation"></i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Diseñador</a>
+                        <a class="h6 text-decoration-none text-truncate" href=""></a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <h5>Cantidad de MG</h5>
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/report}">
+                                <i class="fa fa-exclamation"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 

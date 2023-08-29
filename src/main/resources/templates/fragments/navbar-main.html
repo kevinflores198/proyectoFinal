@@ -36,14 +36,7 @@
                     <div class="dropdown-menu dropdown-menu-right bg-dark">
                         <button class="dropdown-item" type="button"><a class="" th:href="@{/perfil/__${session.usuariosession.id}__}">Perfil</a></button>
                         <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
-                                th:href="@{/login}">lista
-                                diseñadores</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
-                                th:href="@{/publicacion}">lista
-                                publicaciones</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
-                                th:href="@{/login}">lista
-                                reporte</a></button>
+                                th:href="@{/}">Listas</a></button>
                         <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
                                 th:href="@{/login}">Configurar</a></button>
                         <button class="dropdown-item" type="button"><a class="" th:href="@{/logout}">Salir</a></button>
@@ -174,16 +167,15 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a th:href="@{/}" class="nav-item nav-link">Inicio</a>
+                            <a th:href="@{/main}" class="nav-item nav-link">Inicio</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Publicaciones<i
                                         class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a th:href="@{/}" class="dropdown-item">Top 10</a>
-                                    <a th:href="@{/}" class="dropdown-item">Publicaciones</a>
+                                    <a th:href="@{/main}" class="dropdown-item">Top 10</a>
+                                    <a th:href="@{/main}" class="dropdown-item">Publicaciones</a>
                                 </div>
                             </div>
-                            <a th:href="@{/contacto}" class="nav-item nav-link">Contactanos</a>
                         </div>
                     </div>
                 </nav>
