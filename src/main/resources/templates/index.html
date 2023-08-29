@@ -5,8 +5,12 @@
 
 <body>
 
+
     <nav th:replace="/fragments/navbar-index :: nav"> </nav>
 
+
+    <!-- Navbar 1 -->
+    
 
     <!-- top 10 -->
     <div class="container-fluid pt-5 pb-3">
@@ -16,6 +20,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
+                        
                         <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" th:href="@{/login}"><i class="">ir</i></a>

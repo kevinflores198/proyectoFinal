@@ -28,7 +28,6 @@ public class ReportPublicacion {
 
     private String idUser;
     private String reason;
-    //private Boolean alta;
 
     @Enumerated(EnumType.STRING)
     private ReportsPublicacion typeReport;

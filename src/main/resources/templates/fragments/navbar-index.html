@@ -5,10 +5,10 @@
             <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Fashion</span>
         </a>
     </div>
-    <!-- <div class="col-lg-4 col-6 text-left">
+    <div class="col-lg-4 col-6 text-left">
         <form action="">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for products"><a class=""
+                <input type="text" class="form-control" placeholder="Buscar..."><a class=""
                     th:href="@{/login}"></a>
                 <div class="input-group-append">
                     <span class="input-group-text bg-transparent text-primary">
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </form>
-    </div> -->
+    </div>
     <div class="col-lg-4 col-6 text-right">
         <div class="d-inline-flex align-items-center">
             <div class="btn-group">
@@ -25,8 +25,8 @@
                     Cuenta</button>
                 <div class="dropdown-menu dropdown-menu-right bg-dark">
                     <button class="dropdown-item" type="button"><a class="">Perfil</a></button>
-                    <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class=""
-                            th:href="@{/login}">lista
+                    <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')" ><a class=""
+                            >lista
                             diseñadores</a></button>
                     <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class=""
                             th:href="@{/login}">lista

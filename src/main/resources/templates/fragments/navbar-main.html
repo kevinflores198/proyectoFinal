@@ -34,17 +34,17 @@
                     <button type="button" class="btn btn-sm btn-primary dropdown-toggle " data-toggle="dropdown">Mi
                         Cuenta</button>
                     <div class="dropdown-menu dropdown-menu-right bg-dark">
-                        <button class="dropdown-item" type="button"><a class="">Perfil</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasrole('ADMIN')"><a class=""
+                        <button class="dropdown-item" type="button"><a class="" th:href="@{/perfil/__${session.usuariosession.id}__}">Perfil</a></button>
+                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
                                 th:href="@{/login}">lista
                                 diseñadores</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class=""
-                                th:href="@{/login}">lista
+                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
+                                th:href="@{/publicacion}">lista
                                 publicaciones</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class=""
+                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
                                 th:href="@{/login}">lista
                                 reporte</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class=""
+                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
                                 th:href="@{/login}">Configurar</a></button>
                         <button class="dropdown-item" type="button"><a class="" th:href="@{/logout}">Salir</a></button>
                     </div>

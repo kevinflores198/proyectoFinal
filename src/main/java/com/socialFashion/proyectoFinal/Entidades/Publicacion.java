@@ -1,8 +1,13 @@
 package com.socialFashion.proyectoFinal.Entidades;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import org.hibernate.annotations.GenericGenerator;
+
+import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
+
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -25,7 +30,8 @@ public class Publicacion {
     @ManyToOne
     private Usuario user;
 
-    private String label;
+    @Enumerated(EnumType.STRING)
+    private Categorias label;
 
     @OneToOne
     private Imagen image;
@@ -40,23 +46,19 @@ public class Publicacion {
 
     private Integer likes;
 
-    private Boolean alta;
+    
 
     public Publicacion() {
     }
 
-    public Publicacion(Usuario user, String label, Imagen image, String content, Date initialDate,
-            Integer likes, Boolean alta) {
+    public Publicacion(Usuario user, Categorias label, Imagen image, String content, Date initialDate, Integer likes) {
         this.user = user;
         this.label = label;
         this.image = image;
         this.content = content;
         this.initialDate = initialDate;
         this.likes = likes;
-        this.alta = alta;
     }
-
-    //Getter y Setter
 
     public String getId() {
         return id;
@@ -70,15 +72,15 @@ public class Publicacion {
         return user;
     }
 
-    public void setUser(Usuario usuario) {
-        this.user = usuario;
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 
-    public String getLabel() {
+    public Categorias getLabel() {
         return label;
     }
 
-    public void setLabel(String label) {
+    public void setLabel(Categorias label) {
         this.label = label;
     }
 
@@ -112,14 +114,6 @@ public class Publicacion {
 
     public void setLikes(Integer likes) {
         this.likes = likes;
-    }
-
-    public Boolean getAlta() {
-        return alta;
-    }
-
-    public void setAlta(Boolean alta) {
-        this.alta = alta;
     }
 
     

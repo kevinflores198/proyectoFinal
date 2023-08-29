@@ -1,7 +1,15 @@
 package com.socialFashion.proyectoFinal.Controladores;
 
+import com.socialFashion.proyectoFinal.Entidades.Publicacion;
+import com.socialFashion.proyectoFinal.Entidades.Usuario;
+import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Servicios.ServicioPublicacion;
+import java.util.ArrayList;
+
+import java.util.List;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +26,17 @@ public class PublicacionControlador {
     private ServicioPublicacion servicioPublicacion;
 
     @GetMapping("/publicar/{id}")
-    public String publicar(@PathVariable String id){
-       
+    public String publicar(@PathVariable String id, ModelMap model){
+        /*  ------ PROBAR -------
+        List<Categorias> categorias = new ArrayList<>();
+        for(Categorias categoria : Categorias.values()){
+            categorias.add(categoria);
+        }
+        model.addAttribute("categorias", categorias);
+        */
         return "publicacion.html";
     }
+
     @PostMapping("/publicar/{id}")
     public String cargarPublicacion(@PathVariable String idUser, @RequestParam String label, @RequestParam MultipartFile archivo, @RequestParam String content, ModelMap modelo){
 
@@ -34,7 +49,7 @@ public class PublicacionControlador {
 
             modelo.put("error", "No se pudo cargar la publicación");
         }
-        return "profile.html";
+        return "publicacion-form.html";
     }
 
     @GetMapping("/eliminar/{id}")
@@ -51,8 +66,7 @@ public class PublicacionControlador {
             modelo.put("error", "No se pudo eliminar la publicación");
 
         }
-
-        return "profile.html";
+        return "perfil.html";
         
     }
 
@@ -61,17 +75,13 @@ public class PublicacionControlador {
     @GetMapping("/editar/{id}")
     public String modificarPublicacion(@PathVariable String id, ModelMap modelo) {
 
-        // Publicacion publicacion = servicioPublicacion.getOne(id);
-
-        // modelo.put("publicacion", publicacion);
+        modelo.put("Publicacion", servicioPublicacion.getOne(id));
 
         return "publicacion.html";
     }
 
-    // A revisar este metodo que lo hice para guardar la edición de etiquetas y
-    // contenido.
     @PostMapping("/editar/{id}")
-    public String guardarEdicionPublicacion(@PathVariable String id, @RequestParam String newLabel,
+    public String modificadoPublicacion(@PathVariable String id, @RequestParam String newLabel,
          @RequestParam String newContent, ModelMap modelo) {
 
         try {
@@ -85,6 +95,43 @@ public class PublicacionControlador {
             modelo.put("error", "No se pudo editar la publicación");
         }
 
-        return "profile.html";
+        return "perfil.html";
+        
+    }
+
+    //VISTA DE LISTA DE PUBLICACIONES 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping("/listar-publicaciones")
+    public String listaPublicaciones(ModelMap modelo) {
+
+        List<Publicacion>publicaciones=servicioPublicacion.listaPublicacion();
+        modelo.addAttribute("publicaciones", publicaciones);
+
+        //RETORNAR A SU HTML 
+        return "lista-publicaciones.html";
+
+    }
+
+    //VISTA DE CARTA 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @GetMapping("/card/{id}")
+    public String CartaPublicacion(@PathVariable String id, ModelMap modelo) {
+
+        Publicacion publicacion = servicioPublicacion.getOne(id);
+        modelo.addAttribute("publicacion", publicacion);
+
+        //RETORNAR A SU HTML 
+        return "detail.html";
+
+    }
+    
+    @GetMapping("/MG+/{id}")
+    public void agregarLike(@PathVariable String id){
+        servicioPublicacion.agregarLike(id);
+    }
+    
+    @GetMapping("/MG-/{id}")
+    public void sacarLike(@PathVariable String id){
+        servicioPublicacion.sacarLike(id);
     }
 }
