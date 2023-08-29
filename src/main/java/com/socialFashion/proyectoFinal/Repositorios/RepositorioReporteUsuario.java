@@ -18,7 +18,7 @@ public interface RepositorioReporteUsuario extends JpaRepository<ReportUser, Str
     @Query("SELECT r FROM ReportUser r WHERE r.idReporte = :idReporte")
     public ReportUser ReportUsuarioByID(@Param("idReporte") String idReporte);
     
-    @Query("SELECT r FROM ReportUser r WHERE r.user.id = :idUser")
+    @Query("SELECT r FROM ReportUser r WHERE r.idUser = :idUser")
     public List<ReportUser> reportUsuarioByIdUser(@Param("idUser")String idUser);
     
 }

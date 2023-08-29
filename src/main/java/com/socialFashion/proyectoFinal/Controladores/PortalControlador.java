@@ -7,7 +7,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,9 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioImagen;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
 import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
-import java.time.Instant;
 
 @Controller
 @RequestMapping("/")
@@ -33,6 +32,9 @@ public class PortalControlador {
     
     @Autowired
     private RepositorioPublicacion repoPublicacion;
+    
+    @Autowired
+    private RepositorioImagen repoImagen;
 
     // PRU DE VISTA DETAIL.HTML
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
@@ -52,8 +54,9 @@ public class PortalControlador {
 
     // VISTA DE REGISTRAR
     @GetMapping("/registrar")
-    public String registrar() {
-
+    public String registrar(ModelMap modelo) {
+        // ---------------- PROBAR ------------------
+        //modelo.addAttribute("imagenPred", repoImagen.imagenPredeterminada());
         return "guest.html";
     }
 
@@ -64,26 +67,22 @@ public class PortalControlador {
             @RequestParam(name = "birthDate") String birthDate,
             @RequestParam(name = "password") String password,
             @RequestParam(name = "password2") String password2,
-
-            // AGREGAR @PARAM DE ROL PARA ELEGIR
-
             MultipartFile image, ModelMap modelo) {
 
         try {
-
             servicioUsuario.register(name, email, DateConverter(birthDate), password, password2, image);
 
             modelo.put("exito", "Usuario registrado correctamente!");
-
-            return "main.html";
+            
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", name);
             modelo.put("email", email);
-
-            return "guest.html";
+            
         }
+        
+        return "guest.html";
 
     }
 
@@ -117,7 +116,7 @@ public class PortalControlador {
 
         birthDate.setDate(Integer.valueOf(fecha.substring(8, 10)));
         birthDate.setMonth(Integer.valueOf(fecha.substring(5, 7)) - 1);
-        birthDate.setYear(Integer.valueOf(fecha.substring(0, 4)));
+        birthDate.setYear(Integer.valueOf(fecha.substring(0, 4))-1900);
 
         return birthDate;
 

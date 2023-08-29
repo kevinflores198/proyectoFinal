@@ -20,11 +20,20 @@ public interface RepositorioPublicacion extends JpaRepository<Publicacion,String
     @Query("SELECT p FROM Publicacion p ORDER BY p.likes DESC")
     public List<Publicacion> listaTop();
     
-    @Query("SELECT p FROM Publicacion p WHERE p.label LIKE :categoria")
-    public List<Publicacion> listaPorCategoria(@Param("categoria") Categorias categoria);
-    // si no es categorias es String
+    @Query("SELECT p FROM Publicacion p ORDER BY p.initialDate DESC")
+    public List<Publicacion> publicacionesByDateDesc();
+
+    @Query("SELECT p FROM Publicacion p ORDER BY p.initialDate ASC")
+    public List<Publicacion> publicacionesByDateAsc();
     
-    //HACER QUERY DE POR FECHA ASC, DESC
-    //HACER QUERY POR CATEGORIA
+    @Query("SELECT p FROM Publicacion p WHERE p.label LIKE :categoria")
+    public List<Publicacion> publicacionesByLabel(@Param("categoria") Categorias categoria);
+    
+    @Query("SELECT p FROM Publicacion p ORDER BY p.user.name DESC")
+    public List<Publicacion> findAllOrderByNombreDiseñadorDesc();
+
+    @Query("SELECT p FROM Publicacion p ORDER BY p.user.name ASC")
+    public List<Publicacion> findAllOrderByNombreDiseñadorAsc();
+    
     //HACER QUERY POR NOMBRE DE DISEÑADOR ASC, DESC
 }
