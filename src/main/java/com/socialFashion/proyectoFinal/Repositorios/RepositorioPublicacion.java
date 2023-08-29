@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
+import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 
 /**
  * repositorioPublicacion
@@ -18,6 +19,10 @@ public interface RepositorioPublicacion extends JpaRepository<Publicacion,String
     
     @Query("SELECT p FROM Publicacion p ORDER BY p.likes DESC")
     public List<Publicacion> listaTop();
+    
+    @Query("SELECT p FROM Publicacion p WHERE p.label LIKE :categoria")
+    public List<Publicacion> listaPorCategoria(@Param("categoria") Categorias categoria);
+    // si no es categorias es String
     
     //HACER QUERY DE POR FECHA ASC, DESC
     //HACER QUERY POR CATEGORIA

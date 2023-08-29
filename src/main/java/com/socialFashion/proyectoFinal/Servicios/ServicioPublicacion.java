@@ -150,4 +150,8 @@ public class ServicioPublicacion {
     public List<Publicacion> topDiez(){
         return repoPubli.listaTop().subList(0, 9);
     }
+    
+    public List<Publicacion> topPublicacion(){
+        return repoPubli.listaTop();
+    }
 }

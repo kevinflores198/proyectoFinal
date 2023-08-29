@@ -34,7 +34,7 @@
                     <button type="button" class="btn btn-sm btn-primary dropdown-toggle " data-toggle="dropdown">Mi
                         Cuenta</button>
                     <div class="dropdown-menu dropdown-menu-right bg-dark">
-                        <button class="dropdown-item" type="button"><a class="" th:href="@{/detail}">Perfil</a></button>
+                        <button class="dropdown-item" type="button"><a class="" th:href="@{/perfil/__${session.usuariosession.id}__}">Perfil</a></button>
                         <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
                                 th:href="@{/login}">lista
                                 diseñadores</a></button>

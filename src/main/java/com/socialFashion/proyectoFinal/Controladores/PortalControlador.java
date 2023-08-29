@@ -1,5 +1,6 @@
 package com.socialFashion.proyectoFinal.Controladores;
 
+import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
 import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
 import java.time.Instant;
 
@@ -28,6 +30,9 @@ public class PortalControlador {
 
     @Autowired
     private ServicioUsuario servicioUsuario;
+    
+    @Autowired
+    private RepositorioPublicacion repoPublicacion;
 
     // PRU DE VISTA DETAIL.HTML
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
@@ -95,13 +100,13 @@ public class PortalControlador {
     //VISTA MAIN 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/main")
-    public String inicio(/*HttpSession session*/) {
+    public String inicio(HttpSession session) {
 
-        // Usuario logueado = (Usuario) session.getAttribute("usuariosession");
-
-        // if (logueado.getRole().toString().equals("ADMIN")) {
-        // return "main.html";
-        // }
+        
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        if (logueado.getRole().toString().equals("ADMIN")) {
+        return "main.html";
+        }
 
         return "main.html";
     }
@@ -127,7 +132,7 @@ public class PortalControlador {
         modelo.addAttribute("usuarios", usuarios);
 
         // RETORNAR A SU HTML
-        return "#";
+        return "lista-usuarios.html";
 
     }
 
@@ -135,9 +140,11 @@ public class PortalControlador {
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISIGNER')")
     @GetMapping("/perfil/{id}")
     public String perfil(@PathVariable String id, ModelMap modelo) {
-
+        
         Usuario usuario = servicioUsuario.getOne(id);
+        List<Publicacion> publicaciones = repoPublicacion.publicacionesByUser(id);
         modelo.addAttribute("usuario", usuario);
+        modelo.addAttribute("publicaciones", publicaciones);
 
         return "perfil.html";
 
