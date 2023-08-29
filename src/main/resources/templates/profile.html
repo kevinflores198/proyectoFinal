@@ -1,53 +1,88 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security%22%3E">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="/fragments/head :: head"></head>
 
 <body>
 
-    <nav th:replace="/fragments/navbar-main :: nav"></nav>
+    <nav th:replace="/fragments/navbar-perfil :: nav"></nav>
 
-    <!-- descripcion del diseñador -->
-    <div class="perfil-usuario">
-        <section>
-            <img src="/img/1.png" alt="" width="50px">
-            <h1>Nombre del diseñador</h1>
-            <p>Descripcion del diseñador</p>
-            <p>(categorias)</p>
-        </section>
-    </div>
-
-
-<!-- crear publicacion -->
-    <div class="publicacion-decripta">
-        <label class="custum-file-upload" for="file">
-            <div class="text">
-                <span class="box-image">Ingrese una imagen</span>
+    <!-- informacion del perfil -->
+    <div class="col-lg-12 col-md-12 col-sm-12 pb-1 d-flex justify-content-center">
+        <div class="product-item bg-light mb-4">
+            <div class=" position-relative overflow-hidden">
+                <img class="img-thumbnail" th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="" height="250px" width="350px">
+                <h2 class="d-flex justify-content-center align-items-center " th:text=" ${session.usuariosession.name} "></h2>
             </div>
-            <input type="file" id="file" name="image" th:value="${image}">
-        </label>
-        <div class="form-group">
-            <label for="name">Descripcion</label>
-            <textarea type="text" class="form-control" id="name">
         </div>
+    </div>
+    <!-- Crear publicacion -->
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Publicar</span></h2>
+    <div class="container-fluid pb-5 ">
+        <div class="row px-xl-5 justify-content-center d-flex align-items-center ">
 
-        <div class="input-group">
-            <div class="input-group-append">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
-                        data-toggle="dropdown">Categoria</button>
-                    <div class="dropdown-menu dropdown-menu-left bg-dark">
-                        <button class="dropdown-item" type="button"><a class=""
-                                href="guest.html">Indumentaria</a></button>
-                        <button class="dropdown-item" type="button"><a class=""
-                                href="guest.html">Calzado</a></button>
-                        <button class="dropdown-item" type="button"><a class=""
-                                href="guest.html">Kids</a></button>
+            <div class="col-lg-9 h-auto mb-30">
+                <div class="h-100 bg-light p-30">
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-primary dropdown-toggle "
+                                    data-toggle="dropdown">Categoria</button>
+                                <div class="dropdown-menu dropdown-menu-left bg-dark">
+                                    <button class="dropdown-item" type="button"><a class=""
+                                            href="guest.html">Indumentaria</a></button>
+                                    <button class="dropdown-item" type="button"><a class=""
+                                            href="guest.html">Calzado</a></button>
+                                    <button class="dropdown-item" type="button"><a class=""
+                                            href="guest.html">Maquillaje</a></button>
+                                    <button class="dropdown-item" type="button"><a class=""
+                                            href="guest.html">Accesorios</a></button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <label class="custum-file-upload" for="file">
+                        <div class="text">
+                            <h5><span class="box-image">Ingrese una imagen</span></h5>
+                        </div>
+                        <input type="file" id="file" name="image" th:value="${image}">
+                    </label>
+                    <form>
+                        <h5>Descripcion de la publicacion</h5>
+                        <div class="form-group">
+                            <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                        </div>
+                        <!--<form class="form-group mb-0" th:antion="../../comentario/comentar/__${Publicacion.id}__" method="POST">-->
+                        <div class="form-group mb-0">
+                            <input type="submit" value="Publicar" class="btn btn-primary px-3">
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>
-        
+    </div>
+
+    <!--
+        <div>
+            <select name="label">
+                <option>Seleccionar categoria</option>
+            PROBAR
+                <option th:each="categoria : ${categorias}"
+                        th:value="${categoria}"
+                        th:text="${categoria}"
+                        />
+            PROBAR
+                <option th:value="INDUMENTARIA">Indumentaria</option>
+                <option th:value="CALZADO">Calzado</option>
+                <option th:value="MAQUILLAJE">Maquillaje</option>
+                <option th:value="ACCESORIO">Accesorio</option>
+            </select>
+        </div>
+-->
+
+
+
     </div>
 
 
@@ -56,10 +91,11 @@
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span
                 class="bg-secondary pr-3">Publicaciones</span></h2>
         <div class="row px-xl-5">
+
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
+                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
@@ -84,7 +120,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
+                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
@@ -109,7 +145,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
+                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
@@ -134,7 +170,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
+                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
@@ -159,7 +195,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
+                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
@@ -184,7 +220,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
+                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
@@ -209,7 +245,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
+                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
@@ -234,7 +270,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/modelo2.jpg" alt="">
+                        <img class="img-thumbnail w-100" src="/img/modelo2.jpg" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
@@ -256,42 +292,14 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
-        <div class="row px-xl-5 pt-5">
-            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                <h5 class="text-secondary text-uppercase mb-4">Social Fashion</h5>
-                <p class="mb-4">Publica tus diseños y creaciones en una de las paginas mas reconocidas
-                    internacionalmente</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>joinus@socialFashion.com</p>
-            </div>
-            <div class="col-lg-8 col-md-12">
-                <div class="row">
-                    <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Top 10</a>
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="fa fa-angle-right mr-2"></i>Diseñadores</a>
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="fa fa-angle-right mr-2"></i>Publicaciones</a>
-                            <a class="text-danger mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Reportar</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contactanos</a>
-                        </div>
-                    </div>
+    <footer th:replace="/fragments/footer :: footer"> </footer>
 
-                </div>
-            </div>
-        </div>
-        <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
-        </div>
-    </div>
-    <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-    <!-- JavaScript Libraries -->
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
@@ -300,6 +308,8 @@
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
     <!-- Template Javascript -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
     <script src="js/main.js"></script>
 </body>
 
