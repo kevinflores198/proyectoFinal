@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/guest.css">
+    <link rel="stylesheet" href="/src/main/resources/Static/css/index.css">
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/guest.css">
+    <title>Bienvenido A S/F</title>
+</head>
+
+<body>
+    <!-- Topbar Start -->
+
+
+    <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex ">
+        <div class="col-lg-4">
+            <a th:href="@{/}" class="text-decoration-none">
+                <span class="h1 text-uppercase text-light bg-dark px-2">Social</span>
+                <span class="h1 text-uppercase text-dark bg-light px-2 ml-n1">Fashion</span>
+            </a>
+        </div>
+        <div class="col-lg-4 col-6 text-left">
+            <form action="">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for products">
+                    <div class="input-group-append">
+                        <span class="input-group-text bg-transparent text-primary">
+                            <i class="fa fa-search"></i>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4 col-6 text-right">
+            <div class="d-inline-flex align-items-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi
+                        Cuenta</button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button"><a class="" href="guest.html">Iniciar
+                                Sesion</a></button>
+                        <button class="dropdown-item" type="button"><a class=""
+                                href="guest.html">Registrarse</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="main">
+        <div class="container">
+            <div id="signInSignUpBox">
+                <div id="overlay">
+                    <div id="overlayInner">
+                        <div id="signUp">
+                            <h1 class="titule1">Bienvenido a <br>Social Fashion!</h1><br>
+                            <p>Ingresa aquí si ya estas registrado</p>
+                            <button onClick='moveSliderRight()'>Ingresar</button>
+                        </div>
+                        <div id="signIn">
+                            <h1 class="titule1">Bienvenido a <br>Social Fashion!</h1>
+                            <p>Si queres ser parte de la red mas grande de diseñadores</p>
+                            <button onClick='moveSliderLeft()'>Registrarme</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="forms">
+                    <div id="signInForm" class='shiftRight'>
+                        <div class="holder">
+                            <h1>Ingresar a mi cuenta</h1>
+
+                            <input type="email" placeholder="Email"><br>
+                            <input type="password" placeholder='Password'><br>
+                            <label class="material-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Recordarme
+                            </label>
+
+
+
+                            <button class="ingresar">Ingresar</button>
+
+                        </div>
+                    </div>
+
+                    <div id="signUpForm" th:action="@{/main}">
+                        <div class="holder">
+
+                            <h1>Crear Cuenta</h1>
+
+                            <!-- <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError">
+                                <div class="card-body">
+                                    <h5 class="card-title">Error!</h5>
+                                    <p class="card-text" th:text="${error}"></p>
+                                </div>
+                            </div>
+
+                            <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito">
+                                <div class="card-body">
+                                    <h5 class="card-title">Exito!</h5>
+                                    <p class="card-text" th:text="${exito}"></p>
+                                </div>
+                            </div> -->
+
+                            <input type="text" placeholder="Name" th:value="${name}"><br>
+                            <input type="email" placeholder="Email" th:value="${email}"><br>
+                            <input type="password" placeholder='Password' th:value="${password}"><br>
+                            <input type="date" placeholder="Fecha de nacimiento" th:value="${birthDate}"><br>
+                            <label class="custum-file-upload" for="file" th:value="${image}">
+                                <div class="text">
+                                    <span class="box-image">📷 Foto de perfil</span>
+                                </div>
+                                <input type="file" id="file">
+                            </label>
+
+                            <button  type="submit">Registrarme</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src='/js/guest.js'></script>
+</body>
+
+</html>
