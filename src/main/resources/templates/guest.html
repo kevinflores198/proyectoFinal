@@ -36,7 +36,7 @@
                                 <span class="checkmark"></span>
                                 Recordarme
                             </label>
-                            <button class="ingresar" type="submit">Ingresar</button>
+                            <button class="ingresar" type="submit" onclick="openPopup()">Ingresar</button>
                         </form>
                     </div>
 
@@ -47,17 +47,31 @@
                             <input type="text" placeholder="Nombre completo" name="name" th:value="${name}"><br>
                             <input type="email" placeholder="Correo electronico" name="email" th:value="${email}"><br>
                             <input type="password" placeholder='Contraseña' name="password" th:value="${password}"><br>
-                            <input type="password" placeholder='Repetir contraseña' name="password2" th:value="${password2}"><br>
-                            <input type="date" placeholder="Fecha de nacimiento" name="birthDate" th:value="${birthDate}"><br>
+                            <input type="password" placeholder='Repetir contraseña' name="password2"
+                                th:value="${password2}"><br>
+                            <input type="date" placeholder="Fecha de nacimiento" name="birthDate"
+                                th:value="${birthDate}"><br>
                             <label class="custum-file-upload" for="file">
                                 <div class="text">
                                     <span class="box-image">📷 Foto de perfil</span>
                                 </div>
-                                <input type="file" id="file" name="image" th:value="${image}">
+                                <input type="file" id="file" name="image" th:value="${imagenPred}">
                             </label>
 
-                            <button type="submit">Registrarme</button>
+                            <button class="ingresar" type="submit" onclick="openPopup()">Registrarme</button>
                         </form>
+                    </div>
+                </div>
+                <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" style="border-radius: 15px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Error!</h5>
+                        <p class="card-text" th:text="${error}"></p>
+                    </div>
+                </div>
+                <div th:if="${exito != null}" class="card text-white bg-success mb-3 mensajeExito" style="border-radius: 15px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Exito!</h5>
+                        <p class="card-text" th:text="${exito}"></p>
                     </div>
                 </div>
             </div>

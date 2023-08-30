@@ -26,9 +26,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.socialFashion.proyectoFinal.Entidades.Imagen;
+import com.socialFashion.proyectoFinal.Entidades.Publicacion;
+import com.socialFashion.proyectoFinal.Entidades.ReportUser;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Role;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioImagen;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioReporteUsuario;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
 
 @Service
@@ -38,7 +42,18 @@ public class ServicioUsuario implements UserDetailsService {
     private RepositorioUsuario userRepository;
 
     @Autowired
+    private RepositorioReporteUsuario repositorioReporteUsuario;
+
+    @Autowired
     private ServicioImagen servicioImagen;
+
+    @Autowired
+    private ServicioPublicacion servicioPublicacion;
+    
+    @Autowired
+    private RepositorioImagen repoImagen;
+
+    //PEDIR EL PARAM EL ROL
 
     @Transactional
     public void register(String name, String email, Date birthDate, String password, String password2, MultipartFile image) throws MiException{
@@ -71,7 +86,7 @@ public class ServicioUsuario implements UserDetailsService {
     }
 
     @Transactional
-    public void update(String id, String name, String email , String password, String password2) throws MiException{
+    public void update(String id, String name, String password, String password2, MultipartFile image) throws MiException{
         validate(name, password, password2);
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
@@ -79,18 +94,26 @@ public class ServicioUsuario implements UserDetailsService {
             Usuario user = answer.get();
 
             user.setName(name);
-            user.setEmail(email);
             user.setPassword(new BCryptPasswordEncoder().encode(password));
             user.setAlta(true);
-            user.setRole(Role.USER);
-
+            Imagen imagen = servicioImagen.guardar(image); 
+            user.setImage(imagen);
+            
         }
 
     }
 
     @Transactional
-    public void delete(String id , String name){
+    public void delete(String id) throws MiException{
 
+        for (Publicacion publicacion : servicioPublicacion.getPublicacionByUser(id)) {
+            servicioPublicacion.eliminar(publicacion.getId());
+        }
+
+        for (ReportUser reportUser : repositorioReporteUsuario.reportUsuarioByIdUser(id)) {
+            repositorioReporteUsuario.delete(reportUser);
+        }
+        
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
             List<Usuario> us = listUsers();
@@ -117,14 +140,16 @@ public class ServicioUsuario implements UserDetailsService {
 
     }
 
+//    ------ Metodo para Imagen Predeterminada -------
+//    private void validarImagen(MultipartFile image){
+//        if(image.isEmpty()){
+//            image = repoImagen.imagenPredeterminada();
+//        }
+//    }
+
     @Transactional(readOnly=true)
     public List<Usuario> listUsers() {
-
-        List<Usuario> users = new ArrayList();
-
-        users = userRepository.findAll();
-
-        return users;
+        return userRepository.findAll();
     }
 
     public Usuario getOne(String name){
@@ -159,19 +184,21 @@ public class ServicioUsuario implements UserDetailsService {
 
         Date hoy = new Date();
         
-        if((hoy.getYear() - birthDate.getYear()) > 18 ){            // 2023 - 2000 = 23
+        int anioActual = hoy.getYear()+1900;
+
+        if((anioActual - birthDate.getYear()) > 18 ){       
             
             return true;
             
-        }else if((hoy.getYear() - birthDate.getYear()) == 18){
+        }else if((anioActual - birthDate.getYear()) == 18){
             
-            if((hoy.getMonth() - birthDate.getMonth()) > 0){        // 08 - 08 = 0
+            if((hoy.getMonth() - birthDate.getMonth()) > 0){
                 
                 return true;
                 
             }else if((hoy.getMonth() - birthDate.getMonth()) == 0){
                 
-                if((hoy.getDate() - birthDate.getDate()) >= 0){     // 05 - 22 = -17
+                if((hoy.getDate() - birthDate.getDate()) >= 0){
                     
                     return true;
 
