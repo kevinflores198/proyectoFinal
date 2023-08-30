@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body>
+
+    <nav th:replace="/fragments/navbar-main :: nav"></nav>
+
+    <div class="row px-xl-5">
+        <div class="col">
+            <div class="bg-light p-30">
+                <h2>Reportes</h2>
+                <div class="nav nav-tabs mb-4">
+                    <a class="nav-item nav-link text-light active" data-toggle="tab" href="#tab-pane-1">Publicaciones</a>
+                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Usuarios</a>
+                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Comentarios</a>
+                </div>
+
+                <!-- division de las 3 columnas de listas -->
+                <div class="tab-content">
+
+                    <!-- espacio de las publicaciones -->
+
+                    <div class="tab-pane fade show active" id="tab-pane-1">
+                        <div class="container-fluid">
+                            <div class="row px-xl-5">
+                                <div class="col-lg-12 table-responsive mb-5">
+                                    <table class="table table-light table-borderless table-hover text-center mb-0">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>ID</th> 
+                                                <th>Razon</th>
+                                            </tr>
+                                        </thead>               
+                                        <tbody class="align-middle" th:each = "publicacion : ${publicaciones}">
+                                            <tr>
+                                                <th scope="row" th:text="${publicacion.id}"></th>
+                                                <td class="align-middle" th:text="${publicacion.label}"></td>
+                                                <td class="align-middle" th:text="${publicacion.initialDate}"></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- espacio de los usuarios -->
+
+                    <div class="tab-pane fade" id="tab-pane-2">
+                        <div class="container-fluid">
+                            <div class="row px-xl-5">
+                                <div class="col-lg-12 table-responsive mb-5">
+                                    <table class="table table-light table-borderless table-hover text-center mb-0">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Imagen</th>
+                                                <th>Nombre</th>
+                                                <th>Email</th>
+                                                <th>Fecha de Nacimiento</th>
+                                                <th>Modificar</th>
+                                                <th>Eliminar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="align-middle" th:each = "user : ${usuarios}">
+                                            <tr>
+                                                <th scope="row" th:text="${user.id}"></th>
+                                                <td class="align-middle">
+                                                    <a><img th:if="user.image != null" style="width: 200px;" th:src="@{/imagen/perfil/__${user.id}__}"/></a>
+                                                </td>
+                                                <td class="align-middle" th:text="${user.name}"></td>
+                                                <td class="align-middle" th:text="${user.email}"></td>
+                                                <td class="align-middle" th:text="${user.birthDate}"></td>
+                                                <td class="align-middle">
+                                                    <button class="btn btn-sm btn-primary" th:href="@{/perfil/modificar/__${user.id}__}">Editar</button>
+                                                </td>
+                                                <td class="align-middle">
+                                                    <a sec:authorize="hasRole('ADMIN')" target="_self" th:href="@{/eliminar/__${user.id}__}"><i class="fa fa-trash"></i>Eliminar</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- espacio de los comentrios -->
+
+                    <div class="tab-pane fade" id="tab-pane-3">
+                        <div class="container-fluid">
+                            <div class="row px-xl-5">
+                                <div class="col-lg-12 table-responsive mb-5">
+                                    <table class="table table-light table-borderless table-hover text-center mb-0">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>ID Comentario</th>
+                                                <th>ID publicacion</th>
+                                                <th>ID del Usuario</th>
+                                                <th>Contenido</th>
+                                                <!-- <th>Modificar</th> -->
+                                                <th>Eliminar</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody class="align-middle" th:each = "coment : ${comentarios}">
+                                            <tr>
+                                                <th scope="row" th:text="${coment.idComent}"></th>
+                                                <td class="align-middle" th:text="${comentario.publicacion.id}"></td>
+                                                <td class="align-middle" th:text="${comentario.idUser}"></td>
+                                                <td class="align-middle" th:text="${comentario.comment}"></td>
+                                                <!-- <td class="align-middle">
+                                                    <button class="btn btn-sm btn-primary" th:href="@{/comentarios/modificar/__${user.id}__}">Editar</button>
+                                                </td> -->
+                                                <td class="align-middle">
+                                                    <a sec:authorize="hasRole('ADMIN')" target="_self" th:href="@{/comentarios/eliminar/__${user.id}__}"><i class="fa fa-trash"></i>Eliminar</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="/fragments/footer :: footer"> </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
