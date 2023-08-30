@@ -6,231 +6,22 @@
 
 <body>
 
-    <div class="row align-items-center  py-3 px-xl-5 d-none d-lg-flex">
-        <div class="col-lg-4">
-            <a class="text-decoration-none" th:href="@{/main}">
-                <span class="h1 text-uppercase text-light bg-dark px-2">Social</span>
-                <span class="h1 text-uppercase text-dark bg-light px-2 ml-n1">Fashion</span>
-            </a>
-        </div>
-        <div class="col-lg-4 col-6 text-left">
-            <form action="">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for products">
-                    <div class="input-group-append">
-                        <span class="input-group-text bg-transparent text-primary">
-                            <i class="fa fa-search"></i>
-                        </span>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="col-lg-4 col-6 text-right">
-            <div class="d-inline-flex align-items-center">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi
-                        Cuenta</button>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Mi
-                            Cuenta</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
-                                    Lista Usuarios</a></button>
-                            <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
-                                    Lista Publicaciones</a></button>
-                            <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
-                                    Lista Comentarios</a></button>
-                            <button class="dropdown-item" type="button"><a sec:authorize="hasRole('ADMIN')" href="#">
-                                    Lista Reportes</a></button>
-                            <button class="dropdown-item" type="button"><a href="#">
-                                    Perfil</a></button>
-                            <button class="dropdown-item" type="button"><a th:href="@{/logout}">
-                                    Salir</a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <nav th:replace="/fragments/navbar-main :: nav"></nav>
 
-    <!-- Navbar 2 -->
-    <div class="container-fluid  mb-30">
-
-        <div class="row px-xl-5">
-            <div class="col-lg-3 d-none d-lg-block">
-                <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse"
-                    href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
-                    <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Diseñadores</h6>
-                    <i class="fa fa-angle-down text-dark"></i>
-                </a>
-                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
-                    id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
-                    <div class="navbar-nav w-100">
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </nav>
-            </div>
-
-            <div class="col-lg-9">
-                <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
-                    <a href="" class="text-decoration-none d-block d-lg-none">
-                        <span class="h1 text-uppercase text-dark bg-light px-2">Social</span>
-                        <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Fashion</span>
-                    </a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto py-0">
-                            <a href="main.html" class="nav-item nav-link">Inicio</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Publicaciones<i
-                                        class="fa fa-angle-down mt-1"></i></a>
-                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="main.html" class="dropdown-item">Top 10</a>
-                                    <a href="main.html" class="dropdown-item">Publicaciones</a>
-                                </div>
-                            </div>
-                            <a href="contact.html" class="nav-item nav-link">Contactanos</a>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Shop Detail Start -->
     <div class="container-fluid pb-5">
         <div class="row px-xl-5">
             <div class="col-lg-5 mb-30">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner bg-light">
-                        <div class="carousel-item active">
-                            <img class="w-100 h-100" src="img/modelo.jpg" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/modelo2.jpg" alt="Image">
-                        </div>
-
+                    <div class="carousel-item active">
+                        <img class="w-100 h-100" th:src="@{/imagen/publicacion/__${publicacion.id}__}" alt="">
                     </div>
-                    <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
-                        <i class="fa fa-2x fa-angle-left text-dark"></i>
-                    </a>
-                    <a class="carousel-control-next" href="#product-carousel" data-slide="next">
-                        <i class="fa fa-2x fa-angle-right text-dark"></i>
-                    </a>
                 </div>
             </div>
-
             <div class="col-lg-7 h-auto mb-30">
                 <div class="h-100 bg-light p-30">
-                    <h3>Designer(publicacion completa con comentarios)</h3>
-                    <div class="d-flex mb-3">
-                        <div class="text-primary mr-2">
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star-half-alt"></small>
-                            <small class="far fa-star"></small>
-                        </div>
-                        <small class="pt-1">Calificar</small>
-                    </div>
-                    <h3 class="font-weight-semi-bold mb-4">Descripcion: Volup erat ipsum diam elitr rebum et dolor. Est
-                        nonumy elitr
-                        erat diam stet sit
-                        clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
-                        Nonumy
-                    </h3>
+                    <h3><a href="#" th:text="${publicacion.user.name}" ></a></h3>
+                    <h5 class="font-weight-semi-bold mb-4" th:text="${publicacion.label}" ></h5>
+                    <h3 class="font-weight-semi-bold mb-4" th:text="${publicacion.content}" ></h3>
 
                     <button id="boton-mg" class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Me
                         gusta</button>
@@ -238,30 +29,12 @@
                         <div class="form-group">
                             <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
                         </div>
-
+                        <!--<form class="form-group mb-0" th:antion="../../comentario/comentar/__${Publicacion.id}__" method="POST">-->
                         <div class="form-group mb-0">
                             <input type="submit" value="Comentar" class="btn btn-primary px-3">
                         </div>
                     </form>
 
-                </div>
-
-                <div class="d-flex pt-2">
-                    <strong class="text-dark mr-2">Share on:</strong>
-                    <div class="d-inline-flex">
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-pinterest"></i>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -269,6 +42,7 @@
 
     <div class="row px-xl-5">
         <div class="col">
+
             <div class="bg-light p-30">
                 <div class="nav nav-tabs mb-4">
                     <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Comentarios</a>
@@ -286,7 +60,8 @@
                             kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.
                         </p>
                         <button class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Me gusta</button>
-                        <button class="btn btn-danger px-3"><i class="fa fa-exclamation"></i></i> Reportar</button>
+                        <button class="btn btn-danger px-3"><i class="fa fa-exclamation"></i></i> <a
+                                th:href="@{/reporte}">Reportar</a></button>
 
                         <div id="barra-espaciadora" class="row border-top mx-xl-5 py-4"
                             style="border-color: black !important;"></div>
@@ -337,39 +112,27 @@
 
                     <div class="tab-pane fade" id="tab-pane-3">
                         <div class="row">
+
                             <div class="col-md-6">
-                                <h4 class="mb-4">Product Description</h4>
-                                <div class="media mb-4">
-                                    <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
-                                        style="width: 45px;">
-                                    <div class="media-body">
-                                        <h6>Usuario que reporta<small> - <i>fecha del reporte</i></small></h6>
-                                        <div class="text-primary mb-2">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                            <i class="far fa-star"></i>
-                                        </div>
-                                        <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur
-                                            vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore
-                                            rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos
-                                            elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor
-                                            kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut
-                                            diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod
-                                            nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam
-                                            kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor
-                                            ea invidunt.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h3 class="mb-4">Reporte</h3>
+                                <h3 class="mb-4">Reportar</h3>
                                 <form>
-                                    <div class="form-group">
-                                        <label for="message">Razon</label>
-                                        <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                    <div class="input-group">
+                                        <div class="input-group-append">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
+                                                    data-toggle="dropdown">Razon</button>
+                                                <div class="dropdown-menu dropdown-menu-left bg-dark">
+                                                    <button class="dropdown-item" type="button"><a class=""
+                                                            href="guest.html">Razon 1</a></button>
+                                                    <button class="dropdown-item" type="button"><a class=""
+                                                            href="guest.html">Razon 2</a></button>
+                                                    <button class="dropdown-item" type="button"><a class=""
+                                                            href="guest.html">Razon 3</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+
                                     <div class="form-group">
                                         <label for="name">Nombre</label>
                                         <input type="text" class="form-control" id="name">
@@ -389,7 +152,7 @@
             </div>
         </div>
     </div>
-    </div>
+
     <!-- Shop Detail End -->
 
     <!-- 
@@ -625,38 +388,8 @@
     </div>
 
 -->
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
-        <div class="row px-xl-5 pt-5">
-            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                <h5 class="text-secondary text-uppercase mb-4">Social Fashion</h5>
-                <p class="mb-4">Publica tus diseños y creaciones en una de las paginas mas reconocidas
-                    internacionalmente</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>joinus@socialFashion.com</p>
-            </div>
-            <div class="col-lg-8 col-md-12">
-                <div class="row">
-                    <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Top
-                                10</a>
-                            <a class="text-secondary mb-2" href="index.html"><i
-                                    class="fa fa-angle-right mr-2"></i>Designer</a>
-                            <a class="text-secondary mb-2" href="index.html"><i
-                                    class="fa fa-angle-right mr-2"></i>Publicaciones</a>
-                            <a class="text-danger mb-2" href="index.html"><i
-                                    class="fa fa-angle-right mr-2"></i>Reportar</a>
-                            <a class="text-secondary" href="index.html"><i
-                                    class="fa fa-angle-right mr-2"></i>Contactanos</a>
-                        </div>
-                    </div>
+    <footer th:replace="/fragments/footer :: footer"></footer>
 
-                </div>
-            </div>
-        </div>
-        <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;"></div>
-    </div>
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
     <!-- JavaScript Libraries -->
