@@ -2,21 +2,31 @@ package com.socialFashion.proyectoFinal.Servicios;
 
 import com.socialFashion.proyectoFinal.Entidades.Comentario;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
+import com.socialFashion.proyectoFinal.Entidades.ReportComentario;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 
  import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioComentario;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioReporteComentario;
+
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 public class ServicioComentario {
     
     @Autowired
     private RepositorioComentario repositorioComentario;
+
     @Autowired
     private RepositorioPublicacion repositorioPublicacion;
+
+    @Autowired
+    private RepositorioReporteComentario repoReporteComentario;
 
     @Transactional
     public void crearComentario(String idUser, String idPublicacion,String comment ) throws MiException {
@@ -35,9 +45,18 @@ public class ServicioComentario {
         comentario.setComment(comment);
     }
     
-   //hola
+    @Transactional(readOnly=true)
+    public List<Comentario> getComentariosByPublicacion(String idPublicacion){
+        return repositorioComentario.comentariosByIdPublicacion(idPublicacion);
+    }
+
+    @Transactional(readOnly=true)
     public List<Comentario> obtenerTodosLosComentarios() {
         return repositorioComentario.findAll();
+    }
+
+    public Comentario getOne(String id){
+        return repositorioComentario.getOne(id);
     }
 
     public Optional<Comentario> obtenerComentarioPorId(String idComent) {
@@ -45,6 +64,9 @@ public class ServicioComentario {
     }
 
     public void eliminarComentario(String idComent) {
+        for (ReportComentario reportComentario : repoReporteComentario.reportComentarioByIdComentario(idComent)) {
+            repoReporteComentario.delete(reportComentario);
+        }
         repositorioComentario.deleteById(idComent);
     }
     

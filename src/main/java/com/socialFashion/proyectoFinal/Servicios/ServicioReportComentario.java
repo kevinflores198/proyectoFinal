@@ -32,7 +32,7 @@ public class ServicioReportComentario {
         if (idUser.isEmpty() || idUser == null) {
             throw new MiException("El ID de usuario no puede ser nulo");
         }
-        if (reason.isEmpty() || reason == null) {
+        if (reason == null) {
             throw new MiException("La razon no puede estar vacia");
         }
 
@@ -45,17 +45,18 @@ public class ServicioReportComentario {
             Comentario coment = rsp.get();
             reporte.setComentario(coment);
         } else {
-
             throw new MiException("No se encontro el comentario");
-
-            
-
         }
 
         reporte.setReason(reason);
 
         try {
             ReportsComentario reportType = ReportsComentario.valueOf(typeReport.toUpperCase());
+            if(reportType==ReportsComentario.OTRO){
+                if(reporte.getReason().isEmpty()){
+                    throw new MiException("La razon no puede estar vacia si el tipo de reporte es OTRO");
+                }
+            }
             reporte.setTypeReport(reportType);
         } catch (Exception e) {
             throw new MiException("El tipo de reporte no es valido");
@@ -83,7 +84,7 @@ public class ServicioReportComentario {
         if (idReport == null || idReport.isEmpty()) {
             throw new MiException("El ID del reporte no puede ser nulo");
         }
-        return repoComentario.ReportComentariobyID(idReport);
+        return repoComentario.reportComentarioById(idReport);
     }
 
 }

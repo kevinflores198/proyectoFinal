@@ -18,14 +18,14 @@
                     <div class="divVolver">
                         <a th:href="@{/login}" class="btn btn-primary my-2 br-20 botonVolver botones">Volver a
                             ingresar</a>
-                        <a th:href="@{/main}" class="btn btn-primary my-2 botonVolver botones">Volver al men (Si ya ha
-                            ingresado))</a>
+                        <a th:href="@{/main}" class="btn btn-primary my-2 botonVolver botones">Volver al main (Si ya ha
+                            ingresado)</a>
                     </div>
                 </div>
             </section>
             <div class="container contenedorLibros">
                 <p class="tituloLibros" th:if="${session.usuariosession != null}"
-                    th:text=" 'Hola de vuelta '+ ${session.usuariosession.nombre} ">
+                    th:text=" 'Hola de vuelta '+ ${session.usuariosession.name} ">
                 </p>
             </div>
             <div class="bg-circle-1 bg-circle"></div>

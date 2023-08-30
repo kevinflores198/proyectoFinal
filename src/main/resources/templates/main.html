@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security%22%3E">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="/fragments/head :: head"></head>
 
@@ -16,8 +16,15 @@
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
+<!--                        
+                        <img th:if="publicacion.image != null" th:src="@{/imagen/publicacion/__${publicacion.id}__}"/></a>
+-->
                         <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
                         <div class="product-action">
+<!--                            
+                            Agregar un js donde onClick="cambiarUrlColor" el th:href="/publicacion/MG+/__${id}__" 
+                            pase a ser th:href="/publicacion/MG-/__${id}__", y color: white a color: red
+-->
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
