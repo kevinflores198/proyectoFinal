@@ -12,7 +12,7 @@
         <div class="product-item bg-light mb-4">
             <div class=" position-relative overflow-hidden">
                 <img class="img-thumbnail" th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt=""
-                    height="150px" width="250px">
+                    height="350px" width="450px">
                 <h2 class="d-flex justify-content-center align-items-center "
                     th:text=" ${session.usuariosession.name} "></h2>
             </div>
@@ -20,14 +20,16 @@
     </div>
 
     <!-- Crear publicacion -->
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
-        <span class="bg-secondary pr-3">Publicar</span>
-    </h2>
 
-    <div class="container-fluid pb-5 ">
+
+    <div class="container-fluid ">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
+            <span class="bg-secondary pr-3">Publicar</span>
+        </h2>
         <div class="row px-xl-5 justify-content-center d-flex align-items-center ">
-            <div class="col-lg-9 h-auto mb-30">
-                <form th:action="@{/publicacion/publicar/__${session.usuariosession.id}__}" class="h-100 bg-light p-30" method="POST" enctype="multipart/form-data">
+            <div class="col-lg-9 h-auto">
+                <form th:action="@{/publicacion/publicar/__${session.usuariosession.id}__}" class="h-100 bg-light p-30"
+                    method="POST" enctype="multipart/form-data">
                     <div class="input-group mb-3">
                         <div class="input-group-append">
                             <div class="btn-group">
@@ -39,21 +41,20 @@
                                     <button class="dropdown-item" type="button"><a class="">Maquillaje</a></button>
                                     <button class="dropdown-item" type="button"><a class="">Accesorios</a></button>
                                 </div> -->
-<!-- Categoria de la publi -->
+                                <!-- Categoria de la publi -->
                                 <div>
-                                    <select name="label">
-                                        <option>Seleccionar categoria</option>
-                                        <option th:each="categoria : ${categorias}"
-                                                th:value="${categoria}"
-                                                th:text="${categoria}"
-                                                ></option>
+                                    <select class="btn btn-sm btn-primary dropdown-toggle" name="label">
+                                        <option>CATEGORIA</option>
+                                        <option th:each="categoria : ${categorias}" th:value="${categoria}"
+                                            th:text="${categoria}"></option>
                                     </select>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
 
-<!-- Imagen de la publi -->
+                    <!-- Imagen de la publi -->
                     <label class="custum-file-upload" for="file">
                         <div class="text">
                             <h5><span class="box-image">Ingrese una imagen</span></h5>
@@ -61,11 +62,11 @@
                         <input type="file" id="file" name="archivo" th:value="${archivo}">
                     </label>
 
-<!-- Descripcion de la publi -->
+                    <!-- Descripcion de la publi -->
                     <h5>Descripcion de la publicacion</h5>
                     <div class="form-group">
-                        <input id="message" cols="30" rows="5" class="form-control"
-                            th:value="${content}" name="content"></input>
+                        <input id="message" cols="30" rows="5" class="form-control" th:value="${content}"
+                            name="content"></input>
                     </div>
                     <div class="form-group mb-0">
                         <button type="submit" class="btn btn-primary px-3">Publicar</button>
@@ -88,7 +89,8 @@
                         <img class="img-thumbnail w-100" th:src="@{/imagen/publicacion/__${publicacion.id}__}" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" th:href="@{/publicacion/detail/__${publicacion.id}__}"><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square"
+                                th:href="@{/publicacion/detail/__${publicacion.id}__}"><i class="">ir</i></a>
                             <a class="btn btn-outline-dark btn-square" th:href="@{/report}">
                                 <i class="fa fa-exclamation"></i></a>
                         </div>
@@ -101,7 +103,8 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" th:href="@{/publicacion/detail/__${publicacion.id}__}"><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square"
+                                th:href="@{/publicacion/detail/__${publicacion.id}__}"><i class="">ir</i></a>
                             <a class="btn btn-outline-dark btn-square" th:href="@{/report}">
                                 <i class="fa fa-exclamation"></i></a>
                         </div>
