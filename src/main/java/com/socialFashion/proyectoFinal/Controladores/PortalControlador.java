@@ -95,6 +95,8 @@ public class PortalControlador {
     public String inicio(HttpSession session) {
 
         
+
+        
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         if (logueado.getRole().toString().equals("ADMIN")) {
         return "main.html";
@@ -184,6 +186,8 @@ public class PortalControlador {
 
         
     }
+
+    
 
     
 }

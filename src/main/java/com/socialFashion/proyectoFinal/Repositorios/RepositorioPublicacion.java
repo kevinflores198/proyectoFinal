@@ -1,4 +1,5 @@
 package com.socialFashion.proyectoFinal.Repositorios;
+import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -37,6 +38,10 @@ public interface RepositorioPublicacion extends JpaRepository<Publicacion,String
 
     @Query("SELECT p FROM Publicacion p ORDER BY p.user.name ASC")
     public List<Publicacion> findAllOrderByNombreDiseñadorAsc();
+
+    //VIENDO QUE ONDA LA QUERY DE TOP 10 CREO Q FUNCIONA 
+    @Query("SELECT p FROM Publicaciones p WHERE p.initialDate >= DATE_ADD(NOW(), INTERVAL -7 DAY) ORDER BY (COUNT(p.likes) + COUNT(p.comments)) DESC LIMIT 10")
+    public List<Publicacion> top10DeLaSemana();
     
-    //HACER QUERY POR NOMBRE DE DISEÑADOR ASC, DESC
+    
 }
