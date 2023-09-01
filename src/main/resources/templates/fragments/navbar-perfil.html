@@ -19,8 +19,10 @@
                             <div class="dropdown-menu dropdown-menu-right bg-dark">
                                 <button class="dropdown-item" type="button"><a class=""
                                         href="guest.html">Diseñadores</a></button>
-                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Mas me gustas</a></button>
-                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Fecha</a></button>
+                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Mas me
+                                        gustas</a></button>
+                                <button class="dropdown-item" type="button"><a class=""
+                                        href="guest.html">Fecha</a></button>
                             </div>
                         </div>
                     </div>
@@ -31,12 +33,17 @@
         <div class="col-lg-4 col-6 text-right">
             <div class="d-inline-flex align-items-center">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle " data-toggle="dropdown">Mi
+
+                    <button type="button" class="rounded btn btn-sm btn-primary dropdown-toggle "
+                        data-toggle="dropdown"><img class="rounded-circle "
+                            th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="" height="30px"
+                            width="30px"> Mi
                         Cuenta</button>
                     <div class="dropdown-menu dropdown-menu-right bg-dark">
-                        <button class="dropdown-item" type="button"><a class="" th:href="@{/perfil/__${session.usuariosession.id}__}">Perfil</a></button>
+                        <button class="dropdown-item" type="button"><a class=""
+                                th:href="@{/perfil/__${session.usuariosession.id}__}">Perfil</a></button>
                         <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
-                                th:href="@{/listado}">Listdo de entidades</a></button>
+                                th:href="@{/listado}">Listado de entidades</a></button>
                         <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
                                 th:href="@{/perfil/modificar/__${session.usuariosession.id}__}">Configurar</a></button>
                         <button class="dropdown-item" type="button"><a class="" th:href="@{/logout}">Salir</a></button>
