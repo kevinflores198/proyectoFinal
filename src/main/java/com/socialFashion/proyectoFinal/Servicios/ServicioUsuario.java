@@ -98,7 +98,6 @@ public class ServicioUsuario implements UserDetailsService {
             user.setAlta(true);
             Imagen imagen = servicioImagen.guardar(image); 
             user.setImage(imagen);
-            
         }
 
     }

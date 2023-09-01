@@ -76,7 +76,7 @@ public class PublicacionControlador {
         }
         return "perfil.html";
     }
-
+    
     @GetMapping("/eliminar/{id}")
     public String eliminarPublicacion(@PathVariable String id, ModelMap modelo) {
 
