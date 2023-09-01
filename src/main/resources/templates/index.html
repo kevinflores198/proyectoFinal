@@ -9,139 +9,78 @@
     <nav th:replace="/fragments/navbar-index :: nav"> </nav>
 
 
-    <!-- Navbar 1 -->
+    <!-- filtros -->
 
 
     <!-- top 10 -->
     <div class="container-fluid pt-5 pb-3">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Top 10
-                de la semana</span></h2>
+
+
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
+            <span class="bg-secondary pr-3">Destacados de la semana</span>
+        </h2>
+        <div class="container-fluid pt-3 pb-3">
+            <div class=" text-center pr-0 pl-0 mb-2">
+                <div class="row px-xl-5">
+                    <div class="col-lg-2 d-none d-lg-block mb-4 pl-0 ">
+                        <a class="btn d-flex align-items-center justify-content-between bg-primary w-100"
+                            data-toggle="collapse" href="#navbar-vertical" style="height: 55px; padding: 0 30px;">
+                            <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Filtrar por...</h6>
+                            <i class="fa fa-angle-down text-dark"></i>
+                        </a>
+
+                        <nav class="collapse position-absolute navbar navbar-vertical navbar-dark align-items-start pl-3 bg-dark"
+                            id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
+                            <div class="navbar-nav w-100">
+                                <div class="nav-item dropdown dropright ">
+                                    <a th:href="@{/}" class="nav-item nav-link text-light text-left">Top Diez</a>
+                                </div>
+                                <div class="nav-item dropdown dropright ">
+                                    <a th:href="@{/filtro/4/INDUMENTARIA}" class="nav-item nav-link text-light text-left">Diseñador A/Z</a>
+                                </div>
+                                <div class="nav-item dropdown dropright ">
+                                    <a th:href="@{/filtro/5/INDUMENTARIA}" class="nav-item nav-link text-light text-left">Diseñador Z/A</a>
+                                </div>
+                                <div class="nav-item dropdown dropright ">
+                                    <a th:href="@{/filtro/2/INDUMENTARIA}" class="nav-item nav-link text-light text-left">Fecha ↓</a>
+                                </div>
+                                <div class="nav-item dropdown dropright ">
+                                    <a th:href="@{/filtro/3/INDUMENTARIA}" class="nav-item nav-link text-light text-left">Fecha ↑</a>
+                                </div>
+                                <div class="nav-item dropdown dropright ">
+                                    <a href="#" class="nav-link dropdown-toggle text-light text-left"
+                                        data-toggle="dropdown">Categorías <i
+                                            class="fa fa-angle-right float-right mt-1 pr-3"></i></a>
+
+                                    <div class="dropdown-menu position-absolute rounded-0 border-0 m-0 bg-primary">
+                                        <a th:href="@{/filtro/1/INDUMENTARIA}" class="dropdown-item">Indumentaria</a>
+                                        <a th:href="@{/filtro/1/CALZADO}" class="dropdown-item">Calzado</a>
+                                        <a th:href="@{/filtro/1/MAQUILLAJE}" class="dropdown-item">Maquillaje</a>
+                                        <a th:href="@{/filtro/1/ACCESORIO}" class="dropdown-item">Accesorios</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row px-xl-5">
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1" th:each="publicacion : ${publicaciones}">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        
-                        <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
+
+                        <img class="img-thumbnail w-100" th:src="@{/imagen/publicacion/__${publicacion.id}__}" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" th:href="@{/login}"><i class="">ir</i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" th:href="@{/login}">Diseñador</a>
+                        <a th:text="${publicacion.user.name}" class="h6 text-decoration-none text-truncate" th:href="@{/login}"></a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" th:href="@{/login}"><i class="">ir</i></a>
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" th:href="@{/login}">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" th:href="@{/login}"><i class="">ir</i></a>
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" th:href="@{/login}">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" th:href="@{/login}"><i class="">ir</i></a>
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" th:href="@{/login}">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" th:href="@{/login}"><i class="">ir</i></a>
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" th:href="@{/login}">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" th:href="@{/login}"><i class="">ir</i></a>
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" th:href="@{/login}">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" th:href="@{/login}"><i class="">ir</i></a>
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" th:href="@{/login}">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/modelo.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" th:href="@{/login}"><i class="">ir</i></a>
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" th:href="@{/login}">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
+                            
+                            <label for="meGustas">Me Gustas: </label>
+                            <h5 th:text="${publicacion.likes}" name="meGustas"></h5>
                         </div>
                     </div>
                 </div>

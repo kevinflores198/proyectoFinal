@@ -7,5 +7,5 @@ public enum ReportsComentario {
     VIOLENCIA,
     BULLYNG,
     RACISMO,
-    OTRO,
+    OTRO;
 }

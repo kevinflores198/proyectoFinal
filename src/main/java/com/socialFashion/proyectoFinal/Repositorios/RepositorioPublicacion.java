@@ -14,10 +14,13 @@ import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 @Repository
 public interface RepositorioPublicacion extends JpaRepository<Publicacion,String> {
     
+    @Query("SELECT p FROM Publicacion p WHERE p.id = :id")
+    public Publicacion publicacionById(@Param("id") String id);
+
     @Query("SELECT p FROM Publicacion p WHERE p.user.id = :idUsuario")
     public List<Publicacion> publicacionesByUser(@Param("idUsuario") String idUsuario);
     
-    @Query("SELECT p FROM Publicacion p ORDER BY p.likes DESC")
+    @Query("SELECT p FROM Publicacion p ORDER BY (p.likes+p.comentarios) DESC")
     public List<Publicacion> listaTop();
     
     @Query("SELECT p FROM Publicacion p ORDER BY p.initialDate DESC")

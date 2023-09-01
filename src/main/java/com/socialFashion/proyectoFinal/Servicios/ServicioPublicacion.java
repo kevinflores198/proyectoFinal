@@ -1,8 +1,10 @@
 package com.socialFashion.proyectoFinal.Servicios;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,6 @@ import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.ReportPublicacion;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
-import com.socialFashion.proyectoFinal.Enumeraciones.ReportsUser;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
 
@@ -43,7 +44,10 @@ public class ServicioPublicacion {
     @Transactional
     public void crearPublicacion(String idUser, String label, MultipartFile archivo, String content)
             throws MiException {
-
+        
+        System.out.println(idUser);
+        System.out.println(label);
+        System.out.println(content);
         validacion(idUser, label, archivo, content);
 
         Publicacion publicacion = new Publicacion();
@@ -97,7 +101,7 @@ public class ServicioPublicacion {
     }
 
     public Publicacion getOne(String id){
-        return repoPubli.getOne(id);
+        return repoPubli.getById(id);
     }
 
     @Transactional
@@ -114,12 +118,11 @@ public class ServicioPublicacion {
             Publicacion publicacion = rsp.get();
             publicacion.setLabel(Categorias.valueOf(label.toUpperCase()));
             publicacion.setContent(content);
-            repoPubli.save(publicacion);
         }
     }
 
     public void validacion(String idUser, String label, MultipartFile archivo, String content) throws MiException {
-        if (idUser.isEmpty() || idUser == null) {
+        if (idUser == null || idUser.isEmpty()) {
             throw new MiException("el id del usuario no puede estar vacio");
         }
         if (label == null || label.isEmpty()) {
@@ -149,7 +152,6 @@ public class ServicioPublicacion {
         publicacion.setLikes(suma);
     }
     
-    
     /* -------- Funciones de Lectura en la BD --------- */
     
     /**
@@ -157,7 +159,35 @@ public class ServicioPublicacion {
      */
     @Transactional(readOnly=true)
     public List<Publicacion> topDiez(){
-        return repoPubli.listaTop().subList(0, 9);
+        // ------- LISTA DE TOP BY COMMENT Y LIKES --------
+        List<Publicacion> publicaciones = repoPubli.listaTop();
+        // ----------------- LISTA FINAL ------------------
+        List<Publicacion> topDiez = new ArrayList<>();
+
+        Date hoy = new Date();  // Dia de hoy para comparar
+        for (Publicacion publicacion : publicaciones) {
+            // if(hoy.getDate() - publicacion.getInitialDate().getDate() <= 7){
+            //     topDiez.add(publicacion);
+            // }else{
+            //     if( hoy.getMonth() - publicacion.getInitialDate().getMonth() < 0){
+            //         if(publicacion.getInitialDate().getDate() - hoy.getDate() <= -23){          //8 - 30 = -22
+            //             topDiez.add(publicacion);
+            //         }
+            //     }else if(){
+            //     }
+            // }
+            long tiempoTrascurrido = hoy.getTime() - publicacion.getInitialDate().getTime();
+            TimeUnit unidad = TimeUnit.DAYS;
+
+            long dias = unidad.convert(tiempoTrascurrido, TimeUnit.MILLISECONDS);
+            if(dias <= 7){
+                topDiez.add(publicacion);
+            }
+        }
+        if(topDiez.size() > 10){
+            return topDiez.subList(0, 9);
+        }
+        return topDiez;
     }
     
     /**
@@ -211,5 +241,37 @@ public class ServicioPublicacion {
     @Transactional(readOnly=true)
     public List<Publicacion> publicacionesPorNombreDiseñadorDESC(){
         return repoPubli.findAllOrderByNombreDiseñadorDesc();
+    }
+
+    public List<Publicacion> publicacionesPorFiltro(Integer filtro, Categorias categoria){
+
+        switch(filtro){
+            case 1:
+                if(publicacionesPorLabel(categoria).size() > 10){
+                    return publicacionesPorLabel(categoria).subList(0, 9);
+                }
+                return publicacionesPorLabel(categoria);
+            case 2:
+                if(publicacionesPorFechaASC().size() > 10){
+                    return publicacionesPorFechaASC().subList(0, 9);
+                }
+                return publicacionesPorFechaASC();
+            case 3:
+                if(publicacionesPorFechaDESC().size() > 10){
+                    return publicacionesPorFechaASC().subList(0, 9);
+                }
+                return publicacionesPorFechaDESC();
+            case 4:
+                if(publicacionesPorNombreDiseñadorASC().size() > 10){
+                    return publicacionesPorNombreDiseñadorASC().subList(0, 9);
+                }
+                return publicacionesPorNombreDiseñadorASC();
+            case 5:
+                if(publicacionesPorNombreDiseñadorDESC().size() > 10){
+                    return publicacionesPorNombreDiseñadorDESC().subList(0, 9);
+                }
+                return publicacionesPorNombreDiseñadorDESC();
+        }
+        return topDiez();
     }
 }
