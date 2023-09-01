@@ -48,10 +48,22 @@ public class PortalControlador {
 
     // VISTA INDEX
     @GetMapping("/")
-    public String index() {
+    public String index(ModelMap modelo) {
+
+        List<Publicacion> topDiez = servicioPublicacion.topDiez();
+        modelo.addAttribute("publicaciones", topDiez);
 
         return "index.html";
 
+    }
+
+    @GetMapping("/filtro/{filtro}/{categoria}")
+    public String index(@PathVariable Integer filtro, @PathVariable Categorias categoria, ModelMap modelo){
+
+        
+        modelo.addAttribute("publicaciones", servicioPublicacion.publicacionesPorFiltro(filtro, categoria));
+        
+        return "index.html";
     }
 
     // VISTA DE REGISTRAR
@@ -195,7 +207,6 @@ public class PortalControlador {
 
         
     }
-
     
     @GetMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable String id, ModelMap modelo) throws MiException{

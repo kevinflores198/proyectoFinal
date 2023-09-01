@@ -41,23 +41,23 @@ public class Publicacion {
     @Temporal(TemporalType.DATE)
     private Date initialDate;
 
-    //@OneToMany    
-    //private ArrayList<Comentario> comments;
+    private Integer comentarios;
 
     private Integer likes;
 
-    
-
     public Publicacion() {
+        this.comentarios = 0;
+        this.likes = 0;
     }
 
-    public Publicacion(Usuario user, Categorias label, Imagen image, String content, Date initialDate, Integer likes) {
+    public Publicacion(Usuario user, Categorias label, Imagen image, String content, Date initialDate) {
         this.user = user;
         this.label = label;
         this.image = image;
         this.content = content;
         this.initialDate = initialDate;
-        this.likes = likes;
+        this.comentarios = 0;
+        this.likes = 0;
     }
 
     public String getId() {
@@ -106,6 +106,14 @@ public class Publicacion {
 
     public void setInitialDate(Date initialDate) {
         this.initialDate = initialDate;
+    }
+
+    public Integer getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(Integer comentarios) {
+        this.comentarios = comentarios;
     }
 
     public Integer getLikes() {
