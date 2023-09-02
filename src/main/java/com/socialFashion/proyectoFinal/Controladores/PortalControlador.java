@@ -113,11 +113,11 @@ public class PortalControlador {
     //VISTA MAIN 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/main")
-    public String inicio(HttpSession session, ModelMap modelo) {
+    public String inicio(HttpSession session) {
 
-        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
-        modelo.addAttribute("publicaciones", publicaciones);
-        modelo.addAttribute("validar", false);
+        
+
+        
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         if (logueado.getRole().toString().equals("ADMIN")) {
         return "main.html";
@@ -235,6 +235,8 @@ public class PortalControlador {
 
         return "listado.html";
     }
+
+    
 
     
 }

@@ -1,4 +1,5 @@
 package com.socialFashion.proyectoFinal.Repositorios;
+import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -37,6 +38,5 @@ public interface RepositorioPublicacion extends JpaRepository<Publicacion,String
 
     @Query("SELECT p FROM Publicacion p ORDER BY p.user.name ASC")
     public List<Publicacion> findAllOrderByNombreDiseñadorAsc();
-    
-    //HACER QUERY POR NOMBRE DE DISEÑADOR ASC, DESC
+
 }
