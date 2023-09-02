@@ -139,19 +139,18 @@ public class ServicioPublicacion {
     
     // -------- Funciones de Me Gustas ---------
     @Transactional
-    public void agregarLike(String id){
+    public void Like(String id, Boolean like){
         Publicacion publicacion = getOne(id);
-        Integer suma = publicacion.getLikes() + 1;
-        publicacion.setLikes(suma);
+        Integer rst = 0;
+        if(like){
+            rst = publicacion.getLikes() + 1;
+        }else{
+            rst = publicacion.getLikes() - 1;
+        }
+         
+        publicacion.setLikes(rst);
     }
-    
-    @Transactional
-    public void sacarLike(String id){
-        Publicacion publicacion = getOne(id);
-        Integer suma = publicacion.getLikes() - 1;
-        publicacion.setLikes(suma);
-    }
-    
+
     /* -------- Funciones de Lectura en la BD --------- */
     
     /**

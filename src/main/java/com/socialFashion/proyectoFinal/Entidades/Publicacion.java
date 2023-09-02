@@ -42,7 +42,7 @@ public class Publicacion {
     private Date initialDate;
 
     private Integer comentarios;
-
+    
     private Integer likes;
 
     public Publicacion() {
