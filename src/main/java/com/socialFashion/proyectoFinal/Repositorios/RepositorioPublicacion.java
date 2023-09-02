@@ -19,8 +19,8 @@ public interface RepositorioPublicacion extends JpaRepository<Publicacion,String
 
     @Query("SELECT p FROM Publicacion p WHERE p.user.id = :idUsuario")
     public List<Publicacion> publicacionesByUser(@Param("idUsuario") String idUsuario);
-
-    @Query("SELECT p FROM Publicacion p ORDER BY p.likes DESC")
+    
+    @Query("SELECT p FROM Publicacion p ORDER BY (p.likes+p.comentarios) DESC")
     public List<Publicacion> listaTop();
     
     @Query("SELECT p FROM Publicacion p ORDER BY p.initialDate DESC")
@@ -38,4 +38,5 @@ public interface RepositorioPublicacion extends JpaRepository<Publicacion,String
     @Query("SELECT p FROM Publicacion p ORDER BY p.user.name ASC")
     public List<Publicacion> findAllOrderByNombreDiseñadorAsc();
     
+    //HACER QUERY POR NOMBRE DE DISEÑADOR ASC, DESC
 }

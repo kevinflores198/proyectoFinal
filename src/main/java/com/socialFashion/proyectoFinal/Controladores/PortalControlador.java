@@ -48,10 +48,22 @@ public class PortalControlador {
 
     // VISTA INDEX
     @GetMapping("/")
-    public String index() {
+    public String index(ModelMap modelo) {
+
+        List<Publicacion> topDiez = servicioPublicacion.topDiez();
+        modelo.addAttribute("publicaciones", topDiez);
 
         return "index.html";
 
+    }
+
+    @GetMapping("/filtro/{filtro}/{categoria}")
+    public String index(@PathVariable Integer filtro, @PathVariable Categorias categoria, ModelMap modelo){
+
+        
+        modelo.addAttribute("publicaciones", servicioPublicacion.publicacionesPorFiltro(filtro, categoria));
+        
+        return "index.html";
     }
 
     // VISTA DE REGISTRAR
@@ -101,9 +113,11 @@ public class PortalControlador {
     //VISTA MAIN 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/main")
-    public String inicio(HttpSession session) {
+    public String inicio(HttpSession session, ModelMap modelo) {
 
-        
+        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("validar", false);
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         if (logueado.getRole().toString().equals("ADMIN")) {
         return "main.html";
@@ -195,7 +209,6 @@ public class PortalControlador {
 
         
     }
-
     
     @GetMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable String id, ModelMap modelo) throws MiException{
