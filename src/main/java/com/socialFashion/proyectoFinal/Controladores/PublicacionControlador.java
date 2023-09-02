@@ -80,6 +80,7 @@ public class PublicacionControlador {
     @GetMapping("/eliminar/{id}")
     public String eliminarPublicacion(@PathVariable String id, ModelMap modelo) {
 
+        
         try {
 
             servicioPublicacion.eliminar(id);

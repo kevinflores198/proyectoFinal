@@ -104,6 +104,8 @@
                             <a class="btn btn-outline-dark btn-square" th:href="@{/publicacion/detail/__${publicacion.id}__}"><i class="">ir</i></a>
                             <a class="btn btn-outline-dark btn-square" th:href="@{/report}">
                                 <i class="fa fa-exclamation"></i></a>
+                            <a class="btn btn-outline-dark btn-square" th:if="${(__${session.usuariosession.id}__).Equals(__${publicacion.user.id}__)}" target="_self" th:href="@{/publicacion/eliminar/__${publicacion.id}__}"><i class="fa fa-trash"></i>Eliminar</a>
+                                                
                         </div>
                     </div>
                 </div>

@@ -36,7 +36,7 @@
                     <div class="dropdown-menu dropdown-menu-right bg-dark">
                         <button class="dropdown-item" type="button"><a class="" th:href="@{/perfil/__${session.usuariosession.id}__}">Perfil</a></button>
                         <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
-                                th:href="@{/listado}">Listdo de entidades</a></button>
+                                th:href="@{/listado}">Listado de entidades</a></button>
                         <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
                                 th:href="@{/perfil/modificar/__${session.usuariosession.id}__}">Configurar</a></button>
                         <button class="dropdown-item" type="button"><a class="" th:href="@{/logout}">Salir</a></button>
