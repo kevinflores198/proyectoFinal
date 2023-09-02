@@ -136,18 +136,20 @@ public class ServicioPublicacion {
         }
     }
     
-    
     // -------- Funciones de Me Gustas ---------
     @Transactional
-    public void Like(String id, Boolean like){
+    public void Like(String id, Boolean like, Usuario usuarioLike){
         Publicacion publicacion = getOne(id);
+        List<Usuario> usuarios = repoPubli.publicacionById(id).getUsuarioLikes();
         Integer rst = 0;
         if(like){
             rst = publicacion.getLikes() + 1;
+            usuarios.add(usuarioLike);
         }else{
             rst = publicacion.getLikes() - 1;
+            usuarios.remove(usuarioLike);
         }
-         
+        publicacion.setUsuarioLikes(usuarios);
         publicacion.setLikes(rst);
     }
 

@@ -1,5 +1,4 @@
 package com.socialFashion.proyectoFinal.Repositorios;
-import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -7,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
+import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 
 /**
@@ -38,5 +38,4 @@ public interface RepositorioPublicacion extends JpaRepository<Publicacion,String
 
     @Query("SELECT p FROM Publicacion p ORDER BY p.user.name ASC")
     public List<Publicacion> findAllOrderByNombreDiseñadorAsc();
-
 }
