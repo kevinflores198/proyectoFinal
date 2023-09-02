@@ -6,7 +6,7 @@
 
 <body>
 
-    <nav th:replace="/fragments/navbar-main :: nav"></nav>
+    <nav th:replace="/fragments/navbar-perfil :: nav"></nav>
 
     <div class="container-fluid pb-5">
         <div class="row px-xl-5">
@@ -19,9 +19,9 @@
             </div>
             <div class="col-lg-7 h-auto mb-30">
                 <div class="h-100 bg-light p-30">
-                    <h3><a href="#" th:text="${publicacion.user.name}" ></a></h3>
-                    <h5 class="font-weight-semi-bold mb-4" th:text="${publicacion.label}" ></h5>
-                    <h3 class="font-weight-semi-bold mb-4" th:text="${publicacion.content}" ></h3>
+                    <h4><a  th:href="@{/perfil/__${session.usuariosession.id}__}" th:text="${publicacion.user.name}"></a></h4>
+                    <p class="font-weight-semi-bold mb-4" th:text="${publicacion.label}"></p>
+                    <p class="font-weight-semi-bold mb-4" th:text="${publicacion.content}"></p>
 
                     <button id="boton-mg" class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Me
                         gusta</button>
@@ -152,7 +152,6 @@
             </div>
         </div>
     </div>
-
 
     <footer th:replace="/fragments/footer :: footer"></footer>
 

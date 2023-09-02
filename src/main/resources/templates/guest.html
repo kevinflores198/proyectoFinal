@@ -51,13 +51,14 @@
                                 th:value="${password2}"><br>
                             <input type="date" placeholder="Fecha de nacimiento" name="birthDate"
                                 th:value="${birthDate}"><br>
+                            <!-- <input type="text" placeholder="Descripción" name="descripción" -->
+                            <!-- th:value="${descripcion}"><br> -->
                             <label class="custum-file-upload" for="file">
                                 <div class="text">
                                     <span class="box-image">📷 Foto de perfil</span>
                                 </div>
                                 <input type="file" id="file" name="image" th:value="${imagenPred}">
                             </label>
-
                             <button class="ingresar" type="submit" onclick="openPopup()">Registrarme</button>
                         </form>
                     </div>
