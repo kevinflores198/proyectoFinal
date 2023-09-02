@@ -117,8 +117,8 @@ public class PortalControlador {
 
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
         modelo.addAttribute("publicaciones", publicaciones);
-        modelo.addAttribute("validar", false);
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        modelo.addAttribute("usuario", logueado);
         if (logueado.getRole().toString().equals("ADMIN")) {
         return "main.html";
         }
