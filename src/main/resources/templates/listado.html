@@ -224,6 +224,19 @@
                 <div class="row px-xl-5">
                   <div class="col-lg-12 table-responsive mb-5">
                     <h1>Tabla de Reportes</h1>
+                    <h3>Reportes de:</h3>
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-md-6"></div>
+                        <label for="tipoReporte"></label>
+                        <select name="tipoReporte" id="tipoReporte">
+                          <option value="todos">Todos</option>
+                          <option value="usuarios">Usuarios</option>
+                          <option value="comentarios">Comentarios</option>
+                          <option value="publicaciones">Publicaciones</option>
+                        </select>
+                      </div>
+                    </div>
                     <table
                       class="table table-light table-borderless table-hover text-center mb-0"
                     >
@@ -244,31 +257,75 @@
                       >
                         <tr>
                           <th scope="row">
-                           <span th:if="${reportes.getClass().name == 'ReportUser'}" th:text="${reportes.idReport}"></span>
-                           <span th:if="${reportes.getClass().name == 'ReportComentario'}" th:text="${reportes.idReport}"></span>
-                           <span th:if="${reportes.getClass().name == 'ReportPublicacion'}" th:text="${reportes.idReport}"></span>
-                        </th>
-                          <td
-                            class="align-middle">
-                            <span th:if="${reportes.getClass().name == 'ReportUser'}" th:text="${reportes.idUser}"></span>
-                            <span th:if="${reportes.getClass().name == 'ReportComentario'}" th:text="${reportes.idUser}"></span>
-                            <span th:if="${reportes.getClass().name == 'ReportPublicacion'}" th:text="${reportes.idUser}"></span></td>
-                          <td
-                            class="align-middle">
-                            <span th:if="${reportes.getClass().name == 'ReportUser'}" th:text="${reportes.idReport} (Usuario)"></span>
-                            <span th:if="${reportes.getClass().name == 'ReportComentario'}" th:text="${reportes.idReport} (Comentario)"></span>
-                            <span th:if="${reportes.getClass().name == 'ReportPublicacion'}" th:text="${reportes.idReport} (Publicacion)"></span>
-                        </td>
-                          <td
-                            class="align-middle">
-                            <span th:if="${reportes.getClass().name == 'ReportUser'}" th:text="${reportes.reason}"></span>
-                            <span th:if="${reportes.getClass().name == 'ReportComentario'}" th:text="${reportes.reason}"></span>
-                            <span th:if="${reportes.getClass().name == 'ReportPublicacion'}" th:text="${reportes.reason}"></span></td>
-                          <td
-                            class="align-middle">
-                            <span th:if="${reportes.getClass().name == 'ReportUser'}" th:text="${reportes.TypeReport.}"></span>
-                            <span th:if="${reportes.getClass().name == 'ReportComentario'}" th:text="${reportes.TypeReport}"></span>
-                            <span th:if="${reportes.getClass().name == 'ReportPublicacion'}" th:text="${reportes.TypeReport}"></span></td>
+                            <span
+                              th:if="${reportes.getClass().name == 'ReportUser'}"
+                              th:text="${reportes.idReport}"
+                            ></span>
+                            <span
+                              th:if="${reportes.getClass().name == 'ReportComentario'}"
+                              th:text="${reportes.idReport}"
+                            ></span>
+                            <span
+                              th:if="${reportes.getClass().name == 'ReportPublicacion'}"
+                              th:text="${reportes.idReport}"
+                            ></span>
+                          </th>
+                          <td class="align-middle">
+                            <span
+                              th:if="${reportes.getClass().name == 'ReportUser'}"
+                              th:text="${reportes.idUser}"
+                            ></span>
+                            <span
+                              th:if="${reportes.getClass().name == 'ReportComentario'}"
+                              th:text="${reportes.idUser}"
+                            ></span>
+                            <span
+                              th:if="${reportes.getClass().name == 'ReportPublicacion'}"
+                              th:text="${reportes.idUser}"
+                            ></span>
+                          </td>
+                          <td class="align-middle">
+                            <span
+                              th:if="${reportes.getClass().name == 'ReportUser'}"
+                              th:text="${reportes.idReport} (Usuario)"
+                            ></span>
+                            <span
+                              th:if="${reportes.getClass().name == 'ReportComentario'}"
+                              th:text="${reportes.idReport} (Comentario)"
+                            ></span>
+                            <span
+                              th:if="${reportes.getClass().name == 'ReportPublicacion'}"
+                              th:text="${reportes.idReport} (Publicacion)"
+                            ></span>
+                          </td>
+                          <td class="align-middle">
+                            <span
+                              th:if="${reportes.getClass().name == 'ReportUser'}"
+                              th:text="${reportes.reason}"
+                            ></span>
+                            <span
+                              th:if="${reportes.getClass().name == 'ReportComentario'}"
+                              th:text="${reportes.reason}"
+                            ></span>
+                            <span
+                              th:if="${reportes.getClass().name == 'ReportPublicacion'}"
+                              th:text="${reportes.reason}"
+                            ></span>
+                          </td>
+                          <td class="align-middle">
+                            <span
+                              th:if="${reportes.getClass().name == 'ReportUser'}"
+                              th:text="${reportes.TypeReport.}"
+                            ></span>
+                            <span
+                              th:if="${reportes.getClass().name == 'ReportComentario'}"
+                              th:text="${reportes.TypeReport}"
+                            ></span>
+                            <span
+                              th:if="${reportes.getClass().name == 'ReportPublicacion'}"
+                              th:text="${reportes.TypeReport}"
+                            ></span>
+                          </td>
                           <!-- <td class="align-middle">
                                 <button class="btn btn-sm btn-primary" th:href="@{/comentarios/modificar/__${user.id}__}">Editar</button>
                             </td> -->
@@ -277,7 +334,8 @@
                               sec:authorize="hasRole('ADMIN')"
                               target="_self"
                               th:href="@{/reporte/eliminarReportePublicacion/__${reporte.idReportPublicacion}__}"
-                              ><i class="fa fa-trash"></i>Eliminar</a>
+                              ><i class="fa fa-trash"></i>Eliminar</a
+                            >
                           </td>
                         </tr>
                       </tbody>
