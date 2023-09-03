@@ -92,7 +92,7 @@ public class ReportesControlador {
         List<ReportsComentario> reports = new ArrayList<>();
         reports.addAll(Arrays.asList(ReportsComentario.values()));
         model.addAttribute("reports", reports);
-        return "report.html"; 
+        return "report.html";
     }
 
     @PostMapping("/reportar-comentario/{idComent}")
@@ -162,19 +162,27 @@ public class ReportesControlador {
     }
 
     @GetMapping("/listarReportes")
-    public String listarReportes(ModelMap model) {
+    public String listarReportes(@RequestParam(required = false, name = "tipoReporte") String tipoReporte,
+            ModelMap model) {
         List<Object> reportes = new ArrayList<>();
 
-        List<ReportUser> usuarios = servicioReportUsuario.listarReportes();
-        List<ReportComentario> comentarios = servicioReportComentario.listarReportes();
-        List<ReportPublicacion> publicaciones = servicioReportPublicacion.listarReportesPulicacion();
-
-        // model.addAttribute("usuarios", usuarios);
-        // model.addAttribute("comentarios", comentarios);
-        // model.addAttribute("publicaciones", publicaciones);
-        reportes.addAll(usuarios);
-        reportes.addAll(comentarios);
-        reportes.addAll(publicaciones);
+        if (tipoReporte.equals("usuarios")) {
+            List<ReportUser> usuarios = servicioReportUsuario.listarReportes();
+            reportes.addAll(usuarios);
+        } else if (tipoReporte.equals("comentarios")) {
+            List<ReportComentario> comentarios = servicioReportComentario.listarReportes();
+            reportes.addAll(comentarios);
+        } else if (tipoReporte.equals("publicaciones")) {
+            List<ReportPublicacion> publicaciones = servicioReportPublicacion.listarReportesPulicacion();
+            reportes.addAll(publicaciones);
+        } else {
+            List<ReportUser> usuarios = servicioReportUsuario.listarReportes();
+            List<ReportComentario> comentarios = servicioReportComentario.listarReportes();
+            List<ReportPublicacion> publicaciones = servicioReportPublicacion.listarReportesPulicacion();
+            reportes.addAll(usuarios);
+            reportes.addAll(comentarios);
+            reportes.addAll(publicaciones);
+        }
 
         model.addAttribute("reportes", reportes);
 
