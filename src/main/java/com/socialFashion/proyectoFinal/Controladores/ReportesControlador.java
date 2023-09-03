@@ -39,18 +39,18 @@ public class ReportesControlador {
 
     @Autowired
     private ServicioReportPublicacion servicioReportPublicacion;
-    
+
     @Autowired
     private RepositorioComentario repoComent;
-    
+
     @Autowired
     private RepositorioUsuario repoUser;
-    
+
     @Autowired
     private RepositorioPublicacion repoPubli;
 
     @GetMapping("/reportar-usuario/{idUser}")
-    public String reportarUsuario(@PathVariable(name="idUser") String id, ModelMap model) {
+    public String reportarUsuario(@PathVariable(name = "idUser") String id, ModelMap model) {
         List<ReportsUser> reports = new ArrayList<>();
         reports.addAll(Arrays.asList(ReportsUser.values()));
         model.addAttribute("reports", reports);
@@ -58,12 +58,13 @@ public class ReportesControlador {
     }
 
     @PostMapping("/reportar-usuario/{idUser}")
-    public String completarReporteUsuario(@PathVariable(name="idUser") String idUserReported,
+    public String completarReporteUsuario(@PathVariable(name = "idUser") String idUserReported,
             @RequestParam String reason, @RequestParam String typeReport, ModelMap model, HttpSession session) {
 
         try {
             Usuario logueado = (Usuario) session.getAttribute("usuariosession");
-            servicioReportUsuario.crearReporte(logueado.getId(), repoUser.usuarioById(idUserReported), reason, typeReport);
+            servicioReportUsuario.crearReporte(logueado.getId(), repoUser.usuarioById(idUserReported), reason,
+                    typeReport);
             model.put("exito", "Usuario reportado exitosamente");
         } catch (MiException e) {
             model.put("error", "Error al reportar el usuario");
@@ -71,10 +72,8 @@ public class ReportesControlador {
         return "report.html";
 
     }
-    
-    
-    //POST --> GET ?¿
-    @PostMapping("/eliminarReporteUsuario/{idUser}") //Usuario
+
+    @PostMapping("/eliminarReporteUsuario/{idUser}") // Usuario
     public String eliminarReporteUsuario(@PathVariable String idUser, ModelMap model) {
         try {
             servicioReportUsuario.eliminarReporte(idUser);
@@ -83,17 +82,17 @@ public class ReportesControlador {
         } catch (Exception e) {
             model.put("error", "No se pudo eliminar el reporte");
         }
-        return "reports-list.html"; //Ver url
+        return "listado.html";
 
     }
-//--------------------- COMENTARIOS -----------------------
+    // --------------------- COMENTARIOS -----------------------
 
     @GetMapping("/reportar-comentario/{idComent}")
     public String reportarComentario(@PathVariable String idComent, ModelMap model) {
         List<ReportsComentario> reports = new ArrayList<>();
         reports.addAll(Arrays.asList(ReportsComentario.values()));
         model.addAttribute("reports", reports);
-        return "report.html"; //Ver url
+        return "report.html"; 
     }
 
     @PostMapping("/reportar-comentario/{idComent}")
@@ -109,9 +108,8 @@ public class ReportesControlador {
         return "report.html";
     }
 
-    
-    //POST --> GET ?¿
-    @PostMapping("/eliminarReporteComentario/{idComent}") //Comentario
+    // POST --> GET ?¿
+    @PostMapping("/eliminarReporteComentario/{idComent}") // Comentario
     public String eliminarReporteComentario(@PathVariable String idComent, ModelMap model) {
         try {
             servicioReportComentario.eliminarReporte(idComent);
@@ -122,7 +120,7 @@ public class ReportesControlador {
             model.put("error", "No se pudo eliminar el reporte");
         }
 
-        return "reports-list.html"; //Ver url
+        return "listado.html";
 
     }
 
@@ -150,8 +148,6 @@ public class ReportesControlador {
 
     }
 
-    
-    //POST --> GET ?¿
     @PostMapping("/eliminarReportePublicacion/{idReportPublicacion}")
     public String eliminarReportePublicacion(@PathVariable String idReportPublicacion, ModelMap model) {
         try {
@@ -161,21 +157,29 @@ public class ReportesControlador {
         } catch (Exception e) {
             model.put("error", "No se pudo eliminar el reporte");
         }
-        return "reports-list.html"; //Ver url
+        return "listado.html"; // Ver url
 
     }
 
     @GetMapping("/listarReportes")
     public String listarReportes(ModelMap model) {
+        List<Object> reportes = new ArrayList<>();
+
         List<ReportUser> usuarios = servicioReportUsuario.listarReportes();
         List<ReportComentario> comentarios = servicioReportComentario.listarReportes();
         List<ReportPublicacion> publicaciones = servicioReportPublicacion.listarReportesPulicacion();
 
-        model.addAttribute("usuarios", usuarios);
-        model.addAttribute("comentarios", comentarios);
-        model.addAttribute("publicaciones", publicaciones);
+        // model.addAttribute("usuarios", usuarios);
+        // model.addAttribute("comentarios", comentarios);
+        // model.addAttribute("publicaciones", publicaciones);
+        reportes.addAll(usuarios);
+        reportes.addAll(comentarios);
+        reportes.addAll(publicaciones);
 
-        return "reports-list.html";
+        model.addAttribute("reportes", reportes);
+
+        return "listado.html";
+
     }
 
 }
