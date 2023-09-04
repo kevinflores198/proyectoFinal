@@ -12,5 +12,5 @@ public enum ReportsPublicacion {
     AUTOLESION,
     ILEGAL,
     ETNIA,
-    OTRO
+    OTRO;
 }

@@ -19,10 +19,12 @@ public class ReportUser {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idReporte;
     
+    
+    private String idUser;
+    
     @ManyToOne
-    private Usuario user;
-
-    private String idUserReported;
+    private Usuario idUserReported;
+    
     private String reason;
     
     
@@ -32,14 +34,12 @@ public class ReportUser {
     public ReportUser() {
     }
 
-    public ReportUser(Usuario user, String idUserReported, String reason, ReportsUser typeReport) {
-        this.user = user;
+    public ReportUser(String idUser, Usuario idUserReported, String reason, ReportsUser typeReport) {
+        this.idUser = idUser;
         this.idUserReported = idUserReported;
         this.reason = reason;
         this.typeReport = typeReport;
     }
-
-    //Getter y Setter
 
     public String getIdReporte() {
         return idReporte;
@@ -49,19 +49,19 @@ public class ReportUser {
         this.idReporte = idReporte;
     }
 
-    public Usuario getUser() {
-        return user;
+    public String getIdUser() {
+        return idUser;
     }
 
-    public void setUser(Usuario user) {
-        this.user = user;
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 
-    public String getIdUserReported() {
+    public Usuario getIdUserReported() {
         return idUserReported;
     }
 
-    public void setIdUserReported(String idUserReported) {
+    public void setIdUserReported(Usuario idUserReported) {
         this.idUserReported = idUserReported;
     }
 
@@ -73,14 +73,6 @@ public class ReportUser {
         this.reason = reason;
     }
 
-    // public Boolean getAlta() {
-    //     return alta;
-    // }
-
-    // public void setAlta(Boolean alta) {
-    //     this.alta = alta;
-    // }
-
     public ReportsUser getTypeReport() {
         return typeReport;
     }
@@ -88,5 +80,6 @@ public class ReportUser {
     public void setTypeReport(ReportsUser typeReport) {
         this.typeReport = typeReport;
     }
-       
+
+           
 }

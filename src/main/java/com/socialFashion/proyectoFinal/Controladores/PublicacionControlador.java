@@ -2,11 +2,17 @@ package com.socialFashion.proyectoFinal.Controladores;
 
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
+import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
+// import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
 import com.socialFashion.proyectoFinal.Servicios.ServicioPublicacion;
+import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,29 +27,56 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/publicacion")
 public class PublicacionControlador {
 
+    @Autowired
     private ServicioPublicacion servicioPublicacion;
 
-    @GetMapping("/publicar/{id}")
-    public String publicar(@PathVariable String id){
-       
-        return "publicacion.html";
-    }
+    @Autowired
+    private ServicioUsuario servicioUsuario;
+    
+    @Autowired
+    private RepositorioPublicacion repoPublicacion;
+    
 
-    @PostMapping("/publicar/{id}")
+    // @GetMapping("/publicar/{id}")
+    // public String publicar(@PathVariable String id, ModelMap model){
+    //     /*  ------ PROBAR -------
+    //     List<Categorias> categorias = new ArrayList<>();
+    //     for(Categorias categoria : Categorias.values()){
+    //         categorias.add(categoria);
+    //     }
+    //     model.addAttribute("categorias", categorias);
+    //     */
+    //     return "publicacion.html";
+    // }
+
+    @PostMapping("/publicar/{idUser}")
     public String cargarPublicacion(@PathVariable String idUser, @RequestParam String label, @RequestParam MultipartFile archivo, @RequestParam String content, ModelMap modelo){
 
         try {
+            System.out.println(idUser);
+            System.out.println(label);
+            System.out.println(content);
             servicioPublicacion.crearPublicacion(idUser, label, archivo, content);
 
             modelo.put("exito", "Publicación cargada correctamente");
+
+            List<Categorias> categorias = new ArrayList<>();
+        for(Categorias categoria : Categorias.values()){
+            categorias.add(categoria);
+        }
+        Usuario usuario = servicioUsuario.getOne(idUser);
+        List<Publicacion> publicaciones = repoPublicacion.publicacionesByUser(idUser);
+        modelo.addAttribute("usuario", usuario);
+        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("categorias", categorias);
 
         } catch (MiException ex) {
 
             modelo.put("error", "No se pudo cargar la publicación");
         }
-        return "profile.html";
+        return "perfil.html";
     }
-
+    
     @GetMapping("/eliminar/{id}")
     public String eliminarPublicacion(@PathVariable String id, ModelMap modelo) {
 
@@ -58,8 +91,7 @@ public class PublicacionControlador {
             modelo.put("error", "No se pudo eliminar la publicación");
 
         }
-
-        return "profile.html";
+        return "perfil.html";
         
     }
 
@@ -101,20 +133,32 @@ public class PublicacionControlador {
         modelo.addAttribute("publicaciones", publicaciones);
 
         //RETORNAR A SU HTML 
-        return "#";
+        return "lista-publicaciones.html";
 
     }
 
     //VISTA DE CARTA 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    @GetMapping("/card/{id}")
+    @GetMapping("/detail/{id}")
     public String CartaPublicacion(@PathVariable String id, ModelMap modelo) {
 
         Publicacion publicacion = servicioPublicacion.getOne(id);
+        // Usuario usuario = publicacion.getUser();
+        // modelo.addAttribute("usuario", usuario);
         modelo.addAttribute("publicacion", publicacion);
 
         //RETORNAR A SU HTML 
         return "detail.html";
 
+    }
+    
+    @GetMapping("/MG+/{id}")
+    public void agregarLike(@PathVariable String id){
+        servicioPublicacion.agregarLike(id);
+    }
+    
+    @GetMapping("/MG-/{id}")
+    public void sacarLike(@PathVariable String id){
+        servicioPublicacion.sacarLike(id);
     }
 }

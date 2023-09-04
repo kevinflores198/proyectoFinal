@@ -1,12 +1,15 @@
 package com.socialFashion.proyectoFinal.Controladores;
 
+import com.socialFashion.proyectoFinal.Entidades.Comentario;
+import com.socialFashion.proyectoFinal.Entidades.Publicacion;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,9 +21,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
+import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioImagen;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
+import com.socialFashion.proyectoFinal.Servicios.ServicioComentario;
+import com.socialFashion.proyectoFinal.Servicios.ServicioPublicacion;
 import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
-import java.time.Instant;
 
 @Controller
 @RequestMapping("/")
@@ -29,26 +36,41 @@ public class PortalControlador {
     @Autowired
     private ServicioUsuario servicioUsuario;
 
-    // PRU DE VISTA DETAIL.HTML
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    @GetMapping("/detail")
-    public String publicacion() {
+    @Autowired
+    private ServicioPublicacion servicioPublicacion;
 
-        return "detail.html";
-    }
+    @Autowired
+    private ServicioComentario servicioComentario;
+    
+    @Autowired
+    private RepositorioPublicacion repoPublicacion;
+    
 
     // VISTA INDEX
     @GetMapping("/")
-    public String index() {
+    public String index(ModelMap modelo) {
+
+        List<Publicacion> topDiez = servicioPublicacion.topDiez();
+        modelo.addAttribute("publicaciones", topDiez);
 
         return "index.html";
 
     }
 
+    @GetMapping("/filtro/{filtro}/{categoria}")
+    public String index(@PathVariable Integer filtro, @PathVariable Categorias categoria, ModelMap modelo){
+
+        
+        modelo.addAttribute("publicaciones", servicioPublicacion.publicacionesPorFiltro(filtro, categoria));
+        
+        return "index.html";
+    }
+
     // VISTA DE REGISTRAR
     @GetMapping("/registrar")
-    public String registrar() {
-
+    public String registrar(ModelMap modelo) {
+        // ---------------- PROBAR ------------------
+        //modelo.addAttribute("imagenPred", repoImagen.imagenPredeterminada());
         return "guest.html";
     }
 
@@ -59,26 +81,22 @@ public class PortalControlador {
             @RequestParam(name = "birthDate") String birthDate,
             @RequestParam(name = "password") String password,
             @RequestParam(name = "password2") String password2,
-
-            // AGREGAR @PARAM DE ROL PARA ELEGIR
-
             MultipartFile image, ModelMap modelo) {
 
         try {
-
             servicioUsuario.register(name, email, DateConverter(birthDate), password, password2, image);
 
             modelo.put("exito", "Usuario registrado correctamente!");
-
-            return "main.html";
+            
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", name);
             modelo.put("email", email);
-
-            return "guest.html";
+            
         }
+        
+        return "guest.html";
 
     }
 
@@ -97,11 +115,13 @@ public class PortalControlador {
     @GetMapping("/main")
     public String inicio(HttpSession session) {
 
-        // Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        
 
-        // if (logueado.getRole().toString().equals("ADMIN")) {
-        // return "main.html";
-        // }
+        
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        if (logueado.getRole().toString().equals("ADMIN")) {
+        return "main.html";
+        }
 
         return "main.html";
     }
@@ -112,7 +132,7 @@ public class PortalControlador {
 
         birthDate.setDate(Integer.valueOf(fecha.substring(8, 10)));
         birthDate.setMonth(Integer.valueOf(fecha.substring(5, 7)) - 1);
-        birthDate.setYear(Integer.valueOf(fecha.substring(0, 4)));
+        birthDate.setYear(Integer.valueOf(fecha.substring(0, 4))-1900);
 
         return birthDate;
 
@@ -120,24 +140,32 @@ public class PortalControlador {
 
     //VISTA LISTA DE USUARIOS
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @GetMapping("/listar-usuarios")
-    public String listaUsuarios(ModelMap modelo) {
+    @GetMapping("/listado")
+    public String listado(ModelMap modelo) {
 
+        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
         List<Usuario> usuarios = servicioUsuario.listUsers();
+        List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
-
-        // RETORNAR A SU HTML
-        return "#";
-
+        modelo.addAttribute("cometarios", comentarios);
+        
+        return "listado.html";
     }
-
+    
     //VISTA PERFIL
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISIGNER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/perfil/{id}")
     public String perfil(@PathVariable String id, ModelMap modelo) {
-
+        List<Categorias> categorias = new ArrayList<>();
+        for(Categorias categoria : Categorias.values()){
+            categorias.add(categoria);
+        }
         Usuario usuario = servicioUsuario.getOne(id);
+        List<Publicacion> publicaciones = repoPublicacion.publicacionesByUser(id);
         modelo.addAttribute("usuario", usuario);
+        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("categorias", categorias);
 
         return "perfil.html";
 
@@ -156,7 +184,7 @@ public class PortalControlador {
     }
 
     //FORM ACTUALIZAR PERFIL
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISIGNER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @PostMapping("/perfil/modificado/{id}")
     public String perfilModificado(@PathVariable String id,
             @RequestParam(name = "name") String name,
@@ -181,6 +209,34 @@ public class PortalControlador {
 
         
     }
+    
+    @GetMapping("/eliminar/{id}")
+    public String eliminarUsuario(@PathVariable String id, ModelMap modelo) throws MiException{
+        
+        servicioUsuario.delete(id);
+
+        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        List<Usuario> usuarios = servicioUsuario.listUsers();
+        List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("usuarios", usuarios);
+        modelo.addAttribute("cometarios", comentarios);
+
+        return "listado.html";
+    }
+
+    @PreAuthorize("hasAnyRol('ROLE_ADMIN')")
+    @GetMapping("/ban/{id}")
+    public String BanUsuario(@PathVariable String id) throws MiException{
+        
+        boolean alta = servicioUsuario.getOne(id).getAlta();
+        
+        servicioUsuario.getOne(id).setAlta(!alta);
+
+        return "listado.html";
+    }
+
+    
 
     
 }

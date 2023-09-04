@@ -5,40 +5,14 @@
             <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Fashion</span>
         </a>
     </div>
-    <div class="col-lg-4 col-6 text-left">
-        <form action="">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Buscar..."><a class=""
-                    th:href="@{/login}"></a>
-                <div class="input-group-append">
-                    <span class="input-group-text bg-transparent text-primary">
-                        <i class="fa fa-search"><a class="" th:href="@{/login}"></a></i>
-                    </span>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="col-lg-4 col-6 text-right">
-        <div class="d-inline-flex align-items-center">
-            <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-primary dropdown-toggle " data-toggle="dropdown">Mi
-                    Cuenta</button>
-                <div class="dropdown-menu dropdown-menu-right bg-dark">
-                    <button class="dropdown-item" type="button"><a class="">Perfil</a></button>
-                    <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')" ><a class=""
-                            >lista
-                            diseñadores</a></button>
-                    <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class=""
-                            th:href="@{/login}">lista
-                            publicaciones</a></button>
-                    <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class=""
-                            th:href="@{/login}">lista
-                            reporte</a></button>
-                    <button class="dropdown-item" type="button" sec:authorize="hasAuthority('ADMIN')"><a class=""
-                            th:href="@{/login}">Configurar</a></button>
-                    <button class="dropdown-item" type="button"><a class="" th:href="@{/logout}">Salir</a></button>
+    
+
+        <div class="col-lg-8 col-6 text-right">
+            <div class="d-inline-flex align-items-center">
+                <div class="btn-group">
+                    <button class="btn btn-primary px-3">
+                        <a class="btn color-dark" th:href="@{/login}">Ingresar/Registrarse</a></button>
                 </div>
             </div>
         </div>
-    </div>
 </nav>

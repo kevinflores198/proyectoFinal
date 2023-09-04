@@ -31,6 +31,7 @@ import com.socialFashion.proyectoFinal.Entidades.ReportUser;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Role;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioImagen;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioReporteUsuario;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
 
@@ -48,7 +49,9 @@ public class ServicioUsuario implements UserDetailsService {
 
     @Autowired
     private ServicioPublicacion servicioPublicacion;
-
+    
+    @Autowired
+    private RepositorioImagen repoImagen;
 
     //PEDIR EL PARAM EL ROL
 
@@ -95,7 +98,6 @@ public class ServicioUsuario implements UserDetailsService {
             user.setAlta(true);
             Imagen imagen = servicioImagen.guardar(image); 
             user.setImage(imagen);
-            
         }
 
     }
@@ -136,6 +138,13 @@ public class ServicioUsuario implements UserDetailsService {
         }
 
     }
+
+//    ------ Metodo para Imagen Predeterminada -------
+//    private void validarImagen(MultipartFile image){
+//        if(image.isEmpty()){
+//            image = repoImagen.imagenPredeterminada();
+//        }
+//    }
 
     @Transactional(readOnly=true)
     public List<Usuario> listUsers() {

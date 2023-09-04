@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body>
+
+    <nav th:replace="/fragments/navbar-perfil :: nav"></nav>
+
+    <!-- informacion del perfil -->
+    <div class="col-lg-12 col-md-12 col-sm-12 pb-1 d-flex justify-content-center">
+        <div class="product-item bg-light mb-4">
+            <div class=" position-relative overflow-hidden">
+                <img class="img-thumbnail" th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt=""
+                    height="350px" width="450px">
+                <h2 class="d-flex justify-content-center align-items-center "
+                    th:text=" ${session.usuariosession.name} "></h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Crear publicacion -->
+
+
+    <div class="container-fluid ">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
+            <span class="bg-secondary pr-3">Publicar</span>
+        </h2>
+        <div class="row px-xl-5 justify-content-center d-flex align-items-center ">
+            <div class="col-lg-9 h-auto">
+                <form th:action="@{/publicacion/publicar/__${session.usuariosession.id}__}" class="h-100 bg-light p-30"
+                    method="POST" enctype="multipart/form-data">
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <div class="btn-group">
+                                <!-- <button type="button" class="btn btn-sm btn-primary dropdown-toggle "
+                                    data-toggle="dropdown">Categoria</button>
+                                <div class="dropdown-menu dropdown-menu-left bg-dark">
+                                    <button class="dropdown-item" type="button"><a class="">Indumentaria</a></button>
+                                    <button class="dropdown-item" type="button"><a class="">Calzado</a></button>
+                                    <button class="dropdown-item" type="button"><a class="">Maquillaje</a></button>
+                                    <button class="dropdown-item" type="button"><a class="">Accesorios</a></button>
+                                </div> -->
+                                <!-- Categoria de la publi -->
+                                <div>
+                                    <select class="btn btn-sm btn-primary dropdown-toggle" name="label">
+                                        <option>CATEGORIA</option>
+                                        <option th:each="categoria : ${categorias}" th:value="${categoria}"
+                                            th:text="${categoria}"></option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Imagen de la publi -->
+                    <label class="custum-file-upload" for="file">
+                        <div class="text">
+                            <h5><span class="box-image">Ingrese una imagen</span></h5>
+                        </div>
+                        <input type="file" id="file" name="archivo" th:value="${archivo}">
+                    </label>
+
+                    <!-- Descripcion de la publi -->
+                    <h5>Descripcion de la publicacion</h5>
+                    <div class="form-group">
+                        <input id="message" cols="30" rows="5" class="form-control" th:value="${content}"
+                            name="content"></input>
+                    </div>
+                    <div class="form-group mb-0">
+                        <button type="submit" class="btn btn-primary px-3">Publicar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Publicaciones del diseñador-->
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
+            <span class="bg-secondary pr-3">Publicaciones</span>
+        </h2>
+        <div class="row px-xl-5">
+            <div th:each="publicacion : ${publicaciones}" class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-thumbnail w-100" th:src="@{/imagen/publicacion/__${publicacion.id}__}" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square"
+                                th:href="@{/publicacion/detail/__${publicacion.id}__}"><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/report}">
+                                <i class="fa fa-exclamation"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+                        <a class="h6 text-decoration-none text-truncate" href=""></a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <label for="meGustas">Me Gustas: </label>
+                            <h5 th:text="${publicacion.likes}" name="meGustas"></h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square"
+                                th:href="@{/publicacion/detail/__${publicacion.id}__}"><i class="">ir</i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/report}">
+                                <i class="fa fa-exclamation"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="/fragments/footer :: footer"> </footer>
+
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
