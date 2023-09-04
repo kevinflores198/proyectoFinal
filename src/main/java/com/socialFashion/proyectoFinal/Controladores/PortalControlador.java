@@ -63,11 +63,22 @@ public class PortalControlador {
     }
 
     @GetMapping("/filtro/{filtro}/{categoria}")
-    public String index(@PathVariable Integer filtro, @PathVariable Categorias categoria, ModelMap modelo){
+    public String index(@PathVariable Integer filtro, @PathVariable Categorias categoria, ModelMap modelo, HttpSession session){
 
+        List<Publicacion> publicaciones = servicioPublicacion.publicacionesPorFiltro(filtro, categoria);
+        modelo.addAttribute("publicaciones", publicaciones);
         
-        modelo.addAttribute("publicaciones", servicioPublicacion.publicacionesPorFiltro(filtro, categoria));
-        
+        if(session.getAttribute("usuariosession")!=null){
+            List<Usuario> topUsuarios = new ArrayList();
+            for (Publicacion publicacion : publicaciones) {
+                if(!topUsuarios.contains(publicacion.getUser())){
+                    System.out.println("se ingreso");
+                    topUsuarios.add(publicacion.getUser());
+                }
+            }
+            modelo.addAttribute("topUsuarios", topUsuarios);
+            return "main.html";
+        }
         return "index.html";
     }
 
@@ -147,9 +158,14 @@ public class PortalControlador {
         modelo.addAttribute("publicaciones", publicaciones);
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         modelo.addAttribute("usuario", logueado);
-        if (logueado.getRole().toString().equals("ADMIN")) {
-        return "main.html";
+        List<Usuario> topUsuarios = new ArrayList();
+        for (Publicacion publicacion : publicaciones) {
+            if(!topUsuarios.contains(publicacion.getUser())){
+                System.out.println("se ingreso");
+                topUsuarios.add(publicacion.getUser());
+            }
         }
+        modelo.addAttribute("topUsuarios", topUsuarios);
 
         return "main.html";
     }
