@@ -74,6 +74,7 @@
                                                 <th>Email</th>
                                                 <th>Fecha de Nacimiento</th>
                                                 <th>Modificar</th>
+                                                <th>Banear(14dias)</th>
                                                 <th>Eliminar</th>
                                             </tr>
                                         </thead>
@@ -88,6 +89,9 @@
                                                 <td class="align-middle" th:text="${user.birthDate}"></td>
                                                 <td class="align-middle">
                                                     <button class="btn btn-sm btn-primary" th:href="@{/perfil/modificar/__${user.id}__}">Editar</button>
+                                                </td>
+                                                <td class="align-middle">
+                                                    <a target="_self" th:href="@{/ban/__${user.id}__}">✖︎Banear</a>
                                                 </td>
                                                 <td class="align-middle">
                                                     <a sec:authorize="hasRole('ADMIN')" target="_self" th:href="@{/eliminar/__${user.id}__}"><i class="fa fa-trash"></i>Eliminar</a>

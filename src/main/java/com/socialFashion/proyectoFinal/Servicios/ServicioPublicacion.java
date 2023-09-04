@@ -136,18 +136,20 @@ public class ServicioPublicacion {
         }
     }
     
-    
     // -------- Funciones de Me Gustas ---------
     @Transactional
-    public void Like(String id, Boolean like){
+    public void Like(String id, Boolean like, Usuario usuarioLike){
         Publicacion publicacion = getOne(id);
+        List<Usuario> usuarios = repoPubli.publicacionById(id).getUsuarioLikes();
         Integer rst = 0;
         if(like){
             rst = publicacion.getLikes() + 1;
+            usuarios.add(usuarioLike);
         }else{
             rst = publicacion.getLikes() - 1;
+            usuarios.remove(usuarioLike);
         }
-         
+        publicacion.setUsuarioLikes(usuarios);
         publicacion.setLikes(rst);
     }
 
@@ -165,16 +167,7 @@ public class ServicioPublicacion {
 
         Date hoy = new Date();  // Dia de hoy para comparar
         for (Publicacion publicacion : publicaciones) {
-            // if(hoy.getDate() - publicacion.getInitialDate().getDate() <= 7){
-            //     topDiez.add(publicacion);
-            // }else{
-            //     if( hoy.getMonth() - publicacion.getInitialDate().getMonth() < 0){
-            //         if(publicacion.getInitialDate().getDate() - hoy.getDate() <= -23){          //8 - 30 = -22
-            //             topDiez.add(publicacion);
-            //         }
-            //     }else if(){
-            //     }
-            // }
+
             long tiempoTrascurrido = hoy.getTime() - publicacion.getInitialDate().getTime();
             TimeUnit unidad = TimeUnit.DAYS;
 
