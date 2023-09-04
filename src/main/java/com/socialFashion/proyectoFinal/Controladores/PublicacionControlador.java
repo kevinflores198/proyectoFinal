@@ -105,34 +105,35 @@ public class PublicacionControlador {
         
     }
 
-    // A revisar este metodo que lo hice para mostrar el formulario de edición de
-    // etiquetas y contenido.
-    @GetMapping("/editar/{id}")
-    public String modificarPublicacion(@PathVariable String id, ModelMap modelo) {
+    // // A revisar este metodo que lo hice para mostrar el formulario de edición de
+    // // etiquetas y contenido.
+    // @GetMapping("/editar/{id}")
+    // public String modificarPublicacion(@PathVariable String id, ModelMap modelo) {
 
-        modelo.put("Publicacion", servicioPublicacion.getOne(id));
+    //     modelo.put("Publicacion", servicioPublicacion.getOne(id));
 
-        return "editar-publicacion.html";
-    }
+    //     return "editar-publicacion.html";
+    // }
 
-    @PostMapping("/editar/{id}")
-    public String modificadoPublicacion(@PathVariable String id, @RequestParam String newLabel,
-         @RequestParam String newContent, ModelMap modelo) {
+    // @PostMapping("/editar/{id}")
+    // public String modificadoPublicacion(@PathVariable String id, @RequestParam String newLabel,
+    //      @RequestParam String newContent, ModelMap modelo) {
 
-        try {
+    //     try {
 
-            servicioPublicacion.modificarPublicacion(newLabel, id, newContent);
+    //         servicioPublicacion.modificarPublicacion(newLabel, id, newContent);
 
-            modelo.put("exito", "Publicación editada correctamente");
+    //         modelo.put("exito", "Publicación editada correctamente");
 
-        } catch (MiException ex) {
+    //     } catch (MiException ex) {
 
-            modelo.put("error", "No se pudo editar la publicación");
-        }
+    //         modelo.put("error", "No se pudo editar la publicación");
+    //     }
 
-        return "perfil.html";
+    //     return "perfil.html";
         
-    }
+    // }
+    // No nos hace falta
 
     //VISTA DE LISTA DE PUBLICACIONES 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
