@@ -31,14 +31,6 @@ public class UsuarioControlador{
 
     }
 
-    //CREAR UNA PUBLICACION//
-    @PostMapping("/publicacion")
-    public String publicacion(){
-
-      return "vistapublicacion.html?";
-
-    }
-
     //ACTUALIZAR PERFIL//
     @GetMapping("/actualiza")
     public String registrar() {

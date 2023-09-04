@@ -16,26 +16,36 @@
                         Editar perfil
                     </span>
                 </h2>
+                <form th:action="@{/perfil/actualiza/actualizar}" class="h-100 bg-light p-30" method="POST" enctype="multipart/form-data">
                 <div class="bg-light p-30 mb-5 ">
                     <div class="row">
                         <div class="col-md-12 form-group">
                             <label>Nombre</label>
-                            <input class="form-control" type="text" placeholder="Ingrese nombre completo">
+                            <input class="form-control" type="text" placeholder="Ingrese nombre completo" th:value="${name}">
                         </div>
                         <div class="col-md-12 form-group">
                             <label>Email</label>
-                            <input class="form-control" type="text" placeholder="example@email.com">
+                            <input class="form-control" type="text" placeholder="example@email.com" th:value="${email}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label>Nueva Contraseña</label>
+                        <input type="password" placeholder='Contraseña' name="password" th:value="${password}"><br>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label>Repetir Contraseña</label>
+                            <input type="password" placeholder='Repetir contraseña' name="password2" th:value="${password2}"><br>    
                         </div>
                         <div class="col-md-12 form-group">
                             <label class="custum-file-upload" for="file">
                                 <div class="text">
                                     <span class="box-image">📷 Foto de perfil</span>
                                 </div>
-                                <input type="file" id="file" name="image">
+                                <input type="file" id="file" name="image" th:value="${image}">
                             </label>
                         </div>
                     </div>
                 </div>
+            </form>
             </div>
         </div>
     </div>
