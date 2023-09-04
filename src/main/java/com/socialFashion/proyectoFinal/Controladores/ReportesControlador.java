@@ -73,18 +73,6 @@ public class ReportesControlador {
 
     }
 
-    @PostMapping("/eliminarReporteUsuario/{idUser}") // Usuario
-    public String eliminarReporteUsuario(@PathVariable String idUser, ModelMap model) {
-        try {
-            servicioReportUsuario.eliminarReporte(idUser);
-            model.put("exito", "reporte eliminado correctamente");
-
-        } catch (Exception e) {
-            model.put("error", "No se pudo eliminar el reporte");
-        }
-        return "listado.html";
-
-    }
     // --------------------- COMENTARIOS -----------------------
 
     @GetMapping("/reportar-comentario/{idComent}")
@@ -108,21 +96,21 @@ public class ReportesControlador {
         return "report.html";
     }
 
-    // POST --> GET ?¿
-    @PostMapping("/eliminarReporteComentario/{idComent}") // Comentario
-    public String eliminarReporteComentario(@PathVariable String idComent, ModelMap model) {
-        try {
-            servicioReportComentario.eliminarReporte(idComent);
-            model.put("exito", "reporte eliminado correctamente");
+    // // POST --> GET ?¿
+    // @PostMapping("/eliminarReporteComentario/{idComent}") // Comentario
+    // public String eliminarReporteComentario(@PathVariable String idComent, ModelMap model) {
+    //     try {
+    //         servicioReportComentario.eliminarReporte(idComent);
+    //         model.put("exito", "reporte eliminado correctamente");
 
-        } catch (Exception e) {
+    //     } catch (Exception e) {
 
-            model.put("error", "No se pudo eliminar el reporte");
-        }
+    //         model.put("error", "No se pudo eliminar el reporte");
+    //     }
 
-        return "listado.html";
+    //     return "listado.html";
 
-    }
+    // }
 
     // ----------------- PUBLICACION --------------------
     @GetMapping("/reportar-publicacion/{idPublicacion}")
@@ -148,18 +136,18 @@ public class ReportesControlador {
 
     }
 
-    @PostMapping("/eliminarReportePublicacion/{idReportPublicacion}")
-    public String eliminarReportePublicacion(@PathVariable String idReportPublicacion, ModelMap model) {
-        try {
-            servicioReportPublicacion.eliminarReporte(idReportPublicacion);
-            model.put("exito", "reporte eliminado correctamente");
+    // @PostMapping("/eliminarReportePublicacion/{idReportPublicacion}")
+    // public String eliminarReportePublicacion(@PathVariable String idReportPublicacion, ModelMap model) {
+    //     try {
+    //         servicioReportPublicacion.eliminarReporte(idReportPublicacion);
+    //         model.put("exito", "reporte eliminado correctamente");
 
-        } catch (Exception e) {
-            model.put("error", "No se pudo eliminar el reporte");
-        }
-        return "listado.html"; // Ver url
+    //     } catch (Exception e) {
+    //         model.put("error", "No se pudo eliminar el reporte");
+    //     }
+    //     return "listado.html"; // Ver url
 
-    }
+    // }
 
     @GetMapping("/listarReportes")
     public String listarReportes(@RequestParam(required = false, name = "tipoReporte") String tipoReporte,
@@ -187,7 +175,45 @@ public class ReportesControlador {
         model.addAttribute("reportes", reportes);
 
         return "listado.html";
+    }
+
+        // ------------------------ Eliminar Reportes -------------------------
+
+    //     @PostMapping("/eliminarReporteUsuario/{idUser}") // Usuario
+    // public String eliminarReporteUsuario(@PathVariable String idUser, ModelMap model) {
+    //     try {
+    //         servicioReportUsuario.eliminarReporte(idUser);
+    //         model.put("exito", "reporte eliminado correctamente");
+
+    //     } catch (Exception e) {
+    //         model.put("error", "No se pudo eliminar el reporte");
+    //     }
+    //     return "listado.html";
+    
+    // }
+
+    @PostMapping("/eliminarReporte/{idReporte}")
+    public String eliminarReporte(@RequestParam("idReporte") String idReporte, @RequestParam("tipoReporte") String tipoReporte, ModelMap model){
+
+        try {
+            if("usuarios".equals(tipoReporte)){
+                servicioReportUsuario.eliminarReporte(idReporte);
+            } else if("comentarios".equals(tipoReporte)){
+                servicioReportComentario.eliminarReporte(idReporte);
+            } else if("publicaciones".equals(tipoReporte)){
+                servicioReportPublicacion.eliminarReporte(idReporte);
+            }
+
+            model.put("exito", "Reporte eliminado correctamente");
+            
+        } catch (Exception e) {
+            model.put("error", "No se pudo eliminar el reporte");   
+        }
+
+        return "listado.html";
+    }
+
 
     }
 
-}
+

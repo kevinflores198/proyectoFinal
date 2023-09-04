@@ -224,6 +224,7 @@
                 <div class="row px-xl-5">
                   <div class="col-lg-12 table-responsive mb-5">
                     <h1>Tabla de Reportes</h1>
+                    <form method="get" action="/listarReportes">
                     <h3>Reportes de:</h3>
                     <div class="container">
                       <div class="row">
@@ -235,8 +236,10 @@
                           <option value="comentarios">Comentarios</option>
                           <option value="publicaciones">Publicaciones</option>
                         </select>
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
                       </div>
                     </div>
+                  </form>
                     <table
                       class="table table-light table-borderless table-hover text-center mb-0"
                     >
@@ -247,7 +250,6 @@
                           <th>Elemento reportado</th>
                           <th>reason</th>
                           <th>TypeReport</th>
-                          <!-- <th>Modificar</th> -->
                           <th>Eliminar</th>
                         </tr>
                       </thead>
@@ -287,7 +289,7 @@
                           <td class="align-middle">
                             <span
                               th:if="${reportes.getClass().name == 'ReportUser'}"
-                              th:text="${reportes.idReport} (Usuario)"
+                              th:text="${reportes.idReporte} (Usuario)"
                             ></span>
                             <span
                               th:if="${reportes.getClass().name == 'ReportComentario'}"
@@ -297,6 +299,7 @@
                               th:if="${reportes.getClass().name == 'ReportPublicacion'}"
                               th:text="${reportes.idReport} (Publicacion)"
                             ></span>
+                            <input type="hidden" name="idReporte" th:value="${reportes.idReport}">
                           </td>
                           <td class="align-middle">
                             <span
@@ -326,16 +329,11 @@
                               th:text="${reportes.TypeReport}"
                             ></span>
                           </td>
-                          <!-- <td class="align-middle">
-                                <button class="btn btn-sm btn-primary" th:href="@{/comentarios/modificar/__${user.id}__}">Editar</button>
-                            </td> -->
                           <td class="align-middle">
                             <a
-                            TENGO QUE CAMBIAR EL CONTROLADOR DE ELIMINAR REPORTES PARA HACERLO TODO
-                            DESDE UNO SOLO Y PODER HACER UN IF PARA CAMBIAR LA RUTA DEL BOTON
                               sec:authorize="hasRole('ADMIN')"
                               target="_self"
-                              th:href="@{/reporte/eliminarReportePublicacion/__${reporte.idReportPublicacion}__}"
+                              th:href="@{/reporte/eliminarReporte/__${reporte.idReporte}__}"
                               ><i class="fa fa-trash"></i>Eliminar</a
                             >
                           </td>
