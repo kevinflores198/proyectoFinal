@@ -27,6 +27,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.socialFashion.proyectoFinal.Entidades.Baneo;
 import com.socialFashion.proyectoFinal.Entidades.Imagen;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.ReportUser;
@@ -241,7 +242,12 @@ public class ServicioUsuario implements UserDetailsService {
         TimeUnit unidad = TimeUnit.DAYS;
 
         long dias = unidad.convert(tiempoTrascurrido, TimeUnit.MILLISECONDS);
+
+        
+
         if(dias >= 14){
+
+            repoBan.getById(idBan).getUser().setAlta(true);
             servicioBan.eliminarBan(idBan);
         }else{
             throw new MiException("No puedes desbanear este usuario hasta dentro de " + (14 - dias) + "dias");
