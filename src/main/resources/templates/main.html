@@ -26,105 +26,86 @@
                             Agregar un js donde onClick="cambiarUrlColor" el th:href="/publicacion/MG+/__${id}__" 
                             pase a ser th:href="/publicacion/MG-/__${id}__", y color: white a color: red
 -->
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
+
+                            <a class="btn btn-square w-100 h-100" th:href="@{/detail}"><i class="fa fa-eye"></i></a>
+
 
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small>(1-5)</small>
-                        </div>
+                        <a class="h6 text-decoration-none text-truncate" href=""><img class="rounded-circle"
+                                th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="" height="50px"
+                                width="50px">Diseñador</a>
+
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <h5>Cantidad de MG</h5>
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
+
+
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
                         </div>
 
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+
+                <!--Prueba tarjeta-->
+                <div class="card profile-card-3">
+                    <div class="background-block">
+                        <img class="img-thumbnail w-100" src="img/modelo.jpg" alt="">
+
+                    </div>
+                    <div class="">
+
+                        <img class="profile" th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt=""
+                            height="80px" width="80px">
+                    </div>
+                    <div class="card-content">
+                        <h2>Diseñador<small>Categoria</small></h3>
+                            <div class="icon-block"><a href="#"><i class="far fa-heart"></i></a><a href="#"> <i
+                                        class="fa fa-eye"></i></a><a href="#"> <i class="fa fa-exclamation"></i></a>
+                            </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <!--Final prueba-->
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-thumbnail w-100" src="img/modelo.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
+                        <!--Prueba tarjeta-->
 
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Diseñador</a>
-                        <form>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-1" name="size">
-                                <label class="custom-control-label" for="size-1">1</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-2" name="size">
-                                <label class="custom-control-label" for="size-2">2</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-3" name="size">
-                                <label class="custom-control-label" for="size-3">3</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-4" name="size">
-                                <label class="custom-control-label" for="size-4">4</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-5" name="size">
-                                <label class="custom-control-label" for="size-5">5</label>
-                            </div>
-                        </form>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
-                        </div>
 
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-thumbnail w-100" src="img/modelo.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" th:href="@{/detail}"><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
 
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Diseñador</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Cantidad de MG</h5>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>
+                        <div class="card-sl">
+                            <div class="card-image">
+                                <img class="img-thumbnail w-100" src="img/modelo.jpg" alt="">
+                            </div>
+
+                            <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
+                            <div class="card-heading">
+                                Auto
+                            </div>
+                            <div class="card-text">
+                                Descripcion del producto
+                            </div>
+                            <div class="card-text">
+                                Indumentaria
+                            </div>
+                            <a href="#" class="card-button">Ver Publicacion</a>
                         </div>
                     </div>
                 </div>
             </div>
+            <!--Final prueba-->
+
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
