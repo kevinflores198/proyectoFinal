@@ -11,6 +11,9 @@ import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -78,11 +81,18 @@ public class PublicacionControlador {
     }
     
     @GetMapping("/eliminar/{id}")
-    public String eliminarPublicacion(@PathVariable String id, ModelMap modelo) {
-
+    public String eliminarPublicacion(@PathVariable String id, ModelMap modelo, HttpSession session) {
+        List<Categorias> categorias = new ArrayList<>();
+        for(Categorias categoria : Categorias.values()){
+            categorias.add(categoria);
+        }
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         try {
-
             servicioPublicacion.eliminar(id);
+            List<Publicacion>publicaciones=servicioPublicacion.getPublicacionByUser(logueado.getId());
+            modelo.addAttribute("publicaciones", publicaciones);
+            modelo.addAttribute("usuario", logueado);
+            modelo.addAttribute("categorias", categorias);
 
             modelo.put("exito", "Publicación eliminada correctamente");
 
@@ -102,7 +112,7 @@ public class PublicacionControlador {
 
         modelo.put("Publicacion", servicioPublicacion.getOne(id));
 
-        return "publicacion.html";
+        return "editar-publicacion.html";
     }
 
     @PostMapping("/editar/{id}")
@@ -152,13 +162,52 @@ public class PublicacionControlador {
 
     }
     
-    @GetMapping("/MG+/{id}")
-    public void agregarLike(@PathVariable String id){
-        servicioPublicacion.agregarLike(id);
+    @GetMapping("/MGmore/{id}")
+    public String agregarLike(@PathVariable String id, ModelMap modelo, HttpSession session){
+        
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        servicioPublicacion.Like(id, true, usuario);
+
+        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("usuario", usuario);
+
+        return "main.html";
     }
+
+    // @GetMapping("/MGmore/{id}")
+    // public String agregarLike(@PathVariable String id, ModelMap modelo/* , List<Publicacion> publis*/){
+        
+    //     servicioPublicacion.Like(id, true);
+        
+    //     List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+    //     //publis.add(servicioPublicacion.getOne(id));
+    //     // for (Publicacion publicacion : publicaciones) {
+    //     //     if(publis.contains(publicacion)){
+    //     //         publicaciones.remove(publicacion);
+    //     //     }
+    //     // }
+
+    //     modelo.addAttribute("publicaciones", publicaciones);
+        
+    //     modelo.addAttribute("validar", true);
+        
+    //     // modelo.addAttribute("likeadas", publis);
+
+    //     return "main.html";
+    // }
     
-    @GetMapping("/MG-/{id}")
-    public void sacarLike(@PathVariable String id){
-        servicioPublicacion.sacarLike(id);
+    @GetMapping("/MGless/{id}")
+    public String sacarLike(@PathVariable String id, ModelMap modelo, HttpSession session){
+        
+        Usuario usuario = (Usuario)session.getAttribute("usuariosession");
+        servicioPublicacion.Like(id, false, usuario);
+
+        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("usuario", usuario);
+
+        return "main.html";
     }
+
 }
