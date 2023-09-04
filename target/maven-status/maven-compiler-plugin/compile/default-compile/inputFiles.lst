@@ -3,6 +3,7 @@
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioUsuario.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/ProyectoFinalApplication.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsComentario.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Baneo.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Entidades/Comentario.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Enumeraciones/ReportsUser.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioReporteComentario.java
@@ -32,5 +33,7 @@
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Controladores/ImagenControlador.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioReportUser.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioUsuario.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Servicios/ServicioBaneo.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioReportePublicacion.java
+/Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioBaneo.java
 /Users/nicoalfaro__/Desktop/Proyecto Final/proyectoFinal/src/main/java/com/socialFashion/proyectoFinal/Repositorios/RepositorioPublicacion.java

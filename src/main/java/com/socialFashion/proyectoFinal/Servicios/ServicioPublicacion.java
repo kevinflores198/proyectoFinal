@@ -167,16 +167,7 @@ public class ServicioPublicacion {
 
         Date hoy = new Date();  // Dia de hoy para comparar
         for (Publicacion publicacion : publicaciones) {
-            // if(hoy.getDate() - publicacion.getInitialDate().getDate() <= 7){
-            //     topDiez.add(publicacion);
-            // }else{
-            //     if( hoy.getMonth() - publicacion.getInitialDate().getMonth() < 0){
-            //         if(publicacion.getInitialDate().getDate() - hoy.getDate() <= -23){          //8 - 30 = -22
-            //             topDiez.add(publicacion);
-            //         }
-            //     }else if(){
-            //     }
-            // }
+
             long tiempoTrascurrido = hoy.getTime() - publicacion.getInitialDate().getTime();
             TimeUnit unidad = TimeUnit.DAYS;
 
