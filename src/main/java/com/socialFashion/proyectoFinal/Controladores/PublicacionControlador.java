@@ -112,7 +112,7 @@ public class PublicacionControlador {
 
         modelo.put("Publicacion", servicioPublicacion.getOne(id));
 
-        return "publicacion.html";
+        return "editar-publicacion.html";
     }
 
     @PostMapping("/editar/{id}")

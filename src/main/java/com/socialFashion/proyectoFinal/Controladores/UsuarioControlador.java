@@ -43,7 +43,7 @@ public class UsuarioControlador{
     @GetMapping("/actualiza")
     public String registrar() {
 
-        return "vistaUpdate.html?";
+        return "editar-perfil.html";
     }
 
     @PostMapping("/actualizar")
@@ -60,7 +60,7 @@ public class UsuarioControlador{
 
         modelo.put("exito", "Datos actualizados");
 
-        return "profile.html";
+        return "perfil.html";
 
     } catch (MiException ex) {
         
@@ -68,7 +68,7 @@ public class UsuarioControlador{
         modelo.put("nombre", name);
         modelo.put("email", email);
 
-        return "vistaUpdate.html?";
+        return "editar-perfil.html";
     }
 
     }
