@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -79,12 +81,18 @@ public class PublicacionControlador {
     }
     
     @GetMapping("/eliminar/{id}")
-    public String eliminarPublicacion(@PathVariable String id, ModelMap modelo) {
-
-        
+    public String eliminarPublicacion(@PathVariable String id, ModelMap modelo, HttpSession session) {
+        List<Categorias> categorias = new ArrayList<>();
+        for(Categorias categoria : Categorias.values()){
+            categorias.add(categoria);
+        }
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         try {
-
             servicioPublicacion.eliminar(id);
+            List<Publicacion>publicaciones=servicioPublicacion.getPublicacionByUser(logueado.getId());
+            modelo.addAttribute("publicaciones", publicaciones);
+            modelo.addAttribute("usuario", logueado);
+            modelo.addAttribute("categorias", categorias);
 
             modelo.put("exito", "Publicación eliminada correctamente");
 

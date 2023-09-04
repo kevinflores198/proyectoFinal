@@ -166,7 +166,6 @@ public class PortalControlador {
         modelo.addAttribute("usuario", usuario);
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("categorias", categorias);
-
         return "perfil.html";
 
     }

@@ -56,7 +56,7 @@ public class UsuarioControlador{
 
       try {
             
-        servicioUsuario.update(id, name, email, password, password2, image);
+        servicioUsuario.update(id, name, password, password2, image);
 
         modelo.put("exito", "Datos actualizados");
 
