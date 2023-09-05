@@ -23,8 +23,11 @@
                     <p class="font-weight-semi-bold mb-4" th:text="${publicacion.label}"></p>
                     <p class="font-weight-semi-bold mb-4" th:text="${publicacion.content}"></p>
 
-                    <button id="boton-mg" class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Me
-                        gusta</button>
+                    <button id="boton-mg" class="btn btn-primary px-3"><a th:if="${!publicacion.usuarioLikes.contains(session.usuariosession)}" th:href="@{/publicacion/MGmore/__${publicacion.id}__}"><i class="fa fa-heart mr-1"></i> Me
+                        gusta</a></button>
+                    <button id="boton-mg" class="btn btn-primary px-3"><a th:if="${publicacion.usuarioLikes.contains(session.usuariosession)}" th:href="@{/publicacion/MGless/__${publicacion.id}__}"><i class="fa fa-heart" style="color:red"></i> Me
+                        gusta</a></button>
+
                     <form>
                         <div class="form-group">
                             <textarea id="message" cols="30" rows="5" class="form-control"></textarea>

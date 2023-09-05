@@ -72,7 +72,6 @@ public class PortalControlador {
             List<Usuario> topUsuarios = new ArrayList();
             for (Publicacion publicacion : publicaciones) {
                 if(!topUsuarios.contains(publicacion.getUser())){
-                    System.out.println("se ingreso");
                     topUsuarios.add(publicacion.getUser());
                 }
             }
@@ -161,7 +160,6 @@ public class PortalControlador {
         List<Usuario> topUsuarios = new ArrayList();
         for (Publicacion publicacion : publicaciones) {
             if(!topUsuarios.contains(publicacion.getUser())){
-                System.out.println("se ingreso");
                 topUsuarios.add(publicacion.getUser());
             }
         }
