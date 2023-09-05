@@ -36,8 +36,8 @@
 
 
     <!-- Hacer q cuando se le pone like a una y luego a otra, ambas queden con el corazon en rojo -->
-                            <a class="btn btn-outline-dark btn-square" th:if="${!publicacion.usuarioLikes.contains(session.usuariosession)}" th:href="@{/publicacion/MGmore/__${publicacion.id}__}"><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" th:if="${publicacion.usuarioLikes.contains(session.usuariosession)}" th:href="@{/publicacion/MGless/__${publicacion.id}__}"><i class="fa fa-heart" style="color:red"></i></a>
+                            <a class="btn btn-outline-dark btn-square" th:if="${!publicacion.usuarioLikes.contains(usuario)}" th:href="@{/publicacion/MG/__${publicacion.id}__}"><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" th:if="${publicacion.usuarioLikes.contains(usuario)}" th:href="@{/publicacion/MG/__${publicacion.id}__}"><i class="fa fa-heart" style="color:red"></i></a>
                             
                             
                             <a class="btn btn-outline-dark btn-square" th:href="@{/publicacion/detail/__${publicacion.id}__}"><i class="">ir</i></a>

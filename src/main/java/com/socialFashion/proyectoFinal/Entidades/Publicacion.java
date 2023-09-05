@@ -5,6 +5,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -49,8 +50,6 @@ public class Publicacion {
     private Integer comentarios;
 
     @ManyToMany
-    @Column
-    @ElementCollection
     private List<Usuario> usuarioLikes;
 
     private Integer likes;
