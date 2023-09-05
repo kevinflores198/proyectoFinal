@@ -11,6 +11,9 @@ import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -152,13 +155,35 @@ public class PublicacionControlador {
 
     }
     
-    @GetMapping("/MG+/{id}")
-    public void agregarLike(@PathVariable String id){
-        servicioPublicacion.agregarLike(id);
+    @GetMapping("/MG/{id}")
+    public String agregarLike(@PathVariable String id, ModelMap modelo, HttpSession session){
+        
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        servicioPublicacion.Like(id, usuario);
+
+        return "redirect:/main";
     }
-    
-    @GetMapping("/MG-/{id}")
-    public void sacarLike(@PathVariable String id){
-        servicioPublicacion.sacarLike(id);
-    }
+
+    // @GetMapping("/MGmore/{id}")
+    // public String agregarLike(@PathVariable String id, ModelMap modelo/* , List<Publicacion> publis*/){
+        
+    //     servicioPublicacion.Like(id, true);
+        
+    //     List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+    //     //publis.add(servicioPublicacion.getOne(id));
+    //     // for (Publicacion publicacion : publicaciones) {
+    //     //     if(publis.contains(publicacion)){
+    //     //         publicaciones.remove(publicacion);
+    //     //     }
+    //     // }
+
+    //     modelo.addAttribute("publicaciones", publicaciones);
+        
+    //     modelo.addAttribute("validar", true);
+        
+    //     // modelo.addAttribute("likeadas", publis);
+
+    //     return "main.html";
+    // }
+
 }

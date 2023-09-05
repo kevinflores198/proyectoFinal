@@ -6,6 +6,7 @@ import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioBaneo;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioImagen;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
 import com.socialFashion.proyectoFinal.Servicios.ServicioComentario;
@@ -44,6 +46,9 @@ public class PortalControlador {
     
     @Autowired
     private RepositorioPublicacion repoPublicacion;
+
+    @Autowired
+    private RepositorioBaneo repoBaneo;
     
 
     // VISTA INDEX
@@ -58,11 +63,21 @@ public class PortalControlador {
     }
 
     @GetMapping("/filtro/{filtro}/{categoria}")
-    public String index(@PathVariable Integer filtro, @PathVariable Categorias categoria, ModelMap modelo){
+    public String index(@PathVariable Integer filtro, @PathVariable Categorias categoria, ModelMap modelo, HttpSession session){
 
+        List<Publicacion> publicaciones = servicioPublicacion.publicacionesPorFiltro(filtro, categoria);
+        modelo.addAttribute("publicaciones", publicaciones);
         
-        modelo.addAttribute("publicaciones", servicioPublicacion.publicacionesPorFiltro(filtro, categoria));
-        
+        if(session.getAttribute("usuariosession")!=null){
+            List<Usuario> topUsuarios = new ArrayList();
+            for (Publicacion publicacion : publicaciones) {
+                if(!topUsuarios.contains(publicacion.getUser())){
+                    topUsuarios.add(publicacion.getUser());
+                }
+            }
+            modelo.addAttribute("topUsuarios", topUsuarios);
+            return "main.html";
+        }
         return "index.html";
     }
 
@@ -109,17 +124,46 @@ public class PortalControlador {
         }
         return "guest.html";
     }
+
+    @GetMapping("/check")
+    public String checkAlta(HttpSession session, ModelMap model) throws MiException{
+        
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+
+        if(!usuario.getAlta()){
+            Date hoy = new Date();
+            
+            long tiempoTrascurrido = hoy.getTime() - repoBaneo.banByUser(usuario.getId()).getInicioBan().getTime();
+            TimeUnit unidad = TimeUnit.DAYS;
+
+            long dias = unidad.convert(tiempoTrascurrido, TimeUnit.MILLISECONDS);
+            if((14-dias) <= 0){
+                model.put("error", "Deberías poder ingresar, en breves momentos entrará un admin para desbanearte");
+            }else{
+                model.put("error", "Estas baneado, no puedes ingresar hasta dentro de " + (14-dias) + "dias");
+            }
+            return "guest.html";
+        }
+
+        return "redirect:/main";
+    }
     
     //VISTA MAIN 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/main")
-    public String inicio(HttpSession session) {
+    public String inicio(HttpSession session, ModelMap modelo) {
 
-        
+        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        modelo.addAttribute("publicaciones", publicaciones);
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
-        if (logueado.getRole().toString().equals("ADMIN")) {
-        return "main.html";
+        modelo.addAttribute("usuario", servicioUsuario.getOne(logueado.getId()));
+        List<Usuario> topUsuarios = new ArrayList();
+        for (Publicacion publicacion : publicaciones) {
+            if(!topUsuarios.contains(publicacion.getUser())){
+                topUsuarios.add(publicacion.getUser());
+            }
         }
+        modelo.addAttribute("topUsuarios", topUsuarios);
 
         return "main.html";
     }
@@ -223,13 +267,18 @@ public class PortalControlador {
         return "listado.html";
     }
 
-    @PreAuthorize("hasAnyRol('ROLE_ADMIN')")
     @GetMapping("/ban/{id}")
-    public String BanUsuario(@PathVariable String id) throws MiException{
+    public String BanUsuario(@PathVariable String id, ModelMap modelo) throws MiException{
         
         boolean alta = servicioUsuario.getOne(id).getAlta();
         
-        servicioUsuario.getOne(id).setAlta(!alta);
+        servicioUsuario.banearUsuario(id);
+        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        List<Usuario> usuarios = servicioUsuario.listUsers();
+        List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("usuarios", usuarios);
+        modelo.addAttribute("cometarios", comentarios);
 
         return "listado.html";
     }

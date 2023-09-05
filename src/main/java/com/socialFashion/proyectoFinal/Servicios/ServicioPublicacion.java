@@ -136,22 +136,36 @@ public class ServicioPublicacion {
         }
     }
     
-    
     // -------- Funciones de Me Gustas ---------
     @Transactional
-    public void agregarLike(String id){
+    public void Like(String id, Usuario usuarioLike) {
         Publicacion publicacion = getOne(id);
-        Integer suma = publicacion.getLikes() + 1;
-        publicacion.setLikes(suma);
+
+        List<Usuario> usuarios = repoPubli.publicacionById(id).getUsuarioLikes();
+        List<Usuario> usuariosAux = usuarios;
+        int indexToDelete = usuarios.size();
+        boolean encontrado = false;
+        for (int i = 0; i < usuarios.size(); i++) {
+            Usuario usuario = usuarios.get(i);
+            if (usuario.getId().equals(usuarioLike.getId())) {
+                encontrado = true;
+                indexToDelete = i;
+                break;
+            }
+        }
+
+        if ((!encontrado) || usuarios.size() == 0) {
+            usuariosAux.add(usuarioLike);
+            publicacion.setLikes(publicacion.getLikes() + 1);
+        } else {
+            usuariosAux.remove(indexToDelete);
+            publicacion.setLikes(publicacion.getLikes() - 1);
+        }
+        publicacion.setUsuarioLikes(usuariosAux);
+        
+        repoPubli.save(publicacion);
     }
-    
-    @Transactional
-    public void sacarLike(String id){
-        Publicacion publicacion = getOne(id);
-        Integer suma = publicacion.getLikes() - 1;
-        publicacion.setLikes(suma);
-    }
-    
+
     /* -------- Funciones de Lectura en la BD --------- */
     
     /**
@@ -166,16 +180,7 @@ public class ServicioPublicacion {
 
         Date hoy = new Date();  // Dia de hoy para comparar
         for (Publicacion publicacion : publicaciones) {
-            // if(hoy.getDate() - publicacion.getInitialDate().getDate() <= 7){
-            //     topDiez.add(publicacion);
-            // }else{
-            //     if( hoy.getMonth() - publicacion.getInitialDate().getMonth() < 0){
-            //         if(publicacion.getInitialDate().getDate() - hoy.getDate() <= -23){          //8 - 30 = -22
-            //             topDiez.add(publicacion);
-            //         }
-            //     }else if(){
-            //     }
-            // }
+
             long tiempoTrascurrido = hoy.getTime() - publicacion.getInitialDate().getTime();
             TimeUnit unidad = TimeUnit.DAYS;
 

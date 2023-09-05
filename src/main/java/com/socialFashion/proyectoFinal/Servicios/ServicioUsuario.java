@@ -3,6 +3,7 @@ package com.socialFashion.proyectoFinal.Servicios;
 
 
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,11 +13,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -25,12 +27,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.socialFashion.proyectoFinal.Entidades.Baneo;
 import com.socialFashion.proyectoFinal.Entidades.Imagen;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.ReportUser;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Role;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioBaneo;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioImagen;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioReporteUsuario;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
@@ -52,6 +56,15 @@ public class ServicioUsuario implements UserDetailsService {
     
     @Autowired
     private RepositorioImagen repoImagen;
+
+    @Autowired
+    private RepositorioUsuario repoUser;
+
+    @Autowired
+    private RepositorioBaneo repoBan;
+
+    @Autowired
+    private ServicioBaneo servicioBan;
 
     //PEDIR EL PARAM EL ROL
 
@@ -112,7 +125,7 @@ public class ServicioUsuario implements UserDetailsService {
         for (ReportUser reportUser : repositorioReporteUsuario.reportUsuarioByIdUser(id)) {
             repositorioReporteUsuario.delete(reportUser);
         }
-        
+        servicioBan.eliminarBan(id);
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
             List<Usuario> us = listUsers();
@@ -209,5 +222,35 @@ public class ServicioUsuario implements UserDetailsService {
 
     }
 
+    public List<Usuario> listaUsuariosBaneados(){
+        List<Usuario> usuarios = repoUser.usuariosDeBaja();
+        return usuarios;
+    }
     
+    @Transactional
+    public void banearUsuario(String idUser){
+        servicioBan.cargarBan(repoUser.getById(idUser));
+        repoUser.getById(idUser).setAlta(false);
+    }
+
+    @Transactional
+    public void desbanearUsuario(String idBan) throws MiException{
+
+        Date hoy = new Date();
+
+        long tiempoTrascurrido = hoy.getTime() - repoBan.banByUser(idBan).getInicioBan().getTime();
+        TimeUnit unidad = TimeUnit.DAYS;
+
+        long dias = unidad.convert(tiempoTrascurrido, TimeUnit.MILLISECONDS);
+
+        
+
+        if(dias >= 14){
+
+            repoBan.getById(idBan).getUser().setAlta(true);
+            servicioBan.eliminarBan(idBan);
+        }else{
+            throw new MiException("No puedes desbanear este usuario hasta dentro de " + (14 - dias) + "dias");
+        }
+    }
 }

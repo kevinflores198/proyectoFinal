@@ -102,8 +102,8 @@
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" th:href="@{/publicacion/detail/__${publicacion.id}__}"><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" th:href="@{/report}">
-                                <i class="fa fa-exclamation"></i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/report}"><i class="fa fa-exclamation"></i></a>
+                            <a th:if="__${publicacion.user.id}__ == ${session.usuariosession.id}" class="btn btn-outline-dark btn-square"  target="_self" th:href="@{/publicacion/eliminar/__${publicacion.id}__}"><i class="fa fa-trash"></i></a>
                         </div>
                     </div>
                 </div>

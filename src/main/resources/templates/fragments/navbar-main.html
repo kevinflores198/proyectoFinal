@@ -17,10 +17,38 @@
                             <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
                                 data-toggle="dropdown">Ordenar por</button>
                             <div class="dropdown-menu dropdown-menu-right bg-dark">
-                                <button class="dropdown-item" type="button"><a class=""
-                                        href="guest.html">Diseñadores</a></button>
-                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Mas me gustas</a></button>
-                                <button class="dropdown-item" type="button"><a class="" href="guest.html">Fecha</a></button>
+
+                                <button class="dropdown-item" type="button">
+                                    <a th:href="@{/filtro/4/INDUMENTARIA}" class="nav-item nav-link text-light text-left">Diseñador A/Z</a>
+                                </button>
+
+                                <button class="dropdown-item" type="button">
+                                    <a th:href="@{/filtro/5/INDUMENTARIA}" class="nav-item nav-link text-light text-left">Diseñador Z/A</a>
+                                </button>
+
+                                <button class="dropdown-item" type="button">
+                                    <a th:href="@{/filtro/2/INDUMENTARIA}" class="nav-item nav-link text-light text-left">Fecha ↓</a>
+                                </button>
+
+                                <button class="dropdown-item" type="button">
+                                    <a th:href="@{/filtro/3/INDUMENTARIA}" class="nav-item nav-link text-light text-left">Fecha ↑</a>
+                                </button>
+
+                                <button class="dropdown-item" type="button">
+                                    <div class="nav-item dropdown dropright ">
+                                        <a href="#" class="nav-link dropdown-toggle text-light text-left"
+                                            data-toggle="dropdown">Categorías <i
+                                                class="fa fa-angle-right float-right mt-1 pr-3"></i></a>
+    
+                                        <div class="dropdown-menu position-absolute rounded-0 border-0 m-0 bg-primary">
+                                            <a th:href="@{/filtro/1/INDUMENTARIA}" class="dropdown-item">Indumentaria</a>
+                                            <a th:href="@{/filtro/1/CALZADO}" class="dropdown-item">Calzado</a>
+                                            <a th:href="@{/filtro/1/MAQUILLAJE}" class="dropdown-item">Maquillaje</a>
+                                            <a th:href="@{/filtro/1/ACCESORIO}" class="dropdown-item">Accesorios</a>
+                                        </div>
+                                    </div>
+                                </button>
+
                             </div>
                         </div>
                     </div>
@@ -31,14 +59,18 @@
         <div class="col-lg-4 col-6 text-right">
             <div class="d-inline-flex align-items-center">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle " data-toggle="dropdown">Mi
+                    <button type="button" class="rounded btn btn-sm btn-primary dropdown-toggle "
+                        data-toggle="dropdown"><img class="rounded-circle"
+                            th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="" height="30px"
+                            width="30px"> Mi
                         Cuenta</button>
                     <div class="dropdown-menu dropdown-menu-right bg-dark">
-                        <button class="dropdown-item" type="button"><a class="" th:href="@{/detail}">Perfil</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
-                                th:href="@{/listado}">Listdo de entidades</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
-                                th:href="@{/perfil/modificar/__${session.usuariosession.id}__}">Configurar</a></button>
+                        <button class="dropdown-item" type="button"><a th:href="@{/perfil/__${session.usuariosession.id}__}" class=""
+                                >Perfil</a></button>
+                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a th:href="@{/listado}" class=""
+                                >Listado de entidades</a></button>
+                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')" ><a th:href="@{/perfil/modificar/__${session.usuariosession.id}__}" class=""
+                                >Configurar</a></button>
                         <button class="dropdown-item" type="button"><a class="" th:href="@{/logout}">Salir</a></button>
                     </div>
                 </div>
@@ -53,106 +85,25 @@
             <div class="col-lg-3 d-none d-lg-block">
                 <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse"
                     href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
-                    <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Diseñadores</h6>
+                    <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>TOP 10 - Diseñadores</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
                     id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
-                    <div class="navbar-nav w-100">
-                        <div class="nav-item dropdown dropright">
-                            <!--  th:href= "@{/profile/__${Usuario.name}__}"  -->
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <!-- th:href= "@{/profile/__${Usuario.id}__}" -->
-                                <a  class="dropdown-item">Ver prefil</a>
-                                <a href="#" class="dropdown-item">Opinar</a>
-                                <a th:href="@{/reporte}" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
 
+                    <div class="navbar-nav w-100" th:each="usuario : ${topUsuarios}">
+
+                        <div class="nav-item dropdown dropright" >
+                            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" th:text="${usuario.name}"><i
+                                    class="fa fa-angle-right float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
+                                <a th:href="@{/perfil/__${usuario.id}__}" class="dropdown-item">Ver prefil</a>
+                                <a href="#" class="dropdown-item bg-danger">Reportar</a>
+                            </div>
                         </div>
+
                     </div>
+
                 </nav>
             </div>
 
