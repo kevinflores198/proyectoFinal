@@ -140,16 +140,25 @@ public class ServicioPublicacion {
     @Transactional
     public void Like(String id, Boolean like, Usuario usuarioLike){
         Publicacion publicacion = getOne(id);
+
         List<Usuario> usuarios = repoPubli.publicacionById(id).getUsuarioLikes();
+        List<Usuario> aux = new ArrayList<>();
         Integer rst = 0;
+        
         if(like){
             rst = publicacion.getLikes() + 1;
-            usuarios.add(usuarioLike);
+            aux.add(usuarioLike);
+            
         }else{
             rst = publicacion.getLikes() - 1;
-            usuarios.remove(usuarioLike);
+            for (Usuario user : usuarios) {
+                if(!user.equals(usuarioLike)){
+                    aux.add(user);
+                }
+            }
         }
-        publicacion.setUsuarioLikes(usuarios);
+        
+        publicacion.setUsuarioLikes(aux);
         publicacion.setLikes(rst);
     }
 
