@@ -6,5 +6,5 @@ public enum ReportsUser {
     IDENTIDAD_FALSA,
     MENOR,
     HACKEADO,
-    OTRO,    
+    OTRO;    
 }

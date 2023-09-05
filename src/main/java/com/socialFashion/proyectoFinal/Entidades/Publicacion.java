@@ -1,8 +1,13 @@
 package com.socialFashion.proyectoFinal.Entidades;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import org.hibernate.annotations.GenericGenerator;
+
+import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
+
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -25,7 +30,8 @@ public class Publicacion {
     @ManyToOne
     private Usuario user;
 
-    private String label;
+    @Enumerated(EnumType.STRING)
+    private Categorias label;
 
     @OneToOne
     private Imagen image;
@@ -35,28 +41,24 @@ public class Publicacion {
     @Temporal(TemporalType.DATE)
     private Date initialDate;
 
-    //@OneToMany    
-    //private ArrayList<Comentario> comments;
+    private Integer comentarios;
 
     private Integer likes;
 
-    
-
     public Publicacion() {
+        this.comentarios = 0;
+        this.likes = 0;
     }
 
-    public Publicacion(Usuario user, String label, Imagen image, String content, Date initialDate,
-            Integer likes, Boolean alta) {
+    public Publicacion(Usuario user, Categorias label, Imagen image, String content, Date initialDate) {
         this.user = user;
         this.label = label;
         this.image = image;
         this.content = content;
         this.initialDate = initialDate;
-        this.likes = likes;
-        
+        this.comentarios = 0;
+        this.likes = 0;
     }
-
-    //Getter y Setter
 
     public String getId() {
         return id;
@@ -70,15 +72,15 @@ public class Publicacion {
         return user;
     }
 
-    public void setUser(Usuario usuario) {
-        this.user = usuario;
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 
-    public String getLabel() {
+    public Categorias getLabel() {
         return label;
     }
 
-    public void setLabel(String label) {
+    public void setLabel(Categorias label) {
         this.label = label;
     }
 
@@ -106,6 +108,14 @@ public class Publicacion {
         this.initialDate = initialDate;
     }
 
+    public Integer getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(Integer comentarios) {
+        this.comentarios = comentarios;
+    }
+
     public Integer getLikes() {
         return likes;
     }
@@ -113,8 +123,6 @@ public class Publicacion {
     public void setLikes(Integer likes) {
         this.likes = likes;
     }
-
-    
 
     
 }
