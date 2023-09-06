@@ -68,8 +68,6 @@ public class ComentarioControlador {
             modelo.put("error", "No se pudo cargar el comentario debido a " + ex.getMessage());
         }
 
-        
-
         return "detail.html";
     }
 

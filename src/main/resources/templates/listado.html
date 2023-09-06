@@ -212,8 +212,8 @@
                         <tr>
                           <th class="align-middle" scope="row" th:text="${coment.idComent}"></th>
                           <td class="align-middle">
-                            <a
-                              ><img
+                            <a>
+                              <img
                                 th:if="publicacion.image != null"
                                 style="width: 200px"
                                 th:src="@{/imagen/publicacion/__${coment.publicacion.id}__}"
@@ -232,8 +232,8 @@
                               sec:authorize="hasRole('ADMIN')"
                               target="_self"
                               th:href="@{/comentarios/listado/eliminar/__${coment.user.id}__}"
-                              ><i class="fa fa-trash"></i>Eliminar</a
-                            >
+                              ><i class="fa fa-trash"></i>Eliminar
+                            </a>
                           </td>
                         </tr>
                       </tbody>
