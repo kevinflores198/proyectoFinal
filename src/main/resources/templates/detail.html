@@ -23,21 +23,14 @@
                     <h5 class="font-weight-semi-bold mb-4" th:text="${publicacion.label}" ></h5>
                     <h3 class="font-weight-semi-bold mb-4" th:text="${publicacion.content}" ></h3>
 
-                    <button id="boton-mg" class="btn btn-primary px-3"><a th:if="${!publicacion.usuarioLikes.contains(session.usuariosession)}" th:href="@{/publicacion/MGmore/__${publicacion.id}__}"><i class="fa fa-heart mr-1"></i> Me
-                        gusta</a></button>
-                    <button id="boton-mg" class="btn btn-primary px-3"><a th:if="${publicacion.usuarioLikes.contains(session.usuariosession)}" th:href="@{/publicacion/MGless/__${publicacion.id}__}"><i class="fa fa-heart" style="color:red"></i> Me
-                        gusta</a></button>
+                    <a id="boton-mg" class="btn btn-primary px-3" th:if="${!publicacion.usuarioLikes.contains(usuario)}" th:href="@{/publicacion/detail/MG/__${publicacion.id}__}"><i class="far fa-heart mr-1"></i>Me Gusta</a>
+                    <a id="boton-mg" class="btn btn-primary px-3" th:if="${publicacion.usuarioLikes.contains(usuario)}" th:href="@{/publicacion/detail/MG/__${publicacion.id}__}"><i class="fa fa-heart" style="color:red"></i>Me Gusta</a>
 
-                    <form>
-                        <div class="form-group">
-                            <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                        </div>
-
-                        <div class="form-group mb-0">
-                            <input type="submit" value="Comentar" class="btn btn-primary px-3">
-                        </div>
+                    <form class="form-group mb-0" th:action="@{/comentario/comentar/__${publicacion.id}__}" method="POST">
+                        <textarea rows="5" cols="40" type="text" placeholder="Comentario..." th:value="${comment}" name="comment"></textarea><br>
+                        <br>
+                        <button class="btn btn-primary px-3">Comentar</button>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -52,62 +45,16 @@
                     <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reporte</a>
                 </div>
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="tab-pane-1">
-                        <h4 class="mb-3">Product Description</h4>
-                        <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam
-                            invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod
-                            consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum
-                            diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam
-                            sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor
-                            aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam
-                            kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.
-                        </p>
-                        <button class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Me gusta</button>
+
+                    <div class="tab-pane fade show active" id="tab-pane-1" th:each="coment : ${comentarios}">
+                        <h4 class="mb-3"><a th:text="${coment.user.name}" th:href="@{/perfil/__${coment.user.id}__}"></a></h4>
+                        <p th:text="coment.comment"></p>
+                        <button class="btn btn-primary px-3" th:if="__${coment.user.id}__ == ${session.usuariosession.id}" 
+                                th:href="@{/comentario/eliminar/__${coment.id}__}"><i class="fa fa-trash"></i>
+                        </button>
                         <button class="btn btn-danger px-3"><i class="fa fa-exclamation"></i></i> <a
-                                th:href="@{/reporte}">Reportar</a></button>
-
-                        <div id="barra-espaciadora" class="row border-top mx-xl-5 py-4"
-                            style="border-color: black !important;"></div>
-
-                        <h4 class="mb-3">Product Description</h4>
-                        <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam
-                            invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod
-                            consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum
-                            diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam
-                            sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor
-                            aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam
-                            kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.
-                        </p>
-                        <button class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Me gusta</button>
-                        <button class="btn btn-danger px-3"><i class="fa fa-exclamation"></i></i> Reportar</button>
-
-                        <div id="barra-espaciadora" class="row border-top mx-xl-5 py-4"
-                            style="border-color: black !important;"></div>
-                        <h4 class="mb-3">Product Description</h4>
-                        <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam
-                            invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod
-                            consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum
-                            diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam
-                            sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor
-                            aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam
-                            kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.
-                        </p>
-                        <button class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Me gusta</button>
-                        <button class="btn btn-danger px-3"><i class="fa fa-exclamation"></i></i> Reportar</button>
-
-                        <div id="barra-espaciadora" class="row border-top mx-xl-5 py-4"
-                            style="border-color: black !important;"></div>
-                        <h4 class="mb-3">Product Description</h4>
-                        <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam
-                            invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod
-                            consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum
-                            diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam
-                            sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor
-                            aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam
-                            kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.
-                        </p>
-                        <button class="btn btn-primary px-3"><i class="fa fa-heart mr-1"></i> Me gusta</button>
-                        <button class="btn btn-danger px-3"><i class="fa fa-exclamation"></i></i> Reportar</button>
+                                th:href="@{/reporte}">Reportar</a>
+                        </button>
 
                         <div id="barra-espaciadora" class="row border-top mx-xl-5 py-4"
                             style="border-color: black !important;"></div>
@@ -135,17 +82,12 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="name">Nombre</label>
-                                        <input type="text" class="form-control" id="name">
-                                    </div>
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="email">
+                                        <input type="email" class="form-control" id="email" name="email">
                                     </div>
                                     <div class="form-group mb-0">
-                                        <input type="submit" value="Deja tu reporte" class="btn btn-primary px-3">
+                                        <input type="submit" class="btn btn-primary px-3">
                                     </div>
                                 </form>
                             </div>

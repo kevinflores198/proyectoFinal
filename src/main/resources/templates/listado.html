@@ -198,8 +198,8 @@
                       <thead class="thead-dark">
                         <tr>
                           <th>ID Comentario</th>
-                          <th>ID publicacion</th>
-                          <th>ID del Usuario</th>
+                          <th>ID Publicacion</th>
+                          <th>Nombre</th>
                           <th>Contenido</th>
                           <!-- <th>Modificar</th> -->
                           <th>Eliminar</th>
@@ -217,7 +217,7 @@
                           ></td>
                           <td
                             class="align-middle"
-                            th:text="${comentario.idUser}"
+                            th:text="${comentario.user.name}"
                           ></td>
                           <td
                             class="align-middle"

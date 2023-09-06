@@ -143,13 +143,13 @@ public class PublicacionControlador {
     //VISTA DE CARTA 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/detail/{id}")
-    public String CartaPublicacion(@PathVariable String id, ModelMap modelo) {
+    public String CartaPublicacion(@PathVariable String id, ModelMap modelo, HttpSession session) {
 
         Publicacion publicacion = servicioPublicacion.getOne(id);
-        // Usuario usuario = publicacion.getUser();
-        // modelo.addAttribute("usuario", usuario);
         modelo.addAttribute("publicacion", publicacion);
 
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        modelo.addAttribute("usuario", usuario);
         //RETORNAR A SU HTML 
         return "detail.html";
 
@@ -162,6 +162,14 @@ public class PublicacionControlador {
         servicioPublicacion.Like(id, usuario);
 
         return "redirect:/main";
+    }
+    @GetMapping("/detail/MG/{id}")
+    public String agregarLikeDetail(@PathVariable String id, ModelMap modelo, HttpSession session){
+        
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        servicioPublicacion.Like(id, usuario);
+
+        return "redirect:/publicacion/detail/"+id;
     }
 
     // @GetMapping("/MGmore/{id}")

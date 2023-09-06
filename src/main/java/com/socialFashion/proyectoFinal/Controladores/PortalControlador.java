@@ -198,7 +198,7 @@ public class PortalControlador {
     //VISTA LISTA DE USUARIOS
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/listado")
-    public String listado(ModelMap modelo) {
+    public String listado(ModelMap modelo, HttpSession session) {
 
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
         List<Usuario> usuarios = servicioUsuario.listUsers();
@@ -206,7 +206,9 @@ public class PortalControlador {
         List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
         List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
         List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
-        
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
+
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
         modelo.addAttribute("cometarios", comentarios);
@@ -275,7 +277,7 @@ public class PortalControlador {
     }
     
     @GetMapping("/eliminar/{id}")
-    public String eliminarUsuario(@PathVariable String id, ModelMap modelo) throws MiException{
+    public String eliminarUsuario(@PathVariable String id, ModelMap modelo, HttpSession session) throws MiException{
         
         servicioUsuario.delete(id);
 
@@ -285,7 +287,9 @@ public class PortalControlador {
         List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
         List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
         List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
-        
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
+
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
         modelo.addAttribute("cometarios", comentarios);
@@ -297,7 +301,7 @@ public class PortalControlador {
     }
 
     @GetMapping("/ban/{id}")
-    public String BanUsuario(@PathVariable String id, ModelMap modelo) throws MiException{
+    public String BanUsuario(@PathVariable String id, ModelMap modelo, HttpSession session) throws MiException{
         
         boolean alta = servicioUsuario.getOne(id).getAlta();
         
@@ -308,7 +312,9 @@ public class PortalControlador {
         List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
         List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
         List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
-        
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
+
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
         modelo.addAttribute("cometarios", comentarios);
