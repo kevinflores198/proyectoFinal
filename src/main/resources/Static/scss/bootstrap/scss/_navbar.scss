@@ -147,7 +147,7 @@
     $next: breakpoint-next($breakpoint, $grid-breakpoints);
     $infix: breakpoint-infix($next, $grid-breakpoints);
 
-    &#{$infix} {
+    & #{$infix} {
       @include media-breakpoint-down($breakpoint) {
         %container-navbar-expand-#{$breakpoint} {
           padding-right: 0;
