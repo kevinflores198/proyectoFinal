@@ -23,6 +23,9 @@ import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
 import com.socialFashion.proyectoFinal.Servicios.ServicioComentario;
 import com.socialFashion.proyectoFinal.Servicios.ServicioPublicacion;
+import com.socialFashion.proyectoFinal.Servicios.ServicioReportComentario;
+import com.socialFashion.proyectoFinal.Servicios.ServicioReportPublicacion;
+import com.socialFashion.proyectoFinal.Servicios.ServicioReportUser;
 import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
 
 @Controller
@@ -38,16 +41,23 @@ public class ComentarioControlador {
     @Autowired
     private ServicioUsuario servicioUsuario;
 
+    @Autowired
+    private ServicioReportComentario servicioReportComentario;
+
+    @Autowired
+    private ServicioReportPublicacion servicioReportPublicacion;
+
+    @Autowired
+    private ServicioReportUser servicioReportUsuario;
+
     @PostMapping("/comentar/{idPublicacion}")
     public String cargarComentario(@PathVariable String idPublicacion, @RequestParam() String comment
         , HttpSession session, ModelMap modelo) throws MiException{
         
         try {
             String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
-            System.out.println("Tdv no se creo el comentario\n");
-            System.out.println(idUsuario + "\n");
             servicioComentario.crearComentario(idUsuario, idPublicacion, comment);
-            System.out.println("Se creo el comentario");
+
             List<Comentario> comentarios = servicioComentario.getComentariosByPublicacion(idPublicacion);
             
             modelo.addAttribute("comentarios", comentarios);
@@ -72,10 +82,36 @@ public class ComentarioControlador {
         String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
         modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
 
-        List<Comentario> comentarios = servicioComentario.getComentariosByPublicacion(publicacion.getId());
         servicioComentario.eliminarComentario(idComent);
 
+        List<Comentario> comentarios = servicioComentario.getComentariosByPublicacion(publicacion.getId());
+        modelo.addAttribute("comentarios", comentarios);
+
         return "detail.html";
+    }
+
+    @GetMapping("/listado/eliminar/{idComent}")
+    public String eliminarComentarioLista(@PathVariable String idComent, ModelMap modelo, HttpSession session){
+
+        servicioComentario.eliminarComentario(idComent);
+
+        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        List<Usuario> usuarios = servicioUsuario.listUsers();
+        List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
+        List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
+        List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
+
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
+        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("usuarios", usuarios);
+        modelo.addAttribute("cometarios", comentarios);
+        modelo.addAttribute("repotesUsuario", reportUsuarios);
+        modelo.addAttribute("repotespublicacion", reportPublicaciones);
+        modelo.addAttribute("repotesComentario", reportComentarios);
+
+        return "listado.html";
     }
 
 }

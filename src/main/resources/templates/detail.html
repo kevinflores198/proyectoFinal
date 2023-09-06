@@ -29,7 +29,7 @@
                     <form class="form-group mb-0" th:action="@{/comentario/comentar/__${publicacion.id}__}" method="POST">
                         <textarea rows="5" cols="40" type="text" placeholder="Comentario..." th:value="${comment}" name="comment"></textarea><br>
                         <br>
-                        <button class="btn btn-primary px-3">Comentar</button>
+                        <button class="btn btn-primary px-3" type="submit">Comentar</button>
                     </form>
                 </div>
             </div>
@@ -48,10 +48,10 @@
 
                     <div class="tab-pane fade show active" id="tab-pane-1" th:each="coment : ${comentarios}">
                         <h4 class="mb-3"><a th:text="${coment.user.name}" th:href="@{/perfil/__${coment.user.id}__}"></a></h4>
-                        <p th:text="coment.comment"></p>
-                        <button class="btn btn-primary px-3" th:if="__${coment.user.id}__ == ${session.usuariosession.id}" 
-                                th:href="@{/comentario/eliminar/__${coment.id}__}"><i class="fa fa-trash"></i>
-                        </button>
+                        <p th:text="${coment.comment}"></p>
+                        <a class="btn btn-primary px-3" th:if="__${coment.user.id}__ == ${session.usuariosession.id}" 
+                                th:href="@{/comentario/detail/eliminar/__${coment.idComent}__}"><i class="fa fa-trash"></i>
+                        </a>
                         <button class="btn btn-danger px-3"><i class="fa fa-exclamation"></i></i> <a
                                 th:href="@{/reporte}">Reportar</a>
                         </button>
@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="email">Email</label>
+                                        <label for="email">Justificacion</label>
                                         <input type="email" class="form-control" id="email" name="email">
                                     </div>
                                     <div class="form-group mb-0">

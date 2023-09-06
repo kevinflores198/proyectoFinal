@@ -29,7 +29,7 @@ public class ServicioComentario {
     @Autowired
     private RepositorioReporteComentario repoReporteComentario;
 
-    @Lazy
+    @Lazy // Cuando las beans forman un Cycle
     @Autowired
     private ServicioUsuario servicioUsuario;
 
@@ -38,7 +38,7 @@ public class ServicioComentario {
         validarComentario(idUser, idPublicacion, comment);
         Comentario comentario = new Comentario ();
         
-        comentario.setUser(servicioUsuario.getOne(comment));
+        comentario.setUser(servicioUsuario.getOne(idUser));
         
         Optional<Publicacion> respuesta = repositorioPublicacion.findById(idPublicacion);
         if(respuesta.isPresent()){
@@ -47,10 +47,11 @@ public class ServicioComentario {
         } else {
             throw new MiException ("no existe una públicacion con ese ID"); 
         } 
-        agregarComentario(comentario.getIdComent());
         comentario.setComment(comment);
 
         repositorioComentario.save(comentario);
+
+        agregarComentario(comentario.getIdComent());
     }
 
     @Transactional

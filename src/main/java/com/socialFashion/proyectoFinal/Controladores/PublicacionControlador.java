@@ -1,11 +1,13 @@
 package com.socialFashion.proyectoFinal.Controladores;
 
+import com.socialFashion.proyectoFinal.Entidades.Comentario;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 // import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
+import com.socialFashion.proyectoFinal.Servicios.ServicioComentario;
 import com.socialFashion.proyectoFinal.Servicios.ServicioPublicacion;
 import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
 
@@ -39,6 +41,8 @@ public class PublicacionControlador {
     @Autowired
     private RepositorioPublicacion repoPublicacion;
     
+    @Autowired
+    private ServicioComentario servicioComentario;
 
     // @GetMapping("/publicar/{id}")
     // public String publicar(@PathVariable String id, ModelMap model){
@@ -147,6 +151,9 @@ public class PublicacionControlador {
 
         Publicacion publicacion = servicioPublicacion.getOne(id);
         modelo.addAttribute("publicacion", publicacion);
+
+        List<Comentario> comentarios = servicioComentario.getComentariosByPublicacion(id);
+        modelo.addAttribute("comentarios", comentarios);
 
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         modelo.addAttribute("usuario", usuario);

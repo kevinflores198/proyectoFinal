@@ -198,7 +198,7 @@
                       <thead class="thead-dark">
                         <tr>
                           <th>ID Comentario</th>
-                          <th>ID Publicacion</th>
+                          <th>Publicacion</th>
                           <th>Nombre</th>
                           <th>Contenido</th>
                           <!-- <th>Modificar</th> -->
@@ -210,27 +210,28 @@
                         th:each="coment : ${comentarios}"
                       >
                         <tr>
-                          <th scope="row" th:text="${coment.idComent}"></th>
+                          <th class="align-middle" scope="row" th:text="${coment.idComent}"></th>
+                          <td class="align-middle">
+                            <a
+                              ><img
+                                th:if="publicacion.image != null"
+                                style="width: 200px"
+                                th:src="@{/imagen/publicacion/__${coment.publicacion.id}__}"
+                            /></a>
+                          </td>
                           <td
                             class="align-middle"
-                            th:text="${comentario.publicacion.id}"
+                            th:text="${coment.user.name}"
                           ></td>
                           <td
                             class="align-middle"
-                            th:text="${comentario.user.name}"
+                            th:text="${coment.comment}"
                           ></td>
-                          <td
-                            class="align-middle"
-                            th:text="${comentario.comment}"
-                          ></td>
-                          <!-- <td class="align-middle">
-                                                    <button class="btn btn-sm btn-primary" th:href="@{/comentarios/modificar/__${user.id}__}">Editar</button>
-                                                </td> -->
                           <td class="align-middle">
                             <a
                               sec:authorize="hasRole('ADMIN')"
                               target="_self"
-                              th:href="@{/comentarios/eliminar/__${user.id}__}"
+                              th:href="@{/comentarios/listado/eliminar/__${coment.user.id}__}"
                               ><i class="fa fa-trash"></i>Eliminar</a
                             >
                           </td>
