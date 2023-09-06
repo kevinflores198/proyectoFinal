@@ -31,6 +31,24 @@
               href="#tab-pane-3"
               >Comentarios</a
             >
+            <a
+              class="nav-item nav-link text-dark"
+              data-toggle="tab"
+              href="#tab-pane-4"
+              >Reportes Usuario</a
+            >
+            <!-- <a
+              class="nav-item nav-link text-dark"
+              data-toggle="tab"
+              href="#tab-pane-5"
+              >Reportes Publicacion</a
+            >
+            <a
+              class="nav-item nav-link text-dark"
+              data-toggle="tab"
+              href="#tab-pane-6"
+              >Reportes Comentario</a
+            > -->
           </div>
 
           <!-- division de las 3 columnas de listas -->
@@ -223,17 +241,86 @@
                 </div>
               </div>
             </div>
+
+            <!-- espacio de los reportes de usuario -->
+
+            <div class="tab-pane fade" id="tab-pane-4">
+              <div class="container-fluid">
+                <div class="row px-xl-5">
+                  <div class="col-lg-12 table-responsive mb-5">
+                    <table
+                      class="table table-light table-borderless table-hover text-center mb-0"
+                    >
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>ID Reporte</th>
+                          <th>Imagen Reportado</th>
+                          <th>Razon</th>
+                          <th>Tipo de Reporte</th>
+                          <th>Ban</th>
+                          <th>Eliminar</th>
+                          <th>Desestimar</th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        class="align-middle"
+                        th:each="reportUser : ${reportesUsuario}"
+                      >
+                        <tr>
+                          <th scope="row" th:text="${reportUser.idReporte}"></th>
+                          <td class="align-middle">
+                            <a
+                              ><img
+                                th:if="reportUser.idUserReported.image != null"
+                                style="width: 200px"
+                                th:src="@{/imagen/perfil/__${reportUser.idUserReported.id}__}"
+                            /></a>
+                          </td>
+                          <td class="align-middle" th:text="${reportUser.reason}"></td>
+                          <td class="align-middle" th:text="${reportUser.TypeReport}"></td>
+                          <td class="align-middle">
+                            <a
+                              sec:authorize="hasRole('ADMIN')"
+                              target="_self"
+                              th:href="@{/reporte/reporteUsuario/ban/__${reportUser.idReporte}__}"
+                              ><i class="fa fa-trash"></i>Banear(14dias)</a
+                            >
+                          </td>
+                          <td class="align-middle">
+                            <a
+                              sec:authorize="hasRole('ADMIN')"
+                              target="_self"
+                              th:href="@{/reporte/reporteUsuario/eliminar/__${reportUser.idReporte}__}"
+                              ><i class="fa fa-trash"></i>Eliminar</a
+                            >
+                          </td>
+                          <td class="align-middle">
+                            <a
+                              sec:authorize="hasRole('ADMIN')"
+                              target="_self"
+                              th:href="@{/reporte/reporteUsuario/__${reportUser.idReporte}__}"
+                              ><i class="fa fa-trash"></i>Desestimar</a
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
       <!-- espacio de los reportes -->
 
-      <div class="tab-pane fade" id="tab-pane-3">
+      <!-- <div class="tab-pane fade" id="tab-pane-3">
         <div class="container-fluid">
           <div class="row px-xl-5">
             <div class="col-lg-12 table-responsive mb-5">
               <h1>Tabla de Reportes</h1>
-              <form method="get" action="/listarReportes">
+              <form method="get" action="@{reporte/listarReportes}">
                 <h3>Reportes de:</h3>
                 <div class="container">
                   <div class="row">
@@ -264,81 +351,81 @@
                     <th>Eliminar</th>
                   </tr>
                 </thead>
-                <tbody class="align-middle" th:each="reportes : ${reportes}">
+                <tbody class="align-middle" th:each="reporte : ${reportes}">
                   <tr>
                     <th scope="row">
                       <span
                         th:if="${reportes.getClass().name == 'ReportUser'}"
-                        th:text="${reportes.idReport}"
+                        th:text="${reporte.idReport}"
                       ></span>
                       <span
                         th:if="${reportes.getClass().name == 'ReportComentario'}"
-                        th:text="${reportes.idReport}"
+                        th:text="${reporte.idReport}"
                       ></span>
                       <span
                         th:if="${reportes.getClass().name == 'ReportPublicacion'}"
-                        th:text="${reportes.idReport}"
+                        th:text="${reporte.idReport}"
                       ></span>
                     </th>
                     <td class="align-middle">
                       <span
                         th:if="${reportes.getClass().name == 'ReportUser'}"
-                        th:text="${reportes.idUser}"
+                        th:text="${reporte.idUser}"
                       ></span>
                       <span
                         th:if="${reportes.getClass().name == 'ReportComentario'}"
-                        th:text="${reportes.idUser}"
+                        th:text="${reporte.idUser}"
                       ></span>
                       <span
                         th:if="${reportes.getClass().name == 'ReportPublicacion'}"
-                        th:text="${reportes.idUser}"
+                        th:text="${reporte.idUser}"
                       ></span>
                     </td>
                     <td class="align-middle">
                       <span
                         th:if="${reportes.getClass().name == 'ReportUser'}"
-                        th:text="${reportes.idReporte} (Usuario)"
+                        th:text="${reporte.idReporte} (Usuario)"
                       ></span>
                       <span
                         th:if="${reportes.getClass().name == 'ReportComentario'}"
-                        th:text="${reportes.idReport} (Comentario)"
+                        th:text="${reporte.idReport} (Comentario)"
                       ></span>
                       <span
                         th:if="${reportes.getClass().name == 'ReportPublicacion'}"
-                        th:text="${reportes.idReport} (Publicacion)"
+                        th:text="${reporte.idReport} (Publicacion)"
                       ></span>
                       <input
                         type="hidden"
                         name="idReporte"
-                        th:value="${reportes.idReport}"
+                        th:value="${reporte.idReport}"
                       />
                     </td>
                     <td class="align-middle">
                       <span
                         th:if="${reportes.getClass().name == 'ReportUser'}"
-                        th:text="${reportes.reason}"
+                        th:text="${reporte.reason}"
                       ></span>
                       <span
                         th:if="${reportes.getClass().name == 'ReportComentario'}"
-                        th:text="${reportes.reason}"
+                        th:text="${reporte.reason}"
                       ></span>
                       <span
                         th:if="${reportes.getClass().name == 'ReportPublicacion'}"
-                        th:text="${reportes.reason}"
+                        th:text="${reporte.reason}"
                       ></span>
                     </td>
                     <td class="align-middle">
                       <span
                         th:if="${reportes.getClass().name == 'ReportUser'}"
-                        th:text="${reportes.TypeReport.}"
+                        th:text="${reporte.TypeReport.}"
                       ></span>
                       <span
                         th:if="${reportes.getClass().name == 'ReportComentario'}"
-                        th:text="${reportes.TypeReport}"
+                        th:text="${reporte.TypeReport}"
                       ></span>
                       <span
                         th:if="${reportes.getClass().name == 'ReportPublicacion'}"
-                        th:text="${reportes.TypeReport}"
+                        th:text="${reporte.TypeReport}"
                       ></span>
                     </td>
                     <td class="align-middle">
@@ -355,7 +442,8 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
+
     </div>
     <footer th:replace="/fragments/footer :: footer"></footer>
 

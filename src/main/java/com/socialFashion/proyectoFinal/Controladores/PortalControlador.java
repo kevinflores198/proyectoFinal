@@ -2,6 +2,9 @@ package com.socialFashion.proyectoFinal.Controladores;
 
 import com.socialFashion.proyectoFinal.Entidades.Comentario;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
+import com.socialFashion.proyectoFinal.Entidades.ReportComentario;
+import com.socialFashion.proyectoFinal.Entidades.ReportPublicacion;
+import com.socialFashion.proyectoFinal.Entidades.ReportUser;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,6 +32,9 @@ import com.socialFashion.proyectoFinal.Repositorios.RepositorioImagen;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
 import com.socialFashion.proyectoFinal.Servicios.ServicioComentario;
 import com.socialFashion.proyectoFinal.Servicios.ServicioPublicacion;
+import com.socialFashion.proyectoFinal.Servicios.ServicioReportComentario;
+import com.socialFashion.proyectoFinal.Servicios.ServicioReportPublicacion;
+import com.socialFashion.proyectoFinal.Servicios.ServicioReportUser;
 import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
 
 @Controller
@@ -49,6 +55,15 @@ public class PortalControlador {
 
     @Autowired
     private RepositorioBaneo repoBaneo;
+
+    @Autowired
+    private ServicioReportComentario servicioReportComentario;
+
+    @Autowired
+    private ServicioReportUser servicioReportUsuario;
+
+    @Autowired
+    private ServicioReportPublicacion servicioReportPublicacion;
     
 
     // VISTA INDEX
@@ -188,9 +203,16 @@ public class PortalControlador {
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
         List<Usuario> usuarios = servicioUsuario.listUsers();
         List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
+        List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
+        List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
         modelo.addAttribute("cometarios", comentarios);
+        modelo.addAttribute("repotesUsuario", reportUsuarios);
+        modelo.addAttribute("repotespublicacion", reportPublicaciones);
+        modelo.addAttribute("repotesComentario", reportComentarios);
         
         return "listado.html";
     }
@@ -260,9 +282,16 @@ public class PortalControlador {
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
         List<Usuario> usuarios = servicioUsuario.listUsers();
         List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
+        List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
+        List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
         modelo.addAttribute("cometarios", comentarios);
+        modelo.addAttribute("repotesUsuario", reportUsuarios);
+        modelo.addAttribute("repotespublicacion", reportPublicaciones);
+        modelo.addAttribute("repotesComentario", reportComentarios);
 
         return "listado.html";
     }
@@ -276,9 +305,16 @@ public class PortalControlador {
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
         List<Usuario> usuarios = servicioUsuario.listUsers();
         List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
+        List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
+        List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
         modelo.addAttribute("cometarios", comentarios);
+        modelo.addAttribute("repotesUsuario", reportUsuarios);
+        modelo.addAttribute("repotespublicacion", reportPublicaciones);
+        modelo.addAttribute("repotesComentario", reportComentarios);
 
         return "listado.html";
     }

@@ -1,5 +1,7 @@
 package com.socialFashion.proyectoFinal.Controladores;
 
+import com.socialFashion.proyectoFinal.Entidades.Comentario;
+import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.ReportComentario;
 import com.socialFashion.proyectoFinal.Entidades.ReportPublicacion;
 import com.socialFashion.proyectoFinal.Entidades.ReportUser;
@@ -10,7 +12,12 @@ import com.socialFashion.proyectoFinal.Enumeraciones.ReportsUser;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioComentario;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioReporteComentario;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioReportePublicacion;
+import com.socialFashion.proyectoFinal.Repositorios.RepositorioReporteUsuario;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
+import com.socialFashion.proyectoFinal.Servicios.ServicioComentario;
+import com.socialFashion.proyectoFinal.Servicios.ServicioPublicacion;
 import com.socialFashion.proyectoFinal.Servicios.ServicioReportComentario;
 import com.socialFashion.proyectoFinal.Servicios.ServicioReportPublicacion;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +25,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.socialFashion.proyectoFinal.Servicios.ServicioReportUser;
+import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,13 +50,22 @@ public class ReportesControlador {
     private ServicioReportPublicacion servicioReportPublicacion;
 
     @Autowired
-    private RepositorioComentario repoComent;
+    private ServicioUsuario servicioUsuario;
 
     @Autowired
-    private RepositorioUsuario repoUser;
+    private ServicioPublicacion servicioPublicacion;
 
     @Autowired
-    private RepositorioPublicacion repoPubli;
+    private ServicioComentario servicioComentario;
+
+    @Autowired
+    private RepositorioReporteUsuario repoReportUsuario;
+
+    @Autowired
+    private RepositorioReporteComentario repoReportComentario;
+
+    @Autowired
+    private RepositorioReportePublicacion repoReportPublicacion;
 
     @GetMapping("/reportar-usuario/{idUser}")
     public String reportarUsuario(@PathVariable(name = "idUser") String id, ModelMap model) {
@@ -63,7 +81,7 @@ public class ReportesControlador {
 
         try {
             Usuario logueado = (Usuario) session.getAttribute("usuariosession");
-            servicioReportUsuario.crearReporte(logueado.getId(), repoUser.usuarioById(idUserReported), reason,
+            servicioReportUsuario.crearReporte(logueado.getId(), servicioUsuario.getOne(idUserReported), reason,
                     typeReport);
             model.put("exito", "Usuario reportado exitosamente");
         } catch (MiException e) {
@@ -192,26 +210,180 @@ public class ReportesControlador {
     
     // }
 
-    @PostMapping("/eliminarReporte/{idReporte}")
-    public String eliminarReporte(@RequestParam("idReporte") String idReporte, @RequestParam("tipoReporte") String tipoReporte, ModelMap model){
+    @GetMapping("/reporteUsuario/ban/{idReporte}")
+    public String banReporteUser(@PathVariable(name = "idReporte") String idReporte, ModelMap modelo) throws MiException{
 
-        try {
-            if("usuarios".equals(tipoReporte)){
-                servicioReportUsuario.eliminarReporte(idReporte);
-            } else if("comentarios".equals(tipoReporte)){
-                servicioReportComentario.eliminarReporte(idReporte);
-            } else if("publicaciones".equals(tipoReporte)){
-                servicioReportPublicacion.eliminarReporte(idReporte);
-            }
-
-            model.put("exito", "Reporte eliminado correctamente");
-            
-        } catch (Exception e) {
-            model.put("error", "No se pudo eliminar el reporte");   
-        }
+        servicioReportUsuario.eliminarReporte(idReporte);
+        servicioUsuario.banearUsuario(repoReportUsuario.getById(idReporte).getIdUserReported().getId());
+        
+        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        List<Usuario> usuarios = servicioUsuario.listUsers();
+        List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
+        List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
+        List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        
+        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("usuarios", usuarios);
+        modelo.addAttribute("cometarios", comentarios);
+        modelo.addAttribute("repotesUsuario", reportUsuarios);
+        modelo.addAttribute("repotespublicacion", reportPublicaciones);
+        modelo.addAttribute("repotesComentario", reportComentarios);
 
         return "listado.html";
     }
+
+    @GetMapping("/reporteUsuario/eliminar/{idReporte}")
+    public String eliminarUsuarioReporteUser(@PathVariable(name = "idReporte") String idReporte, ModelMap modelo) throws MiException{
+
+        servicioUsuario.delete(repoReportUsuario.getById(idReporte).getIdUserReported().getId());
+
+        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        List<Usuario> usuarios = servicioUsuario.listUsers();
+        List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
+        List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
+        List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        
+        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("usuarios", usuarios);
+        modelo.addAttribute("cometarios", comentarios);
+        modelo.addAttribute("repotesUsuario", reportUsuarios);
+        modelo.addAttribute("repotespublicacion", reportPublicaciones);
+        modelo.addAttribute("repotesComentario", reportComentarios);
+
+        return "listado.html";
+    }
+
+    @GetMapping("/reporteUsuario/{idReporte}")
+    public String eliminarReporteUser(@PathVariable(name = "idReporte") String idReporte, ModelMap modelo) throws MiException{
+
+        servicioReportUsuario.eliminarReporte(idReporte);
+        
+        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        List<Usuario> usuarios = servicioUsuario.listUsers();
+        List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
+        List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
+        List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        
+        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("usuarios", usuarios);
+        modelo.addAttribute("cometarios", comentarios);
+        modelo.addAttribute("repotesUsuario", reportUsuarios);
+        modelo.addAttribute("repotespublicacion", reportPublicaciones);
+        modelo.addAttribute("repotesComentario", reportComentarios);
+
+        return "listado.html";
+    }
+    
+    @GetMapping("/reporteComentario/eliminar/{idReporte}")
+    public String eliminarComentarioReporteComentario(@PathVariable String idReporte, ModelMap modelo){
+
+        servicioComentario.eliminarComentario(repoReportComentario.getById(idReporte).getComentario().getIdComent());
+
+        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        List<Usuario> usuarios = servicioUsuario.listUsers();
+        List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
+        List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
+        List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        
+        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("usuarios", usuarios);
+        modelo.addAttribute("cometarios", comentarios);
+        modelo.addAttribute("repotesUsuario", reportUsuarios);
+        modelo.addAttribute("repotespublicacion", reportPublicaciones);
+        modelo.addAttribute("repotesComentario", reportComentarios);
+
+        return "listado.html";
+    }
+
+    @GetMapping("/reporteComentario/{idReporte}")
+    public String eliminarReporteComentario(@PathVariable String idReporte, ModelMap modelo){
+
+        servicioReportComentario.eliminarReporte(idReporte);
+
+        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        List<Usuario> usuarios = servicioUsuario.listUsers();
+        List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
+        List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
+        List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        
+        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("usuarios", usuarios);
+        modelo.addAttribute("cometarios", comentarios);
+        modelo.addAttribute("repotesUsuario", reportUsuarios);
+        modelo.addAttribute("repotespublicacion", reportPublicaciones);
+        modelo.addAttribute("repotesComentario", reportComentarios);
+
+        return "listado.html";
+    }
+    @GetMapping("/reportePublicacion/eliminar/{idReporte}")
+    public String eliminarPublicacionReportePublicacion(@PathVariable String idReporte, ModelMap modelo) throws MiException{
+
+        servicioPublicacion.eliminar(repoReportPublicacion.getById(idReporte).getPublicacion().getId());
+
+        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        List<Usuario> usuarios = servicioUsuario.listUsers();
+        List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
+        List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
+        List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        
+        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("usuarios", usuarios);
+        modelo.addAttribute("cometarios", comentarios);
+        modelo.addAttribute("repotesUsuario", reportUsuarios);
+        modelo.addAttribute("repotespublicacion", reportPublicaciones);
+        modelo.addAttribute("repotesComentario", reportComentarios);
+
+        return "listado.html";
+    }
+
+    @GetMapping("/reportePublicacion/{idReporte}")
+    public String eliminarReportePublicacion(@PathVariable String idReporte, ModelMap modelo){
+
+        servicioReportPublicacion.eliminarReporte(idReporte);
+
+        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        List<Usuario> usuarios = servicioUsuario.listUsers();
+        List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
+        List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
+        List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        
+        modelo.addAttribute("publicaciones", publicaciones);
+        modelo.addAttribute("usuarios", usuarios);
+        modelo.addAttribute("cometarios", comentarios);
+        modelo.addAttribute("repotesUsuario", reportUsuarios);
+        modelo.addAttribute("repotespublicacion", reportPublicaciones);
+        modelo.addAttribute("repotesComentario", reportComentarios);
+
+        return "listado.html";
+    }
+
+    // @PostMapping("/eliminarReporte/{idReporte}")
+    // public String eliminarReporte(@RequestParam("idReporte") String idReporte, @RequestParam("tipoReporte") String tipoReporte, ModelMap model){
+
+    //     try {
+    //         if("usuarios".equals(tipoReporte)){
+    //             servicioReportUsuario.eliminarReporte(idReporte);
+    //         } else if("comentarios".equals(tipoReporte)){
+    //             servicioReportComentario.eliminarReporte(idReporte);
+    //         } else if("publicaciones".equals(tipoReporte)){
+    //             servicioReportPublicacion.eliminarReporte(idReporte);
+    //         }
+
+    //         model.put("exito", "Reporte eliminado correctamente");
+            
+    //     } catch (Exception e) {
+    //         model.put("error", "No se pudo eliminar el reporte");   
+    //     }
+
+    //     return "listado.html";
+    // }
 
 
     }
