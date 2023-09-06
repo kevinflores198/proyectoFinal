@@ -58,7 +58,7 @@
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
                        
-                        <img th:if="publicacion.image != null" th:src="@{/imagen/publicacion/__${publicacion.id}__}"/></a>
+                        <img th:if="publicacion.image != null" class="img-thumbnail w-100" th:src="@{/imagen/publicacion/__${publicacion.id}__}"/></a>
 
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" th:href="@{/publicacion/detail/__${publicacion.id}__}"><i class="">ir</i></a>

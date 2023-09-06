@@ -255,6 +255,7 @@
                         <tr>
                           <th>ID Reporte</th>
                           <th>Imagen Reportado</th>
+                          <th>Nombre Reportado</th>
                           <th>Razon</th>
                           <th>Tipo de Reporte</th>
                           <th>Ban</th>
@@ -276,6 +277,7 @@
                                 th:src="@{/imagen/perfil/__${reportUser.idUserReported.id}__}"
                             /></a>
                           </td>
+                          <td class="align-middle" th:text="${reportUser.idUserReported.name}"></td>
                           <td class="align-middle" th:text="${reportUser.reason}"></td>
                           <td class="align-middle" th:text="${reportUser.TypeReport}"></td>
                           <td class="align-middle">
