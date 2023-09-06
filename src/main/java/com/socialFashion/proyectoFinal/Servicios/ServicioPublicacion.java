@@ -138,28 +138,32 @@ public class ServicioPublicacion {
     
     // -------- Funciones de Me Gustas ---------
     @Transactional
-    public void Like(String id, Boolean like, Usuario usuarioLike){
+    public void Like(String id, Usuario usuarioLike) {
         Publicacion publicacion = getOne(id);
 
         List<Usuario> usuarios = repoPubli.publicacionById(id).getUsuarioLikes();
-        List<Usuario> aux = new ArrayList<>();
-        Integer rst = 0;
-        
-        if(like){
-            rst = publicacion.getLikes() + 1;
-            aux.add(usuarioLike);
-            
-        }else{
-            rst = publicacion.getLikes() - 1;
-            for (Usuario user : usuarios) {
-                if(!user.equals(usuarioLike)){
-                    aux.add(user);
-                }
+        List<Usuario> usuariosAux = usuarios;
+        int indexToDelete = usuarios.size();
+        boolean encontrado = false;
+        for (int i = 0; i < usuarios.size(); i++) {
+            Usuario usuario = usuarios.get(i);
+            if (usuario.getId().equals(usuarioLike.getId())) {
+                encontrado = true;
+                indexToDelete = i;
+                break;
             }
         }
+
+        if ((!encontrado) || usuarios.size() == 0) {
+            usuariosAux.add(usuarioLike);
+            publicacion.setLikes(publicacion.getLikes() + 1);
+        } else {
+            usuariosAux.remove(indexToDelete);
+            publicacion.setLikes(publicacion.getLikes() - 1);
+        }
+        publicacion.setUsuarioLikes(usuariosAux);
         
-        publicacion.setUsuarioLikes(aux);
-        publicacion.setLikes(rst);
+        repoPubli.save(publicacion);
     }
 
     /* -------- Funciones de Lectura en la BD --------- */

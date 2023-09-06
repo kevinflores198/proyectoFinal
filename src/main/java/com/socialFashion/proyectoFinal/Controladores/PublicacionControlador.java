@@ -162,17 +162,13 @@ public class PublicacionControlador {
 
     }
     
-    @GetMapping("/MGmore/{id}")
+    @GetMapping("/MG/{id}")
     public String agregarLike(@PathVariable String id, ModelMap modelo, HttpSession session){
         
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
-        servicioPublicacion.Like(id, true, usuario);
+        servicioPublicacion.Like(id, usuario);
 
-        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
-        modelo.addAttribute("publicaciones", publicaciones);
-        modelo.addAttribute("usuario", usuario);
-
-        return "main.html";
+        return "redirect:/main";
     }
 
     // @GetMapping("/MGmore/{id}")
@@ -196,18 +192,5 @@ public class PublicacionControlador {
 
     //     return "main.html";
     // }
-    
-    @GetMapping("/MGless/{id}")
-    public String sacarLike(@PathVariable String id, ModelMap modelo, HttpSession session){
-        
-        Usuario usuario = (Usuario)session.getAttribute("usuariosession");
-        servicioPublicacion.Like(id, false, usuario);
-
-        List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
-        modelo.addAttribute("publicaciones", publicaciones);
-        modelo.addAttribute("usuario", usuario);
-
-        return "main.html";
-    }
 
 }

@@ -156,7 +156,7 @@ public class PortalControlador {
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
         modelo.addAttribute("publicaciones", publicaciones);
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
-        modelo.addAttribute("usuario", logueado);
+        modelo.addAttribute("usuario", servicioUsuario.getOne(logueado.getId()));
         List<Usuario> topUsuarios = new ArrayList();
         for (Publicacion publicacion : publicaciones) {
             if(!topUsuarios.contains(publicacion.getUser())){
