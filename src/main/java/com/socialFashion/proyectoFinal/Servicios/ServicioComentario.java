@@ -6,6 +6,7 @@ import com.socialFashion.proyectoFinal.Entidades.ReportComentario;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 
  import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,31 +29,39 @@ public class ServicioComentario {
     @Autowired
     private RepositorioReporteComentario repoReporteComentario;
 
+    @Lazy // Cuando las beans forman un Cycle
+    @Autowired
+    private ServicioUsuario servicioUsuario;
+
     @Transactional
     public void crearComentario(String idUser, String idPublicacion,String comment ) throws MiException {
         validarComentario(idUser, idPublicacion, comment);
         Comentario comentario = new Comentario ();
-        comentario.setIdUser(idUser);
+        
+        comentario.setUser(servicioUsuario.getOne(idUser));
         
         Optional<Publicacion> respuesta = repositorioPublicacion.findById(idPublicacion);
         if(respuesta.isPresent()){
             Publicacion publicacion = respuesta.get();
             comentario.setPublicacion(publicacion);
         } else {
-            throw new MiException ("No existe públicacion con ese ID"); 
+            throw new MiException ("no existe una públicacion con ese ID"); 
         } 
-        agregarComentario(comentario.getIdComent());
         comentario.setComment(comment);
 
         repositorioComentario.save(comentario);
+
+        agregarComentario(comentario.getIdComent());
     }
 
     @Transactional
     public void modificarComentario(String idComent, String comment) throws MiException{
         if(comment.isEmpty() || comment == null){
-            throw new MiException("El comentario no puede estar vacio");
+            throw new MiException("el comentario no puede estar vacio");
         }
         repositorioComentario.getById(idComent).setComment(comment);
+
+        repositorioComentario.save(repositorioComentario.getById(idComent));
     }
     
     @Transactional(readOnly=true)
@@ -96,15 +105,15 @@ public class ServicioComentario {
         publicacion.setComentarios(publicacion.getComentarios() - 1);
     }
     
- public void validarComentario(String idUsuario, String idPublicacion, String comment) {
+ public void validarComentario(String idUsuario, String idPublicacion, String comment) throws MiException {
         if (idUsuario == null || idUsuario.isEmpty()) {
-            throw new IllegalArgumentException("El idUsuario no puede estar vacío");
+            throw new MiException("el idUsuario no puede estar vacío");
         }
         if (idPublicacion == null || idPublicacion.isEmpty()) {
-            throw new IllegalArgumentException("El idPublicacion no puede estar vacío");
+            throw new MiException("el idPublicacion no puede estar vacío");
         }
         if (comment == null || comment.isEmpty()) {
-            throw new IllegalArgumentException("El comentario no puede estar vacío");
+            throw new MiException("el comentario no puede estar vacío");
         }
         
     }

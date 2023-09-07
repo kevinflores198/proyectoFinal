@@ -20,10 +20,7 @@
                         <img th:if="publicacion.image != null" class="img-thumbnail w-100" th:src="@{/imagen/publicacion/__${publicacion.id}__}"/></a>
 
                         <div class="product-action">
-                            <!-- <a class="btn btn-outline-dark btn-square" onclick="meGusta(like)" id="MG" value=false name="like" th:href="@{/publicacion/MGmore/__${publicacion.id}__}"><i class="far fa-heart" id="Heart"></i></a> -->
                             <a class="btn btn-outline-dark btn-square" th:href="@{/publicacion/detail/__${publicacion.id}__}"><i class="">ir</i></a>
-                            <!-- <a class="btn btn-outline-dark btn-square" href="#"><i class="fa fa-exclamation"></i></i></a> -->
-
                         </div>
                     </div>
                     <div class="text-center py-4">
@@ -38,7 +35,6 @@
     <!-- Hacer q cuando se le pone like a una y luego a otra, ambas queden con el corazon en rojo -->
                             <a class="btn btn-outline-dark btn-square" th:if="${!publicacion.usuarioLikes.contains(usuario)}" th:href="@{/publicacion/MG/__${publicacion.id}__}"><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" th:if="${publicacion.usuarioLikes.contains(usuario)}" th:href="@{/publicacion/MG/__${publicacion.id}__}"><i class="fa fa-heart" style="color:red"></i></a>
-                            
                             
                             <a class="btn btn-outline-dark btn-square" th:href="@{/publicacion/detail/__${publicacion.id}__}"><i class="">ir</i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-exclamation"></i></i></a>

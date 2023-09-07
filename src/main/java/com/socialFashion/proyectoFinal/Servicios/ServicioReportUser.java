@@ -38,7 +38,7 @@ public class ServicioReportUser {
         ReportUser reporte = new ReportUser();
 
         reporte.setIdUser(idUser);
-        reporte.setIdUserReported(UserReported);
+        reporte.setUserReported(UserReported);
         reporte.setReason(reason);
 
         try {
@@ -47,8 +47,8 @@ public class ServicioReportUser {
                 if (reporte.getReason().isEmpty()) {
                     throw new MiException("La razon no puede estar vacia si el tipo de reporte es OTRO");
                 }
-                reporte.setTypeReport(reportType);
             }
+            reporte.setTypeReport(reportType);
         } catch (Exception e) {
             throw new MiException("El tipo de reporte no es valido");
         }

@@ -61,11 +61,10 @@
                 <div class="btn-group">
                     <button type="button" class="rounded btn btn-sm btn-primary dropdown-toggle "
                         data-toggle="dropdown"><img class="rounded-circle" 
-                            th:src="@{/imagen/perfil/__${usuario.id}__}" alt="" height="30px"
-                            width="30px"> Mi
-                        Cuenta</button>
+                            th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="" height="30px"
+                            width="30px"> Mi Cuenta </button>
                     <div class="dropdown-menu dropdown-menu-right bg-dark">
-                        <button class="dropdown-item" type="button"><a th:href="@{/perfil/__${usuario.id}__}" class=""
+                        <button class="dropdown-item" type="button"><a th:href="@{/perfil/__${session.usuariosession.id}__}" class=""
                                 >Perfil</a></button>
                         <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a th:href="@{/listado}" class=""
                                 >Listado de entidades</a></button>
@@ -98,7 +97,7 @@
                                     class="fa fa-angle-right float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
                                 <a th:href="@{/perfil/__${usuario.id}__}" class="dropdown-item">Ver prefil</a>
-                                <a href="#" class="dropdown-item bg-danger">Reportar</a>
+                                <a th:href="@{/reporte/reportar-usuario/__${usuario.id}__}" class="dropdown-item bg-danger">Reportar</a>
                             </div>
                         </div>
 
