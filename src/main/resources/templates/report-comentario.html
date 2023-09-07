@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body>
+
+    <nav th:replace="/fragments/navbar-main :: nav"></nav>
+    <div class="row align-items-center justify-content-center py-3 px-xl-5 d-none d-lg-flex ">
+        <div class="bg-light col-lg-6 rounded">
+            <div class="col-md-12">
+                <h3 class="mb-4 mt-4 pl-2">Reportar Comentario</h3>
+                <form th:action="@{/reporte/reportar-comentario/__${coment.idComent}__}" method="POST">
+                    <div class="input-group">
+                        <div class="input-group-append">
+                            <div class="btn-group pl-5">
+    
+                            <!-- TIPO DE REPORTE -->
+                                <select name="typeReport">
+                                    <option>Seleccionar Razon</option>
+                                    <option th:each="razon : ${tipoReporte}"
+                                            th:value="${razon}"
+                                            th:text="${razon}"
+                                            ></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                <!-- RAZON DEL REPORTE -->
+                    <div class="form-group pl-5 mt-3">
+                        <label for="reason">Justificacion</label>
+                        <input type="text" class="form-control" th:value="${reason}" name="reason" id="reason">
+                    </div>
+    
+                    <div class="form-group mb-0 pl-5 mb-4">
+                        <button type="submit" class="btn btn-primary px-3 rounded">Reportar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="/fragments/footer :: footer"></footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

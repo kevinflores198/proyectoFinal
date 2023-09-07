@@ -23,7 +23,7 @@ public class ReportUser {
     private String idUser;
     
     @ManyToOne
-    private Usuario idUserReported;
+    private Usuario UserReported;
     
     private String reason;
     
@@ -34,9 +34,9 @@ public class ReportUser {
     public ReportUser() {
     }
 
-    public ReportUser(String idUser, Usuario idUserReported, String reason, ReportsUser typeReport) {
+    public ReportUser(String idUser, Usuario UserReported, String reason, ReportsUser typeReport) {
         this.idUser = idUser;
-        this.idUserReported = idUserReported;
+        this.UserReported = UserReported;
         this.reason = reason;
         this.typeReport = typeReport;
     }
@@ -57,12 +57,12 @@ public class ReportUser {
         this.idUser = idUser;
     }
 
-    public Usuario getIdUserReported() {
-        return idUserReported;
+    public Usuario getUserReported() {
+        return UserReported;
     }
 
-    public void setIdUserReported(Usuario idUserReported) {
-        this.idUserReported = idUserReported;
+    public void setUserReported(Usuario UserReported) {
+        this.UserReported = UserReported;
     }
 
     public String getReason() {

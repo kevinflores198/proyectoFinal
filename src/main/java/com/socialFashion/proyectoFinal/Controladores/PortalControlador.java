@@ -212,9 +212,9 @@ public class PortalControlador {
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
         modelo.addAttribute("comentarios", comentarios);
-        modelo.addAttribute("repotesUsuario", reportUsuarios);
-        modelo.addAttribute("repotespublicacion", reportPublicaciones);
-        modelo.addAttribute("repotesComentario", reportComentarios);
+        modelo.addAttribute("reportesUsuario", reportUsuarios);
+        modelo.addAttribute("reportesPublicacion", reportPublicaciones);
+        modelo.addAttribute("reportesComentario", reportComentarios);
         
         return "listado.html";
     }
