@@ -35,20 +35,20 @@
               class="nav-item nav-link text-dark"
               data-toggle="tab"
               href="#tab-pane-4"
-              >Reportes Usuario</a
+              >Reportes Publicacion</a
             >
-            <!-- <a
+             <a
               class="nav-item nav-link text-dark"
               data-toggle="tab"
               href="#tab-pane-5"
-              >Reportes Publicacion</a
+              >Reportes Usuario</a
             >
             <a
               class="nav-item nav-link text-dark"
               data-toggle="tab"
               href="#tab-pane-6"
               >Reportes Comentario</a
-            > -->
+            > 
           </div>
 
           <!-- division de las 3 columnas de listas -->
@@ -242,10 +242,71 @@
                 </div>
               </div>
             </div>
+            
+            <!-- espacio de los reportes de publicacion -->
+
+            <div class="tab-pane fade" id="tab-pane-4">
+              <div class="container-fluid">
+                <div class="row px-xl-5">
+                  <div class="col-lg-12 table-responsive mb-5">
+                    <table
+                      class="table table-light table-borderless table-hover text-center mb-0"
+                    >
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>ID Reporte</th>
+                          <th>Publicacion</th>
+                          <th>Nombre</th>
+                          <th>Razon</th>
+                          <th>Tipo de Reporte</th>
+                          <th>Eliminar</th>
+                          <th>Desestimar</th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        class="align-middle"
+                        th:each="reportPublicacion : ${reportesPublicacion}"
+                      >
+                        <tr>
+                          <th class="align-middle" scope="row" th:text="${reportPublicacion.idReport}"></th>
+                          <td class="align-middle">
+                            <a>
+                              <img
+                                th:if="reportUser.idUserReported.image != null"
+                                style="width: 200px"
+                                th:src="@{/imagen/publicacion/__${reportPublicacion.publicacion.id}__}"
+                            /></a>
+                          </td>
+                          <td class="align-middle" th:text="${reportPublicacion.publicacion.user.name}"></td>
+                          <td class="align-middle" th:text="${reportPublicacion.reason}"></td>
+                          <td class="align-middle" th:text="${reportPublicacion.TypeReport}"></td>
+                          <td class="align-middle">
+                            <a
+                              sec:authorize="hasRole('ADMIN')"
+                              target="_self"
+                              th:href="@{/reporte/reportePublicacion/eliminar/__${reportPublicacion.idReport}__}"
+                              ><i class="fa fa-trash"></i>Eliminar</a
+                            >
+                          </td>
+                          <td class="align-middle">
+                            <a
+                              sec:authorize="hasRole('ADMIN')"
+                              target="_self"
+                              th:href="@{/reporte/reportePublicacion/__${reportPublicacion.idReport}__}"
+                              ><i class="fa fa-trash"></i>Desestimar</a
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <!-- espacio de los reportes de usuario -->
 
-            <div class="tab-pane fade" id="tab-pane-4">
+            <div class="tab-pane fade" id="tab-pane-5">
               <div class="container-fluid">
                 <div class="row px-xl-5">
                   <div class="col-lg-12 table-responsive mb-5">
@@ -269,16 +330,16 @@
                         th:each="reportUser : ${reportesUsuario}"
                       >
                         <tr>
-                          <th scope="row" th:text="${reportUser.idReporte}"></th>
+                          <th class="align-middle" scope="row" th:text="${reportUser.idReporte}"></th>
                           <td class="align-middle">
                             <a
                               ><img
                                 th:if="reportUser.idUserReported.image != null"
                                 style="width: 200px"
-                                th:src="@{/imagen/perfil/__${reportUser.idUserReported.id}__}"
+                                th:src="@{/imagen/perfil/__${reportUser.userReported.id}__}"
                             /></a>
                           </td>
-                          <td class="align-middle" th:text="${reportUser.idUserReported.name}"></td>
+                          <td class="align-middle" th:text="${reportUser.userReported.name}"></td>
                           <td class="align-middle" th:text="${reportUser.reason}"></td>
                           <td class="align-middle" th:text="${reportUser.TypeReport}"></td>
                           <td class="align-middle">
@@ -312,9 +373,10 @@
                 </div>
               </div>
             </div>
-                       <!-- espacio de los reportes de comentarios -->
 
-            <div class="tab-pane fade" id="tab-pane-4">
+            <!-- espacio de los reportes de comentarios -->
+
+            <div class="tab-pane fade" id="tab-pane-6">
               <div class="container-fluid">
                 <div class="row px-xl-5">
                   <div class="col-lg-12 table-responsive mb-5">
@@ -324,8 +386,8 @@
                       <thead class="thead-dark">
                         <tr>
                           <th>ID Reporte</th>
-                          <th>Imagen Reportado</th>
-                          <th>Nombre Reportado</th>
+                          <th>Comentario</th>
+                          <th>Nombre</th>
                           <th>Razon</th>
                           <th>Tipo de Reporte</th>
                           <th>Eliminar</th>
@@ -337,23 +399,16 @@
                         th:each="reportComentario : ${reportesComentario}"
                       >
                         <tr>
-                          <th scope="row" th:text="${reportComentario.idReporte}"></th>
-                          <td class="align-middle">
-                            <a
-                              ><img
-                                th:if="publicacion.image != null"
-                                style="width: 200px"
-                                th:src="@{/imagen/publicacion/__${reportComentario.coment.publicacion.id}__}"
-                            /></a>
-                          </td>
-                          <td class="align-middle" th:text="${reportComentario.idUserReported.name}"></td>
+                          <th class="align-middle" scope="row" th:text="${reportComentario.idReport}"></th>
+                          <td class="align-middle" th:text="${reportComentario.comentario.comment}"></td>
+                          <td class="align-middle" th:text="${reportComentario.comentario.user.name}"></td>
                           <td class="align-middle" th:text="${reportComentario.reason}"></td>
                           <td class="align-middle" th:text="${reportComentario.TypeReport}"></td>
                           <td class="align-middle">
                             <a
                               sec:authorize="hasRole('ADMIN')"
                               target="_self"
-                              th:href="@{/reporteComentario/eliminar/__${reportComentario.idReporte}__}"
+                              th:href="@{/reporte/reporteComentario/eliminar/__${reportComentario.idReport}__}"
                               ><i class="fa fa-trash"></i>Eliminar</a
                             >
                           </td>
@@ -361,67 +416,7 @@
                             <a
                               sec:authorize="hasRole('ADMIN')"
                               target="_self"
-                              th:href="@{/reporteComentario/__${reportComentario.idReporte}__}"
-                              ><i class="fa fa-trash"></i>Desestimar</a
-                            >
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- espacio de los reportes de publicacion -->
-
-            <div class="tab-pane fade" id="tab-pane-4">
-              <div class="container-fluid">
-                <div class="row px-xl-5">
-                  <div class="col-lg-12 table-responsive mb-5">
-                    <table
-                      class="table table-light table-borderless table-hover text-center mb-0"
-                    >
-                      <thead class="thead-dark">
-                        <tr>
-                          <th>ID Reporte</th>
-                          <th>Imagen Reportado</th>
-                          <th>Nombre Reportado</th>
-                          <th>Razon</th>
-                          <th>Tipo de Reporte</th>
-                          <th>Eliminar</th>
-                          <th>Desestimar</th>
-                        </tr>
-                      </thead>
-                      <tbody
-                        class="align-middle"
-                        th:each="reportPublicacion : ${repotespublicacion}"
-                      >
-                        <tr>
-                          <th scope="row" th:text="${reportPublicacion.idReporte}"></th>
-                          <td class="align-middle">
-                            <a
-                              ><img
-                                th:if="reportUser.idUserReported.image != null"
-                                style="width: 200px"
-                                th:src="@{/imagen/publicacion/__${reportPublicacion.id}__}"
-                            /></a>
-                          </td>
-                          <td class="align-middle" th:text="${reportPublicacion.idUserReported.name}"></td>
-                          <td class="align-middle" th:text="${reportPublicacion.reason}"></td>
-                          <td class="align-middle" th:text="${reportPublicacion.TypeReport}"></td>
-                          <td class="align-middle">
-                            <a
-                              sec:authorize="hasRole('ADMIN')"
-                              target="_self"
-                              th:href="@{/reporte/reportePublicacion/eliminar/__${reportPublicacion.idReporte}__}"
-                              ><i class="fa fa-trash"></i>Eliminar</a
-                            >
-                          </td>
-                          <td class="align-middle">
-                            <a
-                              sec:authorize="hasRole('ADMIN')"
-                              target="_self"
-                              th:href="@{/reporte/reportePublicacion/__${reportPublicacion.idReporte}__}"
+                              th:href="@{/reporte/reporteComentario/__${reportComentario.idReport}__}"
                               ><i class="fa fa-trash"></i>Desestimar</a
                             >
                           </td>

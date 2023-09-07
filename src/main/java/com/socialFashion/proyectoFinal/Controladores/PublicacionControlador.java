@@ -4,6 +4,7 @@ import com.socialFashion.proyectoFinal.Entidades.Comentario;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
+import com.socialFashion.proyectoFinal.Enumeraciones.ReportsPublicacion;
 // import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
@@ -44,18 +45,6 @@ public class PublicacionControlador {
     @Autowired
     private ServicioComentario servicioComentario;
 
-    // @GetMapping("/publicar/{id}")
-    // public String publicar(@PathVariable String id, ModelMap model){
-    //     /*  ------ PROBAR -------
-    //     List<Categorias> categorias = new ArrayList<>();
-    //     for(Categorias categoria : Categorias.values()){
-    //         categorias.add(categoria);
-    //     }
-    //     model.addAttribute("categorias", categorias);
-    //     */
-    //     return "publicacion.html";
-    // }
-
     @PostMapping("/publicar/{idUser}")
     public String cargarPublicacion(@PathVariable String idUser, @RequestParam String label, @RequestParam MultipartFile archivo, @RequestParam String content, ModelMap modelo){
 
@@ -68,14 +57,14 @@ public class PublicacionControlador {
             modelo.put("exito", "Publicación cargada correctamente");
 
             List<Categorias> categorias = new ArrayList<>();
-        for(Categorias categoria : Categorias.values()){
-            categorias.add(categoria);
-        }
-        Usuario usuario = servicioUsuario.getOne(idUser);
-        List<Publicacion> publicaciones = repoPublicacion.publicacionesByUser(idUser);
-        modelo.addAttribute("usuario", usuario);
-        modelo.addAttribute("publicaciones", publicaciones);
-        modelo.addAttribute("categorias", categorias);
+            for(Categorias categoria : Categorias.values()){
+                categorias.add(categoria);
+            }
+            Usuario usuario = servicioUsuario.getOne(idUser);
+            List<Publicacion> publicaciones = repoPublicacion.publicacionesByUser(idUser);
+            modelo.addAttribute("usuario", usuario);
+            modelo.addAttribute("publicaciones", publicaciones);
+            modelo.addAttribute("categorias", categorias);
 
         } catch (MiException ex) {
 
@@ -161,6 +150,12 @@ public class PublicacionControlador {
 
         List<Comentario> comentarios = servicioComentario.getComentariosByPublicacion(id);
         modelo.addAttribute("comentarios", comentarios);
+
+        List<ReportsPublicacion> reportes = new ArrayList<>();
+        for (ReportsPublicacion reporte : ReportsPublicacion.values()) {
+            reportes.add(reporte);
+        }
+        modelo.addAttribute("tipoReporte", reportes);
 
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         modelo.addAttribute("usuario", usuario);

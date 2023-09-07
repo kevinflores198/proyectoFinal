@@ -176,6 +176,11 @@ section {
     justify-content: center;
 }
 
+.lapiz {
+    font-size: 30px;
+    margin-left: 10px;
+}
+
 body {
     margin: 0;
     font-family: "Roboto", sans-serif;

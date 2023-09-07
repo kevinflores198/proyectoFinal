@@ -81,11 +81,17 @@ public class ServicioUsuario implements UserDetailsService {
             if(mayoriaDeEdad(birthDate)){
                 user.setBirthDate(birthDate);
                 user.setRole(Role.USER);
+                if (image.isEmpty()) {
+                    // LA IMAGEN PREDETERMINADA ES LA IMG Q TINE EL PERFIL ADMIN
+                    Usuario UsuarioAdmin1 = repoUser.usuarioPorRol(Role.ADMIN);
+                    user.setImage(UsuarioAdmin1.getImage());
 
-                //PERSISTO IMAGEN
+                }else {
+                 // PERSISTO IMAGEN
                 Imagen imagen = servicioImagen.guardar(image);
-                //LA GUARDO EN EL USUARIO 
+                // LA GUARDO EN EL USUARIO
                 user.setImage(imagen);
+                }
             }else{
                 throw new MiException("No sos mayor de edad");
             }
@@ -107,7 +113,11 @@ public class ServicioUsuario implements UserDetailsService {
             Usuario user = answer.get();
 
             user.setName(name);
-            user.setPassword(new BCryptPasswordEncoder().encode(password));
+            if(password.equals(password2)){
+                user.setPassword(new BCryptPasswordEncoder().encode(password));
+            }else{
+                throw new MiException("Las contraseñas no coinciden");
+            }
             user.setAlta(true);
             Imagen imagen = servicioImagen.guardar(image); 
             user.setImage(imagen);
