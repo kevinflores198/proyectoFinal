@@ -33,7 +33,6 @@ com\socialFashion\proyectoFinal\Repositorios\RepositorioReportePublicacion.class
 com\socialFashion\proyectoFinal\Servicios\ServicioBaneo.class
 com\socialFashion\proyectoFinal\Repositorios\RepositorioUsuario.class
 com\socialFashion\proyectoFinal\Enumeraciones\Role.class
-com\socialFashion\proyectoFinal\Controladores\AdminControlador.class
 com\socialFashion\proyectoFinal\Servicios\ServicioReportUser.class
 com\socialFashion\proyectoFinal\Controladores\ImagenControlador.class
 com\socialFashion\proyectoFinal\Enumeraciones\ReportsUser.class
