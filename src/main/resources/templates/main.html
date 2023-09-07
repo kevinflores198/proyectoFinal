@@ -27,13 +27,13 @@
                         <a class="h6 text-decoration-none text-truncate" th:text="${publicacion.user.name}" th:href="@{/perfil/__${publicacion.user.id}__}"></a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <h5 th:text="${publicacion.likes}" name="meGustas"></h5>
-                            <label for="meGustas">👍</label>
+                            <label for="meGustas">❤️</label>
 
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
 
 
-    <!-- Hacer q cuando se le pone like a una y luego a otra, ambas queden con el corazon en rojo -->
+            <!-- Hacer q cuando se le pone like a una y luego a otra, ambas queden con el corazon en rojo -->
                             <a class="btn btn-outline-dark btn-square" th:if="${!publicacion.usuarioLikes.contains(usuario)}" th:href="@{/publicacion/MG/__${publicacion.id}__}"><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" th:if="${publicacion.usuarioLikes.contains(usuario)}" th:href="@{/publicacion/MG/__${publicacion.id}__}"><i class="fa fa-heart" style="color:red"></i></a>
                             
@@ -82,48 +82,17 @@
         </div>
     </div>
 
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
-        <div class="row px-xl-5 pt-5">
-            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                <h5 class="text-secondary text-uppercase mb-4">Social Fashion</h5>
-                <p class="mb-4">Publica tus diseños y creaciones en una de las paginas mas reconocidas
-                    internacionalmente</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>joinus@socialFashion.com</p>
-            </div>
-            <div class="col-lg-8 col-md-12">
-                <div class="row">
-                    <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Top 10</a>
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="fa fa-angle-right mr-2"></i>Diseñadores</a>
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="fa fa-angle-right mr-2"></i>Publicaciones</a>
-                            <a class="text-danger mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Reportar</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contactanos</a>
-                        </div>
-                    </div>
+    <footer th:replace="/fragments/footer :: footer"> </footer>
+    
 
-                </div>
-            </div>
-        </div>
-        <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
-        </div>
-    </div>
-    <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-    <!-- JavaScript Libraries -->
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
-    
-    <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/like.js"></script>
 </body>
