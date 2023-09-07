@@ -89,7 +89,8 @@ public class ServicioReportPublicacion {
 
     public void eliminarReporte(String idReportPublicacion){
 
-        repoReportPubli.delete(repoReportPubli.getById(idReportPublicacion));
+        ReportPublicacion reportPublicacion = repoReportPubli.getById(idReportPublicacion);
+        repoReportPubli.delete(reportPublicacion);
 
     }
 

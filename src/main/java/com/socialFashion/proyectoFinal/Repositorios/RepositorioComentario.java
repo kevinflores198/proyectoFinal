@@ -14,7 +14,7 @@ public interface RepositorioComentario extends JpaRepository<Comentario,String> 
     
     @Query("SELECT c FROM Comentario c WHERE c.idComent = :idComent")
     public Comentario comentario(@Param("idComent")String idComent);
-
+    
     @Query("SELECT c FROM Comentario c WHERE c.publicacion.id = :idPublicacion")        //En caso de que no c.publicacion.id
     public List<Comentario> comentariosByIdPublicacion(@Param("idPublicacion") String idPublicacion);
     

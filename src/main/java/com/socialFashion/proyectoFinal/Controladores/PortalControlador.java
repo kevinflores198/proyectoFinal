@@ -2,6 +2,9 @@ package com.socialFashion.proyectoFinal.Controladores;
 
 import com.socialFashion.proyectoFinal.Entidades.Comentario;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
+import com.socialFashion.proyectoFinal.Entidades.ReportComentario;
+import com.socialFashion.proyectoFinal.Entidades.ReportPublicacion;
+import com.socialFashion.proyectoFinal.Entidades.ReportUser;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,6 +32,9 @@ import com.socialFashion.proyectoFinal.Repositorios.RepositorioImagen;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
 import com.socialFashion.proyectoFinal.Servicios.ServicioComentario;
 import com.socialFashion.proyectoFinal.Servicios.ServicioPublicacion;
+import com.socialFashion.proyectoFinal.Servicios.ServicioReportComentario;
+import com.socialFashion.proyectoFinal.Servicios.ServicioReportPublicacion;
+import com.socialFashion.proyectoFinal.Servicios.ServicioReportUser;
 import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
 
 @Controller
@@ -49,6 +55,15 @@ public class PortalControlador {
 
     @Autowired
     private RepositorioBaneo repoBaneo;
+
+    @Autowired
+    private ServicioReportComentario servicioReportComentario;
+
+    @Autowired
+    private ServicioReportUser servicioReportUsuario;
+
+    @Autowired
+    private ServicioReportPublicacion servicioReportPublicacion;
     
 
     // VISTA INDEX
@@ -183,14 +198,23 @@ public class PortalControlador {
     //VISTA LISTA DE USUARIOS
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/listado")
-    public String listado(ModelMap modelo) {
+    public String listado(ModelMap modelo, HttpSession session) {
 
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
         List<Usuario> usuarios = servicioUsuario.listUsers();
         List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
+        List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
+        List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
+
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
-        modelo.addAttribute("cometarios", comentarios);
+        modelo.addAttribute("comentarios", comentarios);
+        modelo.addAttribute("repotesUsuario", reportUsuarios);
+        modelo.addAttribute("repotespublicacion", reportPublicaciones);
+        modelo.addAttribute("repotesComentario", reportComentarios);
         
         return "listado.html";
     }
@@ -253,22 +277,31 @@ public class PortalControlador {
     }
     
     @GetMapping("/eliminar/{id}")
-    public String eliminarUsuario(@PathVariable String id, ModelMap modelo) throws MiException{
+    public String eliminarUsuario(@PathVariable String id, ModelMap modelo, HttpSession session) throws MiException{
         
         servicioUsuario.delete(id);
 
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
         List<Usuario> usuarios = servicioUsuario.listUsers();
         List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
+        List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
+        List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
+
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
         modelo.addAttribute("cometarios", comentarios);
+        modelo.addAttribute("repotesUsuario", reportUsuarios);
+        modelo.addAttribute("repotespublicacion", reportPublicaciones);
+        modelo.addAttribute("repotesComentario", reportComentarios);
 
         return "listado.html";
     }
 
     @GetMapping("/ban/{id}")
-    public String BanUsuario(@PathVariable String id, ModelMap modelo) throws MiException{
+    public String BanUsuario(@PathVariable String id, ModelMap modelo, HttpSession session) throws MiException{
         
         boolean alta = servicioUsuario.getOne(id).getAlta();
         
@@ -276,9 +309,18 @@ public class PortalControlador {
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
         List<Usuario> usuarios = servicioUsuario.listUsers();
         List<Comentario> comentarios = servicioComentario.obtenerTodosLosComentarios();
+        List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
+        List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
+        List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
+
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
         modelo.addAttribute("cometarios", comentarios);
+        modelo.addAttribute("repotesUsuario", reportUsuarios);
+        modelo.addAttribute("repotespublicacion", reportPublicaciones);
+        modelo.addAttribute("repotesComentario", reportComentarios);
 
         return "listado.html";
     }

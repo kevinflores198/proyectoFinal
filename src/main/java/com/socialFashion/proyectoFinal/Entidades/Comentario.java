@@ -18,7 +18,8 @@ public class Comentario {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idComent;
 
-    private String idUser;
+    @ManyToOne
+    private Usuario user;
 
     @ManyToOne
     private Publicacion publicacion;
@@ -29,8 +30,8 @@ public class Comentario {
     public Comentario() {
     }
 
-    public Comentario(String idUser, Publicacion publicacion, String comment, Boolean alta) {
-        this.idUser = idUser;
+    public Comentario(Usuario user, Publicacion publicacion, String comment, Boolean alta) {
+        this.user = user;
         this.publicacion = publicacion;
         this.comment = comment;
         
@@ -46,12 +47,12 @@ public class Comentario {
         this.idComent = idComent;
     }
 
-    public String getIdUser() {
-        return idUser;
+    public Usuario getUser() {
+        return this.user;
     }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 
     public Publicacion getPublicacion() {
