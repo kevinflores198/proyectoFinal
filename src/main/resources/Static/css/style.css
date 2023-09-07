@@ -170,7 +170,7 @@ section {
 
 .header1 {
     width: 100%;
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -777,7 +777,7 @@ mark,
 }
 
 .contenedorMain {
-    background-color: rgba(53, 53, 53, 0.683);
+    background-color: rgba(2, 0, 0, 0.683);
     padding: 50px;
     border-radius: 20px;
 }

@@ -26,8 +26,9 @@
                     <div class="text-center py-4">
                         <a class="h6 text-decoration-none text-truncate" th:text="${publicacion.user.name}" th:href="@{/perfil/__${publicacion.user.id}__}"></a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
-                            <label for="meGustas">Me Gustas: </label>
                             <h5 th:text="${publicacion.likes}" name="meGustas"></h5>
+                            <label for="meGustas">👍</label>
+
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
 
@@ -63,8 +64,9 @@
                     <div class="text-center py-4">
                         <a class="h6 text-decoration-none text-truncate" th:text="${publicacion.user.name}" th:href="@{/perfil/__${publicacion.user.id}__}"></a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
-                            <label for="meGustas">Me Gustas: </label>
+                            
                             <h5 th:text="${publicacion.likes}" name="meGustas"></h5>
+                            <label for="meGustas">👍</label>
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             <!-- Hacer q cuando se le pone like a una y luego a otra, ambas queden con el corazon en rojo -->

@@ -48,10 +48,10 @@ public class Usuario {
     
     private Boolean alta;
 
-    @OneToMany
-    private ArrayList<Publicacion> publicacion;
-    
-    private ArrayList<ReportUser> report;
+//    @OneToMany
+//    private ArrayList<Publicacion> publicacion;
+//    
+//    private ArrayList<ReportUser> report;
 
     public Usuario() {
     }
