@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.socialFashion.proyectoFinal.Entidades.ReportComentario;
 import com.socialFashion.proyectoFinal.Entidades.ReportPublicacion;
 
 /**
@@ -21,5 +20,5 @@ public interface RepositorioReportePublicacion extends JpaRepository<ReportPubli
 
     @Query("SELECT r FROM ReportPublicacion r WHERE r.publicacion.id = :idPublicacion")
     public List<ReportPublicacion> reportPublicacionByIdPublicacion(@Param("idPublicacion")String idPublicacion);
-
+    
 }

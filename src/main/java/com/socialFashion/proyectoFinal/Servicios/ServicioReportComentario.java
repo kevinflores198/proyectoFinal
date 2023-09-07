@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ServicioReportComentario {
 
     @Autowired
-    RepositorioReporteComentario repoComentario;
+    RepositorioReporteComentario repoReporteComentario;
 
     @Autowired
     RepositorioComentario repoComent;
@@ -32,7 +32,7 @@ public class ServicioReportComentario {
         if (idUser.isEmpty() || idUser == null) {
             throw new MiException("El ID de usuario no puede ser nulo");
         }
-        if (reason == null) {
+        if (reason.isEmpty() || reason == null) {
             throw new MiException("La razon no puede estar vacia");
         }
 
@@ -52,8 +52,8 @@ public class ServicioReportComentario {
 
         try {
             ReportsComentario reportType = ReportsComentario.valueOf(typeReport.toUpperCase());
-            if(reportType==ReportsComentario.OTRO){
-                if(reporte.getReason().isEmpty()){
+            if (reportType == ReportsComentario.OTRO) {
+                if (reporte.getReason().isEmpty()) {
                     throw new MiException("La razon no puede estar vacia si el tipo de reporte es OTRO");
                 }
             }
@@ -62,19 +62,19 @@ public class ServicioReportComentario {
             throw new MiException("El tipo de reporte no es valido");
         }
 
-        repoComentario.save(reporte);
+        repoReporteComentario.save(reporte);
 
     }
 
     @Transactional
     public void eliminarReporte(String idReport) {
-        repoComentario.deleteById(idReport);
+        repoReporteComentario.deleteById(idReport);
     }
 
     @Transactional
     public List<ReportComentario> listarReportes() {
         List<ReportComentario> reportes = new ArrayList<>();
-        reportes = repoComentario.findAll();
+        reportes = repoReporteComentario.findAll();
         return reportes;
     }
 
@@ -84,7 +84,7 @@ public class ServicioReportComentario {
         if (idReport == null || idReport.isEmpty()) {
             throw new MiException("El ID del reporte no puede ser nulo");
         }
-        return repoComentario.reportComentarioById(idReport);
+        return repoReporteComentario.ReportComentariobyID(idReport);
     }
 
 }

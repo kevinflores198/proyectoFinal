@@ -1,15 +1,18 @@
 package com.socialFashion.proyectoFinal.Entidades;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -46,8 +49,7 @@ public class Publicacion {
 
     private Integer comentarios;
 
-    @OneToMany
-    @ElementCollection
+    @ManyToMany
     private List<Usuario> usuarioLikes;
 
     private Integer likes;
