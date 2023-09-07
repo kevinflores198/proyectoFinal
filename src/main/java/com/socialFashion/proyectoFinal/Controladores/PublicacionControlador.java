@@ -76,8 +76,17 @@ public class PublicacionControlador {
     public String eliminarPublicacion(@PathVariable String id, ModelMap modelo) {
 
         try {
-
             servicioPublicacion.eliminar(id);
+            List<Categorias> categorias = new ArrayList<>();
+            for(Categorias categoria : Categorias.values()){
+                categorias.add(categoria);
+            }
+            Usuario usuario = servicioUsuario.getOne(servicioPublicacion.getOne(id).getUser().getId());
+            List<Publicacion> publicaciones = repoPublicacion.publicacionesByUser(usuario.getId());
+
+            modelo.addAttribute("usuario", usuario);
+            modelo.addAttribute("publicaciones", publicaciones);
+            modelo.addAttribute("categorias", categorias);
 
             modelo.put("exito", "Publicación eliminada correctamente");
 
@@ -86,35 +95,6 @@ public class PublicacionControlador {
             modelo.put("error", "No se pudo eliminar la publicación");
 
         }
-        return "perfil.html";
-        
-    }
-
-    // A revisar este metodo que lo hice para mostrar el formulario de edición de
-    // etiquetas y contenido.
-    @GetMapping("/editar/{id}")
-    public String modificarPublicacion(@PathVariable String id, ModelMap modelo) {
-
-        modelo.put("Publicacion", servicioPublicacion.getOne(id));
-
-        return "publicacion.html";
-    }
-
-    @PostMapping("/editar/{id}")
-    public String modificadoPublicacion(@PathVariable String id, @RequestParam String newLabel,
-         @RequestParam String newContent, ModelMap modelo) {
-
-        try {
-
-            servicioPublicacion.modificarPublicacion(newLabel, id, newContent);
-
-            modelo.put("exito", "Publicación editada correctamente");
-
-        } catch (MiException ex) {
-
-            modelo.put("error", "No se pudo editar la publicación");
-        }
-
         return "perfil.html";
         
     }
