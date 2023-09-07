@@ -14,7 +14,6 @@ import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -118,19 +117,6 @@ public class PublicacionControlador {
 
         return "perfil.html";
         
-    }
-
-    //VISTA DE LISTA DE PUBLICACIONES 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @GetMapping("/listar-publicaciones")
-    public String listaPublicaciones(ModelMap modelo) {
-
-        List<Publicacion>publicaciones=servicioPublicacion.listaPublicacion();
-        modelo.addAttribute("publicaciones", publicaciones);
-
-        //RETORNAR A SU HTML 
-        return "lista-publicaciones.html";
-
     }
 
     //VISTA DE CARTA 

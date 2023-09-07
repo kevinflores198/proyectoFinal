@@ -28,7 +28,6 @@ import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioBaneo;
-import com.socialFashion.proyectoFinal.Repositorios.RepositorioImagen;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
 import com.socialFashion.proyectoFinal.Servicios.ServicioComentario;
 import com.socialFashion.proyectoFinal.Servicios.ServicioPublicacion;
@@ -169,11 +168,12 @@ public class PortalControlador {
     public String inicio(HttpSession session, ModelMap modelo) {
 
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        List<Publicacion> topPublicaciones = repoPublicacion.listaTop();
         modelo.addAttribute("publicaciones", publicaciones);
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         modelo.addAttribute("usuario", servicioUsuario.getOne(logueado.getId()));
         List<Usuario> topUsuarios = new ArrayList();
-        for (Publicacion publicacion : publicaciones) {
+        for (Publicacion publicacion : topPublicaciones) {
             if(!topUsuarios.contains(publicacion.getUser())){
                 topUsuarios.add(publicacion.getUser());
             }
@@ -304,10 +304,10 @@ public class PortalControlador {
         modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
-        modelo.addAttribute("cometarios", comentarios);
-        modelo.addAttribute("repotesUsuario", reportUsuarios);
-        modelo.addAttribute("repotespublicacion", reportPublicaciones);
-        modelo.addAttribute("repotesComentario", reportComentarios);
+        modelo.addAttribute("comentarios", comentarios);
+        modelo.addAttribute("reportesUsuario", reportUsuarios);
+        modelo.addAttribute("reportesPublicacion", reportPublicaciones);
+        modelo.addAttribute("reportesComentario", reportComentarios);
 
         return "listado.html";
     }
@@ -329,10 +329,10 @@ public class PortalControlador {
         modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
-        modelo.addAttribute("cometarios", comentarios);
-        modelo.addAttribute("repotesUsuario", reportUsuarios);
-        modelo.addAttribute("repotespublicacion", reportPublicaciones);
-        modelo.addAttribute("repotesComentario", reportComentarios);
+        modelo.addAttribute("comentarios", comentarios);
+        modelo.addAttribute("reportesUsuario", reportUsuarios);
+        modelo.addAttribute("reportesPublicacion", reportPublicaciones);
+        modelo.addAttribute("reportesComentario", reportComentarios);
 
         return "listado.html";
     }

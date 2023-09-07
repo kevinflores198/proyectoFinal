@@ -135,7 +135,11 @@ public class ServicioUsuario implements UserDetailsService {
         for (ReportUser reportUser : repositorioReporteUsuario.reportUsuarioByIdUser(id)) {
             repositorioReporteUsuario.delete(reportUser);
         }
-        servicioBan.eliminarBan(id);
+        if(repoBan.banByUser(id) != null){
+            servicioBan.eliminarBan(id);
+        }
+        // repoUser.delete(repoUser.getById(id));
+
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
             List<Usuario> us = listUsers();
@@ -263,4 +267,5 @@ public class ServicioUsuario implements UserDetailsService {
             throw new MiException("No puedes desbanear este usuario hasta dentro de " + (14 - dias) + "dias");
         }
     }
+
 }
