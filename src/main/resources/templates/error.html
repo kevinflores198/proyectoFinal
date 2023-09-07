@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head th:replace="/fragments/head-guest :: head"> </head>
+<head th:replace="/fragments/head :: head"> </head>
 
 <body>
     <nav th:replace="/fragments/navbar-guest :: nav"> </nav>
 
     <header class="header1">
         <section class="contenedorMain">
-            <div class="titulo">
-                <a class="navbar-brand" th:text="'Ha ocurrido un error ' + ${codigo}">Social Fashion</a>
-                <p class="titulo c-light" th:text="${mensaje}"></p>
-
-            </div>
+            <section class="titulo">
+                <a class="navbar-brand" th:text="'Ha ocurrido un error ' + ${codigo}"></a>
+                <p class="titulo c-light text-white" th:text="${mensaje}"></p>
+            </section>
+            
             <section class="text-center container">
                 <div class="row mt-3">
                     <div class="divVolver">
@@ -23,11 +23,11 @@
                     </div>
                 </div>
             </section>
-            <div class="container contenedorLibros">
+            <!-- <div class="container contenedorLibros">
                 <p class="tituloLibros" th:if="${session.usuariosession != null}"
                     th:text=" 'Hola de vuelta '+ ${session.usuariosession.name} ">
                 </p>
-            </div>
+            </div> -->
             <div class="bg-circle-1 bg-circle"></div>
             <div class="bg-circle-2 bg-circle"></div>
             <div class="bg-circle-3 bg-circle"></div>

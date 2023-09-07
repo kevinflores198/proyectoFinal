@@ -1,16 +1,22 @@
 package com.socialFashion.proyectoFinal.Controladores;
 
+import com.socialFashion.proyectoFinal.Entidades.Comentario;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
+import com.socialFashion.proyectoFinal.Enumeraciones.ReportsPublicacion;
 // import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
+import com.socialFashion.proyectoFinal.Servicios.ServicioComentario;
 import com.socialFashion.proyectoFinal.Servicios.ServicioPublicacion;
 import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -36,18 +42,8 @@ public class PublicacionControlador {
     @Autowired
     private RepositorioPublicacion repoPublicacion;
     
-
-    // @GetMapping("/publicar/{id}")
-    // public String publicar(@PathVariable String id, ModelMap model){
-    //     /*  ------ PROBAR -------
-    //     List<Categorias> categorias = new ArrayList<>();
-    //     for(Categorias categoria : Categorias.values()){
-    //         categorias.add(categoria);
-    //     }
-    //     model.addAttribute("categorias", categorias);
-    //     */
-    //     return "publicacion.html";
-    // }
+    @Autowired
+    private ServicioComentario servicioComentario;
 
     @PostMapping("/publicar/{idUser}")
     public String cargarPublicacion(@PathVariable String idUser, @RequestParam String label, @RequestParam MultipartFile archivo, @RequestParam String content, ModelMap modelo){
@@ -61,14 +57,14 @@ public class PublicacionControlador {
             modelo.put("exito", "Publicación cargada correctamente");
 
             List<Categorias> categorias = new ArrayList<>();
-        for(Categorias categoria : Categorias.values()){
-            categorias.add(categoria);
-        }
-        Usuario usuario = servicioUsuario.getOne(idUser);
-        List<Publicacion> publicaciones = repoPublicacion.publicacionesByUser(idUser);
-        modelo.addAttribute("usuario", usuario);
-        modelo.addAttribute("publicaciones", publicaciones);
-        modelo.addAttribute("categorias", categorias);
+            for(Categorias categoria : Categorias.values()){
+                categorias.add(categoria);
+            }
+            Usuario usuario = servicioUsuario.getOne(idUser);
+            List<Publicacion> publicaciones = repoPublicacion.publicacionesByUser(idUser);
+            modelo.addAttribute("usuario", usuario);
+            modelo.addAttribute("publicaciones", publicaciones);
+            modelo.addAttribute("categorias", categorias);
 
         } catch (MiException ex) {
 
@@ -76,13 +72,20 @@ public class PublicacionControlador {
         }
         return "perfil.html";
     }
-
+    
     @GetMapping("/eliminar/{id}")
-    public String eliminarPublicacion(@PathVariable String id, ModelMap modelo) {
-
+    public String eliminarPublicacion(@PathVariable String id, ModelMap modelo, HttpSession session) {
+        List<Categorias> categorias = new ArrayList<>();
+        for(Categorias categoria : Categorias.values()){
+            categorias.add(categoria);
+        }
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         try {
-
             servicioPublicacion.eliminar(id);
+            List<Publicacion>publicaciones=servicioPublicacion.getPublicacionByUser(logueado.getId());
+            modelo.addAttribute("publicaciones", publicaciones);
+            modelo.addAttribute("usuario", logueado);
+            modelo.addAttribute("categorias", categorias);
 
             modelo.put("exito", "Publicación eliminada correctamente");
 
@@ -95,34 +98,35 @@ public class PublicacionControlador {
         
     }
 
-    // A revisar este metodo que lo hice para mostrar el formulario de edición de
-    // etiquetas y contenido.
-    @GetMapping("/editar/{id}")
-    public String modificarPublicacion(@PathVariable String id, ModelMap modelo) {
+    // // A revisar este metodo que lo hice para mostrar el formulario de edición de
+    // // etiquetas y contenido.
+    // @GetMapping("/editar/{id}")
+    // public String modificarPublicacion(@PathVariable String id, ModelMap modelo) {
 
-        modelo.put("Publicacion", servicioPublicacion.getOne(id));
+    //     modelo.put("Publicacion", servicioPublicacion.getOne(id));
 
-        return "publicacion.html";
-    }
+    //     return "editar-publicacion.html";
+    // }
 
-    @PostMapping("/editar/{id}")
-    public String modificadoPublicacion(@PathVariable String id, @RequestParam String newLabel,
-         @RequestParam String newContent, ModelMap modelo) {
+    // @PostMapping("/editar/{id}")
+    // public String modificadoPublicacion(@PathVariable String id, @RequestParam String newLabel,
+    //      @RequestParam String newContent, ModelMap modelo) {
 
-        try {
+    //     try {
 
-            servicioPublicacion.modificarPublicacion(newLabel, id, newContent);
+    //         servicioPublicacion.modificarPublicacion(newLabel, id, newContent);
 
-            modelo.put("exito", "Publicación editada correctamente");
+    //         modelo.put("exito", "Publicación editada correctamente");
 
-        } catch (MiException ex) {
+    //     } catch (MiException ex) {
 
-            modelo.put("error", "No se pudo editar la publicación");
-        }
+    //         modelo.put("error", "No se pudo editar la publicación");
+    //     }
 
-        return "perfil.html";
+    //     return "perfil.html";
         
-    }
+    // }
+    // No nos hace falta
 
     //VISTA DE LISTA DE PUBLICACIONES 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
@@ -140,25 +144,64 @@ public class PublicacionControlador {
     //VISTA DE CARTA 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/detail/{id}")
-    public String CartaPublicacion(@PathVariable String id, ModelMap modelo) {
+    public String CartaPublicacion(@PathVariable String id, ModelMap modelo, HttpSession session) {
 
         Publicacion publicacion = servicioPublicacion.getOne(id);
-        // Usuario usuario = publicacion.getUser();
-        // modelo.addAttribute("usuario", usuario);
         modelo.addAttribute("publicacion", publicacion);
 
+        List<Comentario> comentarios = servicioComentario.getComentariosByPublicacion(id);
+        modelo.addAttribute("comentarios", comentarios);
+
+        List<ReportsPublicacion> reportes = new ArrayList<>();
+        for (ReportsPublicacion reporte : ReportsPublicacion.values()) {
+            reportes.add(reporte);
+        }
+        modelo.addAttribute("tipoReporte", reportes);
+
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        modelo.addAttribute("usuario", usuario);
         //RETORNAR A SU HTML 
         return "detail.html";
 
     }
     
-    @GetMapping("/MG+/{id}")
-    public void agregarLike(@PathVariable String id){
-        servicioPublicacion.agregarLike(id);
+    @GetMapping("/MG/{id}")
+    public String agregarLike(@PathVariable String id, ModelMap modelo, HttpSession session){
+        
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        servicioPublicacion.Like(id, usuario);
+
+        return "redirect:/main";
     }
-    
-    @GetMapping("/MG-/{id}")
-    public void sacarLike(@PathVariable String id){
-        servicioPublicacion.sacarLike(id);
+    @GetMapping("/detail/MG/{id}")
+    public String agregarLikeDetail(@PathVariable String id, ModelMap modelo, HttpSession session){
+        
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        servicioPublicacion.Like(id, usuario);
+
+        return "redirect:/publicacion/detail/"+id;
     }
+
+    // @GetMapping("/MGmore/{id}")
+    // public String agregarLike(@PathVariable String id, ModelMap modelo/* , List<Publicacion> publis*/){
+        
+    //     servicioPublicacion.Like(id, true);
+        
+    //     List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+    //     //publis.add(servicioPublicacion.getOne(id));
+    //     // for (Publicacion publicacion : publicaciones) {
+    //     //     if(publis.contains(publicacion)){
+    //     //         publicaciones.remove(publicacion);
+    //     //     }
+    //     // }
+
+    //     modelo.addAttribute("publicaciones", publicaciones);
+        
+    //     modelo.addAttribute("validar", true);
+        
+    //     // modelo.addAttribute("likeadas", publis);
+
+    //     return "main.html";
+    // }
+
 }

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.ReportPublicacion;
+import com.socialFashion.proyectoFinal.Enumeraciones.ReportsComentario;
 import com.socialFashion.proyectoFinal.Enumeraciones.ReportsPublicacion;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioReportePublicacion;
@@ -25,71 +26,43 @@ public class ServicioReportPublicacion {
     private RepositorioPublicacion repoPubli;
 
     @Transactional
-    public void crearReportePublicacion(String idPublicacion, String idUser, String reason, String reports) throws MiException{
+    public void crearReportePublicacion(String idPublicacion, String idUser, String reason, String typeReport) throws MiException{
 
-        validar(idPublicacion, idUser, reason, reports);
+        validar(idPublicacion, idUser, reason, typeReport);
 
-        ReportPublicacion reportPubli = new ReportPublicacion();
+        ReportPublicacion reporte = new ReportPublicacion();
 
-        reportPubli.setIdUser(idUser);
+        reporte.setIdUser(idUser);
 
         Optional<Publicacion> respuesta = repoPubli.findById(idPublicacion);
         if(respuesta.isPresent()){
             Publicacion publicacion = respuesta.get();
-            reportPubli.setPublicacion(publicacion);
+            reporte.setPublicacion(publicacion);
         }else{
             throw new MiException("No se encontró la publicacion");
         }
 
-        reportPubli.setReason(reason.toLowerCase());
+        reporte.setReason(reason.toLowerCase());
 
-        switch (reports) {
-            case "disgusto":
-                reportPubli.setTypeReport(ReportsPublicacion.DISGUSTO);
-                break;
-            case "spam":
-                reportPubli.setTypeReport(ReportsPublicacion.SPAM);
-                break;
-            case "sexual":
-                reportPubli.setTypeReport(ReportsPublicacion.SEXUAL);
-                break;
-            case "inapropiado":
-                reportPubli.setTypeReport(ReportsPublicacion.INAPROPIADO);
-                break;
-            case "violencia":
-                reportPubli.setTypeReport(ReportsPublicacion.VIOLENCIA);
-                break;
-            case "desinformacion":
-                reportPubli.setTypeReport(ReportsPublicacion.DESINFORMACION);
-                break;
-            case "estafa":
-                reportPubli.setTypeReport(ReportsPublicacion.ESTAFA);
-                break;
-            case "bullyng":
-                reportPubli.setTypeReport(ReportsPublicacion.BULLYNG);
-                break;
-            case "autolesion":
-                reportPubli.setTypeReport(ReportsPublicacion.AUTOLESION);
-                break;
-            case "ilegal":
-                reportPubli.setTypeReport(ReportsPublicacion.ILEGAL);
-                break;
-            case "etnia":
-                reportPubli.setTypeReport(ReportsPublicacion.ETNIA);
-                break;
-            case "otro":
-                if(reason.isEmpty()){
-                    throw new MiException("Es necesario que se especifique una razon");
+        try {
+            ReportsPublicacion reportType = ReportsPublicacion.valueOf(typeReport.toUpperCase());
+            if (reportType == ReportsPublicacion.OTRO) {
+                if (reporte.getReason().isEmpty()) {
+                    throw new MiException("La razon no puede estar vacia si el tipo de reporte es OTRO");
                 }
-                reportPubli.setTypeReport(ReportsPublicacion.OTRO);
-                break;
+            }
+            reporte.setTypeReport(reportType);
+            
+        } catch (MiException ex) {
+            throw new MiException("El tipo de reporte no es valido");
         }
-        repoReportPubli.save(reportPubli);
+        repoReportPubli.save(reporte);
     }
 
     public void eliminarReporte(String idReportPublicacion){
 
-        repoReportPubli.delete(repoReportPubli.getById(idReportPublicacion));
+        ReportPublicacion reportPublicacion = repoReportPubli.getById(idReportPublicacion);
+        repoReportPubli.delete(reportPublicacion);
 
     }
 

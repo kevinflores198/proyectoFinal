@@ -6,7 +6,108 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
+/*Botones*/
+.card {
+    background-color: #e4e4e4;
+    border-radius: 15px;
+    box-shadow: 10px 10px 20px #c4c4c4,
+        -10px -10px 20px #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 4px;
+}
 
+.button {
+    background-color: #e4e4e4;
+    border: none;
+    border-radius: 10px;
+    box-shadow: inset 5px 5px 5px #c4c4c4,
+        inset -5px -5px 5px #ffffff;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 3px;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+.button:hover {
+    box-shadow: none;
+}
+
+.svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.card .Explore {
+    color: #3035cb;
+}
+
+.card .Explore:hover {
+    background-color: #3035cb;
+    color: #e4e4e4;
+}
+
+.card .Explore svg {
+    fill: #3035cb;
+}
+
+.card .Explore:hover svg {
+    fill: #e4e4e4;
+}
+
+.card .Post {
+    color: #333;
+}
+
+.card .Post:hover {
+    background-color: #333;
+    color: #e4e4e4;
+}
+
+.card .Post svg {
+    fill: #333;
+}
+
+.card .Post:hover svg {
+    fill: #e4e4e4;
+}
+
+.card .Chat {
+    color: #b82323;
+}
+
+.card .Chat:hover {
+    background-color: #b82323;
+    color: #e4e4e4;
+}
+
+.card .Chat svg {
+    fill: #b82323;
+}
+
+.card .Chat:hover svg {
+    fill: #e4e4e4;
+}
+
+.perfil-usuario {
+
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #dfdfdf;
+    ;
+}
 
 :root {
     --blue: #007bff;
@@ -69,10 +170,15 @@ section {
 
 .header1 {
     width: 100%;
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.lapiz {
+    font-size: 30px;
+    margin-left: 10px;
 }
 
 body {
@@ -426,14 +532,14 @@ template {
     border-radius: 30px;
 }
 
-.popup{
+.popup {
     width: 400px;
     background: #ffffff;
     border-radius: 6px;
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translate(-50%,-50%) scale(0.1);
+    transform: translate(-50%, -50%) scale(0.1);
     text-align: center;
     padding: 0 30px 30px;
     color: #333;
@@ -441,31 +547,31 @@ template {
     transition: transform 0.4s, top 0.4s;
 }
 
-.open-popup{
+.open-popup {
     visibility: visible;
     top: 50%;
-    transform: translate(-50%,-50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
 
 }
 
-.popup img{
+.popup img {
     width: 100px;
     margin-top: -50px;
 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
 }
 
-.popup h2{
+.popup h2 {
     font-size: 38px;
     font-weight: 500;
     margin: 30px 0 10px;
 }
 
-.popup button{
+.popup button {
     width: 100%;
     margin-top: 50px;
     padding: 10px 0;
-    background:#ffd746 ;
+    background: #ffd746;
     color: #FFF;
     border: 0;
     outline: none;
@@ -671,7 +777,7 @@ mark,
 }
 
 .contenedorMain {
-    background-color: rgba(53, 53, 53, 0.683);
+    background-color: rgba(2, 0, 0, 0.683);
     padding: 50px;
     border-radius: 20px;
 }
@@ -11002,3 +11108,4 @@ button.bg-dark:focus {
             transform: translateY(-15px);
         }
     }
+}

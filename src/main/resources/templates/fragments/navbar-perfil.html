@@ -29,26 +29,22 @@
                 </div>
             </form>
         </div>
-
+        
         <div class="col-lg-4 col-6 text-right">
             <div class="d-inline-flex align-items-center">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle " data-toggle="dropdown">Mi
+                    <button type="button" class="rounded btn btn-sm btn-primary dropdown-toggle "
+                        data-toggle="dropdown"><img class="rounded-circle"
+                            th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="" height="30px"
+                            width="30px"> Mi
                         Cuenta</button>
                     <div class="dropdown-menu dropdown-menu-right bg-dark">
                         <button class="dropdown-item" type="button"><a class=""
                                 th:href="@{/perfil/__${session.usuariosession.id}__}">Perfil</a></button>
                         <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
-                                th:href="@{/login}">lista
-                                diseñadores</a></button>
+                                th:href="@{/listado}">Listado de entidades</a></button>
                         <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
-                                th:href="@{/publicacion}">lista
-                                publicaciones</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
-                                th:href="@{/login}">lista
-                                reporte</a></button>
-                        <button class="dropdown-item" type="button" sec:authorize="hasRole('ADMIN')"><a class=""
-                                th:href="@{/login}">Configurar</a></button>
+                                th:href="@{/perfil/modificar/__${session.usuariosession.id}__}">Configurar</a></button>
                         <button class="dropdown-item" type="button"><a class="" th:href="@{/logout}">Salir</a></button>
                     </div>
                 </div>

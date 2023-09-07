@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body>
+
+    <nav th:replace="/fragments/navbar-main :: nav"></nav>
+
+    <div class="row px-xl-5">
+        <div class="col">
+            <div class="bg-light p-30">
+                <h2>Reportes</h2>
+                <div class="nav nav-tabs mb-4">
+                    <a class="nav-item nav-link text-light active" data-toggle="tab"
+                        href="#tab-pane-1">Publicaciones</a>
+                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Usuarios</a>
+                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Comentarios</a>
+                </div>
+
+                <!-- division de las 3 columnas de listas -->
+                <div class="tab-content">
+
+                    <!-- espacio de las publicaciones -->
+
+                    <div class="tab-pane fade show active" id="tab-pane-1">
+                        <div class="container-fluid">
+                            <div class="row px-xl-5">
+                                <div class="col-lg-12 table-responsive mb-5">
+                                    <table class="table table-light table-borderless table-hover text-center mb-0">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>ID Reporte</th>
+                                                <th>ID Usuario</th>
+                                                <th>Publicacion</th>
+                                                <th>Razon</th>
+                                                <th>Baja</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="align-middle" th:each="publicacion : ${publicaciones}">
+                                            <tr>
+                                                <th scope="row" th:text="${reports.id}"></th>
+                                                <!-- <th>ID Reporte</th>
+                                                <th>ID Usuario</th> 
+                                                <th>Publicacion</th>
+                                                <th>Razon</th>
+                                                <th>Baja</th> -->
+                                                <td class="align-middle" th:text="${publicacion.label}"></td>
+                                                <td class="align-middle" th:text="${publicacion.label}"></td>
+                                                <td class="align-middle" th:text="${publicacion.label}"></td>
+                                                <td class="align-middle" th:text="${publicacion.label}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- espacio de los usuarios -->
+
+                    <div class="tab-pane fade" id="tab-pane-2">
+                        <div class="container-fluid">
+                            <div class="row px-xl-5">
+                                <div class="col-lg-12 table-responsive mb-5">
+                                    <table class="table table-light table-borderless table-hover text-center mb-0">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>ID reporte</th>
+                                                <th>ID usuario</th>
+                                                <th>Razon</th>
+                                                <th>Baja</th>
+                                                <th>Eliminar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="align-middle" th:each="user : ${usuarios}">
+                                            <tr>
+                                                <th scope="row" th:text="${reports.id}"></th>
+                                                <!-- <th>ID reporte</th>
+                                                <th>ID usuario</th>
+                                                <th>Razon</th>
+                                                <th>Baja</th>
+                                                <th>Eliminar</th> -->
+                                                <td class="align-middle" th:text="${publicacion.label}"></td>
+                                                <td class="align-middle" th:text="${publicacion.label}"></td>
+                                                <td class="align-middle" th:text="${publicacion.label}"></td>
+                                                <td class="align-middle" th:text="${publicacion.label}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- espacio de los comentrios -->
+
+                    <div class="tab-pane fade" id="tab-pane-3">
+                        <div class="container-fluid">
+                            <div class="row px-xl-5">
+                                <div class="col-lg-12 table-responsive mb-5">
+                                    <table class="table table-light table-borderless table-hover text-center mb-0">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>ID reporte</th>
+                                                <th>ID comentario</th>
+                                                <th>Comentario</th>
+                                                <th>Reason</th>
+                                                <th>Baja</th>
+                                                <th>Eliminar</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody class="align-middle" th:each="coment : ${comentarios}">
+                                            <tr>
+                                                <th scope="row" th:text="${reports.id}"></th>
+                                                <!-- <th>ID reporte</th>
+                                                <th>ID comentario</th>
+                                                <th>Comentario</th>
+                                                <th>Reason</th>
+                                                <th>Baja</th>
+                                                <th>Eliminar</th> -->
+                                                <td class="align-middle" th:text="${publicacion.label}"></td>
+                                                <td class="align-middle" th:text="${publicacion.label}"></td>
+                                                <td class="align-middle" th:text="${publicacion.label}"></td>
+                                                <td class="align-middle" th:text="${publicacion.label}"></td>
+                                                <td class="align-middle" th:text="${publicacion.label}"></td>
+                                                <td class="align-middle" th:text="${publicacion.label}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="/fragments/footer :: footer"> </footer>
+
+
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

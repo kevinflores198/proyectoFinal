@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security%22%3E">
 
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>Social Fashion | "La Red de Diseñadores mas grande del Planeta"</title>
@@ -75,99 +72,21 @@
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
                     id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
-                    <div class="navbar-nav w-100">
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Kevin Flores<i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Ver prefil</a>
-                                <a href="" class="dropdown-item">Opinar</a>
-                                <a href="" class="dropdown-item bg-danger">Reportar</a>
-                            </div>
 
+                    <div class="navbar-nav w-100" th:each="publicacion : ${publicaciones}">
+
+                        <div class="nav-item dropdown dropright">
+                            <a th:href="@{/perfil/__${publicacion.user.id}__}" class="nav-link dropdown-toggle" data-toggle="dropdown" th:text="${publicacion.user.name}"><i
+                                    class="fa fa-angle-right float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
+                                <a href="" class="dropdown-item">Ver prefil</a>
+                                <a href="" class="dropdown-item">Opinar</a>
+                                <a href="" class="dropdown-item bg-danger">Reportar</a>
+                            </div>
                         </div>
+
                     </div>
+
                 </nav>
             </div>
 
@@ -400,24 +319,14 @@
                 </div>
 
             </footer>
-            <!-- Footer End -->
 
-
-            <!-- Back to Top -->
-
-
-
-            <!-- JavaScript Libraries -->
             <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-            <!-- JavaScript Libraries -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
             <script src="lib/easing/easing.min.js"></script>
             <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-            <!-- Contact Javascript File -->
             <script src="mail/jqBootstrapValidation.min.js"></script>
             <script src="mail/contact.js"></script>
-            <!-- Template Javascript -->
             <script src="js/main.js"></script>
 </body>
 

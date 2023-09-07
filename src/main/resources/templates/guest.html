@@ -51,26 +51,27 @@
                                 th:value="${password2}"><br>
                             <input type="date" placeholder="Fecha de nacimiento" name="birthDate"
                                 th:value="${birthDate}"><br>
+                            <!-- <input type="text" placeholder="Descripción" name="descripción" -->
+                            <!-- th:value="${descripcion}"><br> -->
                             <label class="custum-file-upload" for="file">
                                 <div class="text">
                                     <span class="box-image">📷 Foto de perfil</span>
                                 </div>
-                                <input type="file" id="file" name="image" th:value="${imagenPred}">
+                                <input type="file" id="file" name="image" th:value="${image}">
                             </label>
-
                             <button class="ingresar" type="submit" onclick="openPopup()">Registrarme</button>
                         </form>
                     </div>
                 </div>
                 <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" style="border-radius: 15px;">
                     <div class="card-body">
-                        <h5 class="card-title">Error!</h5>
+                        <h5 class="card-title text-white">Error!</h5>
                         <p class="card-text" th:text="${error}"></p>
                     </div>
                 </div>
                 <div th:if="${exito != null}" class="card text-white bg-success mb-3 mensajeExito" style="border-radius: 15px;">
                     <div class="card-body">
-                        <h5 class="card-title">Exito!</h5>
+                        <h5 class="card-title text-white">Exito! Ya puede ingresar</h5>
                         <p class="card-text" th:text="${exito}"></p>
                     </div>
                 </div>

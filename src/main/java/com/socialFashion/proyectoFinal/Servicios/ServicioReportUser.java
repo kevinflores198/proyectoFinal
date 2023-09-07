@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ServicioReportUser {
 
     @Autowired
-    RepositorioReporteUsuario repoUsuario;
+    private RepositorioReporteUsuario repoReportUsuario;
 
     @Transactional
     public void crearReporte(String idUser, Usuario UserReported,
@@ -38,7 +38,7 @@ public class ServicioReportUser {
         ReportUser reporte = new ReportUser();
 
         reporte.setIdUser(idUser);
-        reporte.setIdUserReported(UserReported);
+        reporte.setUserReported(UserReported);
         reporte.setReason(reason);
 
         try {
@@ -47,29 +47,27 @@ public class ServicioReportUser {
                 if (reporte.getReason().isEmpty()) {
                     throw new MiException("La razon no puede estar vacia si el tipo de reporte es OTRO");
                 }
-                reporte.setTypeReport(reportType);
             }
+            reporte.setTypeReport(reportType);
         } catch (Exception e) {
             throw new MiException("El tipo de reporte no es valido");
         }
 
-
-
-        
-
-        repoUsuario.save(reporte);
+        repoReportUsuario.save(reporte);
 
     }
 
+    
+
     @Transactional
-    public void eliminarReporte(String idUserReported) {
-        repoUsuario.deleteById(idUserReported);
+    public void eliminarReporte(String idReporte) {
+        repoReportUsuario.deleteById(idReporte);
     }
 
     @Transactional
     public List<ReportUser> listarReportes() {
         List<ReportUser> reportes = new ArrayList<>();
-        reportes = repoUsuario.findAll();
+        reportes = repoReportUsuario.findAll();
         return reportes;
     }
 
@@ -79,7 +77,7 @@ public class ServicioReportUser {
         if (idUserReported == null || idUserReported.isEmpty()) {
             throw new MiException("El ID del usuario reportado no puede ser nulo");
         }
-        return repoUsuario.ReportUsuarioByID(idUserReported);
+        return repoReportUsuario.ReportUsuarioByID(idUserReported);
     }
 
 }

@@ -1,8 +1,10 @@
 package com.socialFashion.proyectoFinal.Servicios;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -116,7 +118,6 @@ public class ServicioPublicacion {
             Publicacion publicacion = rsp.get();
             publicacion.setLabel(Categorias.valueOf(label.toUpperCase()));
             publicacion.setContent(content);
-            repoPubli.save(publicacion);
         }
     }
 
@@ -135,23 +136,36 @@ public class ServicioPublicacion {
         }
     }
     
-    
     // -------- Funciones de Me Gustas ---------
     @Transactional
-    public void agregarLike(String id){
+    public void Like(String id, Usuario usuarioLike) {
         Publicacion publicacion = getOne(id);
-        Integer suma = publicacion.getLikes() + 1;
-        publicacion.setLikes(suma);
+
+        List<Usuario> usuarios = repoPubli.publicacionById(id).getUsuarioLikes();
+        List<Usuario> usuariosAux = usuarios;
+        int indexToDelete = usuarios.size();
+        boolean encontrado = false;
+        for (int i = 0; i < usuarios.size(); i++) {
+            Usuario usuario = usuarios.get(i);
+            if (usuario.getId().equals(usuarioLike.getId())) {
+                encontrado = true;
+                indexToDelete = i;
+                break;
+            }
+        }
+
+        if ((!encontrado) || usuarios.size() == 0) {
+            usuariosAux.add(usuarioLike);
+            publicacion.setLikes(publicacion.getLikes() + 1);
+        } else {
+            usuariosAux.remove(indexToDelete);
+            publicacion.setLikes(publicacion.getLikes() - 1);
+        }
+        publicacion.setUsuarioLikes(usuariosAux);
+        
+        repoPubli.save(publicacion);
     }
-    
-    @Transactional
-    public void sacarLike(String id){
-        Publicacion publicacion = getOne(id);
-        Integer suma = publicacion.getLikes() - 1;
-        publicacion.setLikes(suma);
-    }
-    
-    
+
     /* -------- Funciones de Lectura en la BD --------- */
     
     /**
@@ -159,7 +173,26 @@ public class ServicioPublicacion {
      */
     @Transactional(readOnly=true)
     public List<Publicacion> topDiez(){
-        return repoPubli.listaTop().subList(0, 9);
+        // ------- LISTA DE TOP BY COMMENT Y LIKES --------
+        List<Publicacion> publicaciones = repoPubli.listaTop();
+        // ----------------- LISTA FINAL ------------------
+        List<Publicacion> topDiez = new ArrayList<>();
+
+        Date hoy = new Date();  // Dia de hoy para comparar
+        for (Publicacion publicacion : publicaciones) {
+
+            long tiempoTrascurrido = hoy.getTime() - publicacion.getInitialDate().getTime();
+            TimeUnit unidad = TimeUnit.DAYS;
+
+            long dias = unidad.convert(tiempoTrascurrido, TimeUnit.MILLISECONDS);
+            if(dias <= 7){
+                topDiez.add(publicacion);
+            }
+        }
+        if(topDiez.size() > 10){
+            return topDiez.subList(0, 9);
+        }
+        return topDiez;
     }
     
     /**
@@ -213,5 +246,37 @@ public class ServicioPublicacion {
     @Transactional(readOnly=true)
     public List<Publicacion> publicacionesPorNombreDiseñadorDESC(){
         return repoPubli.findAllOrderByNombreDiseñadorDesc();
+    }
+
+    public List<Publicacion> publicacionesPorFiltro(Integer filtro, Categorias categoria){
+
+        switch(filtro){
+            case 1:
+                if(publicacionesPorLabel(categoria).size() > 10){
+                    return publicacionesPorLabel(categoria).subList(0, 9);
+                }
+                return publicacionesPorLabel(categoria);
+            case 2:
+                if(publicacionesPorFechaASC().size() > 10){
+                    return publicacionesPorFechaASC().subList(0, 9);
+                }
+                return publicacionesPorFechaASC();
+            case 3:
+                if(publicacionesPorFechaDESC().size() > 10){
+                    return publicacionesPorFechaASC().subList(0, 9);
+                }
+                return publicacionesPorFechaDESC();
+            case 4:
+                if(publicacionesPorNombreDiseñadorASC().size() > 10){
+                    return publicacionesPorNombreDiseñadorASC().subList(0, 9);
+                }
+                return publicacionesPorNombreDiseñadorASC();
+            case 5:
+                if(publicacionesPorNombreDiseñadorDESC().size() > 10){
+                    return publicacionesPorNombreDiseñadorDESC().subList(0, 9);
+                }
+                return publicacionesPorNombreDiseñadorDESC();
+        }
+        return topDiez();
     }
 }

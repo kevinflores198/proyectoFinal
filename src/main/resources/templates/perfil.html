@@ -11,10 +11,13 @@
     <div class="col-lg-12 col-md-12 col-sm-12 pb-1 d-flex justify-content-center">
         <div class="product-item bg-light mb-4">
             <div class=" position-relative overflow-hidden">
-                <img class="img-thumbnail" th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt=""
+                <img class="img-thumbnail" th:src="@{/imagen/perfil/__${usuario.id}__}" alt=""
                     height="250px" width="350px">
-                <h2 class="d-flex justify-content-center align-items-center "
-                    th:text=" ${session.usuariosession.name} "></h2>
+                <div class="d-flex justify-content-center  align-items-center">
+                    <h2 class="d-flex justify-content-center align-items-center " th:text=" ${usuario.name} "></h2>
+                    <a th:href="@{/perfil/modificar/__${usuario.id}__}"><i class="lapiz fa fa-pencil"></i></a>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -64,8 +67,8 @@
 <!-- Descripcion de la publi -->
                     <h5>Descripcion de la publicacion</h5>
                     <div class="form-group">
-                        <input id="message" cols="30" rows="5" class="form-control"
-                            th:value="${content}" name="content"></input>
+                        <textarea id="message" cols="30" rows="5" class="form-control"
+                            th:value="${content}" name="content"></textarea>
                     </div>
                     <div class="form-group mb-0">
                         <button type="submit" class="btn btn-primary px-3">Publicar</button>
@@ -102,8 +105,8 @@
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" th:href="@{/publicacion/detail/__${publicacion.id}__}"><i class="">ir</i></a>
-                            <a class="btn btn-outline-dark btn-square" th:href="@{/report}">
-                                <i class="fa fa-exclamation"></i></a>
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/report}"><i class="fa fa-exclamation"></i></a>
+                            <a th:if="__${publicacion.user.id}__ == ${session.usuariosession.id}" class="btn btn-outline-dark btn-square"  target="_self" th:href="@{/publicacion/eliminar/__${publicacion.id}__}"><i class="fa fa-trash"></i></a>
                         </div>
                     </div>
                 </div>

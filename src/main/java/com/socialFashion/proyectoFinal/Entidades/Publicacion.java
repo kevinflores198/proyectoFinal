@@ -1,20 +1,26 @@
 package com.socialFashion.proyectoFinal.Entidades;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
 
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Publicacion
@@ -41,24 +47,30 @@ public class Publicacion {
     @Temporal(TemporalType.DATE)
     private Date initialDate;
 
-    //@OneToMany    
-    //private ArrayList<Comentario> comments;
+    private Integer comentarios;
+
+    @ManyToMany
+    private List<Usuario> usuarioLikes;
 
     private Integer likes;
 
-    
-
     public Publicacion() {
+        this.comentarios = 0;
+        this.likes = 0;
     }
-
-    public Publicacion(Usuario user, Categorias label, Imagen image, String content, Date initialDate, Integer likes) {
+    
+    public Publicacion(Usuario user, Categorias label, Imagen image, String content, Date initialDate,
+            Integer comentarios, List<Usuario> usuarioLikes, Integer likes) {
         this.user = user;
         this.label = label;
         this.image = image;
         this.content = content;
         this.initialDate = initialDate;
+        this.comentarios = comentarios;
+        this.usuarioLikes = usuarioLikes;
         this.likes = likes;
     }
+
 
     public String getId() {
         return id;
@@ -108,12 +120,28 @@ public class Publicacion {
         this.initialDate = initialDate;
     }
 
+    public Integer getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(Integer comentarios) {
+        this.comentarios = comentarios;
+    }
+
     public Integer getLikes() {
         return likes;
     }
 
     public void setLikes(Integer likes) {
         this.likes = likes;
+    }
+
+    public List<Usuario> getUsuarioLikes() {
+        return usuarioLikes;
+    }
+
+    public void setUsuarioLikes(List<Usuario> usuarioLikes) {
+        this.usuarioLikes = usuarioLikes;
     }
 
     

@@ -1,5 +1,6 @@
 package com.socialFashion.proyectoFinal.Entidades;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -45,10 +48,10 @@ public class Usuario {
     
     private Boolean alta;
 
-    //@OneToMany
-    //private ArrayList<Publicacion> publicacion;
-    
-    //private ArrayList<ReportUser> report;
+//    @OneToMany
+//    private ArrayList<Publicacion> publicacion;
+//    
+//    private ArrayList<ReportUser> report;
 
     public Usuario() {
     }

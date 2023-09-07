@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragments/head :: head"> </head>
+
+<body>
+
+    <nav th:replace="/fragments/navbar-perfil :: nav"></nav>
+
+    <div class="container-fluid ">
+        <div class="row px-xl-5 justify-content-center display-flex align-items-center">
+            <form th:action="@{/publicacion/editar/__${publicacion.id}__}" class="h-100 bg-light p-30" method="POST"
+                enctype="multipart/form-data">
+                <div class="col-lg-8">
+                    <h2 class="section-title position-relative text-uppercase mb-3">
+                        <span class="bg-secondary pr-3">
+                            Editar publicacion
+                        </span>
+                    </h2>
+                    <div class="bg-light p-30 mb-5 ">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>Titulo</label>
+                                <input class="form-control" type="text" placeholder="Ingrese categoria"
+                                    th:value="${label}">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label>Descripcion</label>
+                                <textarea class="form-control" type="text" placeholder="Ingrese descripcion"
+                                    th:value="${content}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label class="custum-file-upload" for="file">
+                                <div class="text">
+                                    <span class="box-image">📷 Foto de la publicacion</span>
+                                </div>
+                                <input type="file" id="file" name="image" th:value="${image}">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+
+    <footer th:replace="/fragments/footer :: footer"></footer>
+
+
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    <script th:replace="/fragments/script :: script"></script>
+
+</body>
+
+</html>
