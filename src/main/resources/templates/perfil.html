@@ -13,8 +13,11 @@
             <div class=" position-relative overflow-hidden">
                 <img class="img-thumbnail" th:src="@{/imagen/perfil/__${usuario.id}__}" alt=""
                     height="250px" width="350px">
-                <h2 class="d-flex justify-content-center align-items-center "
-                    th:text=" ${usuario.name} "></h2>
+                <div class="d-flex justify-content-center  align-items-center">
+                    <h2 class="d-flex justify-content-center align-items-center " th:text=" ${usuario.name} "></h2>
+                    <a th:href="@{/perfil/modificar/__${usuario.id}__}"><i class="lapiz fa fa-pencil"></i></a>
+                </div>
+                
             </div>
         </div>
     </div>

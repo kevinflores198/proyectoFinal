@@ -245,7 +245,7 @@ public class PortalControlador {
         Usuario usuario = servicioUsuario.getOne(id);
         modelo.addAttribute("usuario", usuario);
 
-        return "form-usuario.html";
+        return "editar-perfil.html";
 
     }
 
@@ -261,16 +261,28 @@ public class PortalControlador {
 
             servicioUsuario.update(id, name, password, password2, image);
 
+            List<Categorias> categorias = new ArrayList<>();
+            for(Categorias categoria : Categorias.values()){
+                categorias.add(categoria);
+            }
+            Usuario usuario = servicioUsuario.getOne(id);
+            List<Publicacion> publicaciones = repoPublicacion.publicacionesByUser(id);
+            modelo.addAttribute("usuario", usuario);
+            modelo.addAttribute("publicaciones", publicaciones);
+            modelo.addAttribute("categorias", categorias);
+
             modelo.put("exito", "Usuario modificado correctamente!");
 
-            return "redirect:../perfil/"+id;
+            return "redirect:/perfil/".concat(id);
 
         } catch (MiException ex) {
 
+            Usuario usuario = servicioUsuario.getOne(id);
+            modelo.addAttribute("usuario", usuario);
             modelo.put("error", ex.getMessage());
-            modelo.put("nombre", name);
+            modelo.put("name", name);
             
-            return "form-usuario.html";
+            return "editar-perfil.html";
         }
 
         
