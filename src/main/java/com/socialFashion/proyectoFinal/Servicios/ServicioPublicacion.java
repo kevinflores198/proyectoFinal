@@ -190,7 +190,7 @@ public class ServicioPublicacion {
             }
         }
         if(topDiez.size() > 10){
-            return topDiez.subList(0, 9);
+            return topDiez.subList(0, 10);
         }
         return topDiez;
     }
