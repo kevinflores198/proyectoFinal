@@ -14,7 +14,6 @@ import com.socialFashion.proyectoFinal.Servicios.ServicioUsuario;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -74,17 +73,19 @@ public class PublicacionControlador {
     }
     
     @GetMapping("/eliminar/{id}")
-    public String eliminarPublicacion(@PathVariable String id, ModelMap modelo, HttpSession session) {
-        List<Categorias> categorias = new ArrayList<>();
-        for(Categorias categoria : Categorias.values()){
-            categorias.add(categoria);
-        }
-        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+    public String eliminarPublicacion(@PathVariable String id, ModelMap modelo) {
+
         try {
             servicioPublicacion.eliminar(id);
-            List<Publicacion>publicaciones=servicioPublicacion.getPublicacionByUser(logueado.getId());
+            List<Categorias> categorias = new ArrayList<>();
+            for(Categorias categoria : Categorias.values()){
+                categorias.add(categoria);
+            }
+            Usuario usuario = servicioUsuario.getOne(servicioPublicacion.getOne(id).getUser().getId());
+            List<Publicacion> publicaciones = repoPublicacion.publicacionesByUser(usuario.getId());
+
+            modelo.addAttribute("usuario", usuario);
             modelo.addAttribute("publicaciones", publicaciones);
-            modelo.addAttribute("usuario", logueado);
             modelo.addAttribute("categorias", categorias);
 
             modelo.put("exito", "Publicación eliminada correctamente");
@@ -96,49 +97,6 @@ public class PublicacionControlador {
         }
         return "perfil.html";
         
-    }
-
-    // // A revisar este metodo que lo hice para mostrar el formulario de edición de
-    // // etiquetas y contenido.
-    // @GetMapping("/editar/{id}")
-    // public String modificarPublicacion(@PathVariable String id, ModelMap modelo) {
-
-    //     modelo.put("Publicacion", servicioPublicacion.getOne(id));
-
-    //     return "editar-publicacion.html";
-    // }
-
-    // @PostMapping("/editar/{id}")
-    // public String modificadoPublicacion(@PathVariable String id, @RequestParam String newLabel,
-    //      @RequestParam String newContent, ModelMap modelo) {
-
-    //     try {
-
-    //         servicioPublicacion.modificarPublicacion(newLabel, id, newContent);
-
-    //         modelo.put("exito", "Publicación editada correctamente");
-
-    //     } catch (MiException ex) {
-
-    //         modelo.put("error", "No se pudo editar la publicación");
-    //     }
-
-    //     return "perfil.html";
-        
-    // }
-    // No nos hace falta
-
-    //VISTA DE LISTA DE PUBLICACIONES 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @GetMapping("/listar-publicaciones")
-    public String listaPublicaciones(ModelMap modelo) {
-
-        List<Publicacion>publicaciones=servicioPublicacion.listaPublicacion();
-        modelo.addAttribute("publicaciones", publicaciones);
-
-        //RETORNAR A SU HTML 
-        return "lista-publicaciones.html";
-
     }
 
     //VISTA DE CARTA 
