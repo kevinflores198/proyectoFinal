@@ -204,8 +204,8 @@ public class ReportesControlador {
     @GetMapping("/reporteUsuario/ban/{idReporte}")
     public String banReporteUser(@PathVariable(name = "idReporte") String idReporte, ModelMap modelo, HttpSession session) throws MiException{
 
-        servicioReportUsuario.eliminarReporte(idReporte);
         servicioUsuario.banearUsuario(repoReportUsuario.getById(idReporte).getUserReported().getId());
+        servicioReportUsuario.eliminarReporte(idReporte);
         
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
         List<Usuario> usuarios = servicioUsuario.listUsers();
