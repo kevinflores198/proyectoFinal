@@ -202,10 +202,10 @@ public class ReportesControlador {
 // REPORTES DE USUARIO
 
     @GetMapping("/reporteUsuario/ban/{idReporte}")
-    public String banReporteUser(@PathVariable(name = "idReporte") String idReporte, ModelMap modelo) throws MiException{
+    public String banReporteUser(@PathVariable(name = "idReporte") String idReporte, ModelMap modelo, HttpSession session) throws MiException{
 
-        servicioReportUsuario.eliminarReporte(idReporte);
         servicioUsuario.banearUsuario(repoReportUsuario.getById(idReporte).getUserReported().getId());
+        servicioReportUsuario.eliminarReporte(idReporte);
         
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
         List<Usuario> usuarios = servicioUsuario.listUsers();
@@ -213,19 +213,21 @@ public class ReportesControlador {
         List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
         List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
         List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
-        
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
+
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
-        modelo.addAttribute("cometarios", comentarios);
-        modelo.addAttribute("repotesUsuario", reportUsuarios);
-        modelo.addAttribute("repotespublicacion", reportPublicaciones);
-        modelo.addAttribute("repotesComentario", reportComentarios);
+        modelo.addAttribute("comentarios", comentarios);
+        modelo.addAttribute("reportesUsuario", reportUsuarios);
+        modelo.addAttribute("reportesPublicacion", reportPublicaciones);
+        modelo.addAttribute("reportesComentario", reportComentarios);
 
         return "listado.html";
     }
 
     @GetMapping("/reporteUsuario/eliminar/{idReporte}")
-    public String eliminarUsuarioReporteUser(@PathVariable(name = "idReporte") String idReporte, ModelMap modelo) throws MiException{
+    public String eliminarUsuarioReporteUser(@PathVariable(name = "idReporte") String idReporte, ModelMap modelo, HttpSession session) throws MiException{
 
         servicioUsuario.delete(repoReportUsuario.getById(idReporte).getUserReported().getId());
 
@@ -235,19 +237,21 @@ public class ReportesControlador {
         List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
         List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
         List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
-        
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
+
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
-        modelo.addAttribute("cometarios", comentarios);
-        modelo.addAttribute("repotesUsuario", reportUsuarios);
-        modelo.addAttribute("repotespublicacion", reportPublicaciones);
-        modelo.addAttribute("repotesComentario", reportComentarios);
+        modelo.addAttribute("comentarios", comentarios);
+        modelo.addAttribute("reportesUsuario", reportUsuarios);
+        modelo.addAttribute("reportesPublicacion", reportPublicaciones);
+        modelo.addAttribute("reportesComentario", reportComentarios);
 
         return "listado.html";
     }
 
     @GetMapping("/reporteUsuario/{idReporte}")
-    public String eliminarReporteUser(@PathVariable(name = "idReporte") String idReporte, ModelMap modelo) throws MiException{
+    public String eliminarReporteUser(@PathVariable(name = "idReporte") String idReporte, ModelMap modelo, HttpSession session) throws MiException{
 
         servicioReportUsuario.eliminarReporte(idReporte);
         
@@ -257,13 +261,15 @@ public class ReportesControlador {
         List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
         List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
         List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
-        
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
+
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
-        modelo.addAttribute("cometarios", comentarios);
-        modelo.addAttribute("repotesUsuario", reportUsuarios);
-        modelo.addAttribute("repotespublicacion", reportPublicaciones);
-        modelo.addAttribute("repotesComentario", reportComentarios);
+        modelo.addAttribute("comentarios", comentarios);
+        modelo.addAttribute("reportesUsuario", reportUsuarios);
+        modelo.addAttribute("reportesPublicacion", reportPublicaciones);
+        modelo.addAttribute("reportesComentario", reportComentarios);
 
         return "listado.html";
     }
@@ -271,7 +277,7 @@ public class ReportesControlador {
 // REPORTES DE COMENTARIO
 
     @GetMapping("/reporteComentario/eliminar/{idReporte}")
-    public String eliminarComentarioReporteComentario(@PathVariable String idReporte, ModelMap modelo){
+    public String eliminarComentarioReporteComentario(@PathVariable String idReporte, ModelMap modelo, HttpSession session){
 
         servicioComentario.eliminarComentario(repoReportComentario.getById(idReporte).getComentario().getIdComent());
 
@@ -281,19 +287,21 @@ public class ReportesControlador {
         List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
         List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
         List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
-        
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
+
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
-        modelo.addAttribute("cometarios", comentarios);
-        modelo.addAttribute("repotesUsuario", reportUsuarios);
-        modelo.addAttribute("repotespublicacion", reportPublicaciones);
-        modelo.addAttribute("repotesComentario", reportComentarios);
+        modelo.addAttribute("comentarios", comentarios);
+        modelo.addAttribute("reportesUsuario", reportUsuarios);
+        modelo.addAttribute("reportesPublicacion", reportPublicaciones);
+        modelo.addAttribute("reportesComentario", reportComentarios);
 
         return "listado.html";
     }
 
     @GetMapping("/reporteComentario/{idReporte}")
-    public String eliminarReporteComentario(@PathVariable String idReporte, ModelMap modelo){
+    public String eliminarReporteComentario(@PathVariable String idReporte, ModelMap modelo, HttpSession session){
 
         servicioReportComentario.eliminarReporte(idReporte);
 
@@ -303,13 +311,15 @@ public class ReportesControlador {
         List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
         List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
         List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
-        
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
+
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
-        modelo.addAttribute("cometarios", comentarios);
-        modelo.addAttribute("repotesUsuario", reportUsuarios);
-        modelo.addAttribute("repotespublicacion", reportPublicaciones);
-        modelo.addAttribute("repotesComentario", reportComentarios);
+        modelo.addAttribute("comentarios", comentarios);
+        modelo.addAttribute("reportesUsuario", reportUsuarios);
+        modelo.addAttribute("reportesPublicacion", reportPublicaciones);
+        modelo.addAttribute("reportesComentario", reportComentarios);
 
         return "listado.html";
     }
@@ -317,7 +327,7 @@ public class ReportesControlador {
 // REPORTES DE PUBLICACION
 
     @GetMapping("/reportePublicacion/eliminar/{idReporte}")
-    public String eliminarPublicacionReportePublicacion(@PathVariable String idReporte, ModelMap modelo) throws MiException{
+    public String eliminarPublicacionReportePublicacion(@PathVariable String idReporte, ModelMap modelo, HttpSession session) throws MiException{
 
         servicioPublicacion.eliminar(repoReportPublicacion.getById(idReporte).getPublicacion().getId());
 
@@ -327,19 +337,21 @@ public class ReportesControlador {
         List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
         List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
         List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
-        
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
+
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
-        modelo.addAttribute("cometarios", comentarios);
-        modelo.addAttribute("repotesUsuario", reportUsuarios);
-        modelo.addAttribute("repotespublicacion", reportPublicaciones);
-        modelo.addAttribute("repotesComentario", reportComentarios);
+        modelo.addAttribute("comentarios", comentarios);
+        modelo.addAttribute("reportesUsuario", reportUsuarios);
+        modelo.addAttribute("reportesPublicacion", reportPublicaciones);
+        modelo.addAttribute("reportesComentario", reportComentarios);
 
         return "listado.html";
     }
 
     @GetMapping("/reportePublicacion/{idReporte}")
-    public String eliminarReportePublicacion(@PathVariable String idReporte, ModelMap modelo){
+    public String eliminarReportePublicacion(@PathVariable String idReporte, ModelMap modelo, HttpSession session){
 
         servicioReportPublicacion.eliminarReporte(idReporte);
 
@@ -349,13 +361,15 @@ public class ReportesControlador {
         List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
         List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
         List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
-        
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
+
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
-        modelo.addAttribute("cometarios", comentarios);
-        modelo.addAttribute("repotesUsuario", reportUsuarios);
-        modelo.addAttribute("repotespublicacion", reportPublicaciones);
-        modelo.addAttribute("repotesComentario", reportComentarios);
+        modelo.addAttribute("comentarios", comentarios);
+        modelo.addAttribute("reportesUsuario", reportUsuarios);
+        modelo.addAttribute("reportesPublicacion", reportPublicaciones);
+        modelo.addAttribute("reportesComentario", reportComentarios);
 
         return "listado.html";
     }

@@ -61,7 +61,7 @@ public class ServicioReportUser {
 
     @Transactional
     public void eliminarReporte(String idReporte) {
-        repoReportUsuario.deleteById(idReporte);
+        repoReportUsuario.delete(repoReportUsuario.getOne(idReporte));
     }
 
     @Transactional

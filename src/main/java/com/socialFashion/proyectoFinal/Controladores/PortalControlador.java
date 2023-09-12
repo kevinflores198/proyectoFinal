@@ -1,24 +1,18 @@
 package com.socialFashion.proyectoFinal.Controladores;
 
 import com.socialFashion.proyectoFinal.Entidades.Comentario;
-import com.socialFashion.proyectoFinal.Entidades.Imagen;
 import com.socialFashion.proyectoFinal.Entidades.Publicacion;
 import com.socialFashion.proyectoFinal.Entidades.ReportComentario;
 import com.socialFashion.proyectoFinal.Entidades.ReportPublicacion;
 import com.socialFashion.proyectoFinal.Entidades.ReportUser;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -32,12 +26,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.socialFashion.proyectoFinal.Entidades.Usuario;
 import com.socialFashion.proyectoFinal.Enumeraciones.Categorias;
-import com.socialFashion.proyectoFinal.Enumeraciones.Role;
 import com.socialFashion.proyectoFinal.Exceptions.MiException;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioBaneo;
-import com.socialFashion.proyectoFinal.Repositorios.RepositorioImagen;
 import com.socialFashion.proyectoFinal.Repositorios.RepositorioPublicacion;
-import com.socialFashion.proyectoFinal.Repositorios.RepositorioUsuario;
 import com.socialFashion.proyectoFinal.Servicios.ServicioComentario;
 import com.socialFashion.proyectoFinal.Servicios.ServicioPublicacion;
 import com.socialFashion.proyectoFinal.Servicios.ServicioReportComentario;
@@ -57,12 +48,9 @@ public class PortalControlador {
 
     @Autowired
     private ServicioComentario servicioComentario;
-
+    
     @Autowired
     private RepositorioPublicacion repoPublicacion;
-
-    @Autowired
-    private RepositorioUsuario repoUsuario;
 
     @Autowired
     private RepositorioBaneo repoBaneo;
@@ -75,6 +63,7 @@ public class PortalControlador {
 
     @Autowired
     private ServicioReportPublicacion servicioReportPublicacion;
+    
 
     // VISTA INDEX
     @GetMapping("/")
@@ -88,16 +77,15 @@ public class PortalControlador {
     }
 
     @GetMapping("/filtro/{filtro}/{categoria}")
-    public String index(@PathVariable Integer filtro, @PathVariable Categorias categoria, ModelMap modelo,
-            HttpSession session) {
+    public String index(@PathVariable Integer filtro, @PathVariable Categorias categoria, ModelMap modelo, HttpSession session){
 
         List<Publicacion> publicaciones = servicioPublicacion.publicacionesPorFiltro(filtro, categoria);
         modelo.addAttribute("publicaciones", publicaciones);
-
-        if (session.getAttribute("usuariosession") != null) {
+        
+        if(session.getAttribute("usuariosession")!=null){
             List<Usuario> topUsuarios = new ArrayList();
             for (Publicacion publicacion : publicaciones) {
-                if (!topUsuarios.contains(publicacion.getUser())) {
+                if(!topUsuarios.contains(publicacion.getUser())){
                     topUsuarios.add(publicacion.getUser());
                 }
             }
@@ -111,7 +99,7 @@ public class PortalControlador {
     @GetMapping("/registrar")
     public String registrar(ModelMap modelo) {
         // ---------------- PROBAR ------------------
-        // modelo.addAttribute("imagenPred", repoImagen.imagenPredeterminada());
+        //modelo.addAttribute("imagenPred", repoImagen.imagenPredeterminada());
         return "guest.html";
     }
 
@@ -125,19 +113,18 @@ public class PortalControlador {
             MultipartFile image, ModelMap modelo) {
 
         try {
-
             servicioUsuario.register(name, email, DateConverter(birthDate), password, password2, image);
 
             modelo.put("exito", "Usuario registrado correctamente!");
-
+            
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", name);
             modelo.put("email", email);
-
+            
         }
-
+        
         return "guest.html";
 
     }
@@ -153,39 +140,41 @@ public class PortalControlador {
     }
 
     @GetMapping("/check")
-    public String checkAlta(HttpSession session, ModelMap model) throws MiException {
-
+    public String checkAlta(HttpSession session, ModelMap model) throws MiException{
+        
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
 
-        if (!usuario.getAlta()) {
+        if(!usuario.getAlta()){
             Date hoy = new Date();
-
+            
             long tiempoTrascurrido = hoy.getTime() - repoBaneo.banByUser(usuario.getId()).getInicioBan().getTime();
             TimeUnit unidad = TimeUnit.DAYS;
 
             long dias = unidad.convert(tiempoTrascurrido, TimeUnit.MILLISECONDS);
-            if ((14 - dias) <= 0) {
+            if((14-dias) <= 0){
                 model.put("error", "Deberías poder ingresar, en breves momentos entrará un admin para desbanearte");
-            } else {
-                model.put("error", "Estas baneado, no puedes ingresar hasta dentro de " + (14 - dias) + "dias");
+            }else{
+                model.put("error", "Estas baneado, no puedes ingresar hasta dentro de " + (14-dias) + "dias");
             }
             return "guest.html";
         }
 
         return "redirect:/main";
     }
-
-    // VISTA MAIN
+    
+    //VISTA MAIN 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/main")
     public String inicio(HttpSession session, ModelMap modelo) {
+
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
+        List<Publicacion> topPublicaciones = repoPublicacion.listaTop();
         modelo.addAttribute("publicaciones", publicaciones);
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         modelo.addAttribute("usuario", servicioUsuario.getOne(logueado.getId()));
         List<Usuario> topUsuarios = new ArrayList();
-        for (Publicacion publicacion : publicaciones) {
-            if (!topUsuarios.contains(publicacion.getUser())) {
+        for (Publicacion publicacion : topPublicaciones) {
+            if(!topUsuarios.contains(publicacion.getUser())){
                 topUsuarios.add(publicacion.getUser());
             }
         }
@@ -200,16 +189,16 @@ public class PortalControlador {
 
         birthDate.setDate(Integer.valueOf(fecha.substring(8, 10)));
         birthDate.setMonth(Integer.valueOf(fecha.substring(5, 7)) - 1);
-        birthDate.setYear(Integer.valueOf(fecha.substring(0, 4)) - 1900);
+        birthDate.setYear(Integer.valueOf(fecha.substring(0, 4))-1900);
 
         return birthDate;
 
     }
 
-    // VISTA LISTA DE USUARIOS
+    //VISTA LISTA DE USUARIOS
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/listado")
-    public String listado(ModelMap modelo) {
+    public String listado(ModelMap modelo, HttpSession session) {
 
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
         List<Usuario> usuarios = servicioUsuario.listUsers();
@@ -217,23 +206,25 @@ public class PortalControlador {
         List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
         List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
         List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
 
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
-        modelo.addAttribute("cometarios", comentarios);
-        modelo.addAttribute("repotesUsuario", reportUsuarios);
-        modelo.addAttribute("repotespublicacion", reportPublicaciones);
-        modelo.addAttribute("repotesComentario", reportComentarios);
-
+        modelo.addAttribute("comentarios", comentarios);
+        modelo.addAttribute("reportesUsuario", reportUsuarios);
+        modelo.addAttribute("reportesPublicacion", reportPublicaciones);
+        modelo.addAttribute("reportesComentario", reportComentarios);
+        
         return "listado.html";
     }
-
-    // VISTA PERFIL
+    
+    //VISTA PERFIL
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/perfil/{id}")
     public String perfil(@PathVariable String id, ModelMap modelo) {
         List<Categorias> categorias = new ArrayList<>();
-        for (Categorias categoria : Categorias.values()) {
+        for(Categorias categoria : Categorias.values()){
             categorias.add(categoria);
         }
         Usuario usuario = servicioUsuario.getOne(id);
@@ -246,7 +237,7 @@ public class PortalControlador {
 
     }
 
-    // VISTA ACTUALIZAR PERFIL
+    //VISTA ACTUALIZAR PERFIL
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_DISIGNER')")
     @GetMapping("/perfil/modificar/{id}")
     public String modificarPerfil(@PathVariable String id, ModelMap modelo) {
@@ -254,11 +245,11 @@ public class PortalControlador {
         Usuario usuario = servicioUsuario.getOne(id);
         modelo.addAttribute("usuario", usuario);
 
-        return "form-usuario.html";
+        return "editar-perfil.html";
 
     }
 
-    // FORM ACTUALIZAR PERFIL
+    //FORM ACTUALIZAR PERFIL
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @PostMapping("/perfil/modificado/{id}")
     public String perfilModificado(@PathVariable String id,
@@ -270,23 +261,36 @@ public class PortalControlador {
 
             servicioUsuario.update(id, name, password, password2, image);
 
+            List<Categorias> categorias = new ArrayList<>();
+            for(Categorias categoria : Categorias.values()){
+                categorias.add(categoria);
+            }
+            Usuario usuario = servicioUsuario.getOne(id);
+            List<Publicacion> publicaciones = repoPublicacion.publicacionesByUser(id);
+            modelo.addAttribute("usuario", usuario);
+            modelo.addAttribute("publicaciones", publicaciones);
+            modelo.addAttribute("categorias", categorias);
+
             modelo.put("exito", "Usuario modificado correctamente!");
 
-            return "redirect:../perfil/" + id;
+            return "redirect:/perfil/".concat(id);
 
         } catch (MiException ex) {
 
+            Usuario usuario = servicioUsuario.getOne(id);
+            modelo.addAttribute("usuario", usuario);
             modelo.put("error", ex.getMessage());
-            modelo.put("nombre", name);
-
-            return "form-usuario.html";
+            modelo.put("name", name);
+            
+            return "editar-perfil.html";
         }
 
+        
     }
-
+    
     @GetMapping("/eliminar/{id}")
-    public String eliminarUsuario(@PathVariable String id, ModelMap modelo) throws MiException {
-
+    public String eliminarUsuario(@PathVariable String id, ModelMap modelo, HttpSession session) throws MiException{
+        
         servicioUsuario.delete(id);
 
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
@@ -295,22 +299,24 @@ public class PortalControlador {
         List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
         List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
         List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
 
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
-        modelo.addAttribute("cometarios", comentarios);
-        modelo.addAttribute("repotesUsuario", reportUsuarios);
-        modelo.addAttribute("repotespublicacion", reportPublicaciones);
-        modelo.addAttribute("repotesComentario", reportComentarios);
+        modelo.addAttribute("comentarios", comentarios);
+        modelo.addAttribute("reportesUsuario", reportUsuarios);
+        modelo.addAttribute("reportesPublicacion", reportPublicaciones);
+        modelo.addAttribute("reportesComentario", reportComentarios);
 
         return "listado.html";
     }
 
     @GetMapping("/ban/{id}")
-    public String BanUsuario(@PathVariable String id, ModelMap modelo) throws MiException {
-
+    public String BanUsuario(@PathVariable String id, ModelMap modelo, HttpSession session) throws MiException{
+        
         boolean alta = servicioUsuario.getOne(id).getAlta();
-
+        
         servicioUsuario.banearUsuario(id);
         List<Publicacion> publicaciones = servicioPublicacion.listaPublicacion();
         List<Usuario> usuarios = servicioUsuario.listUsers();
@@ -318,15 +324,18 @@ public class PortalControlador {
         List<ReportUser> reportUsuarios = servicioReportUsuario.listarReportes();
         List<ReportComentario> reportComentarios = servicioReportComentario.listarReportes();
         List<ReportPublicacion> reportPublicaciones = servicioReportPublicacion.listarReportesPulicacion();
+        String idUsuario = ((Usuario) session.getAttribute("usuariosession")).getId();
 
+        modelo.addAttribute("usuario", servicioUsuario.getOne(idUsuario));
         modelo.addAttribute("publicaciones", publicaciones);
         modelo.addAttribute("usuarios", usuarios);
-        modelo.addAttribute("cometarios", comentarios);
-        modelo.addAttribute("repotesUsuario", reportUsuarios);
-        modelo.addAttribute("repotespublicacion", reportPublicaciones);
-        modelo.addAttribute("repotesComentario", reportComentarios);
+        modelo.addAttribute("comentarios", comentarios);
+        modelo.addAttribute("reportesUsuario", reportUsuarios);
+        modelo.addAttribute("reportesPublicacion", reportPublicaciones);
+        modelo.addAttribute("reportesComentario", reportComentarios);
 
         return "listado.html";
     }
 
+    
 }
